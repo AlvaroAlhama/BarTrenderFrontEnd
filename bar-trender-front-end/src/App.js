@@ -1,19 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios'
+import axs from  './utils/axios';
 import './App.css';
 
 const App = () => {
 
-  const [msg, setMsg] = useState('No connection with API')
+  const [msg, setMsg] = useState()
 
   //Exec only once, when the page load
   useEffect(() => {
     
-    axios.get('http://127.0.0.1:8000/main/test/')
-      .then(res => {
-        setMsg(res.data.msg)
-      })
-      .catch(error => console.log(error))
+    axs.get('main/test/')
+      .then(res => setMsg(res.data.msg))
+      .catch(error => setMsg('No connection with API'))
 
   },[])
 

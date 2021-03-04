@@ -1,25 +1,27 @@
-import React, {useState, useEffect} from 'react';
-import axs from  './utils/axios';
+import React from 'react';
+import logo from './logo.svg';
 import './App.css';
 
-const App = () => {
+export default class App extends React.Component {
+  
+  state = {
+    loading: true,
+    qr: null,
+  };
+  
+  async componentDidMount()
+  {
+    const url = 'http://localhost:8000/main/test/';
+    const response = await fetch(url);
+    const data = await response.blob();
+    this.setState({qr: URL.createObjectURL(data), loading: false})
+  }
 
-  const [msg, setMsg] = useState()
-
-  //Exec only once, when the page load
-  useEffect(() => {
-    
-    axs.get('main/test/')
-      .then(res => setMsg(res.data.msg))
-      .catch(error => setMsg('No connection with API'))
-
-  },[])
-
-  return (
-    <div className="App">
-      <h2>{msg}</h2>
-    </div>
-  )
+  render(){
+    return (
+      <div className="App">
+          <img src={this.state.loading || this.state.qr != null ? this.state.qr : logo} alt="logo" />
+      </div>
+    );
+  }
 }
-
-export default App;

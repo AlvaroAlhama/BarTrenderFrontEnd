@@ -615,6 +615,8 @@ function LandingPage() {
         </div>
         <div id="contact-us" className="section section-contact-us text-center">
           <Container>
+            <form action="mailto:bartrenderoficial@gmail.com" method="post" enctype="text/plain">
+
             <h2 className="title">Want to work with us?</h2>
             <p className="description">Your project is very important to us.</p>
             <Row>
@@ -630,52 +632,37 @@ function LandingPage() {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="First Name..."
+                    placeholder="Name..."
                     type="text"
+                    name="Nombre"
                     onFocus={() => setFirstFocus(true)}
                     onBlur={() => setFirstFocus(false)}
                   ></Input>
+
                 </InputGroup>
                 <InputGroup
                   className={
                     "input-lg" + (lastFocus ? " input-group-focus" : "")
                   }
                 >
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="now-ui-icons ui-1_email-85"></i>
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="Email..."
-                    type="text"
-                    onFocus={() => setLastFocus(true)}
-                    onBlur={() => setLastFocus(false)}
-                  ></Input>
                 </InputGroup>
                 <div className="textarea-container">
                   <Input
                     cols="80"
-                    name="name"
+                    name="Comentario"
                     placeholder="Type a message..."
                     rows="4"
                     type="textarea"
                   ></Input>
-                </div>
+                </div>          
                 <div className="send-button">
-                  <Button
-                    block
-                    className="btn-round"
-                    color="info"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                    size="lg"
-                  >
-                    Send Message
-                  </Button>
+                  <input className="btn-round info block" type="submit" value="Send"></input>
+                  <input className="btn-round info block ml-4" type="reset" value="Reset"></input>
                 </div>
               </Col>
             </Row>
+      </form>
+
           </Container>
         </div>
         <DefaultFooter />

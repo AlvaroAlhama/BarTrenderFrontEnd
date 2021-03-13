@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import barTrender from '../../assets/img/barTrender60.png';
 // reactstrap components
 import {
   Collapse,
@@ -14,6 +15,7 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
+  NavbarText,
 } from "reactstrap";
 
 function ExamplesNavbar() {
@@ -51,7 +53,7 @@ function ExamplesNavbar() {
       ) : null}
       <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
         <Container>
-          <UncontrolledDropdown className="button-dropdown">
+          {/* <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
               caret
               data-toggle="dropdown"
@@ -65,52 +67,50 @@ function ExamplesNavbar() {
               <span className="button-bar"></span>
             </DropdownToggle>
             <DropdownMenu aria-labelledby="navbarDropdown">
-              <DropdownItem header tag="a">
-                Dropdown header (PH)
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Action (PH)
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Another action (PH)
-              </DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Something else here (PH)
+              <DropdownItem header>
+                Menú
               </DropdownItem>
               <DropdownItem divider></DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                Separated link (PH)
+              <DropdownItem href="#sobre-nosotros">
+                ¿Quiénes somos?
               </DropdownItem>
-              <DropdownItem divider></DropdownItem>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                One more separated link (PH)
+              <DropdownItem href="#nuestro-equipo">
+                Nuestro Equipo
+              </DropdownItem>
+              <DropdownItem href="#contact-us">
+                Contáctanos
               </DropdownItem>
             </DropdownMenu>
-          </UncontrolledDropdown>
+          </UncontrolledDropdown> */}
           <div className="navbar-translate">
-            <NavbarBrand
-              href="/"
-              target="_blank"
-              id="navbar-brand"
-            >
-              Secciones (PH)
-            </NavbarBrand>
-            <UncontrolledTooltip target="#navbar-brand">
-              Back to Index (PH)
-            </UncontrolledTooltip>
-            <button
-              className="navbar-toggler navbar-toggler"
-              onClick={() => {
-                document.documentElement.classList.toggle("nav-open");
-                setCollapseOpen(!collapseOpen);
-              }}
-              aria-expanded={collapseOpen}
-              type="button"
-            >
-              <span className="navbar-toggler-bar top-bar"></span>
-              <span className="navbar-toggler-bar middle-bar"></span>
-              <span className="navbar-toggler-bar bottom-bar"></span>
-            </button>
+              <Nav>
+                <NavLink className="Logo">
+                  <img src={barTrender} />
+                </NavLink>
+                <NavbarBrand
+                  href="/landing-page"
+                  target="_blank"
+                  id="navbar-brand"
+                >
+                  BarTrender
+                </NavbarBrand>
+                <UncontrolledTooltip target="#navbar-brand">
+                  BarTrender - LandingPage
+                </UncontrolledTooltip>
+                <button
+                  className="navbar-toggler navbar-toggler"
+                  onClick={() => {
+                    document.documentElement.classList.toggle("nav-open");
+                    setCollapseOpen(!collapseOpen);
+                  }}
+                  aria-expanded={collapseOpen}
+                  type="button"
+                >
+                  <span className="navbar-toggler-bar top-bar"></span>
+                  <span className="navbar-toggler-bar middle-bar"></span>
+                  <span className="navbar-toggler-bar bottom-bar"></span>
+                </button>
+              </Nav>
           </div>
           <Collapse
             className="justify-content-end"
@@ -118,16 +118,6 @@ function ExamplesNavbar() {
             navbar
           >
             <Nav navbar>
-              <NavItem>
-                <NavLink to="/index" tag={Link}>
-                  Back to Kit (PH)
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/creativetimofficial/now-ui-kit-react/issues?ref=creativetim">
-                  Have an issue? (PH)
-                </NavLink>
-              </NavItem>
               <NavItem>
                 <NavLink
                   href="https://twitter.com/TrenderBar"
@@ -138,7 +128,7 @@ function ExamplesNavbar() {
                   <p className="d-lg-none d-xl-none">Twitter</p>
                 </NavLink>
                 <UncontrolledTooltip target="#twitter-tooltip">
-                  Follow us on Twitter
+                  Síguenos en Twitter
                 </UncontrolledTooltip>
               </NavItem>
               {/* <NavItem>
@@ -164,7 +154,7 @@ function ExamplesNavbar() {
                   <p className="d-lg-none d-xl-none">Instagram</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
-                  Follow us on Instagram
+                  Síguenos en Instagram
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>

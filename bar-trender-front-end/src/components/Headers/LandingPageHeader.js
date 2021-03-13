@@ -1,5 +1,5 @@
 import React from "react";
-import bg from '../../assets/img/bg-landing.png';
+import bg from '../../assets/img/principalDef.png';
 
 // reactstrap components
 import { Button, Container } from "reactstrap";
@@ -20,9 +20,9 @@ function LandingPageHeader() {
       window.addEventListener("scroll", updateScroll);
       return function cleanup() {
         window.removeEventListener("scroll", updateScroll);
-      };
+      };  
     }
-  });
+  }); 
   return (
     <>
 

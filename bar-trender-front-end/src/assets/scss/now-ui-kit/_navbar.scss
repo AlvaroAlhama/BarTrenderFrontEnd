@@ -100,11 +100,13 @@
     }
 
     .navbar-brand{
-        text-transform: uppercase;
-        font-size: $font-size-small;
         padding-top: $padding-base-vertical;
         padding-bottom: $padding-base-vertical;
-        line-height: $line-height-nav-link;
+        text-transform: inherit;
+        font-size: 1.8em;
+        line-height: 3em;
+        padding-left: 2em;
+        font-family: Dosis;
     }
 
     .navbar-toggler{

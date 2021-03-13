@@ -11,7 +11,7 @@ function DefaultFooter() {
     <>
       <footer className="footer footer-default">
         <Container>
-          <nav>
+          {/* <nav>
             <ul>
               <li>
                 <a
@@ -38,23 +38,9 @@ function DefaultFooter() {
                 </a>
               </li>
             </ul>
-          </nav>
+          </nav> */}
           <div className="copyright" id="copyright">
-            © {new Date().getFullYear()}, Designed by{" "}
-            <a
-              href="https://www.invisionapp.com?ref=nukr-default-footer"
-              target="_blank"
-            >
-              Invision
-            </a>
-            . Coded by{" "}
-            <a
-              href="https://www.creative-tim.com?ref=nukr-default-footer"
-              target="_blank"
-            >
-              Creative Tim
-            </a>
-            .
+            © {new Date().getFullYear()}, Designed by BarTrender Team.
           </div>
         </Container>
       </footer>

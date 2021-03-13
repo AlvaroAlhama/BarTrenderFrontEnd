@@ -147,7 +147,7 @@ function IndexNavbar() {
                   <p className="d-lg-none d-xl-none">Twitter</p>
                 </NavLink>
                 <UncontrolledTooltip target="#twitter-tooltip">
-                  Follow us on Twitter
+                  Síguenos en Twitter
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
@@ -173,7 +173,7 @@ function IndexNavbar() {
                   <p className="d-lg-none d-xl-none">Instagram</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
-                  Follow us on Instagram
+                  Síguenos en Instagram
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>

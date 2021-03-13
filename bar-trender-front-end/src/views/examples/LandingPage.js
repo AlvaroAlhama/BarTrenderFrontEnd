@@ -55,7 +55,7 @@ function LandingPage() {
       <ExamplesNavbar />
       <div className="wrapper">
         <LandingPageHeader />
-        <div className="section section-about-us">
+        <div id="sobre-nosotros" className="section section-about-us">
           <Container>
             <Row>
               <Col className="ml-auto mr-auto text-center" md="8">
@@ -139,7 +139,7 @@ function LandingPage() {
             </div>
           </Container>
         </div>
-        <div className="section section-team text-center">
+        <div id="nuestro-equipo" className="section section-team text-center">
           <Container>
           {/* // TODO: BUSCAR IMAGENES DEL EQUIPO Y RELLENAR */}
             <h2 className="title">Here is our team</h2>
@@ -613,7 +613,7 @@ function LandingPage() {
             </div>
           </Container>
         </div>
-        <div className="section section-contact-us text-center">
+        <div id="contact-us" className="section section-contact-us text-center">
           <Container>
             <h2 className="title">Want to work with us?</h2>
             <p className="description">Your project is very important to us.</p>

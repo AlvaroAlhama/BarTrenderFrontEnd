@@ -1,5 +1,5 @@
 import React from "react";
-import bg from '../../assets/img/principalDef.png';
+import bg from '../../assets/img/principalDefDef-min.png';
 
 // reactstrap components
 import { Button, Container } from "reactstrap";

@@ -28,14 +28,14 @@ const app = (
     <BrowserRouter>
     <Switch>
       <Switch>
-        <Route path="/index" render={(props) => <App {...props} />} />
+        <Route path="/app" render={(props) => <App {...props} />} />
         <Route path="/demo-index" render={(props) => <Index {...props} />} />
         <Route
           path="/nucleo-icons"
           render={(props) => <NucleoIcons {...props} />}
         />
         <Route
-          path="/landing-page"
+          path="/index"
           render={(props) => <LandingPage {...props} />}
         />
         <Route

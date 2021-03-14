@@ -17,9 +17,10 @@ import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "../../components/Headers/LandingPageHeader.js";
 import DefaultFooter from "../../components/Footers/DefaultFooter.js";
 
-import image_left from '../../assets/img/bg-landing.png';
-import image_left_2 from '../../assets/img/bg-landing.png';
-import image_right from '../../assets/img/bg-landing.png';
+import image_left from '../../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
+import image_left_2 from '../../assets/img/expositions/Yn0xRl4G5E1eabgf9nyC9j6DVQVHd5DBNcPehVZwakLHYP-toRbW22a8kFesYK_taX0ZY_WviWVcT3bQ40tlKhaKSuAQAu6graIF.png';
+
+import image_right from '../../assets/img/expositions/TR9IDnSgMV79XktfRCxesUmLacTZJI9fb3Cv3-aMamIGyWdL_OagKWYcJJAPqgm62bjW9I6yHlMsOhowVROsAUiNui0CGo-qmPU-.png';
 
 import employee_1 from '../../assets/img/bg-landing.png';
 import employee_2 from '../../assets/img/victor.jpg';
@@ -59,10 +60,10 @@ function LandingPage() {
           <Container>
             <Row>
               <Col className="ml-auto mr-auto text-center" md="8">
-                <h2 className="title">Who we are? (PH) </h2>
+                <h2 className="title">¿Quiénes somos?</h2>
                 <h5 className="description">
-                  {/* (TODO: RELLENAR DESCRIPCION) */}
-                  Los chavales de BarTrender (PH)
+                  Somos un grupo de estudiantes de la Universidad de Sevilla y queremos presentarle este nuevo proyecto en el que estamos trabajando para el cual nos es muy importante su ayuda.
+                  Nuestro objetivo es promocionar y descubrir nuevos lugares a nuestros usuarios, en el que puedan compartir grandes momentos sociales; y qué mejor lugar para compartirlos, que en nuestros bares, cervecerías y pubs.
                 </h5>
               </Col>
             </Row>
@@ -76,13 +77,10 @@ function LandingPage() {
                       backgroundImage: `url(${image_left})`,
                     }}
                   >
-                    {/* // TODO: MAS INFO O REMODELAR */}
                     <p className="blockquote blockquote-info">
-                      "Over the span of the satellite record, Arctic sea ice has
-                      been declining significantly, while sea ice in the
-                      Antarctichas increased very slightly" <br></br>
+                      Tú elige a tu gente que para elegir el bar te ayudamos nosotros <br></br>
                       <br></br>
-                      <small>-NOAA</small>
+                      <small>-BarTrender</small>
                     </p>
                   </div>
                   <div
@@ -100,40 +98,17 @@ function LandingPage() {
 
                     }}
                   ></div>
-                  {/* // TODO: RELLENAR INFO O REMODELAR */}
-                  <h3>
-                    So what does the new record for the lowest level of winter
-                    ice actually mean
-                  </h3>
-                  <p>
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens with climate change. Even if the
-                    Arctic continues to be one of the fastest-warming regions of
-                    the world, it will always be plunged into bitterly cold
-                    polar dark every winter. And year-by-year, for all kinds of
-                    natural reasons, there’s huge variety of the state of the
-                    ice.
-                  </p>
-                  <p>
-                    For a start, it does not automatically follow that a record
-                    amount of ice will melt this summer. More important for
-                    determining the size of the annual thaw is the state of the
-                    weather as the midnight sun approaches and temperatures
-                    rise. But over the more than 30 years of satellite records,
-                    scientists have observed a clear pattern of decline,
-                    decade-by-decade.
-                  </p>
-                  <p>
-                    The Arctic Ocean freezes every winter and much of the
-                    sea-ice then thaws every summer, and that process will
-                    continue whatever happens with climate change. Even if the
-                    Arctic continues to be one of the fastest-warming regions of
-                    the world, it will always be plunged into bitterly cold
-                    polar dark every winter. And year-by-year, for all kinds of
-                    natural reasons, there’s huge variety of the state of the
-                    ice.
-                  </p>
+                  <h3 className="title">¿Qué es BarTrender?</h3>
+                  <h5 className="description">
+                  BarTrender es una página web de búsqueda de bares, cervecerías y pubs por zonas con una gran variedad de filtros que van desde bebidas específicas, pasando por elementos de ocio como mesas de billar, hasta otros aspectos como si hay música en el local. 
+                  Para que todo el sistema de filtrado funcione necesitamos que los establecimientos se registren en la aplicación y rellenen su perfil detalladamente, por lo que nos aseguraremos de hacer que este proceso sea lo más sencillo y cómodo posible.
+                  </h5>
+                  <h3 className="title">Funcionalidades</h3>
+                  <h5 className="description">
+                  Por un lado, se distribuirán descuentos y ofertas creadas por los propios locales que luego serán escaneadas como código QR en dichos establecimientos. Para facilitar esto, no es necesaria la instalación de ninguna aplicación, solo hará falta que el encargado de cobrar la oferta tenga un escáner QR en el móvil.
+                  Por otro lado, se ofrecerá a todos los establecimientos registrados información que les pueda ser útil para adecuar su negocio a los gustos de los consumidores. Esta información consistirá en una serie de datos y/o gráficas que reflejen las búsquedas más frecuentes en su zona o la tendencia de estas en función de los filtros que estarán disponibles para las búsquedas de los usuarios.
+                  </h5>
+                  
                 </Col>
               </Row>
             </div>
@@ -155,9 +130,9 @@ function LandingPage() {
                     <h4 className="title">Carlos Doblado Herrero</h4>
                     <p className="category text-info">Jefe de proyecto</p>
                     <p className="description">
-                     Miembro del equipo con una gran capacidad de organizar proyectos. Además,
-                     es capaz de asumir la responsabilidad completa y delegar el trabajo a la perfectamente.
-                     Destaca por sus ganas e ilusión con la que ejerce su trabajo. 
+                      Miembro del equipo con una gran capacidad de organizar proyectos. Además,
+                      es capaz de asumir la responsabilidad completa y delegar el trabajo a la perfectamente.
+                      Destaca por sus ganas e ilusión con la que ejerce su trabajo.
                     </p>
                     <Button
                       className="btn-icon btn-round"
@@ -197,9 +172,9 @@ function LandingPage() {
                     <h4 className="title">Víctor Muñoz Ramírez</h4>
                     <p className="category text-info">Jefe del equipo Back-end</p>
                     <p className="description">
-                      Miembro del equipo que tiene una gran capacidad para organizar equipos de trabajo. 
-                      Ha liderado más de tres equipos de trabajo anteriormente, y todos ellos han obtenido un 
-                      gran éxito. Además, tiene un buen conocimiento técnico relacionado al desarrollo back-end. 
+                      Miembro del equipo que tiene una gran capacidad para organizar equipos de trabajo.
+                      Ha liderado más de tres equipos de trabajo anteriormente, y todos ellos han obtenido un
+                      gran éxito. Además, tiene un buen conocimiento técnico relacionado al desarrollo back-end.
                     </p>
                     <Button
                       className="btn-icon btn-round"
@@ -269,8 +244,8 @@ function LandingPage() {
                     <h4 className="title">Álvaro Aguilar Alhama</h4>
                     <p className="category text-info">Desarrollador Back-end</p>
                     <p className="description">
-                    Miembro del equipo con un buen conocimiento en las herramientas y 
-                    lenguajes que ocupan este proyecto. Destaca por su constancia y entrega que le dedica al trabajo. 
+                      Miembro del equipo con un buen conocimiento en las herramientas y
+                      lenguajes que ocupan este proyecto. Destaca por su constancia y entrega que le dedica al trabajo.
                     </p>
                     <Button
                       className="btn-icon btn-round"
@@ -308,8 +283,8 @@ function LandingPage() {
                     <h4 className="title">Jose Manuel Cobo Guerrero</h4>
                     <p className="category text-info">Desarrollador Back-end</p>
                     <p className="description">
-                      Miembro del equipo con un buen conocimiento de las 
-                      herramientas que se utilizan en este proyecto. Destaca por la gran capacidad que posee para 
+                      Miembro del equipo con un buen conocimiento de las
+                      herramientas que se utilizan en este proyecto. Destaca por la gran capacidad que posee para
                       comprender los requisitos y convertirlos en realidad.
                     </p>
                     <Button
@@ -348,8 +323,8 @@ function LandingPage() {
                     <h4 className="title">Carlos Pardo Pastor</h4>
                     <p className="category text-info">Desarrollador back-end</p>
                     <p className="description">
-                      Miembro del equipo con un amplio conocimiento técnico, tanto las tecnologías que se utilizan 
-                      en este proyecto, como herramientas de integración, despliegue, etc. Por otro lado, 
+                      Miembro del equipo con un amplio conocimiento técnico, tanto las tecnologías que se utilizan
+                      en este proyecto, como herramientas de integración, despliegue, etc. Por otro lado,
                       destaca por la capacidad de resolver los retos propuestos con mucha calidad.
                     </p>
                     <Button
@@ -422,7 +397,7 @@ function LandingPage() {
                     <p className="category text-info">Analista Front-end</p>
                     <p className="description">
                       Miembro del equipo con una amplia capacidad para aprender y adaptarse a los retos propuestos.
-                      Anteriormente, ha ocupado puestos de jefe de proyecto y revisor. Destaca por la capacidad 
+                      Anteriormente, ha ocupado puestos de jefe de proyecto y revisor. Destaca por la capacidad
                       de no dejar ningún cabo suelto.
                     </p>
                     <Button
@@ -501,8 +476,8 @@ function LandingPage() {
                     <h4 className="title">Miguel Ponce Melero</h4>
                     <p className="category text-info">Desarrollador Front-end</p>
                     <p className="description">
-                     Miembro del equipo con una gran capacidad para aprender y adaptarse a nuevos retos.
-                     Posee un amplio conocimiento en el ámbito del Front-End. Destaca por sus ganas de aportar al equipo.
+                      Miembro del equipo con una gran capacidad para aprender y adaptarse a nuevos retos.
+                      Posee un amplio conocimiento en el ámbito del Front-End. Destaca por sus ganas de aportar al equipo.
                     </p>
                     <Button
                       className="btn-icon btn-round"
@@ -533,7 +508,7 @@ function LandingPage() {
                     <p className="category text-info">Desarrollador Front-end</p>
                     <p className="description">
                       Miembro del equipo con un gran conocimiento técnico sobre el ámbito Front-end.
-                      Además, posee bastantes conocimientos sobre diseño y marketing digital. Destaca por 
+                      Además, posee bastantes conocimientos sobre diseño y marketing digital. Destaca por
                       la capacidad de entender perfectamente las necesidades del cliente.
                     </p>
                     <Button
@@ -570,8 +545,8 @@ function LandingPage() {
           <Container>
             <form action="mailto:bartrenderoficial@gmail.com" method="post" enctype="text/plain">
 
-              <h2 className="title">Want to work with us?</h2>
-              <p className="description">Your project is very important to us.</p>
+              <h2 className="title">¿Quieres saber más sobre el proyecto?</h2>
+              <p className="description">Sientete libre de contactarnos sobre cualquier tema</p>
               <Row>
                 <Col className="text-center ml-auto mr-auto" lg="6" md="8">
                   <InputGroup
@@ -585,7 +560,7 @@ function LandingPage() {
                       </InputGroupText>
                     </InputGroupAddon>
                     <Input
-                      placeholder="Name..."
+                      placeholder="Nombre..."
                       type="text"
                       name="Nombre"
                       onFocus={() => setFirstFocus(true)}
@@ -603,14 +578,14 @@ function LandingPage() {
                     <Input
                       cols="80"
                       name="Comentario"
-                      placeholder="Type a message..."
+                      placeholder="Escribe tu mensaje..."
                       rows="4"
                       type="textarea"
                     ></Input>
                   </div>
                   <div className="send-button">
-                    <input className="btn-round info block" type="submit" value="Send"></input>
-                    <input className="btn-round info block ml-4" type="reset" value="Reset"></input>
+                    <input className="btn-round info block" type="submit" value="Enviar"></input>
+                    <input className="btn-round info block ml-4" type="reset" value="Borrar"></input>
                   </div>
                 </Col>
               </Row>

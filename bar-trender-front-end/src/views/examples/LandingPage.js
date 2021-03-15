@@ -206,23 +206,7 @@ function LandingPage() {
                     
                   </div>
                 </Col>
-                <Col md="">
-                  <div className="team-player">
-                    <img
-                      alt="..."
-                      className="rounded-circle img-fluid img-raised"
-                      src={employee_6}
-                    ></img>
-                    <h4 className="title">Carlos Pardo Pastor</h4>
-                    <p className="category text-info">Desarrollador back-end</p>
-                    <p className="">
-                      Miembro del equipo con un amplio conocimiento técnico, tanto las tecnologías que se utilizan
-                      en este proyecto, como herramientas de integración, despliegue, etc. Por otro lado,
-                      destaca por la capacidad de resolver los retos propuestos con mucha calidad.
-                    </p>
-                   
-                  </div>
-                </Col>
+                
               </Row>
               <Row>
                 <Col md="">
@@ -306,6 +290,23 @@ function LandingPage() {
                       la capacidad de entender perfectamente las necesidades del cliente.
                     </p>
                     
+                  </div>
+                </Col>
+                <Col md="">
+                  <div className="team-player">
+                    <img
+                      alt="..."
+                      className="rounded-circle img-fluid img-raised"
+                      src={employee_6}
+                    ></img>
+                    <h4 className="title">Carlos Pardo Pastor</h4>
+                    <p className="category text-info">Desarrollador Front-end</p>
+                    <p className="">
+                      Miembro del equipo con un amplio conocimiento técnico, tanto las tecnologías que se utilizan
+                      en este proyecto, como herramientas de integración, despliegue, etc. Por otro lado,
+                      destaca por la capacidad de resolver los retos propuestos con mucha calidad.
+                    </p>
+                   
                   </div>
                 </Col>
               </Row>

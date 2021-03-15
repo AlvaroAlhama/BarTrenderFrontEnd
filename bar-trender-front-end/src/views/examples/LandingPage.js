@@ -117,9 +117,9 @@ function LandingPage() {
         </div>
         <div id="nuestro-equipo" className="section section-team text-center">
           <Container>
-            <h2 className="title">Here is our team</h2>
+            <h2 className="title">Este es nuestro equipo</h2>
             <div className="team">
-              <Row>
+              <Row className="mb-5">
                 <Col >
                   <div className="team-player">
                     <img
@@ -138,7 +138,7 @@ function LandingPage() {
                   </div>
                 </Col>
               </Row>
-              <Row>
+              <Row className="mb-5">
                 <Col md="">
                   <div className="team-player">
                     <img
@@ -206,23 +206,7 @@ function LandingPage() {
                     
                   </div>
                 </Col>
-                <Col md="">
-                  <div className="team-player">
-                    <img
-                      alt="..."
-                      className="rounded-circle img-fluid img-raised"
-                      src={employee_6}
-                    ></img>
-                    <h4 className="title">Carlos Pardo Pastor</h4>
-                    <p className="category text-info">Desarrollador back-end</p>
-                    <p className="">
-                      Miembro del equipo con un amplio conocimiento técnico, tanto las tecnologías que se utilizan
-                      en este proyecto, como herramientas de integración, despliegue, etc. Por otro lado,
-                      destaca por la capacidad de resolver los retos propuestos con mucha calidad.
-                    </p>
-                   
-                  </div>
-                </Col>
+                
               </Row>
               <Row>
                 <Col md="">
@@ -306,6 +290,23 @@ function LandingPage() {
                       la capacidad de entender perfectamente las necesidades del cliente.
                     </p>
                     
+                  </div>
+                </Col>
+                <Col md="">
+                  <div className="team-player">
+                    <img
+                      alt="..."
+                      className="rounded-circle img-fluid img-raised"
+                      src={employee_6}
+                    ></img>
+                    <h4 className="title">Carlos Pardo Pastor</h4>
+                    <p className="category text-info">Desarrollador Front-end</p>
+                    <p className="">
+                      Miembro del equipo con un amplio conocimiento técnico, tanto las tecnologías que se utilizan
+                      en este proyecto, como herramientas de integración, despliegue, etc. Por otro lado,
+                      destaca por la capacidad de resolver los retos propuestos con mucha calidad.
+                    </p>
+                   
                   </div>
                 </Col>
               </Row>

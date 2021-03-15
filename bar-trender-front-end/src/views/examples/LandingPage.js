@@ -117,9 +117,9 @@ function LandingPage() {
         </div>
         <div id="nuestro-equipo" className="section section-team text-center">
           <Container>
-            <h2 className="title">Here is our team</h2>
+            <h2 className="title">Este es nuestro equipo</h2>
             <div className="team">
-              <Row>
+              <Row className="mb-5">
                 <Col >
                   <div className="team-player">
                     <img
@@ -138,7 +138,7 @@ function LandingPage() {
                   </div>
                 </Col>
               </Row>
-              <Row>
+              <Row className="mb-5">
                 <Col md="">
                   <div className="team-player">
                     <img

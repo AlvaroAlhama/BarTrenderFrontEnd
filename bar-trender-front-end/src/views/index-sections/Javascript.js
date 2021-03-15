@@ -23,21 +23,17 @@ function Javascript() {
   const [modal2, setModal2] = React.useState(false);
   return (
     <>
-      <div className="section section-javascript" id="javascriptComponents">
+      {/* <div className="section section-javascript" id="javascriptComponents">
         <Container>
-          <h3 className="title">Javascript components</h3>
-          <Row id="modals">
-            <Col md="6">
-              <h4>Modal</h4>
+          <h3 className="title">Javascript components</h3> */}
+          <Row id="modals d-inline">
+            <Col md="6 d-inline">
               <Button
                 color="primary"
                 className="mr-1"
                 onClick={() => setModal1(true)}
               >
-                Launch Modal
-              </Button>
-              <Button color="info" onClick={() => setModal2(true)}>
-                Launch Modal Mini
+                Buscar por filtros
               </Button>
               <Modal isOpen={modal1} toggle={() => setModal1(false)}>
                 <div className="modal-header justify-content-center">
@@ -52,13 +48,7 @@ function Javascript() {
                 </div>
                 <ModalBody>
                   <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics, a large language ocean. A small
-                    river named Duden flows by their place and supplies it with
-                    the necessary regelialia. It is a paradisematic country, in
-                    which roasted parts of sentences fly into your mouth.
+                    Te la creiste wey
                   </p>
                 </ModalBody>
                 <div className="modal-footer">
@@ -74,6 +64,13 @@ function Javascript() {
                   </Button>
                 </div>
               </Modal>
+              
+            </Col>
+            <Col md="6 d-inline">
+              
+              <Button color="info" onClick={() => setModal2(true)}>
+                Launch Modal Mini
+              </Button>
               <Modal
                 modalClassName="modal-mini modal-info"
                 toggle={() => setModal2(false)}
@@ -102,7 +99,7 @@ function Javascript() {
                 </div>
               </Modal>
             </Col>
-            <Col md="6">
+            {/* <Col md="6">
               <h4>Popovers</h4>
               <Button
                 color="default"
@@ -247,10 +244,10 @@ function Javascript() {
               <div className="clearfix"></div>
               <br></br>
               <br></br>
-            </Col>
+            </Col> */}
           </Row>
-        </Container>
-      </div>
+        {/* </Container>
+      </div> */}
     </>
   );
 }

@@ -22,17 +22,18 @@ import image_left_2 from '../../assets/img/expositions/Yn0xRl4G5E1eabgf9nyC9j6DV
 
 import image_right from '../../assets/img/expositions/TR9IDnSgMV79XktfRCxesUmLacTZJI9fb3Cv3-aMamIGyWdL_OagKWYcJJAPqgm62bjW9I6yHlMsOhowVROsAUiNui0CGo-qmPU-.png';
 
+import employee_0 from '../../assets/img/carlos.png';
 import employee_1 from '../../assets/img/bg-landing.png';
-import employee_2 from '../../assets/img/victor.jpg';
-import employee_3 from '../../assets/img/enrique.jpg';
-import employee_4 from '../../assets/img/alvaro.jpg';
-import employee_5 from '../../assets/img/jose.jpg';
-import employee_6 from '../../assets/img/carlos-pardo.jpg';
-import employee_7 from '../../assets/img/alejandro.jpg';
-import employee_8 from '../../assets/img/xema.jpg';
-import employee_9 from '../../assets/img/miguel.jpg';
-import employee_10 from '../../assets/img/miguel-angel.jpg';
-import employee_11 from '../../assets/img/fran.jpg';
+import employee_2 from '../../assets/img/victor.png';
+import employee_3 from '../../assets/img/enrique.png';
+import employee_4 from '../../assets/img/alvaro.png';
+import employee_5 from '../../assets/img/jose.png';
+import employee_6 from '../../assets/img/carlos-pardo.png';
+import employee_7 from '../../assets/img/alejandro.png';
+import employee_8 from '../../assets/img/xema.png';
+import employee_9 from '../../assets/img/miguel.png';
+import employee_10 from '../../assets/img/miguel-angel.png';
+import employee_11 from '../../assets/img/fran.png';
 
 
 
@@ -116,7 +117,6 @@ function LandingPage() {
         </div>
         <div id="nuestro-equipo" className="section section-team text-center">
           <Container>
-            {/* // TODO: BUSCAR IMAGENES DEL EQUIPO Y RELLENAR */}
             <h2 className="title">Here is our team</h2>
             <div className="team">
               <Row>
@@ -125,7 +125,7 @@ function LandingPage() {
                     <img
                       alt="..."
                       className="rounded-circle img-fluid img-raised"
-                      src={employee_1}
+                      src={employee_0}
                     ></img>
                     <h4 className="title">Carlos Doblado Herrero</h4>
                     <p className="category text-info">Jefe de proyecto</p>

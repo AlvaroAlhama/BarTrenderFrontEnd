@@ -318,7 +318,7 @@ function LandingPage() {
             <form action="mailto:bartrenderoficial@gmail.com" method="post" enctype="text/plain">
 
               <h2 className="title">¿Quieres saber más sobre el proyecto?</h2>
-              <p className="">Sientete libre de contactarnos sobre cualquier tema</p>
+              <p className="">Sientete libre de contactarnos sobre cualquier tema a nuestro correo electrónico bartrenderoficial@gmail.com</p>
               <Row>
                 <Col className="text-center ml-auto mr-auto" lg="6" md="8">
                   <InputGroup

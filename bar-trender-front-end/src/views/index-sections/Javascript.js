@@ -4,12 +4,15 @@ import Datetime from "react-datetime";
 // reactstrap components
 import {
   Button,
-  FormGroup,
   Container,
   Modal,
   ModalBody,
   Row,
   Col,
+  Label,
+  FormGroup,
+  Input,
+  Form,
   UncontrolledTooltip,
   PopoverBody,
   PopoverHeader,
@@ -50,12 +53,27 @@ function Javascript() {
                   <p>
                     Te la creiste wey
                   </p>
+                  
+                <Form >
+                <FormGroup check>
+                  <Label check>
+                    <Input type="checkbox"></Input>
+                    <span className="form-check-sign"></span>
+                    Unchecked
+                  </Label>
+                </FormGroup>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+
                 </ModalBody>
                 <div className="modal-footer">
                   <Button color="default" type="button">
                     Nice Button
                   </Button>
-                  <Button
+                  <Button 
+                    // ref="/landing_page"
                     color="danger"
                     type="button"
                     onClick={() => setModal1(false)}

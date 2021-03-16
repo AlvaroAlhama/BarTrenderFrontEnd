@@ -23,7 +23,7 @@ import Javascript from "../../views/index-sections/Javascript.js";
 import ModalSearch from "../../components/ModalSearch";
 
 
-function ExamplesNavbar() {
+function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -117,14 +117,7 @@ function ExamplesNavbar() {
                 </button>
               </Nav>
           </div>
-          <div>
-            <FormGroup>
-                  <Input
-                    defaultValue=""
-                    placeholder="Regular"
-                    type="text"
-                  ></Input>
-          </FormGroup> </div>
+          
           <ModalSearch />
 
           <Collapse
@@ -180,4 +173,4 @@ function ExamplesNavbar() {
   );
 }
 
-export default ExamplesNavbar;
+export default MainNavbar;

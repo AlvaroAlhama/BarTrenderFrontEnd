@@ -15,9 +15,11 @@ import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
 import Index from "./views/Index.js";
+import Main from "./views/Main.js";
+
 import NucleoIcons from "./views/NucleoIcons.js";
 import LoginPage from "./views/examples/LoginPage.js";
-import LandingPage from "./views/examples/LandingPage.js";
+import LandingPage from "./views/LandingPage.js";
 import ProfilePage from "./views/examples/ProfilePage.js";
 
 const app = (
@@ -37,6 +39,10 @@ const app = (
         <Route
           path="/index"
           render={(props) => <LandingPage {...props} />}
+        />
+        <Route
+          path="/main"
+          render={(props) => <Main {...props} />}
         />
         <Route
           path="/profile-page"

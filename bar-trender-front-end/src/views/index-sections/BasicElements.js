@@ -191,7 +191,7 @@ function BasicElements() {
               <p className="category">Checkboxes</p>
               <FormGroup check>
                 <Label check>
-                  <Input type="checkbox"></Input>
+                  <Input type="checkbox" ></Input>
                   <span className="form-check-sign"></span>
                   Unchecked
                 </Label>

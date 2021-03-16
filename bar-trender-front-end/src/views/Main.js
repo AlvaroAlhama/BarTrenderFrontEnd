@@ -38,6 +38,7 @@ function LandingPage() {
   });
   useEffect(() => {
     setAppState({ loading: true });
+    // TODO: PODEMOS CAMBIAR ESTO DINAMICAMENTE, POR DEFECTO QUE NOS DEVUELVA UNAS Y AL HACER EL SEARCH -> POST 
     const apiUrl = `https://api.github.com/users/hacktivist123/repos`;
     fetch(apiUrl)
       .then((res) => res.json())

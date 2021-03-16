@@ -1,4 +1,5 @@
-import React from "react";
+// import React from "react";
+import React, { useEffect, useState } from 'react';
 
 // reactstrap components
 import {
@@ -18,48 +19,52 @@ import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import Carousel from "./index-sections/Carousel.js";
 
+import List from "../components/List";
+import withListLoading from '../components/withListLoading';
+
 import image_left from '../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
-import image_left_2 from '../assets/img/expositions/Yn0xRl4G5E1eabgf9nyC9j6DVQVHd5DBNcPehVZwakLHYP-toRbW22a8kFesYK_taX0ZY_WviWVcT3bQ40tlKhaKSuAQAu6graIF.png';
-
-import image_right from '../assets/img/expositions/TR9IDnSgMV79XktfRCxesUmLacTZJI9fb3Cv3-aMamIGyWdL_OagKWYcJJAPqgm62bjW9I6yHlMsOhowVROsAUiNui0CGo-qmPU-.png';
-
-import employee_0 from '../assets/img/carlos.png';
-import employee_1 from '../assets/img/bg-landing.png';
-import employee_2 from '../assets/img/victor.png';
-import employee_3 from '../assets/img/enrique.png';
-import employee_4 from '../assets/img/alvaro.png';
-import employee_5 from '../assets/img/jose.png';
-import employee_6 from '../assets/img/carlos-pardo.png';
-import employee_7 from '../assets/img/alejandro.png';
-import employee_8 from '../assets/img/xema.png';
-import employee_9 from '../assets/img/miguel.png';
-import employee_10 from '../assets/img/miguel-angel.png';
-import employee_11 from '../assets/img/fran.png';
-
-
 
 
 function LandingPage() {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
-  React.useEffect(() => {
-    document.body.classList.add("landing-page");
-    document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    return function cleanup() {
-      document.body.classList.remove("landing-page");
-      document.body.classList.remove("sidebar-collapse");
-    };
-  }, []);
+
+  // Consuming REST GET
+  const ListLoading = withListLoading(List);
+  const [appState, setAppState] = useState({
+    loading: false,
+    repos: null,
+  });
+  useEffect(() => {
+    setAppState({ loading: true });
+    const apiUrl = `https://api.github.com/users/hacktivist123/repos`;
+    fetch(apiUrl)
+      .then((res) => res.json())
+      .then((repos) => {
+        setAppState({ loading: false, repos: repos });
+      });
+  }, [setAppState]);
+
+
+  // React.useEffect(() => {
+  //   document.body.classList.add("landing-page");
+  //   document.body.classList.add("sidebar-collapse");
+  //   document.documentElement.classList.remove("nav-open");
+  //   window.scrollTo(0, 0);
+  //   document.body.scrollTop = 0;
+  //   return function cleanup() {
+  //     document.body.classList.remove("landing-page");
+  //     document.body.classList.remove("sidebar-collapse");
+  //   };
+  // }, []);
+
   return (
     <>
       <MainNavbar />
       <div className="wrapper">
         <LandingPageHeader />
         <div id="sobre-nosotros" className="section section-about-us">
-          <Container>
+          {/* <Container>
             <Row>
               <Col className="ml-auto mr-auto text-center" md="8">
                 <h2 className="title">¿Quiénes somos?</h2>
@@ -71,24 +76,20 @@ function LandingPage() {
               
             </Row>
             <div className="separator separator-primary"></div>
-          </Container>
+          </Container> */}
         </div>
         <div id="sobre-nosotros" className="section section-about-us">
-          <Container>
-            {/* <Row>
-              <Col className="ml-auto mr-auto text-center" md="8">
-                <Carousel />
-              </Col>
-            </Row> */}
+          {/* <Container>
+            
             <Carousel />
             <div className="separator separator-primary"></div>
-          </Container>
+          </Container> */}
         </div>
         
 
         
         <div id="contact-us" className="section section-contact-us text-center">
-          <Container>
+          {/* <Container>
             <form action="mailto:bartrenderoficial@gmail.com" method="post" enctype="text/plain">
 
               <h2 className="title">¿Quieres saber más sobre el proyecto?</h2>
@@ -137,10 +138,20 @@ function LandingPage() {
               </Row>
             </form>
 
-          </Container>
+          </Container> */}
         </div>
+        <div className='container'>
+          <h1>My Repositories</h1>
+        </div>
+        <div className='repo-container'>
+          <ListLoading isLoading={appState.loading} repos={appState.repos} />
+        </div>
+        
+
         <DefaultFooter />
+        
       </div>
+      
     </>
   );
 }

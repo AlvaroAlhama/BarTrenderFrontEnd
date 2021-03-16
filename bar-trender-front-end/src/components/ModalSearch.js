@@ -28,8 +28,8 @@ function ModalSearch() {
     return (
       <>
       
-            <Row id="modals d-inline">
-              <Col md="6 d-inline">
+            {/* <Row id="modals d-inline"> */}
+              {/* <Col md="6 d-inline"> */}
                 <Button
                   color="primary"
                   className="mr-1"
@@ -70,8 +70,8 @@ function ModalSearch() {
                   </div>
                 </Modal>
                 
-              </Col>
-              <Col md="6 d-inline">
+              {/* </Col> */}
+              {/* <Col md="6 d-inline">
                 
                 <Button color="info" onClick={() => setModal2(true)}>
                   Launch Modal Mini
@@ -103,9 +103,9 @@ function ModalSearch() {
                     </Button>
                   </div>
                 </Modal>
-              </Col>
+              </Col> */}
               
-            </Row>
+            {/* </Row> */}
           
       </>
     );

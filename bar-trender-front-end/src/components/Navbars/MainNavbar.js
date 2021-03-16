@@ -117,14 +117,7 @@ function MainNavbar() {
                 </button>
               </Nav>
           </div>
-          <div>
-            <FormGroup>
-                  <Input
-                    defaultValue=""
-                    placeholder="Regular"
-                    type="text"
-                  ></Input>
-          </FormGroup> </div>
+          
           <ModalSearch />
 
           <Collapse

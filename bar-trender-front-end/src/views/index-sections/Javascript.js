@@ -20,6 +20,9 @@ import {
 } from "reactstrap";
 
 // core components
+import POSTForm from "../../components/ApiFormSubmit";
+
+
 
 function Javascript() {
   const [modal1, setModal1] = React.useState(false);
@@ -50,11 +53,12 @@ function Javascript() {
                   <h4 className="title title-up">Modal title</h4>
                 </div>
                 <ModalBody>
-                  <p>
+                  {/* <p>
                     Te la creiste wey
-                  </p>
+                  </p> */}
                   
-                <Form >
+                  <POSTForm />
+                 {/* <Form >
                 <FormGroup check>
                   <Label check>
                     <Input type="checkbox"></Input>
@@ -62,10 +66,10 @@ function Javascript() {
                     Unchecked
                   </Label>
                 </FormGroup>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" >
                   Submit
                 </Button>
-              </Form>
+              </Form> */} 
 
                 </ModalBody>
                 <div className="modal-footer">

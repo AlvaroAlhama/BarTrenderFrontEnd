@@ -18,6 +18,7 @@ import MainNavbar from "../components/Navbars/MainNavbar.js";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import Carousel from "./index-sections/Carousel.js";
+import ModalSelectedElement from "../components/ModalSelectedElement.js";
 
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';
@@ -77,6 +78,8 @@ function LandingPage() {
             </Row>
             <div className="separator separator-primary"></div>
           </Container> */}
+        {/* <ModalSelectedElement /> */}
+
         </div>
         <div id="sobre-nosotros" className="section section-about-us">
           {/* <Container>

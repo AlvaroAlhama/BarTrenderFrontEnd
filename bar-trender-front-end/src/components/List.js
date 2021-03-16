@@ -1,4 +1,6 @@
 import React from 'react';
+import ModalSelectedElement from "../components/ModalSelectedElement.js";
+
 const List = (props) => {
   const { repos } = props;
   if (!repos || repos.length === 0) return <p>No repos, sorry</p>;
@@ -13,7 +15,10 @@ const List = (props) => {
             <br></br>
             <span className='repo-html_url'>{repo.html_url}</span>
             {/* html_url */}
+            <ModalSelectedElement element={repo}/>
           </li>
+            // <ModalSelectedElement />
+
         );
       })}
     </ul>

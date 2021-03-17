@@ -21,6 +21,8 @@ import {
 } from "reactstrap";
 import Javascript from "../../views/index-sections/Javascript.js";
 import ModalSearch from "../../components/ModalSearch";
+import ModalLogin from "../../components/ModalLogin";
+
 
 
 function MainNavbar() {
@@ -56,7 +58,7 @@ function MainNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor}  color="info" expand="lg">
+      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
         <Container>
           {/* <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
@@ -88,36 +90,35 @@ function MainNavbar() {
             </DropdownMenu>
           </UncontrolledDropdown> */}
           <div className="navbar-translate">
-              <Nav>
-                <NavLink className="Logo">
-                  <img src={barTrender} />
-                </NavLink>
-                <NavbarBrand
-                  href="/landing-page"
-                  target="_blank"
-                  id="navbar-brand"
-                >
-                  BarTrender
+            <Nav>
+              <NavLink className="Logo">
+                <img src={barTrender} />
+              </NavLink>
+              <NavbarBrand
+                href="/landing-page"
+                target="_blank"
+                id="navbar-brand"
+              >
+                BarTrender
                 </NavbarBrand>
-                <UncontrolledTooltip target="#navbar-brand">
-                  BarTrender - LandingPage
+              <UncontrolledTooltip target="#navbar-brand">
+                BarTrender - LandingPage
                 </UncontrolledTooltip>
-                <button
-                  className="navbar-toggler navbar-toggler"
-                  onClick={() => {
-                    document.documentElement.classList.toggle("nav-open");
-                    setCollapseOpen(!collapseOpen);
-                  }}
-                  aria-expanded={collapseOpen}
-                  type="button"
-                >
-                  <span className="navbar-toggler-bar top-bar"></span>
-                  <span className="navbar-toggler-bar middle-bar"></span>
-                  <span className="navbar-toggler-bar bottom-bar"></span>
-                </button>
-              </Nav>
+              <button
+                className="navbar-toggler navbar-toggler"
+                onClick={() => {
+                  document.documentElement.classList.toggle("nav-open");
+                  setCollapseOpen(!collapseOpen);
+                }}
+                aria-expanded={collapseOpen}
+                type="button"
+              >
+                <span className="navbar-toggler-bar top-bar"></span>
+                <span className="navbar-toggler-bar middle-bar"></span>
+                <span className="navbar-toggler-bar bottom-bar"></span>
+              </button>
+            </Nav>
           </div>
-          
           <ModalSearch />
 
           <Collapse
@@ -159,12 +160,18 @@ function MainNavbar() {
                   id="instagram-tooltip"
                 >
                   <i className="fab fa-instagram"></i>
-                  <p className="d-lg-none d-xl-none">Instagram</p>
+                  <p className="d-lg-none d-xl-none">Instragam</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
                   Síguenos en Instagram
                 </UncontrolledTooltip>
               </NavItem>
+              <NavItem>
+              <NavLink>
+                <ModalLogin/>
+                </NavLink>
+              </NavItem>
+              
             </Nav>
           </Collapse>
         </Container>

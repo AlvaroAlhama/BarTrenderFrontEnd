@@ -1,0 +1,23 @@
+
+
+  .col-lg-3{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPnnisbwIdF_5iAkGvBeRQXWM-gGkQZdf3yA&usqp=CAU");
+    background-color: #E49E48;
+    
+  }
+
+  StyleLeft {
+    padding: 10px;
+    float: "left";
+    height:100%;
+    width: 25%;
+    text-align: justify;
+  }
+
+  my-4{
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+list-group-item{
+    background-color:  rgba(255, 0, 0, 0.5);
+}

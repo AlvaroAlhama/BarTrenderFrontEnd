@@ -41,107 +41,139 @@ function FilterResults() {
     };
   });
   return (
-    <>
-      
-      <div className="wrapper">
-        <div className="main">
 
-        <IndexNavbar /> 
-          {
-            //Navbar ejemplo
-          }
-         
-          
-          <div class="container">  {/*style={StyleLeft}*/}
-          <div class="row" >
-          <div class="col-lg-3">
-            <h3 class="my-4">Establecimientos en "Terraza y Stella Artois"</h3>
-            <div class="list-group">
-              <a href="#" class="my-4">Futbol</a>
-              <a href="#" class="my-4">Hockey</a>
-              <a href="#" class="my-4">Paulaner</a>
-            </div>
+  
+
+    <div class="container">
+  
+      <div class="row">
+  
+        <div class="col-lg-3">
+  
+          <h1 class="my-4">Shop Name</h1>
+          <div class="list-group">
+            <a href="#" class="list-group-item">Category 1</a>
+            <a href="#" class="list-group-item">Category 2</a>
+            <a href="#" class="list-group-item">Category 3</a>
           </div>
-          {
-            //Imagen 1
-          }
-           {
-            // <div class="container" style={StyleRight}></div>
-           }
-            
-
-
-
-            <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Teteria Andauni</a>
-                </h4>
-                <h5>Hay descuento en paulaner</h5>
-                <p class="card-text">C/ Adan y Eva,3 Castilleja de la cuesta, Sevilla</p>
-              </div>
-              <div class="list-group">
-                <a href="#" class="my-4">Tetería, postres</a>
-              </div>
-            </div>
-          </div>
-
-
-            <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Betis Sport Bar</a>
-                </h4>
-                <p class="card-text">Av. Italia s/n</p>
-                <a href="#" class="my-4">Futbol, Ambiente</a>
-              </div>
-            </div>
-          </div>
-
-
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Café L'Epoque</a>
-                </h4> 
-                <p class="card-text">Av Padre García Tejero, S/N, Sevilla</p>
-              </div>
-              <a href="#" class="my-4">Tapas</a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Two</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-            {//</div>
-            }
-          </div>
-          </div>
+  
         </div>
-        <DarkFooter />
+       
+  
+        <div class="col-lg-9">
+  
+  
+          <div class="row">
+  
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item One</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item Two</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item Three</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item Four</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item Five</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">Item Six</a>
+                  </h4>
+                  <h5>$24.99</h5>
+                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+         
+  
+        </div>
+        
+  
       </div>
-    </>
+      
+  
+    </div>
     
+  
+  
   );
 }
 

@@ -9,6 +9,8 @@ class POSTLoginForm extends React.Component {
     super();
 
     this.state = {
+     login: {email:"client1@email.com",
+      password:"holamundo."},
 
       input: {},
 
@@ -22,9 +24,25 @@ class POSTLoginForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
+    this.handleLogin = this.handleLogin.bind(this);
+
   }
 
-     
+  handleLogin() {
+    alert('A form was submitted: ' + JSON.stringify(this.state));
+
+    // this.props.searchEngine(this.state.term);
+    /* fetch('https://127.0.0.1:8000/authentication/login/', {
+         method: 'POST',
+        // We convert the React state to JSON and send it as the POST body
+        body: JSON.stringify(this.state.login)
+       }).then(function(response) {
+         console.log(response)
+         console.log("SE HA LOGUEADO DE LOCOS")
+         return response.json();
+       });*/
+
+}
 
   handleChange(event) {
 
@@ -63,12 +81,18 @@ class POSTLoginForm extends React.Component {
         input["password"] = "";
 
         this.setState({input:input});
-
-  
-
-        alert('Datos de inicio de sesión enviados');
-
-    }
+        const response = fetch("http://127.0.0.1/authentication/login",
+        {
+            method: 'POST',
+            body: JSON.stringify(this.state.login),
+            headers: {
+                'X-Api-Key': 'apikeytest',
+                'Content-Type': 'application/json'
+                // Other possible headers
+            }
+        }
+    );
+      }
 
   }
 

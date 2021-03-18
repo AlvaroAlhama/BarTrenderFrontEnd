@@ -32,7 +32,7 @@ function MainNavbar() {
         document.documentElement.scrollTop > 399 ||
         document.body.scrollTop > 399
       ) {
-        setNavbarColor("");
+        setNavbarColor("bg-primary");
       } else if (
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
@@ -56,7 +56,7 @@ function MainNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor}  color="info" expand="lg">
+      <Navbar className={"fixed-top " + navbarColor}  color="primary" expand="lg">
         <Container>
           {/* <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
@@ -87,21 +87,20 @@ function MainNavbar() {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown> */}
-          <div className="navbar-translate">
+          <div className="navbar-translate"style= {{margin:"0"}}>
               <Nav>
-                <NavLink className="Logo">
+                <NavLink className="Logo" href="/main" style= {{float:"left"}}>
                   <img src={barTrender} />
+                  
                 </NavLink>
                 <NavbarBrand
-                  href="/landing-page"
+                  href="/main"
                   target="_blank"
                   id="navbar-brand"
                 >
                   BarTrender
                 </NavbarBrand>
-                <UncontrolledTooltip target="#navbar-brand">
-                  BarTrender - LandingPage
-                </UncontrolledTooltip>
+              
                 <button
                   className="navbar-toggler navbar-toggler"
                   onClick={() => {

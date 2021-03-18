@@ -15,12 +15,12 @@ import {
 } from "reactstrap";
 
 // core components
-import MainNavbar from "../../components/Navbars/MainNavbar.js";
-import ProfilePageHeader from "../../components/Headers/ProfilePageHeader.js";
-import DefaultFooter from "../../components/Footers/DefaultFooter.js";
+import MainNavbar from "../components/Navbars/MainNavbar.js";
+import ProfilePageHeader from "../components/Headers/ProfilePageHeader.js";
+import DefaultFooter from "../components/Footers/DefaultFooter.js";
 
-import image_1 from '../../assets/img/bg3.jpg';
-import image_2 from '../../assets/img/bg4.jpg';
+import image_1 from '../assets/img/bg3.jpg';
+import image_2 from '../assets/img/bg4.jpg';
 
 
 function ProfilePage() {

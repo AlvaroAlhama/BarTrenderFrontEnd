@@ -15,12 +15,14 @@ import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
 import Index from "./views/Index.js";
+
 import Main from "./views/Main.js";
 
 import NucleoIcons from "./views/NucleoIcons.js";
 import LoginPage from "./views/examples/LoginPage.js";
 import LandingPage from "./views/LandingPage.js";
 import ProfilePage from "./views/examples/ProfilePage.js";
+import ListPage from "./views/ListPage.js";
 
 const app = (
   
@@ -51,6 +53,10 @@ const app = (
         <Route
           path="/login-page"
           render={(props) => <LoginPage {...props} />}
+        />
+        <Route
+          path="/list-page"
+          render={(props) => <ProfilePage {...props} />}
         />
         <Redirect to="/index" />
         <Redirect from="/" to="/index" />

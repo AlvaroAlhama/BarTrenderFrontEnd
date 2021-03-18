@@ -21,6 +21,8 @@ import {
 } from "reactstrap";
 import Javascript from "../../views/index-sections/Javascript.js";
 import ModalSearch from "../../components/ModalSearch";
+import ModalLogin from "../../components/ModalLogin";
+
 
 
 function MainNavbar() {
@@ -57,6 +59,7 @@ function MainNavbar() {
         />
       ) : null}
       <Navbar className={"fixed-top " + navbarColor}  color="primary" expand="lg">
+
         <Container>
           {/* <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
@@ -115,8 +118,8 @@ function MainNavbar() {
                   <span className="navbar-toggler-bar bottom-bar"></span>
                 </button>
               </Nav>
+
           </div>
-          
           <ModalSearch />
 
           <Collapse
@@ -158,12 +161,18 @@ function MainNavbar() {
                   id="instagram-tooltip"
                 >
                   <i className="fab fa-instagram"></i>
-                  <p className="d-lg-none d-xl-none">Instagram</p>
+                  <p className="d-lg-none d-xl-none">Instragam</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
                   Síguenos en Instagram
                 </UncontrolledTooltip>
               </NavItem>
+              <NavItem>
+              <NavLink>
+                <ModalLogin/>
+                </NavLink>
+              </NavItem>
+              
             </Nav>
           </Collapse>
         </Container>

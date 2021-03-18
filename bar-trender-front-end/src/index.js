@@ -24,6 +24,8 @@ import LandingPage from "./views/LandingPage.js";
 import ProfilePage from "./views/examples/ProfilePage.js";
 import ListPage from "./views/ListPage.js";
 
+import FilterResults from "./views/FilterResults.js"
+
 const app = (
   
   <React.StrictMode>
@@ -57,6 +59,9 @@ const app = (
         <Route
           path="/list-page"
           render={(props) => <ProfilePage {...props} />}
+
+          path="/filter-results"
+          render={(props) => <FilterResults {...props} />}
         />
         <Redirect to="/index" />
         <Redirect from="/" to="/index" />

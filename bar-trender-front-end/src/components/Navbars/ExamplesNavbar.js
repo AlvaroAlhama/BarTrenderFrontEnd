@@ -16,7 +16,12 @@ import {
   Container,
   UncontrolledTooltip,
   NavbarText,
+  FormGroup,
+  Input,
 } from "reactstrap";
+import Javascript from "../../views/index-sections/Javascript.js";
+import ModalSearch from "../../components/ModalSearch";
+
 
 function ExamplesNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -51,7 +56,7 @@ function ExamplesNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
+      <Navbar className={"fixed-top " + navbarColor}  color="info" expand="lg">
         <Container>
           {/* <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
@@ -112,6 +117,16 @@ function ExamplesNavbar() {
                 </button>
               </Nav>
           </div>
+          <div>
+            <FormGroup>
+                  <Input
+                    defaultValue=""
+                    placeholder="Regular"
+                    type="text"
+                  ></Input>
+          </FormGroup> </div>
+          <ModalSearch />
+
           <Collapse
             className="justify-content-end"
             isOpen={collapseOpen}

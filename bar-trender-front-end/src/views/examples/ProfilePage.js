@@ -15,9 +15,13 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
+import MainNavbar from "../../components/Navbars/MainNavbar.js";
 import ProfilePageHeader from "../../components/Headers/ProfilePageHeader.js";
 import DefaultFooter from "../../components/Footers/DefaultFooter.js";
+
+import image_1 from '../../assets/img/bg3.jpg';
+import image_2 from '../../assets/img/bg4.jpg';
+
 
 function ProfilePage() {
   const [pills, setPills] = React.useState("2");
@@ -34,7 +38,7 @@ function ProfilePage() {
   }, []);
   return (
     <>
-      <ExamplesNavbar />
+      <MainNavbar />
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">
@@ -129,7 +133,7 @@ function ProfilePage() {
                         <img
                           alt="..."
                           className="img-raised"
-                          src={require("assets/img/bg1.jpg")}
+                          src={image_1}
                         ></img>
                         <img
                           alt="..."

@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React from "react";
-
+import bg from '../../assets/img/principalDefDef-min.png';
 // reactstrap components
 import { Container } from "reactstrap";
 // core components
@@ -24,11 +24,11 @@ function IndexHeader() {
 
   return (
     <>
-      <div className="page-header clear-filter" filter-color="blue">
+      <div className="page-header page-header-medium">
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("assets/img/header.jpg") + ")",
+            backgroundImage: `url(${bg})`,
           }}
           ref={pageHeader}
         ></div>

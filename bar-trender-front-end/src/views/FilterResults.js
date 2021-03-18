@@ -18,7 +18,16 @@ import List from "../components/List";
 import withListLoading from '../components/withListLoading';
 
 import image_left from '../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
-
+import {
+  Button,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Container,
+  Row,
+  Col,
+} from "reactstrap";
 // sections for this page
 import Images from "./index-sections/Images.js";
 import BasicElements from "./index-sections/BasicElements.js";
@@ -73,23 +82,26 @@ function FilterResults() {
     <div className="wrapper"> 
     <LandingPageHeader />
     <div class="container mt-5">
+    <ListLoading isLoading={appState.loading} repos={appState.repos} />
+              
+      {/* <div class="row mt-2"> */}
   
-      {/*<div class="row mt-2">*/}
-  
-        <div class="col-lg-3">
+        {/* <div class="col-lg-3">
   
        
          <h3 class="my-4">Resultados de busqueda para "Café l'epoque"</h3>
-          {/* Para mejoras, poner lista de etiquetas seleccionadas*/}
           <div class="list-group">
             <a href="#" class="list-group-item">Category 1</a>
             <a href="#" class="list-group-item">Category 2</a>
             <a href="#" class="list-group-item">Category 3</a>
            </div>
+        </div> */}
+        
+        {/* <div class="col-lg-9 ml-auto mr-aut md-6">
+         
         </div>
-  
-        <div class="col-lg-9">
-        <ListLoading isLoading={appState.loading} repos={appState.repos} />
+      </div> */}
+        
           {/* <div class="row"> */}
   
             {/* <div class="col-lg-4 col-md-6 mb-4">
@@ -191,7 +203,7 @@ function FilterResults() {
           {/* </div> */}
          
   
-        </div>
+        
         
   
       {/*</div>¨*/}

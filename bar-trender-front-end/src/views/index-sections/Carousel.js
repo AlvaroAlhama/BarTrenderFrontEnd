@@ -11,22 +11,27 @@ import {
 } from "reactstrap";
 
 // core components
+import image_0 from '../../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
+import image_1 from '../../assets/img/expositions/Yn0xRl4G5E1eabgf9nyC9j6DVQVHd5DBNcPehVZwakLHYP-toRbW22a8kFesYK_taX0ZY_WviWVcT3bQ40tlKhaKSuAQAu6graIF.png';
+import image_2 from '../../assets/img/expositions/TR9IDnSgMV79XktfRCxesUmLacTZJI9fb3Cv3-aMamIGyWdL_OagKWYcJJAPqgm62bjW9I6yHlMsOhowVROsAUiNui0CGo-qmPU-.png';
+
+
 
 const items = [
   {
-    src: require("assets/img/bg1.jpg"),
-    altText: "Nature, United States",
-    caption: "Nature, United States",
+    src: image_0,
+    altText: "Establecimiento 0",
+    caption: "Establecimiento 0",
   },
   {
-    src: require("assets/img/bg3.jpg"),
-    altText: "Somewhere Beyond, United States",
-    caption: "Somewhere Beyond, United States",
+    src: image_1,
+    altText: "Establecimiento 1",
+    caption: "Establecimiento 1",
   },
   {
-    src: require("assets/img/bg4.jpg"),
-    altText: "Yellowstone National Park, United States",
-    caption: "Yellowstone National Park, United States",
+    src: image_2,
+    altText: "Establecimiento 2",
+    caption: "Establecimiento ",
   },
 ];
 
@@ -55,11 +60,12 @@ function CarouselSection() {
   };
   return (
     <>
+    
       <div className="section" id="carousel">
         <Container>
-          <div className="title">
-            <h4>Carousel</h4>
-          </div>
+          {/* <div className="title ">
+            <h4 className="justify-content-center" >Carousel</h4>
+          </div> */}
           <Row className="justify-content-center">
             <Col lg="8" md="12">
               <Carousel

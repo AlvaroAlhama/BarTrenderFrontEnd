@@ -74,16 +74,18 @@ function FilterResults() {
     <LandingPageHeader />
     <div class="container mt-5">
   
-      <div class="row mt-2">
+      {/*<div class="row mt-2">*/}
   
         <div class="col-lg-3">
   
-          <h1 class="my-4">Shop Name</h1>
+       
+         <h3 class="my-4">Resultados de busqueda para "Café l'epoque"</h3>
+          {/* Para mejoras, poner lista de etiquetas seleccionadas*/}
           <div class="list-group">
             <a href="#" class="list-group-item">Category 1</a>
             <a href="#" class="list-group-item">Category 2</a>
             <a href="#" class="list-group-item">Category 3</a>
-          </div>
+           </div>
         </div>
   
         <div class="col-lg-9">
@@ -192,19 +194,11 @@ function FilterResults() {
         </div>
         
   
-      </div>
+      {/*</div>¨*/}
       
   
     </div>
-    <div className='container'>
-          <h1>My Repositories</h1>
-    </div>
-      <div className='repo-container'>
-          <ListLoading isLoading={appState.loading} repos={appState.repos} />
-      </div>
-     
-      
-
+    
     
     </div>
     </>

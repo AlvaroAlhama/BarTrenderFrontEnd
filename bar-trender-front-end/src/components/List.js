@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalSelectedElement from "../components/ModalSelectedElement.js";
+import ModalSelectedElement from "./ModalSelectedElement.js";
 
 import {
   Row,

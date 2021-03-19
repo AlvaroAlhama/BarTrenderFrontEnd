@@ -16,7 +16,7 @@ import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
 import MainPage from "./views/MainPage.js";
 import LandingPage from "./views/LandingPage.js";
-import ListPage from "./views/ListPage.js"
+import ListPage from "./views/FilterResults.js"
 
 const app = (
   

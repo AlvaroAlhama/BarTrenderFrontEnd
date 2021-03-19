@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import MainNavbar from "../components/Navbars/MainNavbar.js";
 import MainHeader from "../components/Headers/MainHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
-import List from "../components/FilterResults";
+import List from "../components/List";
 import withListLoading from '../components/withListLoading';
 
 function LandingPage() {

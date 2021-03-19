@@ -6,7 +6,7 @@ import  "./css/FilterResults.css"
 // core components
 import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
-import List from "../components/FilterResults";
+import List from "../components/List";
 import withListLoading from '../components/withListLoading';
 
 function ListPage() {

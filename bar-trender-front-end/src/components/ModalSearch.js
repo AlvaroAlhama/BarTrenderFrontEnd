@@ -18,8 +18,8 @@ function ModalSearch() {
         className="mr-1"
         onClick={() => setModal1(true)}
       >
-        Buscar por filtros
-                </Button>
+       Filtros
+        </Button>
       <Modal isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">
           <button

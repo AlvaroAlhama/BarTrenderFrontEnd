@@ -1,4 +1,5 @@
 import React from "react";
+import DeviceIdentifier from 'react-device-identifier';
 
 // reactstrap components
 import {
@@ -48,6 +49,7 @@ function LandingPage() {
   }, []);
   return (
     <>
+    <DeviceIdentifier isDesktop={true} isTablet={true} isMobile={true}>
       <MainNavbar />
       <div className="wrapper">
         <LandingPageHeader />
@@ -361,6 +363,7 @@ function LandingPage() {
         </div>
         <DefaultFooter />
       </div>
+      </DeviceIdentifier>
     </>
   );
 }

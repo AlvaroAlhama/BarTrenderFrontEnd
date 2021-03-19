@@ -8,6 +8,7 @@ import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';
+import DeviceIdentifier from 'react-device-identifier';
 
 function ListPage() {
   // Consuming REST GET
@@ -39,6 +40,7 @@ function ListPage() {
   }, []);
   return (
   <>
+  <DeviceIdentifier isDesktop={true} isTablet={true}>
     <ExamplesNavbar />
     <div className="wrapper"> 
       <LandingPageHeader />
@@ -46,6 +48,16 @@ function ListPage() {
       <ListLoading isLoading={appState.loading} repos={appState.repos} />
     </div>
     </div>
+  </DeviceIdentifier>
+  <DeviceIdentifier isMobile={true}>
+    <ExamplesNavbar />
+    <div className="wrapper"> 
+      <LandingPageHeader />
+    <div class="container mt-5">
+      <ListLoading isLoading={appState.loading} repos={appState.repos} />
+    </div>
+    </div>
+  </DeviceIdentifier>
     </>
   );
 }

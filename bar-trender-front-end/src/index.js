@@ -14,7 +14,7 @@ import "./assets/scss/now-ui-kit.scss?v=1.4.0";
 import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
-import Main from "./views/Main.js";
+import MainPage from "./views/MainPage.js";
 import LandingPage from "./views/LandingPage.js";
 import ListPage from "./views/ListPage.js"
 
@@ -32,12 +32,13 @@ const app = (
         />
         <Route
           path="/main"
-          render={(props) => <Main {...props} />}
+          render={(props) => <MainPage {...props} />}
         />
         <Route
           path="/list"
           render={(props) => <ListPage {...props} />}
         />
+       
         <Redirect to="/index" />
         <Redirect from="/" to="/index" />
       </Switch>

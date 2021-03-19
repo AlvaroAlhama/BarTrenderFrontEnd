@@ -9,12 +9,13 @@
     "font-awesome": "^4.7.0",
     "nouislider": "^14.6.3",
     "react": "^17.0.1",
-    "react-scripts": "4.0.3",
+    "react-device-identifier": "^0.3.0",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "reactstrap": "^8.9.0",
     "sass": "^1.32.8",
-    "web-vitals": "^0.2.4",
-    "reactstrap": "^8.9.0"
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

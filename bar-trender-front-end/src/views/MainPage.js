@@ -10,7 +10,7 @@ import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';
 
-import DeviceIdentifier from 'react-device-identifier';
+import DeviceIdentifier from "react-device-identifier";
 
 function MainPage() {
 

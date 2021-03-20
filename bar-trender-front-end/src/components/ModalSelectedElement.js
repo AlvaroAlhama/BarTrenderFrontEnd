@@ -5,14 +5,22 @@ import {
   Button,
   Modal,
   ModalBody,
+  ModalFooter,
 } from "reactstrap";
 
 // core components
 import image_left from '../assets/img/bg-landing.png';
+import Qr from '../App.js'
+
+//css components
+import '../views/css/ModalQR.css'
 
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
+  const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
+
+
   return (
     <>
       <img
@@ -47,6 +55,9 @@ function ModalSelectedElement(prop) {
           <Button color="default" type="button">
             Nice Button
                     </Button>
+          <Button color="default" type="button" onClick = {() => setModal2(true)}>
+            Obtener Descuento
+          </Button>
           <Button
             color="danger"
             type="button"
@@ -57,6 +68,24 @@ function ModalSelectedElement(prop) {
         </div>
       </Modal>
 
+      <Modal className="modal-qr" centered="true" isOpen={modal2} toggle={() => setModal2(false)}>
+        <div className="modal-header justify-content-center">
+          <button
+            className="close"
+            type="button"
+            onClick={() => setModal2(false)}
+          >
+            <i className="now-ui-icons ui-1_simple-remove"></i>
+          </button>
+          <h4 className="title title-up">Aquí tienes tu descuento </h4>        
+        </div>
+        <div className="bar-name">
+            <h3 className="bar-name-content">{element.name}</h3>
+        </div>
+        <ModalBody>
+          <Qr/>
+        </ModalBody>
+      </Modal>
     </>
   );
 }

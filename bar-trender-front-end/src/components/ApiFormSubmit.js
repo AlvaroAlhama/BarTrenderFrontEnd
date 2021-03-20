@@ -28,7 +28,7 @@ class POSTForm extends Component {
 
     handleSearch() {
         // this.props.searchEngine(this.state.term);
-        alert('A form was submitted: ' + JSON.stringify(this.state));
+        alert("A form was submitted: " + JSON.stringify(this.state));
 
         // fetch('https://your-node-server-here.com/api/endpoint', {
         //     method: 'POST',

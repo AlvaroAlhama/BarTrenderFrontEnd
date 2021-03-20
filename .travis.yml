@@ -5,3 +5,5 @@ script:
   - cd bar-trender-front-end
   - npm install
   - npm run build
+  
+  

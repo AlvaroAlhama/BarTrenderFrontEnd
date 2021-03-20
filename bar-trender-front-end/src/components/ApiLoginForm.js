@@ -20,7 +20,7 @@ class POSTLoginForm extends React.Component {
   }
 
   handleLogin() {
-    alert('A form was submitted: ' + JSON.stringify(this.state));
+    alert("A form was submitted: " + JSON.stringify(this.state));
 
     // this.props.searchEngine(this.state.term);
     /* fetch('https://127.0.0.1:8000/authentication/login/', {

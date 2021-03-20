@@ -8,7 +8,7 @@ import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';
-import DeviceIdentifier from 'react-device-identifier';
+import DeviceIdentifier from "react-device-identifier";
 
 function ListPage() {
   // Consuming REST GET

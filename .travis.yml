@@ -2,7 +2,10 @@ language: node_js
 
 node_js:
   - "14"
-
+workingDirectory: 
+    - '$(Build.SourcesDirectory)/bar-trender-front-end'
+displayName: 
+    - 'npm install and build'
 script:
     - npm test
     - npm run build

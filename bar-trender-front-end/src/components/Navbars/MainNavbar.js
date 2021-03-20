@@ -34,7 +34,7 @@ function MainNavbar() {
         document.documentElement.scrollTop > 399 ||
         document.body.scrollTop > 399
       ) {
-        setNavbarColor("");
+        setNavbarColor("bg-primary");
       } else if (
         document.documentElement.scrollTop < 400 ||
         document.body.scrollTop < 400
@@ -58,7 +58,8 @@ function MainNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
+      <Navbar className={"fixed-top " + navbarColor}  color="primary" expand="lg">
+
         <Container>
           {/* <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
@@ -89,35 +90,35 @@ function MainNavbar() {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown> */}
-          <div className="navbar-translate">
-            <Nav>
-              <NavLink className="Logo">
-                <img src={barTrender} />
-              </NavLink>
-              <NavbarBrand
-                href="/landing-page"
-                target="_blank"
-                id="navbar-brand"
-              >
-                BarTrender
+          <div className="navbar-translate"style= {{margin:"0"}}>
+              <Nav>
+                <NavLink className="Logo" href="/main" style= {{float:"left"}}>
+                  <img src={barTrender} />
+                  
+                </NavLink>
+                <NavbarBrand
+                  href="/main"
+                  target="_blank"
+                  id="navbar-brand"
+                >
+                  BarTrender
                 </NavbarBrand>
-              <UncontrolledTooltip target="#navbar-brand">
-                BarTrender - LandingPage
-                </UncontrolledTooltip>
-              <button
-                className="navbar-toggler navbar-toggler"
-                onClick={() => {
-                  document.documentElement.classList.toggle("nav-open");
-                  setCollapseOpen(!collapseOpen);
-                }}
-                aria-expanded={collapseOpen}
-                type="button"
-              >
-                <span className="navbar-toggler-bar top-bar"></span>
-                <span className="navbar-toggler-bar middle-bar"></span>
-                <span className="navbar-toggler-bar bottom-bar"></span>
-              </button>
-            </Nav>
+              
+                <button
+                  className="navbar-toggler navbar-toggler"
+                  onClick={() => {
+                    document.documentElement.classList.toggle("nav-open");
+                    setCollapseOpen(!collapseOpen);
+                  }}
+                  aria-expanded={collapseOpen}
+                  type="button"
+                >
+                  <span className="navbar-toggler-bar top-bar"></span>
+                  <span className="navbar-toggler-bar middle-bar"></span>
+                  <span className="navbar-toggler-bar bottom-bar"></span>
+                </button>
+              </Nav>
+
           </div>
           <ModalSearch />
 

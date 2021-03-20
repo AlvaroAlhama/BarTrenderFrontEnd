@@ -15,7 +15,7 @@ import {
 
 // core components
 import MainNavbar from "../components/Navbars/MainNavbar.js";
-import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
+import MainHeader from "../components/Headers/MainHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import Carousel from "./index-sections/Carousel.js";
 import ModalSelectedElement from "../components/ModalSelectedElement.js";
@@ -64,7 +64,7 @@ function LandingPage() {
     <>
       <MainNavbar />
       <div className="wrapper">
-        <LandingPageHeader />
+        <MainHeader />
         <div id="sobre-nosotros" className="section section-about-us">
           {/* <Container>
             <Row>

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
-// import "./SearchBar.css";
 
 class POSTForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             nombre: "",
-            filtros : {
+
+            filtros: {
+
                 billar: "off",
                 paulanner: "off",
                 reina_mercedes: "off",
@@ -29,7 +30,8 @@ class POSTForm extends Component {
 
     handleSearch() {
         // this.props.searchEngine(this.state.term);
-        alert('A form was submitted: ' + JSON.stringify(this.state));
+
+        alert("A form was submitted: " + JSON.stringify(this.state));
 
         // fetch('https://your-node-server-here.com/api/endpoint', {
         //     method: 'POST',
@@ -167,4 +169,6 @@ class POSTForm extends Component {
     }
 }
 
+
 export default POSTForm;
+

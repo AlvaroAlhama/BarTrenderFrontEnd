@@ -1,5 +1,5 @@
 import React from "react";
-import barTrender from '../../assets/img/barTrender60.png';
+import barTrender from "../../assets/img/barTrender60.png";
 // reactstrap components
 import {
   Collapse,

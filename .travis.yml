@@ -1,10 +1,5 @@
 language: node_js
-
 node_js:
-  - "14"
-workingDirectory: 
-    - '$(BarTrenderBack)/bar-trender-front-end'
-displayName: 
-    - 'npm install and build'
+  - "stable"
 script:
-    - npm run build
+  - yarn build

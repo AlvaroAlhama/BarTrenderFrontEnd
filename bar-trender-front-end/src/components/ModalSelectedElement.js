@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {
+  Row,
+  Col,
+} from "reactstrap";
 
 // reactstrap components
 import {
@@ -14,11 +18,45 @@ import Qr from '../App.js'
 
 //css components
 import '../views/css/ModalQR.css'
+import ListDiscount from "./ListDiscount";
 
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
+  const [appState, setAppState] = useState({
+    discounts: {},
+  });
+
+   useEffect(() => {
+    const apiUrl = "http://localhost:8000/v1/establishments/1/discounts/get";
+    async function loadDiscounts(){
+      await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': '',
+
+        }
+      }).then(response => response.json())
+        .then(discounts => {
+          setAppState({ discounts: discounts });
+        });} 
+        loadDiscounts()
+  },[setAppState]);
+
+// function loadInfo(){
+//   setModal1(true);
+//   const [] = useState({discounts:{}});
+
+//   fetch("http://localhost:8000/v1/establishments/1/discounts/get", {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//      }
+//   }).then(response => response.json())
+//   .then(discounts => setAppState({discounts:discounts}))
+// };
 
 
   return (
@@ -38,7 +76,7 @@ function ModalSelectedElement(prop) {
           >
             <i className="now-ui-icons ui-1_simple-remove"></i>
           </button>
-          <h4 className="title title-up">Modal title</h4>
+          <h4 className="title title-up">{element.name_text}</h4>
         </div>
         <ModalBody>
           <img
@@ -47,17 +85,20 @@ function ModalSelectedElement(prop) {
             onClick={() => setModal1(true)}
             alt=""
           />
+          <h3>Información del establecimiento</h3>
           <p>
-            {element.name}
+            {element.name_text}
           </p>
+          <p>{element.phone_number}</p>
+          <p>{element.zone_enum}</p>
+          <ListDiscount discounts={appState.discounts}/>
+          
         </ModalBody>
         <div className="modal-footer">
           <Button color="default" type="button">
             Nice Button
                     </Button>
-          <Button color="default" type="button" onClick = {() => setModal2(true)}>
-            Obtener Descuento
-          </Button>
+
           <Button
             color="danger"
             type="button"
@@ -80,7 +121,7 @@ function ModalSelectedElement(prop) {
           <h4 className="title title-up">Aquí tienes tu descuento </h4>        
         </div>
         <div className="bar-name">
-            <h3 className="bar-name-content">{element.name}</h3>
+            <h3 className="bar-name-content">{element.name_text}</h3>
         </div>
         <ModalBody>
           <Qr/>

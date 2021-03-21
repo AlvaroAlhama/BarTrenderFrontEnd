@@ -11,8 +11,15 @@ export default class App extends React.Component {
   
   async componentDidMount()
   {
-    const url = 'http://localhost:8000/main/test/';
-    const response = await fetch(url);
+    const url = 'http://localhost:8000/v1/establishments/1/discounts/2/getQR';
+    const response = await fetch(url, {
+      method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sIjoiY2xpZW50IiwiZXhwaXJlc0luIjoxNjE2MzU1MDU0fQ.eat0K9BvcdCJ-nD9N3QLqkFZ5mQi3bc6RgRzJjKFG78',
+
+        }
+    });
     const data = await response.blob();
     this.setState({qr: URL.createObjectURL(data), loading: false})
   }

@@ -17,19 +17,35 @@ function ListPage() {
   const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({
     loading: false,
-    repos: null,
+    establishments: {},
   });
+
+  //  this.state = {establisments:{}}
+
+  const filter = {
+    "filters":{
+    }
+  };
+  
   useEffect(() => {
     setAppState({ loading: true });
 
-    const apiUrl = "https://api.github.com/users/hacktivist123/repos";
+    const apiUrl = "http://localhost:8000/v1/search/establishments";
 
-    fetch(apiUrl)
-      .then((res) => res.json())
-      .then((repos) => {
-        setAppState({ loading: false, repos: repos });
+    fetch(apiUrl, {
+      method: 'POST',
+      body: JSON.stringify(filter),
+      headers: {
+        'Content-Type': 'application/json'
+       }
+    })
+      .then(response => response.json())
+      .then(establishments => {
+        setAppState({ loading: false, establishments: establishments });
       });
   }, [setAppState]);
+  
+
 
   React.useEffect(() => {
     document.body.classList.add("landing-page");
@@ -49,7 +65,7 @@ function ListPage() {
     <div className="wrapper"> 
       <LandingPageHeader />
     <div class="container mt-5">
-      <ListLoading isLoading={appState.loading} repos={appState.repos} />
+      <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
     </div>
     </div>
   </DeviceIdentifier>
@@ -58,7 +74,7 @@ function ListPage() {
     <div className="wrapper"> 
       <LandingPageHeader />
     <div class="container mt-5">
-      <ListLoading isLoading={appState.loading} repos={appState.repos} />
+      <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
     </div>
     </div>
   </DeviceIdentifier>

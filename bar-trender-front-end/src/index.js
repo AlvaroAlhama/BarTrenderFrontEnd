@@ -18,6 +18,7 @@ import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 import MainPage from "./views/MainPage.js";
 import LandingPage from "./views/LandingPage.js";
 import ListPage from "./views/FilterResults.js"
+import ErrorPage from "./views/ErrorPage.js"
 
 const app = (
 
@@ -40,6 +41,11 @@ const app = (
         <Route
           path="/list"
           render={(props) => <ListPage {...props} />}
+        />
+
+        <Route
+          path="/error"
+          render={(props) => <ErrorPage {...props} />}
         />
 
         <Redirect to="/index" />

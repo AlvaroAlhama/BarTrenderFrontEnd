@@ -8,8 +8,8 @@ class POSTLoginForm extends React.Component {
 
     this.state = {
       login: {
-        email: "client1@email.com",
-        password: "holamundo."
+        email: "",
+        password: ""
       },
       input: {},
       errors: {}
@@ -46,7 +46,7 @@ class POSTLoginForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
     if (this.validate()) {
       console.log(this.state);
@@ -54,12 +54,12 @@ class POSTLoginForm extends React.Component {
       input["email"] = "";
       input["password"] = "";
       this.setState({ input: input });
-      const response = fetch("http://127.0.0.1/authentication/login",
+      const response = await fetch("http://localhost:8000/v1/authentication/login",
         {
           method: 'POST',
-          body: JSON.stringify(this.state.login),
+          body: JSON.stringify(this.state.input),
           headers: {
-            'X-Api-Key': 'apikeytest',
+            'apiKey': 'apikeytest',
             'Content-Type': 'application/json'
             // Other possible headers
           }

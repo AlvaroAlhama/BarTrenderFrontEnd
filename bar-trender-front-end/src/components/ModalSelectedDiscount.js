@@ -47,7 +47,8 @@ function ModalSelectedDiscount(prop) {
             <h3 className="bar-name-content">{element.name_text}</h3>
         </div>
         <ModalBody>
-          <Qr/>
+
+          <Qr idEstablishment={element.establishment_id} idDiscount={element.id}/>
         </ModalBody>
       </Modal>
 

@@ -14,7 +14,7 @@ import {
 
 const ListDiscount = (props) => {
   const { discounts } = props;
-  console.log(discounts.discounts)
+  //console.log(discounts.discounts)
   if (!discounts.discounts || discounts.discounts.length == undefined) return <p>No repos, sorry</p>;
   return (
 

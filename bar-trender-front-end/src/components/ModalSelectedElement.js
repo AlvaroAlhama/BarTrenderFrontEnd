@@ -124,7 +124,8 @@ function ModalSelectedElement(prop) {
             <h3 className="bar-name-content">{element.name_text}</h3>
         </div>
         <ModalBody>
-          <Qr/>
+          <p>{element.establishment_id}</p>
+          <Qr />
         </ModalBody>
       </Modal>
     </>

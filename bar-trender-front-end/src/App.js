@@ -7,11 +7,14 @@ export default class App extends React.Component {
   state = {
     loading: true,
     qr: null,
+    error: null,
   };
   
   async componentDidMount()
   {
-    const url = 'http://localhost:8000/v1/establishments/1/discounts/2/getQR';
+    const id_establishment = this.props.idEstablishment;
+    const id_discount = this.props.idDiscount;
+    const url = 'http://localhost:8000/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
     const response = await fetch(url, {
       method: 'GET',
         headers: {
@@ -20,14 +23,21 @@ export default class App extends React.Component {
 
         }
     });
-    const data = await response.blob();
-    this.setState({qr: URL.createObjectURL(data), loading: false})
+    if(response.status == 200){
+      const data = await response.blob();
+      this.setState({qr: URL.createObjectURL(data), loading: false});
+    }else{
+      const data = await response.json();
+      this.setState({loading: false, error: data.error});
+    }
+    
   }
-
+  
   render(){
     return (
       <div className="App">
-          <img src={this.state.loading || this.state.qr != null ? this.state.qr : logo} alt="logo" />
+          <img src={this.state.loading || this.state.qr != null ? this.state.qr : null} />
+          <p>{this.state.error != null ? this.state.error: null}</p>
       </div>
     );
   }

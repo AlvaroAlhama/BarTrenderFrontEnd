@@ -30,7 +30,7 @@ function ListPage() {
   useEffect(() => {
     setAppState({ loading: true });
 
-    const apiUrl = "http://localhost:8000/v1/search/establishments";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
 
     fetch(apiUrl, {
       method: 'POST',

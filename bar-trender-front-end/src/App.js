@@ -14,7 +14,7 @@ export default class App extends React.Component {
   {
     const id_establishment = this.props.idEstablishment;
     const id_discount = this.props.idDiscount;
-    const url = 'http://localhost:8000/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
+    const url = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
     const response = await fetch(url, {
       method: 'GET',
         headers: {

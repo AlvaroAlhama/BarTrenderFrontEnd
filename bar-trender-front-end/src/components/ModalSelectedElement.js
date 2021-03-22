@@ -29,7 +29,7 @@ function ModalSelectedElement(prop) {
   });
 
    useEffect(() => {
-    const apiUrl = "http://localhost:8000/v1/establishments/1/discounts/get";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get";
     async function loadDiscounts(){
       await fetch(apiUrl, {
         method: 'GET',

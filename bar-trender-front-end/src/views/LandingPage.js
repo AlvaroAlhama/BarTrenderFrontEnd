@@ -131,8 +131,8 @@ function LandingPage() {
                     <p className="category text-info">Jefe de proyecto</p>
                     <p className="">
                       Miembro del equipo con una gran capacidad de organizar proyectos. Además,
-                      es capaz de asumir la responsabilidad completa y delegar el trabajo a la perfectamente.
-                      Destaca por sus ganas e ilusión con la que ejerce su trabajo.
+                      es capaz de asumir la responsabilidad completa y delegar el trabajo a la perfección.
+                      Destaca por sus ganas e ilusión con las que ejerce su trabajo.
                     </p>
                     
                   </div>
@@ -318,7 +318,7 @@ function LandingPage() {
             <form action="mailto:bartrenderoficial@gmail.com" method="post" enctype="text/plain">
 
               <h2 className="title">¿Quieres saber más sobre el proyecto?</h2>
-              <p className="">Sientete libre de contactarnos sobre cualquier tema</p>
+              <p className="">Sientete libre de contactarnos sobre cualquier tema a nuestro correo electrónico bartrenderoficial@gmail.com</p>
               <Row>
                 <Col className="text-center ml-auto mr-auto" lg="6" md="8">
                   <InputGroup

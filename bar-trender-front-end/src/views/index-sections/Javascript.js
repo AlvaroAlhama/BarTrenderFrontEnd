@@ -29,9 +29,11 @@ function Javascript() {
   const [modal2, setModal2] = React.useState(false);
   return (
     <>
-      {/* <div className="section section-javascript" id="javascriptComponents">
+
+       <div className="section section-javascript" id="javascriptComponents">
         <Container>
-          <h3 className="title">Javascript components</h3> */}
+          <h3 className="title">Javascript components</h3> 
+
           <Row id="modals d-inline">
             <Col md="6 d-inline">
               <Button
@@ -53,12 +55,11 @@ function Javascript() {
                   <h4 className="title title-up">Modal title</h4>
                 </div>
                 <ModalBody>
-                  {/* <p>
-                    Te la creiste wey
-                  </p> */}
-                  
+
+                             
                   <POSTForm />
-                 {/* <Form >
+                  <Form >
+
                 <FormGroup check>
                   <Label check>
                     <Input type="checkbox"></Input>
@@ -69,7 +70,8 @@ function Javascript() {
                 <Button variant="primary" type="submit" >
                   Submit
                 </Button>
-              </Form> */} 
+
+              </Form> 
 
                 </ModalBody>
                 <div className="modal-footer">
@@ -121,7 +123,9 @@ function Javascript() {
                 </div>
               </Modal>
             </Col>
-            {/* <Col md="6">
+
+             <Col md="6">
+
               <h4>Popovers</h4>
               <Button
                 color="default"
@@ -266,10 +270,11 @@ function Javascript() {
               <div className="clearfix"></div>
               <br></br>
               <br></br>
-            </Col> */}
+
+            </Col> 
           </Row>
-        {/* </Container>
-      </div> */}
+         </Container>
+      </div> 
     </>
   );
 }

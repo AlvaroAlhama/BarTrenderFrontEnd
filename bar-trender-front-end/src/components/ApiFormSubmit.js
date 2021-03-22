@@ -1,13 +1,17 @@
 import React, { Component } from "react";
+import {  Redirect } from "react-router-dom";
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
-// import "./SearchBar.css";
+
+    
 
 class POSTForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             nombre: "",
-            filtros : {
+
+            filters: {
+
                 billar: "off",
                 paulanner: "off",
                 reina_mercedes: "off",
@@ -16,6 +20,7 @@ class POSTForm extends Component {
                 arabe: "off",
             },
         };
+        
 
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -27,18 +32,26 @@ class POSTForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSearch() {
+    async handleSearch() {
         // this.props.searchEngine(this.state.term);
-        alert('A form was submitted: ' + JSON.stringify(this.state));
-
-        // fetch('https://your-node-server-here.com/api/endpoint', {
-        //     method: 'POST',
-        //     // We convert the React state to JSON and send it as the POST body
-        //     body: JSON.stringify(this.state)
-        //   }).then(function(response) {
-        //     console.log(response)
-        //     return response.json();
-        //   });
+        
+        //alert("A form was submitted: " + JSON.stringify(this.state));
+        this.state = {
+            "filters":{
+            }
+        };
+        await fetch('http://localhost:8000/v1/search/establishments', {
+            method: 'POST',
+            // We convert the React state to JSON and send it as the POST body
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+                // Other possible headers
+              }
+          }).then(function(response) {
+            console.log(response)
+            return response.json();
+          });
 
     }
 
@@ -167,4 +180,6 @@ class POSTForm extends Component {
     }
 }
 
+
 export default POSTForm;
+

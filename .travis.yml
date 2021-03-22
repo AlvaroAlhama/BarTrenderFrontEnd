@@ -1,10 +1,7 @@
 language: node_js
 node_js:
-  - "14.16.0"
-cache:
-  directories:
-    - node_modules
+  - "stable"
 script:
-  - npm run pre-build
-  - npm install --build-from-source
-  - npm run build
+  - cd bar-trender-front-end
+  - npm install
+  - CI=false npm run build

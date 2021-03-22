@@ -1,22 +1,25 @@
+
 import React from "react";
 import { Redirect } from "react-router-dom";
 
 class POSTLoginForm extends React.Component {
+
   constructor() {
     super();
 
     this.state = {
+
       input: {},
 
       errors: {},
+
     };
 
     this.handleChange = this.handleChange.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
-
     this.handleLogin = this.handleLogin.bind(this);
   }
+
 
   async handleLogin() {
     let errors = {};
@@ -42,11 +45,12 @@ class POSTLoginForm extends React.Component {
     });
   }
 
+
   handleChange(event) {
     let input = this.state.input;
-
     input[event.target.name] = event.target.value;
     this.setState({
+
       input,
     });
   }
@@ -65,10 +69,12 @@ class POSTLoginForm extends React.Component {
     }
 
     this.handleLogin(event);
+
   }
 
   validate() {
     let input = this.state.input;
+
 
     let errors = {};
 
@@ -103,6 +109,7 @@ class POSTLoginForm extends React.Component {
       errors: errors,
     });
 
+
     return isValid;
   }
 
@@ -111,9 +118,11 @@ class POSTLoginForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div class="form-group my-1">
+
             <input
               type="text"
               name="email"
+
               value={this.state.input.email}
               onChange={this.handleChange}
               class="form-control"
@@ -121,18 +130,23 @@ class POSTLoginForm extends React.Component {
               id="email"
             />
 
+
             <div className="text-danger">{this.state.errors.email}</div>
           </div>
 
           <div class="form-group my-4">
             <input
+
               name="password"
               type="password"
+
               value={this.state.input.password}
+
               onChange={this.handleChange}
               placeholder="Contraseña"
               class="form-control"
             />
+
 
             <div className="text-danger align-center">
               {this.state.errors.password}
@@ -146,6 +160,7 @@ class POSTLoginForm extends React.Component {
               class="btn btn-primary"
             />
           </div>
+
         </form>
       </div>
     );
@@ -153,3 +168,4 @@ class POSTLoginForm extends React.Component {
 }
 
 export default POSTLoginForm;
+

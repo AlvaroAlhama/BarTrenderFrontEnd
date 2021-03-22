@@ -1,10 +1,8 @@
 import React from "react";
-
 import barTrender from "../../assets/img/barTrender60.png";
 // reactstrap components
 import {
   Collapse,
-
   NavbarBrand,
   Navbar,
   NavItem,
@@ -12,13 +10,11 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
-
 } from "reactstrap";
-import ModalSearch from "../../components/ModalSearch";
-import ModalLogin from "../../components/ModalLogin";
+import ModalSearch from "../ModalSearch";
+import ModalLogin from "../ModalLogin";
 
-
-function MainNavbar() {
+function MobileNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -51,7 +47,6 @@ function MainNavbar() {
           }}
         />
       ) : null}
-
       <Navbar className={"fixed-top " + navbarColor} color="primary" expand="lg">
 
         <Container>
@@ -62,15 +57,15 @@ function MainNavbar() {
                 <img alt="" src={barTrender} />
 
               </NavLink>
-              <NavbarBrand
+              {/* <NavbarBrand
                 href="/main"
-                target="_blank"
+                target=""
                 id="navbar-brand"
               >
                 BarTrender
-                </NavbarBrand>
+              </NavbarBrand> */}
 
-              <button
+              {/* <button
                 className="navbar-toggler navbar-toggler"
                 onClick={() => {
                   document.documentElement.classList.toggle("nav-open");
@@ -82,14 +77,13 @@ function MainNavbar() {
                 <span className="navbar-toggler-bar top-bar"></span>
                 <span className="navbar-toggler-bar middle-bar"></span>
                 <span className="navbar-toggler-bar bottom-bar"></span>
-              </button>
+              </button> */}
             </Nav>
-
 
           </div>
           <ModalSearch />
 
-          <Collapse
+          {/* <Collapse
             className="justify-content-end"
             isOpen={collapseOpen}
             navbar
@@ -109,8 +103,6 @@ function MainNavbar() {
                 </UncontrolledTooltip>
               </NavItem>
 
-
-
               <NavItem>
                 <NavLink
                   href="https://www.instagram.com/bartrenderofficial/"
@@ -125,23 +117,17 @@ function MainNavbar() {
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
-
-              <NavLink
-              id="account-tooltip">
-                <ModalLogin/>
-                <UncontrolledTooltip target="#account-tooltip">
-                  Iniciar sesión / Cerrar Sesión
-                </UncontrolledTooltip>
-
+                <NavLink>
+                  <ModalLogin />
                 </NavLink>
               </NavItem>
 
             </Nav>
-          </Collapse>
+          </Collapse> */}
         </Container>
       </Navbar>
     </>
   );
 }
 
-export default MainNavbar;
+export default MobileNavbar;

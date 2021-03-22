@@ -65,96 +65,21 @@ function LandingPage() {
       <MainNavbar />
       <div className="wrapper">
         <MainHeader />
-        <div id="sobre-nosotros" className="section section-about-us">
-          {/* <Container>
-            <Row>
-              <Col className="ml-auto mr-auto text-center" md="8">
-                <h2 className="title">¿Quiénes somos?</h2>
-                <h5 className="">
-                  Somos un grupo de estudiantes de la Universidad de Sevilla y queremos presentarle este nuevo proyecto en el que estamos trabajando para el cual nos es muy importante su ayuda.
-                  Nuestro objetivo es promocionar y descubrir nuevos lugares a nuestros usuarios, en el que puedan compartir grandes momentos sociales; y qué mejor lugar para compartirlos, que en nuestros bares, cervecerías y pubs.
-                </h5>
-              </Col>
-              
-            </Row>
-            <div className="separator separator-primary"></div>
-          </Container> */}
-        {/* <ModalSelectedElement /> */}
+       
 
-        </div>
-        <div id="sobre-nosotros" className="section section-about-us">
-          {/* <Container>
+        
+        
+          <Container>
             
             <Carousel />
             <div className="separator separator-primary"></div>
-          </Container> */}
-        </div>
-        
-
-        
-        <div id="contact-us" className="section section-contact-us text-center">
-          {/* <Container>
-            <form action="mailto:bartrenderoficial@gmail.com" method="post" enctype="text/plain">
-
-              <h2 className="title">¿Quieres saber más sobre el proyecto?</h2>
-              <p className="">Sientete libre de contactarnos sobre cualquier tema</p>
-              <Row>
-                <Col className="text-center ml-auto mr-auto" lg="6" md="8">
-                  <InputGroup
-                    className={
-                      "input-lg" + (firstFocus ? " input-group-focus" : "")
-                    }
-                  >
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="now-ui-icons users_circle-08"></i>
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input
-                      placeholder="Nombre..."
-                      type="text"
-                      name="Nombre"
-                      onFocus={() => setFirstFocus(true)}
-                      onBlur={() => setFirstFocus(false)}
-                    ></Input>
-
-                  </InputGroup>
-                  <InputGroup
-                    className={
-                      "input-lg" + (lastFocus ? " input-group-focus" : "")
-                    }
-                  >
-                  </InputGroup>
-                  <div className="textarea-container">
-                    <Input
-                      cols="80"
-                      name="Comentario"
-                      placeholder="Escribe tu mensaje..."
-                      rows="4"
-                      type="textarea"
-                    ></Input>
-                  </div>
-                  <div className="send-button">
-                    <input className="btn-round info block" type="submit" value="Enviar"></input>
-                    <input className="btn-round info block ml-4" type="reset" value="Borrar"></input>
-                  </div>
-                </Col>
-              </Row>
-            </form>
-
-          </Container> */}
-        </div>
-        <div className='container'>
-          <h1>My Repositories</h1>
-        </div>
-        <div className='repo-container'>
-          <ListLoading isLoading={appState.loading} repos={appState.repos} />
+          </Container>
         </div>
         
 
         <DefaultFooter />
         
-      </div>
+      
       
     </>
   );

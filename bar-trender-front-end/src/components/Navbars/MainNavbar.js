@@ -29,13 +29,13 @@ function MainNavbar() {
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
-        document.documentElement.scrollTop > 399 ||
-        document.body.scrollTop > 399
+        document.documentElement.scrollTop > 200 ||
+        document.body.scrollTop > 200
       ) {
         setNavbarColor("bg-primary");
       } else if (
-        document.documentElement.scrollTop < 400 ||
-        document.body.scrollTop < 400
+        document.documentElement.scrollTop < 201 ||
+        document.body.scrollTop < 201
       ) {
         setNavbarColor("navbar-transparent");
       }

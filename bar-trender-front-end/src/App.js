@@ -10,8 +10,11 @@ export default class App extends React.Component {
     error: null,
   };
   
+
   async componentDidMount()
   {
+
+    var token = sessionStorage.getItem("token");
     const id_establishment = this.props.idEstablishment;
     const id_discount = this.props.idDiscount;
     const url = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
@@ -19,7 +22,7 @@ export default class App extends React.Component {
       method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sIjoiY2xpZW50IiwiZXhwaXJlc0luIjoxNjE2MzU1MDU0fQ.eat0K9BvcdCJ-nD9N3QLqkFZ5mQi3bc6RgRzJjKFG78',
+          'token': token,
 
         }
     });

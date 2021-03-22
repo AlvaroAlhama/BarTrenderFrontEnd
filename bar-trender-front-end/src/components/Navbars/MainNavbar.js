@@ -126,8 +126,13 @@ function MainNavbar() {
               </NavItem>
               <NavItem>
 
-                <NavLink>
-                  <ModalLogin />
+              <NavLink
+              id="account-tooltip">
+                <ModalLogin/>
+                <UncontrolledTooltip target="#account-tooltip">
+                  Iniciar sesión / Cerrar Sesión
+                </UncontrolledTooltip>
+
                 </NavLink>
               </NavItem>
 

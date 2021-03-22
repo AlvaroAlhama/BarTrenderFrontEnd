@@ -1,233 +1,155 @@
-import React from 'react';
-
-  
+import React from "react";
+import { Redirect } from "react-router-dom";
 
 class POSTLoginForm extends React.Component {
-
-    constructor() {
-
+  constructor() {
     super();
 
     this.state = {
-     login: {email:"client1@email.com",
-      password:"holamundo."},
-
       input: {},
 
-      errors: {}
-
+      errors: {},
     };
-
-     
 
     this.handleChange = this.handleChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.handleLogin = this.handleLogin.bind(this);
-
   }
 
-  handleLogin() {
-    alert('A form was submitted: ' + JSON.stringify(this.state));
-
-    // this.props.searchEngine(this.state.term);
-    /* fetch('https://127.0.0.1:8000/authentication/login/', {
-         method: 'POST',
-        // We convert the React state to JSON and send it as the POST body
-        body: JSON.stringify(this.state.login)
-       }).then(function(response) {
-         console.log(response)
-         console.log("SE HA LOGUEADO DE LOCOS")
-         return response.json();
-       });*/
-
-}
+  async handleLogin() {
+    let errors = {};
+    var url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/login";
+    // Call to the api with the credentials given by the user
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { apiKey: "apikeytest" },
+      body: JSON.stringify(this.state.input),
+    });
+    if (response.ok) {
+      var r = await response.json();
+      var token = r.token;
+      sessionStorage.setItem("token", token);
+      window.location.href = "/index";
+    } else {
+      const data = await response.blob();
+      this.setState({ loading: false });
+      errors["email"] = "Email o contraseña incorrecta.";
+    }
+    this.setState({
+      errors: errors,
+    });
+  }
 
   handleChange(event) {
-
     let input = this.state.input;
 
     input[event.target.name] = event.target.value;
-
-  
-
     this.setState({
-
-      input
-
+      input,
     });
-
   }
-
-    
 
   handleSubmit(event) {
-
     event.preventDefault();
 
-  
-
-    if(this.validate()){
-
-        console.log(this.state);
-
-  
-
-        let input = {};
-
-        input["email"] = "";
-
-        input["password"] = "";
-
-            // this.props.searchEngine(this.state.term);
-     fetch('http://127.0.0.1:8000/authentication/login', {
-         method: 'POST',
-        // We convert the React state to JSON and send it as the POST body
-        headers: {apiKey: 'apikeytest'},
-        body: JSON.stringify(this.state.login)
-       }).then(function(response) {
-         console.log(response)
-         console.log("SE HA LOGUEADO DE LOCOS")
-         return response.json();
-       });
-      }
-
-  }
-
-  
-
-  validate(){
-
-      let input = this.state.input;
-
+    if (this.validate()) {
       let errors = {};
 
-      let isValid = true;
+      let input = {};
 
-  
+      input["email"] = "";
 
-      if (!input["email"]) {
+      input["password"] = "";
+    }
 
-        isValid = false;
-
-        errors["email"] = "Escriba una dirección de correo electrónico.";
-
-      }
-
-  
-
-      if (typeof input["email"] !== "undefined") {
-
-          
-
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-
-        if (!pattern.test(input["email"])) {
-
-          isValid = false;
-
-          errors["email"] = "Escriba una dirección de correo electrónico correcta.";
-
-        }
-
-      }
-
-  
-
-      if (!input["password"]) {
-
-        isValid = false;
-
-        errors["password"] = "Escriba una contraseña.";
-
-      }
-
-  
-
-      this.setState({
-
-        errors: errors
-
-      });
-
-  
-
-      return isValid;
-
+    this.handleLogin(event);
   }
 
-     
+  validate() {
+    let input = this.state.input;
+
+    let errors = {};
+
+    let isValid = true;
+
+    if (!input["email"]) {
+      isValid = false;
+
+      errors["email"] = "Escriba una dirección de correo electrónico.";
+    }
+
+    if (typeof input["email"] !== "undefined") {
+      var pattern = new RegExp(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+      );
+
+      if (!pattern.test(input["email"])) {
+        isValid = false;
+
+        errors["email"] =
+          "Escriba una dirección de correo electrónico correcta.";
+      }
+    }
+
+    if (!input["password"]) {
+      isValid = false;
+
+      errors["password"] = "Escriba una contraseña.";
+    }
+
+    this.setState({
+      errors: errors,
+    });
+
+    return isValid;
+  }
 
   render() {
-
     return (
-      
       <div>
-
         <form onSubmit={this.handleSubmit}>
-
           <div class="form-group my-1">
-
-            <input 
-
-              type="text" 
-
-              name="email" 
-
+            <input
+              type="text"
+              name="email"
               value={this.state.input.email}
-
               onChange={this.handleChange}
+              class="form-control"
+              placeholder="Correo electrónico"
+              id="email"
+            />
 
-              class="form-control" 
-
-              placeholder="Correo electrónico" 
-
-              id="email" />
-
-   
-
-              <div className="text-danger">{this.state.errors.email}</div>
-
+            <div className="text-danger">{this.state.errors.email}</div>
           </div>
-  
 
           <div class="form-group my-4">
-            <input 
-
+            <input
               name="password"
-
               type="password"
-
-              value={this.state.input.password} 
-
+              value={this.state.input.password}
               onChange={this.handleChange}
-
               placeholder="Contraseña"
+              class="form-control"
+            />
 
-              class="form-control" />
-
-  
-
-              <div className="text-danger align-center">{this.state.errors.password}</div>
-
+            <div className="text-danger align-center">
+              {this.state.errors.password}
+            </div>
           </div>
 
-             
           <div class="text-center">
-            <input type="submit" value="Iniciar sesión" class="btn btn-primary" />
-        </div>
-
+            <input
+              type="submit"
+              value="Iniciar sesión"
+              class="btn btn-primary"
+            />
+          </div>
         </form>
-
       </div>
-
     );
-
   }
-
 }
-
-  
 
 export default POSTLoginForm;

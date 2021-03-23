@@ -1,58 +1,77 @@
 import React, { Component } from "react";
-import {  Redirect } from "react-router-dom";
+
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-    
+
 
 class POSTForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nombre: "",
 
-            filters: {
-
-                billar: "off",
-                paulanner: "off",
-                reina_mercedes: "off",
-                pueblos: "off",
-                ochentero: "off",
-                arabe: "off",
-            },
-        };
+            
+            Paulaner: "off",
+            Triana: "off",
+            Alameda: "off",
+            Cruzcampo: "off",
+            data: null,
         
+        };
 
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleEnter = this.handleEnter.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    
     handleTermChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    async handleSearch() {
+    async handleSearch(e) {
         // this.props.searchEngine(this.state.term);
-        
-        //alert("A form was submitted: " + JSON.stringify(this.state));
-        this.state = {
-            "filters":{
-            }
-        };
-        await fetch('http://localhost:8000/v1/search/establishments', {
-            method: 'POST',
-            // We convert the React state to JSON and send it as the POST body
-            body: JSON.stringify(this.state),
-            headers: {
-                'Content-Type': 'application/json'
-                // Other possible headers
-              }
-          }).then(function(response) {
-            console.log(response)
-            return response.json();
-          });
 
+        
+        // console.log(this.state.filters);
+        // let temp_state = JSON.stringify(this.state.filters)
+
+        console.log(this.state)
+
+        let beers = [];
+        let zones = [];
+
+        if (this.state['Paulaner'] == "on") {
+            beers.push("Paulaner");
+        }
+        if (this.state['Cruzcampo'] == "on") {
+            beers.push("Cruzcampo");
+        }
+        if (this.state['Alameda'] == "on") {
+            zones.push("Alameda");
+        }
+        if (this.state['Triana'] == "on") {
+            zones.push("Triana");
+        }
+
+         let params = "";
+         beers.map((e,i)=>{
+             if(i===0){
+                 params += "beers="+e;
+             } else{
+                 params += ","+e;
+             }
+         })
+         zones.map((e,i)=>{
+            if(i===0){
+                params += "&zones="+e;
+            } else{
+                params += ","+e;
+            }
+        })
+       
+        window.location.href='list?'+params;
+
+        
     }
 
     handleEnter(e) {
@@ -71,6 +90,7 @@ class POSTForm extends Component {
 
     render() {
         return (
+            <>
             <Form className="searchbox" onSubmit={this.handleSubmit}>
 
                 <FormGroup>
@@ -87,79 +107,53 @@ class POSTForm extends Component {
 
                     <Label check>
                         <Input type="checkbox"
-                            placeholder="Billar"
+                            placeholder="Paulaner"
                             onChange={this.handleTermChange}
                             onKeyDown={this.handleEnter}
-                            name="billar"
+                            name="Paulaner"
                         />
                         <span className="form-check-sign"></span>
-                        Billar
+                        Paulaner
                     </Label>
                 </FormGroup>
                 <FormGroup check>
 
                     <Label check>
                         <Input type="checkbox"
-                            placeholder="Paulanner"
+                            placeholder="Triana"
                             onChange={this.handleTermChange}
                             onKeyDown={this.handleEnter}
-                            name="paulanner"
+                            name="Triana"
                         />
                         <span className="form-check-sign"></span>
-                    Paulanner
-                </Label>
+                        Triana
+                    </Label>
                 </FormGroup>
                 <FormGroup check>
 
                     <Label check>
                         <Input type="checkbox"
-                            placeholder="reina_mercedes"
+                            placeholder="Alameda"
                             onChange={this.handleTermChange}
                             onKeyDown={this.handleEnter}
-                            name="reina_mercedes"
+                            name="Alameda"
                         />
                         <span className="form-check-sign"></span>
-                        Reina Mercedes
-                </Label>
+                        Alameda
+                    </Label>
                 </FormGroup>
                 <FormGroup check>
 
                     <Label check>
                         <Input type="checkbox"
-                            placeholder="pueblos"
+                            placeholder="Cruzcampo"
                             onChange={this.handleTermChange}
                             onKeyDown={this.handleEnter}
-                            name="pueblos"
+                            name="Cruzcampo"
                         />
                         <span className="form-check-sign"></span>
-                    Pueblos
-                </Label>
-                </FormGroup>
-                <FormGroup check>
-
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="ochentero"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="ochentero"
-                        />
-                        <span className="form-check-sign"></span>
-                    Ochentero
-                </Label>
-                </FormGroup>
-                <FormGroup check>
-
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="arabe"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="arabe"
-                        />
-                        <span className="form-check-sign"></span>
-                    Estilo arabe
-                </Label>
+                        Cruzcampo
+                    </Label>
                 </FormGroup>
                 <FormGroup>
                     <Col sm="2">
@@ -174,9 +168,10 @@ class POSTForm extends Component {
                     </Col>
                 </FormGroup>
             </Form>
-
-
+            
+            </>
         );
+
     }
 }
 

@@ -21,16 +21,40 @@ function ListPage() {
   });
 
   //  this.state = {establisments:{}}
-
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  console.log(urlParams.get('zones'));
+  let zones = urlParams.get('zones')
+  let beers = urlParams.get('beers')
   const filter = {
+    
     "filters":{
+     
     }
   };
   
+  if(zones!= null){
+  if(zones.includes(",")){
+    zones = zones.split(",");
+  }else{
+    zones=zones.split(" ");
+  }
+  filter["filters"]["zones"] = zones == null?"":zones
+  
+}
+  if(beers!= null){
+  if(beers.includes(",")){
+    beers = beers.split(",");
+  }else{
+    beers=beers.split(" ");
+  }
+  filter["filters"]["beers"] = beers == null?"":beers
+}
   useEffect(() => {
     setAppState({ loading: true });
+    
 
-    const apiUrl = "http://localhost:8000/v1/search/establishments";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
 
     fetch(apiUrl, {
       method: 'POST',

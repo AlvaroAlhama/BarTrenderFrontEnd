@@ -1,26 +1,22 @@
 import React, { Component } from "react";
-import {  Redirect } from "react-router-dom";
-import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-    
+import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Link } from "react-router-dom"
+import * as uuid from 'uuid';
 
 class POSTForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nombre: "",
 
-            filters: {
 
-                billar: "off",
-                paulanner: "off",
-                reina_mercedes: "off",
-                pueblos: "off",
-                ochentero: "off",
-                arabe: "off",
-            },
+            Paulaner: "off",
+            Triana: "off",
+            Alameda: "off",
+            Cruzcampo: "off",
+            data: null,
+
         };
-        
 
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
@@ -32,26 +28,51 @@ class POSTForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    async handleSearch() {
+    async handleSearch(e) {
         // this.props.searchEngine(this.state.term);
-        
-        //alert("A form was submitted: " + JSON.stringify(this.state));
-        this.state = {
-            "filters":{
+
+
+        // console.log(this.state.filters);
+        // let temp_state = JSON.stringify(this.state.filters)
+
+        // console.log(this.state)
+
+        let beers = [];
+        let zones = [];
+
+        if (this.state['Paulaner'] == "on") {
+            beers.push("Paulaner");
+        }
+        if (this.state['Cruzcampo'] == "on") {
+            beers.push("Cruzcampo");
+        }
+        if (this.state['Alameda'] == "on") {
+            zones.push("Alameda");
+        }
+        if (this.state['Triana'] == "on") {
+            zones.push("Triana");
+        }
+
+        let params = "";
+        beers.map((e, i) => {
+            if (i === 0) {
+                params += "beers=" + e;
+            } else {
+                params += "," + e;
             }
-        };
-        await fetch('http://localhost:8000/v1/search/establishments', {
-            method: 'POST',
-            // We convert the React state to JSON and send it as the POST body
-            body: JSON.stringify(this.state),
-            headers: {
-                'Content-Type': 'application/json'
-                // Other possible headers
-              }
-          }).then(function(response) {
-            console.log(response)
-            return response.json();
-          });
+        })
+        zones.map((e, i) => {
+            if (i === 0) {
+                params += "&zones=" + e;
+            } else {
+                params += "," + e;
+            }
+        })
+
+        let data = this.state.data;
+        // this.context.router.push("/list");
+        window.location.href = 'list';
+
 
     }
 
@@ -71,112 +92,102 @@ class POSTForm extends Component {
 
     render() {
         return (
-            <Form className="searchbox" onSubmit={this.handleSubmit}>
+            <>
 
-                <FormGroup>
-                    <Input
-                        defaultValue=""
-                        placeholder="Regular"
-                        type="text"
-                        name="nombre"
-                        onChange={this.handleTermChange}
-                    ></Input>
-                </FormGroup>
+                <Form className="searchbox" onSubmit={this.handleSubmit}>
 
-                <FormGroup check>
-
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="Billar"
+                    <FormGroup>
+                        <Input
+                            defaultValue=""
+                            placeholder="Regular"
+                            type="text"
+                            name="nombre"
                             onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="billar"
-                        />
-                        <span className="form-check-sign"></span>
-                        Billar
+                        ></Input>
+                    </FormGroup>
+
+                    <FormGroup check>
+
+                        <Label check>
+                            <Input type="checkbox"
+                                placeholder="Paulaner"
+                                onChange={this.handleTermChange}
+                                onKeyDown={this.handleEnter}
+                                name="Paulaner"
+                            />
+                            <span className="form-check-sign"></span>
+                        Paulaner
                     </Label>
-                </FormGroup>
-                <FormGroup check>
+                    </FormGroup>
+                    <FormGroup check>
 
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="Paulanner"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="paulanner"
-                        />
-                        <span className="form-check-sign"></span>
-                    Paulanner
-                </Label>
-                </FormGroup>
-                <FormGroup check>
+                        <Label check>
+                            <Input type="checkbox"
+                                placeholder="Triana"
+                                onChange={this.handleTermChange}
+                                onKeyDown={this.handleEnter}
+                                name="Triana"
+                            />
+                            <span className="form-check-sign"></span>
+                        Triana
+                    </Label>
+                    </FormGroup>
+                    <FormGroup check>
 
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="reina_mercedes"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="reina_mercedes"
-                        />
-                        <span className="form-check-sign"></span>
-                        Reina Mercedes
-                </Label>
-                </FormGroup>
-                <FormGroup check>
+                        <Label check>
+                            <Input type="checkbox"
+                                placeholder="Alameda"
+                                onChange={this.handleTermChange}
+                                onKeyDown={this.handleEnter}
+                                name="Alameda"
+                            />
+                            <span className="form-check-sign"></span>
+                        Alameda
+                    </Label>
+                    </FormGroup>
+                    <FormGroup check>
 
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="pueblos"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="pueblos"
-                        />
-                        <span className="form-check-sign"></span>
-                    Pueblos
-                </Label>
-                </FormGroup>
-                <FormGroup check>
+                        <Label check>
+                            <Input type="checkbox"
+                                placeholder="Cruzcampo"
+                                onChange={this.handleTermChange}
+                                onKeyDown={this.handleEnter}
+                                name="Cruzcampo"
+                            />
+                            <span className="form-check-sign"></span>
+                        Cruzcampo
+                    </Label>
+                    </FormGroup>
+                    <FormGroup>
+                        <Col sm="2">
+                            <div className="">
+                                {/* <Button
+                                    onClick={this.handleSearch}
+                                    className="btn"
+                                >
+                                    Submit
+                             </Button> */}
+                             <Link 
+                             onClick={this.handleSearch}
+                             to={{
+                                pathname: '/list',
+                                key: uuid.v4(),
+                                state: [{
+                                    Paulaner: this.state['Paulaner'],
+                                    Triana: this.state['Triana'],
+                                    Alameda: this.state['Alameda'],
+                                    Cruzcampo: this.state['Cruzcampo'],
+                                    data: null,
+                                }]
+                                }}> List </Link>
+                            </div>
+                        </Col>
+                    </FormGroup>
+                </Form>
 
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="ochentero"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="ochentero"
-                        />
-                        <span className="form-check-sign"></span>
-                    Ochentero
-                </Label>
-                </FormGroup>
-                <FormGroup check>
-
-                    <Label check>
-                        <Input type="checkbox"
-                            placeholder="arabe"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="arabe"
-                        />
-                        <span className="form-check-sign"></span>
-                    Estilo arabe
-                </Label>
-                </FormGroup>
-                <FormGroup>
-                    <Col sm="2">
-                        <div className="">
-                            <Button
-                                onClick={this.handleSearch}
-                                className="btn"
-                            >
-                                Submit
-            </Button>
-                        </div>
-                    </Col>
-                </FormGroup>
-            </Form>
-
-
+            </>
         );
+
     }
 }
 

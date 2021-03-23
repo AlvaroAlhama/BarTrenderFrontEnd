@@ -52,7 +52,7 @@ function Javascript() {
                   >
                     <i className="now-ui-icons ui-1_simple-remove"></i>
                   </button>
-                  <h4 className="title title-up">Filtros</h4>
+                  <h4 className="title title-up">Modal title</h4>
                 </div>
                 <ModalBody>
 
@@ -75,7 +75,9 @@ function Javascript() {
 
                 </ModalBody>
                 <div className="modal-footer">
-                  
+                  <Button color="default" type="button">
+                    Nice Button
+                  </Button>
                   <Button 
                     // ref="/landing_page"
                     color="danger"

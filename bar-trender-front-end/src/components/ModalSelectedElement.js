@@ -95,7 +95,9 @@ function ModalSelectedElement(prop) {
           
         </ModalBody>
         <div className="modal-footer">
-          
+          <Button color="default" type="button">
+            Nice Button
+                    </Button>
 
           <Button
             color="danger"

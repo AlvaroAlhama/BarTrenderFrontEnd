@@ -1,6 +1,5 @@
 import React from "react";
 
-
 // reactstrap components
 import {
   Button,
@@ -16,7 +15,6 @@ function ModalSearch() {
 
   const [modal1, setModal1] = React.useState(false);
   return (
-    
     <>
       <Button
         color="primary"
@@ -34,14 +32,15 @@ function ModalSearch() {
           >
             <i className="now-ui-icons ui-1_simple-remove"></i>
           </button>
-          <h4 className="title title-up">Filtros</h4>
+          <h4 className="title title-up">Modal title</h4>
         </div>
         <ModalBody>
           <POSTForm />
-         
         </ModalBody>
         <div className="modal-footer">
-          
+          <Button color="default" type="button">
+            Nice Button
+                    </Button>
           <Button
             color="danger"
             type="button"
@@ -52,7 +51,6 @@ function ModalSearch() {
         </div>
       </Modal>
     </>
-  
   );
 }
 

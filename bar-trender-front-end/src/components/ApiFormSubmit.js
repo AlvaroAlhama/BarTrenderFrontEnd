@@ -14,7 +14,6 @@ class POSTForm extends Component {
             Triana: "off",
             Alameda: "off",
             Cruzcampo: "off",
-            data: null,
 
         };
 
@@ -69,9 +68,8 @@ class POSTForm extends Component {
             }
         })
 
-        let data = this.state.data;
         // this.context.router.push("/list");
-        window.location.href = 'list';
+        // window.location.href = 'list';
 
 
     }
@@ -177,7 +175,6 @@ class POSTForm extends Component {
                                     Triana: this.state['Triana'],
                                     Alameda: this.state['Alameda'],
                                     Cruzcampo: this.state['Cruzcampo'],
-                                    data: null,
                                 }]
                                 }}> List </Link>
                             </div>

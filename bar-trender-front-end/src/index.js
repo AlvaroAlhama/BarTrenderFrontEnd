@@ -19,6 +19,7 @@ import MainPage from "./views/MainPage.js";
 import LandingPage from "./views/LandingPage.js";
 import ListPage from "./views/FilterResults.js"
 import ErrorPage from "./views/ErrorPage.js"
+import FreeDashboard from "./views/FreeDashboard.js"
 
 const app = (
 
@@ -46,6 +47,11 @@ const app = (
         <Route
           path="/error"
           render={(props) => <ErrorPage {...props} />}
+        />
+
+        <Route
+          path="/dashboard"
+          render={(props) => <FreeDashboard {...props} />}
         />
 
         <Redirect to="/index" />

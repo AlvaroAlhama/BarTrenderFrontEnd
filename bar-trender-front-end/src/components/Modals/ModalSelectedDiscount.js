@@ -13,12 +13,12 @@ import {
 } from "reactstrap";
 
 // core components
-import image_left from '../assets/img/bg-landing.png';
-import Qr from '../App.js'
+import image_left from '../../assets/img/bg-landing.png';
+import Qr from '../../App.js'
 
 //css components
-import '../views/css/ModalQR.css'
-import ListDiscount from "./ListDiscount";
+import '../../views/css/ModalQR.css'
+import ListDiscount from "../ListDiscount";
 
 function ModalSelectedDiscount(prop) {
   const [modal2, setModal2] = React.useState(false);

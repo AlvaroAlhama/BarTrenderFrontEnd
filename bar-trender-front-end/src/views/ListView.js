@@ -10,13 +10,13 @@ import "./css/FilterResults.css"
 
 // core components
 
-import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';
 import DeviceIdentifier from "react-device-identifier";
+import MainNavbar from 'components/Navbars/MainNavbar';
 
-function ListPage() {
+function ListView() {
 
   // Consuming REST GET
   const ListLoading = withListLoading(List);
@@ -64,8 +64,6 @@ function ListPage() {
           filter["filters"]["beers"] = beers_aux;
         }
       
-      
-
     }
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
@@ -104,7 +102,7 @@ function ListPage() {
     <>
 
       <DeviceIdentifier isDesktop={true} isTablet={true}>
-        <ExamplesNavbar />
+        <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
           <div class="container mt-5">
@@ -113,7 +111,7 @@ function ListPage() {
         </div>
       </DeviceIdentifier>
       <DeviceIdentifier isMobile={true}>
-        <ExamplesNavbar />
+        <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
           <div class="container mt-5">
@@ -126,5 +124,5 @@ function ListPage() {
   );
 }
 
-export default ListPage;
+export default ListView;
 

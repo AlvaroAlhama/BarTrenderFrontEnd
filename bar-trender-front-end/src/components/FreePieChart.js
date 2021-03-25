@@ -44,7 +44,7 @@ class BeerPieChart extends Component{
           options={{
             title:{
               display:this.props.displayTitle,
-              text:'¿Qué Cerveza se busca más?',
+              text:'¿Qué se busca más?',
               fontSize:25
             },
             legend:{

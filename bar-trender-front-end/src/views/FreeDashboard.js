@@ -21,7 +21,9 @@ import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import FreeChart from "../components/FreeChart.js";
 import FreePieChart from "../components/FreePieChart.js";
-import DashboardQRList from "../components/FreeDashboardQRlist"
+import DashboardQRList from "../components/FreeDashboardQRlist";
+
+
 
 function Dashboard() {
 
@@ -32,21 +34,43 @@ function Dashboard() {
 
 <DeviceIdentifier isDesktop={true} isTablet={true} isMobile={true}>
   <MainNavbar />
-  <div className="wrapper">
-    <LandingPageHeader />
+  <div className="wrapper container">
+    <Card/>
+    <Card/>
+    <Card/>
       <Container fluid>
+      
       <div>
         <br/>
         <h2>Estadísticas gratuitas para mejorar tu comercio</h2>
         <br/>
         <h3>Tus descuentos</h3>
       </div>
-      <Row>
+      
         <DashboardQRList />
-        </Row>
+       
         <Row>
-          <Col md="4">
-          <h3>Las cervezas más solicitadas</h3>
+          <Col md="6">
+          <h3>La cerveza favorita de los Usuarios</h3>
+            <Card>
+              <Card.Header>
+               {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>*/}
+              </Card.Header>
+              <Card.Body>
+              <h3>Cruzcampo</h3>
+              
+              <img src="https://www.cruzcampo.es/img/cc/logo-vertical-cruzcampo@3x.png" alt="Cruzcampo"></img>
+               { /*<div className="stats">
+                  <i className="fas fa-check"></i>
+                 Ver las cervezas mas buscadas en tu zona
+                </div>
+                */}
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="6">
+          <h3>Ranking de las 3 mejores cervezas</h3>
             <Card>
               <Card.Header>
                {/*<Card.Title as="h4">Email Statistics</Card.Title>
@@ -62,7 +86,23 @@ function Dashboard() {
               </Card.Body>
             </Card>
           </Col>
+        </Row>
+
+        <Row>
           <Col md="6">
+          <h3>¿Que prefiere la gente de tu zona para divertirse?</h3>
+            <Card>
+              <Card.Header>
+               {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>*/}
+              </Card.Header>
+              <Card.Body>
+              <img src="https://media.zurione.com/product/mesa-de-billar-semi-profesional-cortes-pl0339b-800x800.jpeg" alt="Cruzcampo"></img>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="6">
+            <h3>Los elementos de ocio preferidos por los usuarios</h3>
             <Card>
               <Card.Header>
                 {/*Por si hace falta un header
@@ -76,7 +116,7 @@ function Dashboard() {
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-check"></i>
-                  Ver un listado de todas las cervezas
+                  Ver donde estan tus elementos de ocio en el ranking de busquedas total
                 </div>
               </Card.Footer>
             </Card>

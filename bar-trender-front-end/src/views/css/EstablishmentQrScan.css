@@ -1,0 +1,15 @@
+#index-button-success{
+    border-width: 2px;
+    border-style: solid;
+    background: #07420e;
+    border-color: #a7e09d;
+    border-radius: 40px;
+}
+
+#index-button-fail{
+    border-width: 2px;
+    border-style: solid;
+    background: #631515;
+    border-color: #e09d9d;
+    border-radius: 40px;
+}

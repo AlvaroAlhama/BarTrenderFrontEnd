@@ -42,7 +42,7 @@ function MainPage() {
           <h1>My Repositories on Desktop</h1>
         </div>
         <div className='repo-container ml-4 mr-4'>
-          <ListLoading isLoading={appState.loading} repos={appState.repos} />
+          {/* <ListLoading isLoading={appState.loading} repos={appState.repos} /> */}
         </div>
         <DefaultFooter />
       </div>
@@ -56,7 +56,7 @@ function MainPage() {
           <h1>My Repositories on Mobile</h1>
         </div>
         <div className='repo-container ml-2 mr-2'>
-          <ListLoading isLoading={appState.loading} repos={appState.repos} />
+          {/* <ListLoading isLoading={appState.loading} repos={appState.repos} /> */}
         </div>
         <DefaultFooter />
       </div>

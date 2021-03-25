@@ -13,6 +13,7 @@ import {
   FormGroup,
   Input,
 } from "reactstrap";
+
 import ModalSearch from "../../components/ModalSearch";
 
 
@@ -49,7 +50,7 @@ function ExamplesNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
+      <Navbar className={"fixed-top " + navbarColor}  color="info" expand="lg">
         <Container>
 
           <div className="navbar-translate">
@@ -90,6 +91,7 @@ function ExamplesNavbar() {
                 type="text"
               ></Input>
             </FormGroup> </div>
+
           <ModalSearch />
 
           <Collapse

@@ -2,6 +2,8 @@
 import React from "react";
 import bg from '../../assets/img/principalDefDef-min.png';
 // reactstrap components
+
+
 // core components
 
 function IndexHeader() {

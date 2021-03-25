@@ -1,8 +1,10 @@
 import React from "react";
+
 import barTrender from "../../assets/img/barTrender60.png";
 // reactstrap components
 import {
   Collapse,
+
   NavbarBrand,
   Navbar,
   NavItem,
@@ -10,9 +12,11 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
+
 } from "reactstrap";
 import ModalSearch from "../../components/ModalSearch";
 import ModalLogin from "../../components/ModalLogin";
+
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -20,13 +24,13 @@ function MainNavbar() {
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
-        document.documentElement.scrollTop > 399 ||
-        document.body.scrollTop > 399
+        document.documentElement.scrollTop > 200 ||
+        document.body.scrollTop > 200
       ) {
         setNavbarColor("bg-primary");
       } else if (
-        document.documentElement.scrollTop < 400 ||
-        document.body.scrollTop < 400
+        document.documentElement.scrollTop < 201 ||
+        document.body.scrollTop < 201
       ) {
         setNavbarColor("navbar-transparent");
       }
@@ -47,6 +51,7 @@ function MainNavbar() {
           }}
         />
       ) : null}
+
       <Navbar className={"fixed-top " + navbarColor} color="primary" expand="lg">
 
         <Container>
@@ -80,6 +85,7 @@ function MainNavbar() {
               </button>
             </Nav>
 
+
           </div>
           <ModalSearch />
 
@@ -103,6 +109,8 @@ function MainNavbar() {
                 </UncontrolledTooltip>
               </NavItem>
 
+
+
               <NavItem>
                 <NavLink
                   href="https://www.instagram.com/bartrenderofficial/"
@@ -117,8 +125,14 @@ function MainNavbar() {
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
-                <NavLink>
-                  <ModalLogin />
+
+              <NavLink
+              id="account-tooltip">
+                <ModalLogin/>
+                <UncontrolledTooltip target="#account-tooltip">
+                  Iniciar sesión / Cerrar Sesión
+                </UncontrolledTooltip>
+
                 </NavLink>
               </NavItem>
 

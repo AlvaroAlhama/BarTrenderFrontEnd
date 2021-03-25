@@ -29,9 +29,11 @@ function Javascript() {
   const [modal2, setModal2] = React.useState(false);
   return (
     <>
+
        <div className="section section-javascript" id="javascriptComponents">
         <Container>
           <h3 className="title">Javascript components</h3> 
+
           <Row id="modals d-inline">
             <Col md="6 d-inline">
               <Button
@@ -50,13 +52,14 @@ function Javascript() {
                   >
                     <i className="now-ui-icons ui-1_simple-remove"></i>
                   </button>
-                  <h4 className="title title-up">Modal title</h4>
+                  <h4 className="title title-up">Filtros</h4>
                 </div>
                 <ModalBody>
-                 
-                  
+
+                             
                   <POSTForm />
                   <Form >
+
                 <FormGroup check>
                   <Label check>
                     <Input type="checkbox"></Input>
@@ -67,13 +70,12 @@ function Javascript() {
                 <Button variant="primary" type="submit" >
                   Submit
                 </Button>
+
               </Form> 
 
                 </ModalBody>
                 <div className="modal-footer">
-                  <Button color="default" type="button">
-                    Nice Button
-                  </Button>
+                  
                   <Button 
                     // ref="/landing_page"
                     color="danger"
@@ -119,7 +121,9 @@ function Javascript() {
                 </div>
               </Modal>
             </Col>
+
              <Col md="6">
+
               <h4>Popovers</h4>
               <Button
                 color="default"
@@ -264,6 +268,7 @@ function Javascript() {
               <div className="clearfix"></div>
               <br></br>
               <br></br>
+
             </Col> 
           </Row>
          </Container>

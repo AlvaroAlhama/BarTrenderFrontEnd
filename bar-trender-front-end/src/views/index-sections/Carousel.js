@@ -22,6 +22,7 @@ const items = [
     src: image_0,
     altText: "Establecimiento 0",
     caption: "Establecimiento 0",
+    
   },
   {
     src: image_1,
@@ -79,18 +80,37 @@ function CarouselSection() {
                   onClickHandler={goToIndex}
                 />
                 {items.map((item) => {
-                  return (
+                 
+                    if(window.innerWidth<960){
+                      return(
+
+                    
                     <CarouselItem
                       onExiting={onExiting}
                       onExited={onExited}
                       key={item.src}
                     >
-                      <img src={item.src} alt={item.altText} />
+                      <img src={item.src} alt={item.altText} style= {{width:"100%", height:"20em"}}/>
+                
                       <div className="carousel-caption d-none d-md-block">
                         <h5>{item.caption}</h5>
                       </div>
-                    </CarouselItem>
-                  );
+                    </CarouselItem>);
+                  }else{
+                    return(
+                    <CarouselItem
+                      onExiting={onExiting}
+                      onExited={onExited}
+                      key={item.src}
+                    >
+                      <img src={item.src} alt={item.altText} style= {{width:"100%", height:"30em"}}/>
+                
+                      <div className="carousel-caption d-none d-md-block">
+                        <h5>{item.caption}</h5>
+                      </div>
+                    </CarouselItem>);
+                  }
+                 
                 })}
                 <a
                   className="carousel-control-prev"

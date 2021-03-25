@@ -14,12 +14,14 @@ import "./assets/scss/now-ui-kit.scss?v=1.4.0";
 import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
+
 import MainPage from "./views/MainPage.js";
 import LandingPage from "./views/LandingPage.js";
 import ListPage from "./views/FilterResults.js"
+import ErrorPage from "./views/ErrorPage.js"
 
 const app = (
-  
+
   <React.StrictMode>
     <BrowserRouter>
     <Switch>
@@ -32,13 +34,20 @@ const app = (
         />
         <Route
           path="/main"
+
           render={(props) => <MainPage {...props} />}
+
         />
         <Route
           path="/list"
           render={(props) => <ListPage {...props} />}
         />
-       
+
+        <Route
+          path="/error"
+          render={(props) => <ErrorPage {...props} />}
+        />
+
         <Redirect to="/index" />
         <Redirect from="/" to="/index" />
       </Switch>

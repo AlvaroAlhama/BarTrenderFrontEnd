@@ -49,6 +49,7 @@ function LandingPage() {
   }, []);
   return (
     <>
+
     <DeviceIdentifier isDesktop={true} isTablet={true} isMobile={true}>
       <MainNavbar />
       <div className="wrapper">

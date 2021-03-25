@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 
 // core components
-import POSTForm from "./ApiFormSubmit";
+import POSTForm from "../ApiFormSubmit";
 
 class ModalSearch extends React.Component {
 

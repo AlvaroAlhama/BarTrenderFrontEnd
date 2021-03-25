@@ -5,7 +5,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import ModalSelectedDiscount from "./ModalSelectedDiscount.js";
+import ModalSelectedDiscount from "./Modals/ModalSelectedDiscount.js";
 
 import {
   Row,

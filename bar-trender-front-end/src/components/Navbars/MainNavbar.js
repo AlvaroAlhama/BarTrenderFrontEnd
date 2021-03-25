@@ -14,8 +14,8 @@ import {
   UncontrolledTooltip,
 
 } from "reactstrap";
-import ModalSearch from "../../components/ModalSearch";
-import ModalLogin from "../../components/ModalLogin";
+import ModalSearch from "../../components/Modals/ModalSearch";
+import ModalLogin from "../../components/Modals/ModalLogin";
 
 
 function MainNavbar() {

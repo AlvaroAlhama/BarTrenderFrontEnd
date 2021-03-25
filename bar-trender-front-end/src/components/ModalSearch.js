@@ -40,12 +40,20 @@ class ModalSearch extends React.Component {
   toggle() {
     this.setState({
       modal: !this.state.modal,
-      fade: !this.state.fade
+      fade: !this.state.fade,
+      Paulaner: "off",
+      Triana: "off",
+      Alameda: "off",
+      Cruzcampo: "off",
 
     });
   }
   handleTermChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    var checked_map = e.target.checked ? "on" : "off";
+    this.setState({ [e.target.name]: checked_map }, 
+      () => console.log( this.state, 'this.state'),
+    );
+    console.log( [e.target.checked], 'toggle value on');
   }
 
   async handleSearch(e) {

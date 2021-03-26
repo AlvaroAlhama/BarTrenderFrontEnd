@@ -14,40 +14,38 @@ import "./assets/scss/now-ui-kit.scss?v=1.4.0";
 import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
-import Index from "./views/Index.js";
-import NucleoIcons from "./views/NucleoIcons.js";
-import LoginPage from "./views/examples/LoginPage.js";
-import LandingPage from "./views/examples/LandingPage.js";
-import ProfilePage from "./views/examples/ProfilePage.js";
+import MainView from "./views/MainView.js";
+import LandingView from "./views/LandingView.js";
+import ListView from "./views/ListView.js"
+import ErrorView from "./views/ErrorView.js"
 
 const app = (
   
   <React.StrictMode>
-
-    {/* <App/> */}
     <BrowserRouter>
     <Switch>
       <Switch>
         <Route path="/app" render={(props) => <App {...props} />} />
-        <Route path="/demo-index" render={(props) => <Index {...props} />} />
+       
         <Route
-          path="/nucleo-icons"
-          render={(props) => <NucleoIcons {...props} />}
+          path="/landing"
+          render={(props) => <LandingView {...props} />}
         />
         <Route
-          path="/index"
-          render={(props) => <LandingPage {...props} />}
+          path="/main"
+          render={(props) => <MainView {...props} />}
         />
         <Route
-          path="/profile-page"
-          render={(props) => <ProfilePage {...props} />}
+          path="/list"
+          render={(props) => <ListView {...props} />}
         />
         <Route
-          path="/login-page"
-          render={(props) => <LoginPage {...props} />}
+          path="/error"
+          render={(props) => <ErrorView {...props} />}
         />
-        <Redirect to="/index" />
-        <Redirect from="/" to="/index" />
+       
+        <Redirect to="/main" />
+        <Redirect from="/" to="/main" />
       </Switch>
     </Switch>
   </BrowserRouter>

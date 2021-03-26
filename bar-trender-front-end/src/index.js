@@ -19,7 +19,7 @@ import MainView from "./views/MainView.js";
 import LandingView from "./views/LandingView.js";
 import ListView from "./views/ListView.js"
 import ErrorView from "./views/ErrorView.js"
-import FreeDashboard from "./views/FreeDashboard.js"
+import FreeDashboardView from "./views/FreeDashboardView.js"
 
 
 const app = (
@@ -47,15 +47,15 @@ const app = (
           render={(props) => <ErrorView {...props} />}
         />
 
-       
+        <Route
+          path="/dashboard"
+          render={(props) => <FreeDashboardView {...props} />}
+        />
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
 
 
-        <Route
-          path="/dashboard"
-          render={(props) => <FreeDashboard {...props} />}
-        />
+      
 
         
 

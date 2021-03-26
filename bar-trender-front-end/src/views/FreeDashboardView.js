@@ -26,7 +26,7 @@ import "./css/FreeDashboard.css";
 
 
 
-function Dashboard() {
+function FreeDashboardView() {
 
   var graph1 = {
       chartData:{
@@ -183,4 +183,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default FreeDashboardView;

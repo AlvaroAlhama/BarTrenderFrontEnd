@@ -8,15 +8,26 @@ import * as uuid from 'uuid';
 import {
   Modal,
   ModalBody,
-
+  TabContent,
+  TabPane,
+  NavItem,
+  NavLink,
+  Nav,
+  Container,
+  Row,
+  UncontrolledTooltip,
 } from "reactstrap";
 
 // core components
 import POSTForm from "../ApiFormSubmit";
 
+import NavPillsFilters from "../NavPillsFilters";
+
 class ModalSearch extends React.Component {
 
   constructor(props) {
+    // const [pills, setPills] = React.useState("2");
+
     super(props);
     this.state = {
       modal: props.initialModalState,
@@ -29,7 +40,7 @@ class ModalSearch extends React.Component {
       Dardos: "off",
       Billar: "off",
     };
-
+    this.pills = "1";
 
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -157,138 +168,141 @@ class ModalSearch extends React.Component {
             <h4 className="title title-up">Filtros</h4>
           </div>
           <ModalBody>
-            <Form className="searchbox" onSubmit={this.handleSubmit}>
+            <NavPillsFilters/>
 
-              <FormGroup>
-                <Input
-                  defaultValue=""
-                  placeholder="Regular"
-                  type="text"
-                  name="nombre"
-                  onChange={this.handleTermChange}
-                ></Input>
-              </FormGroup>
 
-              <FormGroup check>
+              <Form className="searchbox" onSubmit={this.handleSubmit}>
 
-                <Label check>
-                  <Input type="checkbox"
-                    placeholder="Paulaner"
+                <FormGroup>
+                  <Input
+                    defaultValue=""
+                    placeholder="Regular"
+                    type="text"
+                    name="nombre"
                     onChange={this.handleTermChange}
-                    onKeyDown={this.handleEnter}
-                    name="Paulaner"
-                  />
-                  <span className="form-check-sign"></span>
+                  ></Input>
+                </FormGroup>
+
+                <FormGroup check>
+
+                  <Label check>
+                    <Input type="checkbox"
+                      placeholder="Paulaner"
+                      onChange={this.handleTermChange}
+                      onKeyDown={this.handleEnter}
+                      name="Paulaner"
+                    />
+                    <span className="form-check-sign"></span>
     Paulaner
 </Label>
-              </FormGroup>
-              <FormGroup check>
+                </FormGroup>
+                <FormGroup check>
 
-                <Label check>
-                  <Input type="checkbox"
-                    placeholder="Triana"
-                    onChange={this.handleTermChange}
-                    onKeyDown={this.handleEnter}
-                    name="Triana"
-                  />
-                  <span className="form-check-sign"></span>
+                  <Label check>
+                    <Input type="checkbox"
+                      placeholder="Triana"
+                      onChange={this.handleTermChange}
+                      onKeyDown={this.handleEnter}
+                      name="Triana"
+                    />
+                    <span className="form-check-sign"></span>
     Triana
 </Label>
-              </FormGroup>
-              <FormGroup check>
+                </FormGroup>
+                <FormGroup check>
 
-                <Label check>
-                  <Input type="checkbox"
-                    placeholder="Alameda"
-                    onChange={this.handleTermChange}
-                    onKeyDown={this.handleEnter}
-                    name="Alameda"
-                  />
-                  <span className="form-check-sign"></span>
+                  <Label check>
+                    <Input type="checkbox"
+                      placeholder="Alameda"
+                      onChange={this.handleTermChange}
+                      onKeyDown={this.handleEnter}
+                      name="Alameda"
+                    />
+                    <span className="form-check-sign"></span>
     Alameda
 </Label>
-              </FormGroup>
-              <FormGroup check>
+                </FormGroup>
+                <FormGroup check>
 
-                <Label check>
-                  <Input type="checkbox"
-                    placeholder="Cruzcampo"
-                    onChange={this.handleTermChange}
-                    onKeyDown={this.handleEnter}
-                    name="Cruzcampo"
-                  />
-                  <span className="form-check-sign"></span>
+                  <Label check>
+                    <Input type="checkbox"
+                      placeholder="Cruzcampo"
+                      onChange={this.handleTermChange}
+                      onKeyDown={this.handleEnter}
+                      name="Cruzcampo"
+                    />
+                    <span className="form-check-sign"></span>
     Cruzcampo
 </Label>
-              </FormGroup>
-              <FormGroup check>
+                </FormGroup>
+                <FormGroup check>
 
-                <Label check>
-                  <Input type="checkbox"
-                    placeholder="Dardos"
-                    onChange={this.handleTermChange}
-                    onKeyDown={this.handleEnter}
-                    name="Dardos"
-                  />
-                  <span className="form-check-sign"></span>
+                  <Label check>
+                    <Input type="checkbox"
+                      placeholder="Dardos"
+                      onChange={this.handleTermChange}
+                      onKeyDown={this.handleEnter}
+                      name="Dardos"
+                    />
+                    <span className="form-check-sign"></span>
                   Dardos
 </Label>
-              </FormGroup>
-              <FormGroup check>
+                </FormGroup>
+                <FormGroup check>
 
-                <Label check>
-                  <Input type="checkbox"
-                    placeholder="Billar"
-                    onChange={this.handleTermChange}
-                    onKeyDown={this.handleEnter}
-                    name="Billar"
-                  />
-                  <span className="form-check-sign"></span>
+                  <Label check>
+                    <Input type="checkbox"
+                      placeholder="Billar"
+                      onChange={this.handleTermChange}
+                      onKeyDown={this.handleEnter}
+                      name="Billar"
+                    />
+                    <span className="form-check-sign"></span>
                   Billar
 </Label>
-              </FormGroup>
-              <FormGroup>
-                <Col sm="2">
-                  <div className="">
-                    {/* <Button
+                </FormGroup>
+                <FormGroup>
+                  <Col sm="2">
+                    <div className="">
+                      {/* <Button
                 onClick={this.handleSearch}
                 className="btn"
             >
                 Submit
          </Button> */}
-                    <Link
-                      onClick={
-                        this.handleSearch,
-                        this.toggle
-                      }
-                      to={{
-                        pathname: '/list',
-                        key: uuid.v4(),
-                        state: [{
-                          Paulaner: this.state['Paulaner'],
-                          Triana: this.state['Triana'],
-                          Alameda: this.state['Alameda'],
-                          Cruzcampo: this.state['Cruzcampo'],
-                          Billar: this.state['Billar'],
-                          Dardos: this.state['Dardos'],
-                        }]
-                      }}> List </Link>
-                  </div>
-                </Col>
-              </FormGroup>
-            </Form>
-
+                      <Link
+                        onClick={
+                          this.handleSearch,
+                          this.toggle
+                        }
+                        to={{
+                          pathname: '/list',
+                          key: uuid.v4(),
+                          state: [{
+                            Paulaner: this.state['Paulaner'],
+                            Triana: this.state['Triana'],
+                            Alameda: this.state['Alameda'],
+                            Cruzcampo: this.state['Cruzcampo'],
+                            Billar: this.state['Billar'],
+                            Dardos: this.state['Dardos'],
+                          }]
+                        }}> List </Link>
+                    </div>
+                  </Col>
+                </FormGroup>
+              </Form>
+             
           </ModalBody>
-          <div className="modal-footer">
+            <div className="modal-footer">
 
-            <Button
-              color="danger"
-              type="button"
-              onClick={this.toggle}
-            >
-              Close
+              <Button
+                color="danger"
+                type="button"
+                onClick={this.toggle}
+              >
+                Close
                     </Button>
-          </div>
+            </div>
         </Modal>
       </>
 

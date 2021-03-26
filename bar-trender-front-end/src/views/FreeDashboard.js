@@ -1,5 +1,5 @@
 import React from "react";
-import ChartistGraph from "react-chartist";
+
 import DeviceIdentifier from 'react-device-identifier';
 // react-bootstrap components
 import {
@@ -22,10 +22,62 @@ import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import FreeChart from "../components/FreeChart.js";
 import FreePieChart from "../components/FreePieChart.js";
 import DashboardQRList from "../components/FreeDashboardQRlist";
+import "./css/FreeDashboard.css";
+import { render } from "@testing-library/react";
 
 
 
 function Dashboard() {
+
+  var graph1 = {
+      chartData:{
+        labels: ['Cruzcampo', 'Mahou', 'Paulaner', 'Otros'],
+        datasets:[
+          {
+            label:'Busquedas',
+            data:[
+              217594,
+              181045,
+              153060,
+              136519,
+            ],
+            backgroundColor:[
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+            ],
+            
+          }
+        ]
+      
+    }
+  };
+
+  var graph2 = {
+    chartData:{
+      labels: ['Billar', 'Pista de Baile', 'Futbolin', 'Otros'],
+      datasets:[
+        {
+          label:'Busquedas',
+          data:[
+            111455,
+            23444,
+            13060,
+            331,
+          ],
+          backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+          ],
+          
+        }
+      ]
+    
+  }
+};
 
 
 
@@ -77,7 +129,7 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-               <FreePieChart/>
+               <FreePieChart data = {graph1}/>
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-check"></i>
@@ -110,7 +162,7 @@ function Dashboard() {
                 <p className="card-category">All products including Taxes</p>*/}
               </Card.Header>
               <Card.Body>
-              <FreeChart />
+              <FreeChart data = {graph2} />
               </Card.Body>
               <Card.Footer>
                 <hr></hr>

@@ -43,15 +43,17 @@ class DashboardQRList extends Component{
                  }
                 </Row>
               </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                   {//Por si se quiere añadir un boton de acualizar o un boton de de premium
-                   }
-                  <i className="fas fa-redo mr-1"></i>
-                  Pasate a premium para mas detalles
-                </div>
-              </Card.Footer>
+              {//<Card.Footer>
+              //<hr></hr>
+                //<div className="stats">
+                  //Por si se quiere añadir un boton de acualizar o un boton de de premium
+                  
+                // <i className="fas fa-redo mr-1"></i>
+                //Pasate a premium para mas detalles
+               
+              //  </div>
+              //</Card.Footer>
+            }
             </Card>
           </Col>
           {//A partir de aqui es relleno

@@ -17,13 +17,12 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import MainNavbar from "../components/Navbars/MainNavbar.js";
-import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import FreeChart from "../components/FreeChart.js";
 import FreePieChart from "../components/FreePieChart.js";
 import DashboardQRList from "../components/FreeDashboardQRlist";
 import "./css/FreeDashboard.css";
-import { render } from "@testing-library/react";
+
 
 
 
@@ -110,7 +109,7 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-              <h3>Cruzcampo</h3>
+              
               
               <img src="https://www.cruzcampo.es/img/cc/logo-vertical-cruzcampo@3x.png" alt="Cruzcampo"></img>
                { /*<div className="stats">
@@ -176,8 +175,9 @@ function Dashboard() {
         </Row>
         
       </Container>
-      <DefaultFooter />
+     
       </div>
+      <DefaultFooter />
       </DeviceIdentifier>
     </>
   );

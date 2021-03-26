@@ -1,7 +1,8 @@
 import React from "react";
-import bg from '../../assets/img/principalDefDef-min.jpeg';
+import bg from '../../assets/img/principalDef.png';
 
 // reactstrap components
+import { Button, Container } from "reactstrap";
 import 'font-awesome/css/font-awesome.min.css';
 
 // core components

@@ -1,7 +1,0 @@
-language: node_js
-node_js:
-  - "stable"
-script:
-  - cd bar-trender-front-end
-  - npm install
-  - CI=false npm run build

@@ -17,8 +17,8 @@ import {
 import MainNavbar from "../components/Navbars/MainNavbar.js";
 import MainHeader from "../components/Headers/MainHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
-import Carousel from "./index-sections/Carousel.js";
-import ModalSelectedElement from "../components/ModalSelectedElement.js";
+import Carousel from "../components/Carousel.js";
+import ModalSelectedElement from "../components/Modals/ModalSelectedElement.js";
 
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';

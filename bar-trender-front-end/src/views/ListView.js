@@ -43,6 +43,7 @@ function ListView() {
       //MAPPING FORM DATA
       let beers_aux = [];
       let zones_aux = [];
+      let leisures_aux = [];
 
       if (data['Paulaner'] == "on") {
         beers_aux.push("Paulaner");
@@ -56,12 +57,21 @@ function ListView() {
       if (data['Triana'] == "on") {
         zones_aux.push("Triana");
       }
+      if (data['Billar'] == "on") {
+        leisures_aux.push("Billar");
+      }
+      if (data['Dardos'] == "on") {
+        leisures_aux.push("Dardos");
+      }
 
         if(zones_aux.length != 0){
           filter["filters"]["zones"] = zones_aux;
         }
         if(beers_aux.length != 0){
           filter["filters"]["beers"] = beers_aux;
+        }
+        if(leisures_aux.length != 0){
+          filter["filters"]["leisures"] = leisures_aux;
         }
       
     }

@@ -26,6 +26,8 @@ class ModalSearch extends React.Component {
       Triana: "off",
       Alameda: "off",
       Cruzcampo: "off",
+      Dardos: "off",
+      Billar: "off",
     };
 
 
@@ -45,15 +47,17 @@ class ModalSearch extends React.Component {
       Triana: "off",
       Alameda: "off",
       Cruzcampo: "off",
+      Dardos: "off",
+      Billar: "off",
 
     });
   }
   handleTermChange(e) {
     var checked_map = e.target.checked ? "on" : "off";
-    this.setState({ [e.target.name]: checked_map }, 
-      () => console.log( this.state, 'this.state'),
+    this.setState({ [e.target.name]: checked_map },
+      () => console.log(this.state, 'this.state'),
     );
-    console.log( [e.target.checked], 'toggle value on');
+    console.log([e.target.checked], 'toggle value on');
   }
 
   async handleSearch(e) {
@@ -67,6 +71,7 @@ class ModalSearch extends React.Component {
 
     let beers = [];
     let zones = [];
+    let leisures = [];
 
     if (this.state['Paulaner'] == "on") {
       beers.push("Paulaner");
@@ -80,6 +85,12 @@ class ModalSearch extends React.Component {
     if (this.state['Triana'] == "on") {
       zones.push("Triana");
     }
+    if (this.state['Dardos'] == "on") {
+      leisures.push("Dardos");
+    }
+    if (this.state['Billar'] == "on") {
+      leisures.push("Billar");
+    }
 
     let params = "";
     beers.map((e, i) => {
@@ -92,6 +103,13 @@ class ModalSearch extends React.Component {
     zones.map((e, i) => {
       if (i === 0) {
         params += "&zones=" + e;
+      } else {
+        params += "," + e;
+      }
+    })
+    leisures.map((e, i) => {
+      if (i === 0) {
+        params += "&leisures=" + e;
       } else {
         params += "," + e;
       }
@@ -114,8 +132,6 @@ class ModalSearch extends React.Component {
     this.handleSearch();
 
   }
-
-
 
   // const [modal1, setModal1] = React.useState(false);
   render() {
@@ -205,6 +221,32 @@ class ModalSearch extends React.Component {
     Cruzcampo
 </Label>
               </FormGroup>
+              <FormGroup check>
+
+                <Label check>
+                  <Input type="checkbox"
+                    placeholder="Dardos"
+                    onChange={this.handleTermChange}
+                    onKeyDown={this.handleEnter}
+                    name="Dardos"
+                  />
+                  <span className="form-check-sign"></span>
+                  Dardos
+</Label>
+              </FormGroup>
+              <FormGroup check>
+
+                <Label check>
+                  <Input type="checkbox"
+                    placeholder="Billar"
+                    onChange={this.handleTermChange}
+                    onKeyDown={this.handleEnter}
+                    name="Billar"
+                  />
+                  <span className="form-check-sign"></span>
+                  Billar
+</Label>
+              </FormGroup>
               <FormGroup>
                 <Col sm="2">
                   <div className="">
@@ -227,6 +269,8 @@ class ModalSearch extends React.Component {
                           Triana: this.state['Triana'],
                           Alameda: this.state['Alameda'],
                           Cruzcampo: this.state['Cruzcampo'],
+                          Billar: this.state['Billar'],
+                          Dardos: this.state['Dardos'],
                         }]
                       }}> List </Link>
                   </div>

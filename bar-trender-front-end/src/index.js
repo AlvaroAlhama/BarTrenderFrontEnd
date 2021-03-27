@@ -20,6 +20,7 @@ import EstablishmentQrScan from "./views/EstablishmentsQrScan.js"
 import LandingPage from "./views/LandingPage.js";
 import ListPage from "./views/FilterResults.js"
 import ErrorPage from "./views/ErrorPage.js"
+import Login from "./views/Login.js"
 
 const app = (
 
@@ -48,6 +49,11 @@ const app = (
         <Route
           path="/list"
           render={(props) => <ListPage {...props} />}
+        />
+
+        <Route
+          path="/login"
+          render={(props) => <Login {...props} />}
         />
 
         <Route

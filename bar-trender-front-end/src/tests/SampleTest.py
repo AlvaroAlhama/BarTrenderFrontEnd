@@ -12,7 +12,7 @@ driver = webdriver.Chrome(chrome_driver_binary, chrome_options=options)
 #maximize the window size  
 driver.maximize_window()  
 #navigate to the url  
-driver.get("localhost:3000")  
+driver.get("lhttps://www.gmail.com")  
 #identify the Google search text box and enter the value  
 driver.find_element_by_name("q").send_keys("javatpoint")  
 time.sleep(3)  

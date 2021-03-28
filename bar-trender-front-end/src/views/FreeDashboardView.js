@@ -27,23 +27,24 @@ import FreePieChart from "../components/FreePieChart.js";
 import DashboardQRList from "../components/FreeDashboardQRlist";
 import "./css/FreeDashboard.css";
 import withListLoading from '../components/withListLoading';
-
+import FreeDashboardQRList from "../components/FreeDashboardQRlist"
 
 
 
 function FreeDashboardView() { 
   // Consuming REST GET
-  const ListLoading = withListLoading(DashboardQRList);
+ {/* const ListLoading = withListLoading(DashboardQRList);
   const [appState, setAppState] = useState({
     loading: false,
     discounts: {},
-    stats:{},
+    
   });
 
   var filter = {
     "filters": {
     }
   };
+  {/*
   //CONSUMING FORM DATA
   const location = useLocation();
   
@@ -69,7 +70,7 @@ function FreeDashboardView() {
         });
     }
     loadResults()
-
+{/*
     async function loadResults2() {
       await fetch(apiUrl2, {
         method: 'POST',
@@ -89,7 +90,7 @@ function FreeDashboardView() {
 
   }, [setAppState, location]);
 
-
+*/}
 
 
 
@@ -168,8 +169,8 @@ function FreeDashboardView() {
         <h3>Tus descuentos</h3>
       </div>
       
-      <ListLoading isLoading={appState.loading} discounts={appState.discounts} stats = {appState.stats}/>
-       
+      {/*<ListLoading isLoading={appState.loading} discounts={appState.discounts} stats = {appState.stats}/>*/}
+       <FreeDashboardQRList/>
         <Row>
           <Col md="6">
           <h3>La cerveza favorita de los Usuarios</h3>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useEffect, useState, Component} from 'react';
 import {
   Badge,
   Button,
@@ -14,9 +14,36 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import "../views/css/FreeDashboard.css";
-const DashboardQRList = (props) => {
-  const { discounts } = props;
-  if (!discounts.discounts || discounts.discounts.length == undefined) return (
+function DashboardQRList(props) {
+  const [modal1, setModal1] = React.useState(false);
+  const [modal2, setModal2] = React.useState(false);
+  const { element } = props;
+  const [appState, setAppState] = useState({
+    discounts: {},
+  });
+
+   useEffect(() => {
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+"1"+"/discounts/get";
+    async function loadDiscounts(){
+      await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'token': '',
+
+        }
+      }).then(response => response.json())
+        .then(discounts => {
+          setAppState({ discounts: discounts });
+        });} 
+        loadDiscounts()
+  },[setAppState]);
+
+
+
+
+ 
+  if (!appState.discounts || appState.discounts.length == undefined) return (
     <Card>
   <h3>No tiene descuentos, le gustaria crear alguno?</h3>
   <button className="discounts"> Crear Descuentos</button>
@@ -28,7 +55,7 @@ const DashboardQRList = (props) => {
     <ul className="ul-flex">
       <h2 className='list-head'>Establecimientos</h2>
       <Row className='list'>
-        {discounts.discounts.map((discounts) => {
+        {appState.discounts.map((discounts) => {
           return (
             <>
               <Col lg="3" sm="6">

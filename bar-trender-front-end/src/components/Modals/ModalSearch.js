@@ -73,9 +73,9 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var checked_map = e.target.checked ? "on" : "off";
     this.setState({ [e.target.name]: checked_map },
-      () => console.log(this.state, 'this.state'),
+      // () => console.log(this.state, 'this.state'),
     );
-    console.log([e.target.checked], 'toggle value on');
+    // console.log([e.target.checked], 'toggle value on');
   }
 
   async handleSearch(e) {

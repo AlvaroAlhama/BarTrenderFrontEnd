@@ -23,7 +23,7 @@ function DashboardQRList(props) {
   });
 
    useEffect(() => {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+"1"+"/discounts/get";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+"1"+"/discounts/get?page=1&all=True";
     async function loadDiscounts(){
       await fetch(apiUrl, {
         method: 'GET',
@@ -40,12 +40,12 @@ function DashboardQRList(props) {
         });} 
         loadDiscounts()
   },[setAppState]);
-
+console.log(appState)
 
 
 
  
-  if (!appState.discounts || appState.discounts.length == undefined) return (
+  if (!appState.discounts.results || appState.discounts.count == 0) return (
     <Card>
   <h3>No tiene descuentos, le gustaria crear alguno?</h3>
   <button className="discounts"> Crear Descuentos</button>
@@ -57,7 +57,7 @@ function DashboardQRList(props) {
     <ul className="ul-flex">
       <h2 className='list-head'>Establecimientos</h2>
       <Row className='list'>
-        {appState.discounts.map((discounts) => {
+        {appState.discounts.results.map((discounts) => {
           return (
             <>
               <Col lg="3" sm="6">
@@ -65,8 +65,8 @@ function DashboardQRList(props) {
               <Card.Body>
                 <Row>
                     <div className="numbers">
-                      <p className="card-category">El descuento "2x1 en cervezas" ha sido canjeado por</p>
-                      <Card.Title as="h4">"147" usuarios</Card.Title>
+                      <p className="card-category">El descuento {discounts.name_text} ha sido canjeado por</p>
+                      <Card.Title as="h4">{discounts.scannedCodes_number} usuarios</Card.Title>
                     </div>
                 </Row>
               </Card.Body>

@@ -30,6 +30,9 @@ import FreeDashboardQRList from "../components/FreeDashboardQRlist"
 
 
 function FreeDashboardView() { 
+
+
+
   // Consuming REST GET
  {/* const ListLoading = withListLoading(DashboardQRList);
   const [appState, setAppState] = useState({

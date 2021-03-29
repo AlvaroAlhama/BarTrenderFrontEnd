@@ -16,15 +16,14 @@ import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
 
 
-import MainPage from "./views/MainPage.js";
-import LandingPage from "./views/LandingPage.js";
-import ListPage from "./views/FilterResults.js"
-import ErrorPage from "./views/ErrorPage.js"
+// import MainPage from "./views/MainPage.js";
+// import LandingPage from "./views/LandingPage.js";
+// import ListPage from "./views/FilterResults.js"
 import Login from "./views/Login.js"
 import MainView from "./views/MainView.js";
 import LandingView from "./views/LandingView.js";
 import ListView from "./views/ListView.js"
-import ErrorView from "./views/ErrorView.js"
+import ErrorView from "./views/ErrorView"
 import FreeDashboard from "./views/FreeDashboard.js"
 
 

@@ -7,35 +7,15 @@ import {Bar, Line, Pie} from 'react-chartjs-2';
     const [modal1, setModal1] = React.useState(false);
     const [modal2, setModal2] = React.useState(false);
     const { element } = props;
+
+
+    
     const [appState, setAppState] = useState({
       stats: {},
     });
     
 
-    //  handleLogin(() => {
-      
-    //   let errors = {};
-    //   var url = "http://localhost:8000/v1/authentication/login";
-    //   // Call to the api with the credentials given by the user
-    //   const response = await fetch(url, {
-    //     method: "POST",
-    //     headers: { apiKey: "8dDc431125634ef43cD13c388e6eCf11" },
-    //     body: JSON.stringify(this.state.input),
-    //   });
-    //   if (response.ok) {
-    //     var r = await response.json();
-    //     var token = r.token;
-    //     sessionStorage.setItem("token", token);
-    //     this.getDiscountResult();
-    //   } else {
-    //     const data = await response.blob();
-    //     this.setState({ loading: false });
-    //     errors["email"] = "Email o contraseña incorrecta.";
-    //   }
-    //   this.setState({
-    //     errors: errors,
-    //   });
-    // })
+ 
   
      useEffect(() => {
       var token = sessionStorage.getItem("token");
@@ -58,17 +38,17 @@ import {Bar, Line, Pie} from 'react-chartjs-2';
     },[setAppState]);
   
 
-    var GraphData = {
+    var graph2 = {
       chartData:{
-        labels: ['Cruzcampo', 'Mahou', 'Paulaner', 'Otros'],
+        labels: [appState.stats.first.name, appState.stats.second.name, appState.stats.third.name, 'Otros'],
         datasets:[
           {
             label:'Busquedas',
             data:[
-              217594,
-              181045,
-              153060,
-              136519,
+              appState.stats.first.percentage,
+              appState.stats.second.percentage,
+              appState.stats.third.percentage,
+              appState.stats.other.percentage,
             ],
             backgroundColor:[
               'rgba(255, 99, 132, 0.6)',
@@ -89,7 +69,7 @@ import {Bar, Line, Pie} from 'react-chartjs-2';
     return (
       <div className="chart">
         <Pie
-          data={GraphData}
+          data={graph2.chartData}
           options={{
             title:{
               display:true,

@@ -5,13 +5,44 @@ class BeerChart extends Component{
   constructor(props){
     super(props);
     this.state =this.props.data;
+   
   }
 
+
+  
+
   render(){
+
+       var graph2 = {
+      chartData:{
+        labels: ['Billar', 'Pista de Baile', 'Futbolin', 'Otros'],
+        datasets:[
+          {
+            label:'Busquedas',
+            data:[
+              111455,
+              23444,
+              13060,
+              331,
+            ],
+            backgroundColor:[
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+            ],
+            
+          }
+        ]
+      
+    }
+  };
+
     return (
       <div className="chart">
+        
         <Bar
-          data={this.state.chartData}
+          data={graph2.chartData}
           options={{
             title:{
               display:this.props.displayTitle,

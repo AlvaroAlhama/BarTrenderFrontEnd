@@ -59,11 +59,9 @@ class FormQRValidatorAlreadyLogged extends React.Component {
   render() {
     return (
       <>
-        <div>
-          <h1 class = "text-center">Ya estás logueado</h1>
-        </div>
-        <div class = "justify-content-center">
-          <button onClick = {this.getDiscountResult}>Valida el QR</button>
+        
+        <div class = "row justify-content-center">
+          <button className="btn btn-primary" onClick = {this.getDiscountResult}>Valida el descuento</button>
         </div>
         
         <div>

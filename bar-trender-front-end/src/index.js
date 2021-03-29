@@ -16,7 +16,6 @@ import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
 
 import MainPage from "./views/MainPage.js";
-import EstablishmentQrScan from "./views/EstablishmentsQrScan.js"
 import LandingPage from "./views/LandingPage.js";
 import ListPage from "./views/FilterResults.js"
 import ErrorPage from "./views/ErrorPage.js"
@@ -38,12 +37,6 @@ const app = (
           path="/main"
 
           render={(props) => <MainPage {...props} />}
-
-        />
-        <Route
-          path="/establishmentQrScan"
-
-          render={(props) => <EstablishmentQrScan {...props} />}
 
         />
         <Route

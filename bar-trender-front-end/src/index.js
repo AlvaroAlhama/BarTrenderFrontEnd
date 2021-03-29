@@ -15,16 +15,13 @@ import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
 
-
-// import MainPage from "./views/MainPage.js";
-// import LandingPage from "./views/LandingPage.js";
-// import ListPage from "./views/FilterResults.js"
-import Login from "./views/Login.js"
+// import ErrorPage from "./views/ErrorPage.js";
+import Login from "./views/Login.js";
 import MainView from "./views/MainView.js";
 import LandingView from "./views/LandingView.js";
-import ListView from "./views/ListView.js"
-import ErrorView from "./views/ErrorView"
-import FreeDashboard from "./views/FreeDashboard.js"
+import ListView from "./views/ListView.js";
+import ErrorView from "./views/ErrorView.js";
+import FreeDashboardView from "./views/FreeDashboardView.js";
 
 
 
@@ -58,15 +55,15 @@ const app = (
           render={(props) => <ErrorView {...props} />}
         />
 
-       
+        <Route
+          path="/dashboard"
+          render={(props) => <FreeDashboardView {...props} />}
+        />
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
 
 
-        <Route
-          path="/dashboard"
-          render={(props) => <FreeDashboard {...props} />}
-        />
+      
 
         
 

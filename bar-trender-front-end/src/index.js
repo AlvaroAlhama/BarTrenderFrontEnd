@@ -15,14 +15,23 @@ import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
 
+<<<<<<< HEAD
 import MainPage from "./views/MainPage.js";
 import LandingPage from "./views/LandingPage.js";
 import ListPage from "./views/FilterResults.js"
 import ErrorPage from "./views/ErrorPage.js"
 import Login from "./views/Login.js"
+=======
+import MainView from "./views/MainView.js";
+import LandingView from "./views/LandingView.js";
+import ListView from "./views/ListView.js"
+import ErrorView from "./views/ErrorView.js"
+import FreeDashboard from "./views/FreeDashboard.js"
+>>>>>>> origin/develop
+
 
 const app = (
-
+  
   <React.StrictMode>
     <BrowserRouter>
     <Switch>
@@ -30,20 +39,17 @@ const app = (
         <Route path="/app" render={(props) => <App {...props} />} />
        
         <Route
-          path="/index"
-          render={(props) => <LandingPage {...props} />}
+          path="/landing"
+          render={(props) => <LandingView {...props} />}
         />
         <Route
           path="/main"
-
-          render={(props) => <MainPage {...props} />}
-
+          render={(props) => <MainView {...props} />}
         />
         <Route
           path="/list"
-          render={(props) => <ListPage {...props} />}
+          render={(props) => <ListView {...props} />}
         />
-
         <Route
           path="/login"
           render={(props) => <Login {...props} />}
@@ -51,11 +57,21 @@ const app = (
 
         <Route
           path="/error"
-          render={(props) => <ErrorPage {...props} />}
+          render={(props) => <ErrorView {...props} />}
         />
 
-        <Redirect to="/index" />
-        <Redirect from="/" to="/index" />
+       
+        <Redirect to="/main" />
+        <Redirect from="/" to="/main" />
+
+
+        <Route
+          path="/dashboard"
+          render={(props) => <FreeDashboard {...props} />}
+        />
+
+        
+
       </Switch>
     </Switch>
   </BrowserRouter>

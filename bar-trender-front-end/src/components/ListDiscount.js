@@ -5,7 +5,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import ModalSelectedDiscount from "./ModalSelectedDiscount.js";
+import ModalSelectedDiscount from "./Modals/ModalSelectedDiscount.js";
 
 import {
   Row,
@@ -14,14 +14,15 @@ import {
 
 const ListDiscount = (props) => {
   const { discounts } = props;
-  //console.log(discounts.discounts)
-  if (!discounts.discounts || discounts.discounts.length == undefined) return <p>No repos, sorry</p>;
+  
+  console.log(discounts.results);
+  if (!discounts.results || discounts.results.length == 0) return <p>No hay descuentos para este establecimiento</p>;
   return (
 
     <ul className="ul-flex">
       <h2 className='list-head text-center'>Descuentos</h2>
       <Row className='list'>
-        {discounts.discounts.map((discount) => {
+        {discounts.results.map((discount) => {
           return (
             <>
                 <div class="card h-100">

@@ -10,13 +10,13 @@ import "./css/FilterResults.css"
 
 // core components
 
-import ExamplesNavbar from "../components/Navbars/ExamplesNavbar.js";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';
 import DeviceIdentifier from "react-device-identifier";
+import MainNavbar from 'components/Navbars/MainNavbar';
 
-function ListPage() {
+function ListView() {
 
   // Consuming REST GET
   const ListLoading = withListLoading(List);
@@ -25,56 +25,26 @@ function ListPage() {
     establishments: {},
   });
 
-  //  this.state = {establisments:{}}
-
   var filter = {
-
     "filters": {
-      "zones": "",
-      "beers": "",
-
     }
   };
-
   //CONSUMING FORM DATA
   const location = useLocation();
-  
-
-
-  
-
-  // if (zones_aux != null) {
-  //   if (zones_aux.includes(",")) {
-  //     zones_aux = zones_aux.split(",");
-  //   } else {
-  //     zones_aux = zones_aux.split(" ");
-  //   }
-  //   filter["filters"]["zones"] = zones_aux == null ? "" : zones_aux
-
-  // }
-  // if (beers_aux != null) {
-  //   if (beers_aux.includes(",")) {
-  //     beers_aux = beers_aux.split(",");
-  //   } else {
-  //     beers_aux = beers_aux.split(" ");
-  //   }
-  //   filter["filters"]["beers"] = beers_aux == null ? "" : beers_aux
-  // }
-
 
   useEffect(() => {
-    setAppState({ loading: true });
 
-    // console.log(location.state);
+    setAppState({ loading: true });
 
     if (location.state != undefined) {
       var data = location.state[0];
-      console.log(data);
+      // console.log(data);
+
       //MAPPING FORM DATA
-  
       let beers_aux = [];
       let zones_aux = [];
-  
+      let leisures_aux = [];
+
       if (data['Paulaner'] == "on") {
         beers_aux.push("Paulaner");
       }
@@ -87,32 +57,43 @@ function ListPage() {
       if (data['Triana'] == "on") {
         zones_aux.push("Triana");
       }
-  
-      filter = {
-  
-        "filters": {
-          "zones": zones_aux,
-          "beers": beers_aux,
-    
+      if (data['Billar'] == "on") {
+        leisures_aux.push("Billar");
+      }
+      if (data['Dardos'] == "on") {
+        leisures_aux.push("Dardos");
+      }
+
+        if(zones_aux.length != 0){
+          filter["filters"]["zones"] = zones_aux;
         }
-      };
-  
+        if(beers_aux.length != 0){
+          filter["filters"]["beers"] = beers_aux;
+        }
+        if(leisures_aux.length != 0){
+          filter["filters"]["leisures"] = leisures_aux;
+        }
+      
     }
-    
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
 
-    fetch(apiUrl, {
-      method: 'POST',
-      body: JSON.stringify(filter),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => response.json())
-      .then(establishments => {
-        setAppState({ loading: false, establishments: establishments });
-      });
+    async function loadResults() {
+      await fetch(apiUrl, {
+        method: 'POST',
+        body: JSON.stringify(filter),
+        headers: {
+          'Content-Type': 'application/json',
+          'apiKey': '8dDc431125634ef43cD13c388e6eCf11'
+        }
+      })
+        .then(response => response.json())
+        .then(establishments => {
+          setAppState({ loading: false, establishments: establishments });
+        });
+    }
+    loadResults()
+
   }, [setAppState, location]);
 
 
@@ -130,8 +111,9 @@ function ListPage() {
   }, []);
   return (
     <>
+
       <DeviceIdentifier isDesktop={true} isTablet={true}>
-        <ExamplesNavbar />
+        <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
           <div class="container mt-5">
@@ -140,7 +122,7 @@ function ListPage() {
         </div>
       </DeviceIdentifier>
       <DeviceIdentifier isMobile={true}>
-        <ExamplesNavbar />
+        <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
           <div class="container mt-5">
@@ -153,5 +135,5 @@ function ListPage() {
   );
 }
 
-export default ListPage;
+export default ListView;
 

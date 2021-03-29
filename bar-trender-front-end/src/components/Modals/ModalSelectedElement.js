@@ -13,30 +13,31 @@ import {
 } from "reactstrap";
 
 // core components
-import image_left from '../assets/img/bg-landing.png';
-import Qr from '../App.js'
+import image_left from '../../assets/img/bg-landing.png';
+import Qr from '../../App.js'
 
 //css components
-import '../views/css/ModalQR.css'
-import ListDiscount from "./ListDiscount";
+import '../../views/css/ModalQR.css'
+import ListDiscount from "../ListDiscount";
 
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
+  // console.log(element, 'element');
   const [appState, setAppState] = useState({
     discounts: {},
   });
 
    useEffect(() => {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
     async function loadDiscounts(){
       await fetch(apiUrl, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'token': '',
-
+          'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
         }
       }).then(response => response.json())
         .then(discounts => {

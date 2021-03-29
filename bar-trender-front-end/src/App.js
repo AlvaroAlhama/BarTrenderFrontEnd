@@ -17,23 +17,28 @@ export default class App extends React.Component {
     var token = sessionStorage.getItem("token");
     const id_establishment = this.props.idEstablishment;
     const id_discount = this.props.idDiscount;
-    const url = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
-    const response = await fetch(url, {
-      method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'token': token,
-
-        }
-    });
-    if(response.status == 200){
-      const data = await response.blob();
-      this.setState({qr: URL.createObjectURL(data), loading: false});
-    }else{
-      const data = await response.json();
-      this.setState({loading: false, error: data.error});
-    }
     
+    if(!token){
+      this.setState({error: "Necesitas haber iniciado sesión para poder ver el descuento"})
+    }else{
+      const url = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
+      const response = await fetch(url, {
+        method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'token': token,
+            'apiKey':'8dDc431125634ef43cD13c388e6eCf11'
+          },
+          body: JSON.stringify({redirect_url:'www.google.es'})
+      });
+      if(response.status == 200){
+        const data = await response.blob();
+        this.setState({qr: URL.createObjectURL(data), loading: false});
+      }else{
+        const data = await response.json();
+        this.setState({loading: false, error: data.error});
+      }
+    }
   }
   
   render(){

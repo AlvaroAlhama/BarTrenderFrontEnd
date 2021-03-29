@@ -27,7 +27,7 @@ class POSTLoginForm extends React.Component {
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
-      headers: { apiKey: "apikeytest" },
+      headers: { apiKey: "8dDc431125634ef43cD13c388e6eCf11" },
       body: JSON.stringify(this.state.input),
     });
     if (response.ok) {

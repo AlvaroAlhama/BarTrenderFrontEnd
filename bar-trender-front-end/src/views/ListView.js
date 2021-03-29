@@ -38,7 +38,7 @@ function ListView() {
 
     if (location.state != undefined) {
       var data = location.state[0];
-      console.log(data);
+      // console.log(data);
 
       //MAPPING FORM DATA
       let beers_aux = [];
@@ -83,7 +83,8 @@ function ListView() {
         method: 'POST',
         body: JSON.stringify(filter),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'apiKey': '8dDc431125634ef43cD13c388e6eCf11'
         }
       })
         .then(response => response.json())

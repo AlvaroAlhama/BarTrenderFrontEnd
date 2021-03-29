@@ -27,6 +27,7 @@ export default class App extends React.Component {
           headers: {
             'Content-Type': 'application/json',
             'token': token,
+            'apiKey':'8dDc431125634ef43cD13c388e6eCf11'
           },
           body: JSON.stringify({redirect_url:'www.google.es'})
       });

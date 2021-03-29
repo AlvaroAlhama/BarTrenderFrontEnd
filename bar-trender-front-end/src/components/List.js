@@ -9,13 +9,16 @@ import {
 
 const List = (props) => {
   const { establishments } = props;
-  if (!establishments.establishments || establishments.establishments.length == undefined) return <p>No repos, sorry</p>;
+  
+  // console.log(establishments.establishments,"list");
+
+  if (!establishments || establishments.length == undefined) return <p>No establishments, sorry</p>;
   return (
 
     <ul className="ul-flex">
       <h2 className='list-head'>Establecimientos</h2>
       <Row className='list'>
-        {establishments.establishments.map((establishment) => {
+        {establishments.map((establishment) => {
           return (
             <>
               <Col className="col-lg-3 col-md-3 mb-4" >
@@ -23,7 +26,7 @@ const List = (props) => {
                   <ModalSelectedElement element={establishment} />
                   <div class="card-body card-img-top">
                     <p class="card-title">
-                      {establishment.name_text}
+                      {establishment.name}
                     </p>
                   </div>
                 </div>

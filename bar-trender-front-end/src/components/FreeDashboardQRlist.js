@@ -29,9 +29,11 @@ function DashboardQRList(props) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'apiKey':'8dDc431125634ef43cD13c388e6eCf11',
           'token': '',
 
-        }
+        },
+        
       }).then(response => response.json())
         .then(discounts => {
           setAppState({ discounts: discounts });

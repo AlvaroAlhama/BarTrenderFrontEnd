@@ -24,9 +24,7 @@ import MainNavbar from "../components/Navbars/MainNavbar.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import FreeChart from "../components/FreeChart.js";
 import FreePieChart from "../components/FreePieChart.js";
-import DashboardQRList from "../components/FreeDashboardQRlist";
 import "./css/FreeDashboard.css";
-import withListLoading from '../components/withListLoading';
 import FreeDashboardQRList from "../components/FreeDashboardQRlist"
 
 

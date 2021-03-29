@@ -1,35 +1,80 @@
-import React, {Component} from 'react';
+import React, { useEffect, useState, Component} from 'react';
 import {Bar, Line, Pie} from 'react-chartjs-2';
 
-class BeerPieChart extends Component{
-  constructor(props){
-    super(props);
-    this.state = 
-      this.props.data;
+
+  function BeerPieChart(props) {
     
-  }
+    const [modal1, setModal1] = React.useState(false);
+    const [modal2, setModal2] = React.useState(false);
+    const { element } = props;
+    const [appState, setAppState] = useState({
+      stats: {},
+    });
+    
+    {/*
+      //Falla que no reconoce lo del body
+   
 
-  static defaultProps = {
-    displayTitle:true,
-    displayLegend: true,
-    legendPosition:'right',
-    location:'City'
-  }
+     useEffect(() => {
+      const apiUrl = "http://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
+      async function loadStats(){
+        await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apiKey':'8dDc431125634ef43cD13c388e6eCf11',
+            'token': '',
+          },
+         
+          body: JSON.stringify({ tag: 'bebida' })
+        }).then(response => response.json())
+          .then(stats => {
+            setAppState({ stats: stats });
+          });} 
+          loadStats()
+    },[setAppState]);
+  */}
+  
+    var GraphData = {
+      chartData:{
+        labels: ['Cruzcampo', 'Mahou', 'Paulaner', 'Otros'],
+        datasets:[
+          {
+            label:'Busquedas',
+            data:[
+              217594,
+              181045,
+              153060,
+              136519,
+            ],
+            backgroundColor:[
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+            ],
+            
+          }
+        ]
+      
+    }
+  };
 
-  render(){
+  
+
     return (
       <div className="chart">
         <Pie
-          data={this.state.chartData}
+          data={GraphData}
           options={{
             title:{
-              display:this.props.displayTitle,
+              display:true,
               text:'¿Qué se busca más?',
               fontSize:25
             },
             legend:{
-              display:this.props.displayLegend,
-              position:this.props.legendPosition
+              display:true,
+              position:'right'
             }
           }}
         />
@@ -37,6 +82,6 @@ class BeerPieChart extends Component{
       </div>
         )
   }
-}
+
 
 export default BeerPieChart;

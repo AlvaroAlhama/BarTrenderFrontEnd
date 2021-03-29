@@ -1,17 +1,17 @@
-/* html,body{
+#validation{
     background-image: URL("./images/login-image-min.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
 }
-.container{
+#container-validation{
     height: 100%;
     align-content: center;
     padding-top: 10%;
 }
 
-.card{
+#card-validation{
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
@@ -19,7 +19,7 @@
     background-color: rgb(255, 255, 255);
 }
 
-.card-header {
+#card-header-validation {
     color: rgb(0, 0, 0);
     text-transform: uppercase;
 } */

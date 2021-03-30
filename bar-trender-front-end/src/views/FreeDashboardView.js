@@ -147,7 +147,7 @@ function FreeDashboardView() {
 
         <Row>
           <Col md="6">
-          <h3>¿Que prefiere la gente de tu zona para divertirse?</h3>
+          <h3>¿Que prefiere la gente para divertirse?</h3>
             <Card>
               <Card.Header>
                {/*<Card.Title as="h4">Email Statistics</Card.Title>

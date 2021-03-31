@@ -14,10 +14,16 @@ import "./assets/scss/now-ui-kit.scss?v=1.4.0";
 import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 // pages for this kit
+
+// import ErrorPage from "./views/ErrorPage.js";
+import Login from "./views/Login.js";
 import MainView from "./views/MainView.js";
 import LandingView from "./views/LandingView.js";
-import ListView from "./views/ListView.js"
-import ErrorView from "./views/ErrorView.js"
+import ListView from "./views/ListView.js";
+import ErrorView from "./views/ErrorView.js";
+import FreeDashboardView from "./views/FreeDashboardView.js";
+
+
 
 const app = (
   
@@ -40,12 +46,27 @@ const app = (
           render={(props) => <ListView {...props} />}
         />
         <Route
+          path="/login"
+          render={(props) => <Login {...props} />}
+        />
+
+        <Route
           path="/error"
           render={(props) => <ErrorView {...props} />}
         />
-       
+
+        <Route
+          path="/dashboard"
+          render={(props) => <FreeDashboardView {...props} />}
+        />
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
+
+
+      
+
+        
+
       </Switch>
     </Switch>
   </BrowserRouter>

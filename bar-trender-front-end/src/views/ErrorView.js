@@ -33,6 +33,7 @@ import employee_9 from '../assets/img/miguel.png';
 import employee_10 from '../assets/img/miguel-angel.png';
 import employee_11 from '../assets/img/fran.png';
 
+
 function ErrorView() {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
@@ -70,4 +71,6 @@ function ErrorView() {
   );
 }
 
+
 export default ErrorView;
+

@@ -1,0 +1,25 @@
+#validation{
+    background-image: URL("./images/login-image-min.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+}
+#container-validation{
+    height: 100%;
+    align-content: center;
+    padding-top: 10%;
+}
+
+#card-validation{
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+}
+
+#card-header-validation {
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+} 

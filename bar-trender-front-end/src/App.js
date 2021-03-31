@@ -23,12 +23,12 @@ export default class App extends React.Component {
     }else{
       const url = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
       const response = await fetch(url, {
-        method: 'POST',
+        method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'token': token,
-          },
-          body: JSON.stringify({redirect_url:'www.google.es'})
+            'apiKey':'8dDc431125634ef43cD13c388e6eCf11'
+          }
       });
       if(response.status == 200){
         const data = await response.blob();

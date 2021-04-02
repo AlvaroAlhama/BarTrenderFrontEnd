@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import ModalSearch from "../../components/Modals/ModalSearch";
 import ModalLogin from "../../components/Modals/ModalLogin";
-
+import "./MainNavbar.css";
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -27,7 +27,7 @@ function MainNavbar() {
         document.documentElement.scrollTop > 200 ||
         document.body.scrollTop > 200
       ) {
-        setNavbarColor("bg-primary");
+        setNavbarColor("bg-primary solid-color");
       } else if (
         document.documentElement.scrollTop < 201 ||
         document.body.scrollTop < 201

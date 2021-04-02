@@ -151,7 +151,9 @@ function NavPillsFilters() {
                             </Col>
                         </TabPane>
                         <TabPane tabId="pills3">
+                            
                             <Col className="ml-auto mr-auto" md="10">
+                            OCio
                                 <Row className="collections">
                                     <Col md="6">
                                         <img

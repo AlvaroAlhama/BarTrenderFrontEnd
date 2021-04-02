@@ -19,6 +19,7 @@ import Qr from '../../App.js'
 //css components
 import '../../views/css/ModalQR.css'
 import ListDiscount from "../ListDiscount";
+import './ModalSelectedElement.css';
 
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
@@ -29,22 +30,38 @@ function ModalSelectedElement(prop) {
     discounts: {},
   });
 
-   useEffect(() => {
+  //  useEffect(() => {
+  //   const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
+  //   async function loadDiscounts(){
+  //     await fetch(apiUrl, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'token': '',
+  //         'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
+  //       }
+  //     }).then(response => response.json())
+  //       .then(discounts => {
+  //         setAppState({ discounts: discounts });
+  //       });} 
+  //       loadDiscounts()
+  // },[setAppState]);
+
+  async function loadDiscounts(){
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
-    async function loadDiscounts(){
-      await fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'token': '',
-          'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
-        }
-      }).then(response => response.json())
-        .then(discounts => {
-          setAppState({ discounts: discounts });
-        });} 
-        loadDiscounts()
-  },[setAppState]);
+
+    await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'token': '',
+        'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
+      }
+    }).then(response => response.json())
+      .then(discounts => {
+        setAppState({ discounts: discounts });
+      });} 
+
 
 // function loadInfo(){
 //   setModal1(true);
@@ -65,10 +82,10 @@ function ModalSelectedElement(prop) {
       <img
         className=""
         src={image_left}
-        onClick={() => setModal1(true)}
+        onClick={() => {setModal1(true); loadDiscounts();}}
         alt=""
       />
-      <Modal modalClassName="modal-info" isOpen={modal1} toggle={() => setModal1(false)}>
+      <Modal animation={false} size="lg" modalClassName="modal-info" isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">
           <button
             className="close"
@@ -79,7 +96,7 @@ function ModalSelectedElement(prop) {
           </button>
           <h4 className="title title-up">{element.name_text}</h4>
         </div>
-        <ModalBody>
+        <ModalBody >
           <img
             className="image-container image-left"
             src={image_left}
@@ -133,3 +150,5 @@ function ModalSelectedElement(prop) {
 
 export default ModalSelectedElement;
 
+function callApi(prop) {
+}

@@ -15,6 +15,9 @@ import List from "../components/List";
 import withListLoading from '../components/withListLoading';
 import DeviceIdentifier from "react-device-identifier";
 import MainNavbar from 'components/Navbars/MainNavbar';
+import DefaultFooter from "../components/Footers/DefaultFooter.js";
+
+import "./css/ListView.css";
 
 function ListView() {
 
@@ -116,19 +119,25 @@ function ListView() {
         <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
-          <div class="container mt-5">
+          <section class="container mt-5" id = "list-results" > 
             <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
-          </div>
+          </section>
+            
         </div>
+        <DefaultFooter />
       </DeviceIdentifier>
       <DeviceIdentifier isMobile={true}>
         <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
-          <div class="container mt-5">
+          <section>
+          <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
+          </section>
+          {/* <div class="container mt-5">
             <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
-          </div>
+          </div> */}
         </div>
+        <DefaultFooter />
       </DeviceIdentifier>
 
     </>

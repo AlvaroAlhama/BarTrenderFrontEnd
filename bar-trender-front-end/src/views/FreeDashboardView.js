@@ -34,31 +34,6 @@ function FreeDashboardView() {
 
 
 
-  var graph1 = {
-      chartData:{
-        labels: ['Cruzcampo', 'Mahou', 'Paulaner', 'Otros'],
-        datasets:[
-          {
-            label:'Busquedas',
-            data:[
-              217594,
-              181045,
-              153060,
-              136519,
-            ],
-            backgroundColor:[
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-            ],
-            
-          }
-        ]
-      
-    }
-  };
-
   var graph2 = {
     chartData:{
       labels: ['Billar', 'Pista de Baile', 'Futbolin', 'Otros'],
@@ -110,19 +85,11 @@ function FreeDashboardView() {
           <Col md="6">
           <h3>La cerveza favorita de los Usuarios</h3>
             <Card>
-              <Card.Header>
-               {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
-              </Card.Header>
               <Card.Body>
               
               
               <img src="https://www.cruzcampo.es/img/cc/logo-vertical-cruzcampo@3x.png" alt="Cruzcampo"></img>
-               { /*<div className="stats">
-                  <i className="fas fa-check"></i>
-                 Ver las cervezas mas buscadas en tu zona
-                </div>
-                */}
+              
               </Card.Body>
             </Card>
           </Col>
@@ -134,7 +101,7 @@ function FreeDashboardView() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-               <FreePieChart data = {graph1}/>
+               <FreePieChart filter = {"Bebidas"}/>
                {/* <hr></hr>
                 <div className="stats">
                   <i className="fas fa-check"></i>
@@ -162,20 +129,10 @@ function FreeDashboardView() {
             <h3>Los elementos de ocio preferidos por los usuarios</h3>
             <Card>
               <Card.Header>
-                {/*Por si hace falta un header
-                <Card.Title as="h4">2017 Sales</Card.Title>
-                <p className="card-category">All products including Taxes</p>*/}
               </Card.Header>
               <Card.Body>
-              <FreeChart data = {graph2} />
+              <FreePieChart filter = {"ElementosDeOcio"}/>
               </Card.Body>
-              {/*<Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-check"></i>
-                  Ver donde estan tus elementos de ocio en el ranking de busquedas total
-                </div>
-              </Card.Footer>*/}
             </Card>
           </Col>
         </Row>
@@ -203,7 +160,7 @@ function FreeDashboardView() {
                 <p className="card-category">All products including Taxes</p>*/}
               </Card.Header>
               <Card.Body>
-              <FreeChart data = {graph2} />
+              <FreePieChart filter = {"Establecimientos"}/>
               </Card.Body>
             </Card>
           </Col>

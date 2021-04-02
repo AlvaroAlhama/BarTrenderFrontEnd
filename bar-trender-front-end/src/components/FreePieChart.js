@@ -26,7 +26,7 @@ function BeerPieChart(props) {
           'token': token,
         },
 
-        body: JSON.stringify({ filter: 'Bebidas' })
+        body: JSON.stringify({ filter: props.filter })
       }).then(response => response.json())
         .then(stats => {
           setAppState({ stats: stats });

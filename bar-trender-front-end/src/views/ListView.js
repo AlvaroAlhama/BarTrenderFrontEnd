@@ -122,9 +122,9 @@ function ListView() {
           <section class="container mt-5" id = "list-results" > 
             <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
           </section>
-            
+          <DefaultFooter />
         </div>
-        <DefaultFooter />
+        
       </DeviceIdentifier>
       <DeviceIdentifier isMobile={true}>
         <MainNavbar />
@@ -137,7 +137,7 @@ function ListView() {
             <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
           </div> */}
         </div>
-        <DefaultFooter />
+        {/* <DefaultFooter /> */}
       </DeviceIdentifier>
 
     </>

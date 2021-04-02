@@ -15,7 +15,7 @@ import {
 
 // core components
 import MainNavbar from "../components/Navbars/MainNavbar.js";
-import MainHeader from "../components/Headers/MainHeader.js";
+import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import Carousel from "../components/Carousel.js";
 import ModalSelectedElement from "../components/Modals/ModalSelectedElement.js";
@@ -64,23 +64,16 @@ function LandingPage() {
     <>
       <MainNavbar />
       <div className="wrapper">
-        <MainHeader />
+        <LandingPageHeader />
        
-
-        
-        
-          <Container>
-            
+       {/* TODO: Implementar carrousel funcional */}
+          {/* <Container>   
             <Carousel />
             <div className="separator separator-primary"></div>
-          </Container>
-        </div>
-        
+          </Container> */}
+        </div>       
+        {/* <DefaultFooter /> */}
 
-        <DefaultFooter />
-        
-      
-      
     </>
   );
 }

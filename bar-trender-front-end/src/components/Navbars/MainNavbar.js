@@ -4,7 +4,6 @@ import barTrender from "../../assets/img/barTrender60.png";
 // reactstrap components
 import {
   Collapse,
-
   NavbarBrand,
   Navbar,
   NavItem,
@@ -12,11 +11,10 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
-
 } from "reactstrap";
 import ModalSearch from "../../components/Modals/ModalSearch";
 import ModalLogin from "../../components/Modals/ModalLogin";
-
+import ModalDiscount from "components/Modals/ModalDiscount";
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -52,23 +50,20 @@ function MainNavbar() {
         />
       ) : null}
 
-      <Navbar className={"fixed-top " + navbarColor} color="primary" expand="lg">
-
+      <Navbar
+        className={"fixed-top " + navbarColor}
+        color="primary"
+        expand="lg"
+      >
         <Container>
-
           <div className="navbar-translate" style={{ margin: "0" }}>
             <Nav>
               <NavLink className="Logo" href="/main" style={{ float: "left" }}>
                 <img alt="" src={barTrender} />
-
               </NavLink>
-              <NavbarBrand
-                href="/main"
-                target="_blank"
-                id="navbar-brand"
-              >
+              <NavbarBrand href="/main" target="_blank" id="navbar-brand">
                 BarTrender
-                </NavbarBrand>
+              </NavbarBrand>
 
               <button
                 className="navbar-toggler navbar-toggler"
@@ -84,8 +79,6 @@ function MainNavbar() {
                 <span className="navbar-toggler-bar bottom-bar"></span>
               </button>
             </Nav>
-
-
           </div>
           <ModalSearch />
 
@@ -109,8 +102,6 @@ function MainNavbar() {
                 </UncontrolledTooltip>
               </NavItem>
 
-
-
               <NavItem>
                 <NavLink
                   href="https://www.instagram.com/bartrenderofficial/"
@@ -125,17 +116,21 @@ function MainNavbar() {
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
-
-              <NavLink
-              id="account-tooltip">
-                <ModalLogin/>
-                <UncontrolledTooltip target="#account-tooltip">
-                  Iniciar sesión / Cerrar Sesión
-                </UncontrolledTooltip>
-
+                <NavLink id="account-tooltip">
+                  <ModalLogin />
+                  <UncontrolledTooltip target="#account-tooltip">
+                    Iniciar sesión / Cerrar Sesión
+                  </UncontrolledTooltip>
                 </NavLink>
               </NavItem>
-
+              <NavItem>
+                <NavLink id="discount-tooltip">
+                  <ModalDiscount />
+                  <UncontrolledTooltip target="#discount-tooltip">
+                    Nuevo descuento
+                  </UncontrolledTooltip>
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Container>

@@ -22,7 +22,8 @@ import LandingView from "./views/LandingView.js";
 import ListView from "./views/ListView.js";
 import ErrorView from "./views/ErrorView.js";
 import FreeDashboardView from "./views/FreeDashboardView.js";
-
+import EstablismentByOwnerView from "./views/EstablishmentByOwnerView.js"
+import EstablishmentView from "./views/EstablishmentView.js"
 
 
 const app = (
@@ -59,6 +60,17 @@ const app = (
           path="/dashboard"
           render={(props) => <FreeDashboardView {...props} />}
         />
+
+        <Route
+          path ="/myEstablishments"
+          render = {(props) => <EstablismentByOwnerView {...props}/>}
+        />
+
+        <Route
+          path = "/establishment/:id"
+          render = {(props) =>  <EstablishmentView {...props}/>}
+        />
+
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
 

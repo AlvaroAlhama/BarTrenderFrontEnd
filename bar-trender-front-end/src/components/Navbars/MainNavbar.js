@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 import ModalSearch from "../../components/Modals/ModalSearch";
 import ModalLogin from "../../components/Modals/ModalLogin";
-import ModalDiscount from "components/Modals/ModalDiscount";
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -124,10 +123,13 @@ function MainNavbar() {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink id="discount-tooltip">
-                  <ModalDiscount />
+                <NavLink 
+                  id="discount-tooltip"
+                  href="/myEstablishments"
+                  className="now-ui-icons shopping_shop"
+                  >
                   <UncontrolledTooltip target="#discount-tooltip">
-                    Nuevo descuento
+                    Mis Establecimientos
                   </UncontrolledTooltip>
                 </NavLink>
               </NavItem>

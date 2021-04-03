@@ -22,42 +22,14 @@ import {
 } from "react-bootstrap";
 import MainNavbar from "../components/Navbars/MainNavbar.js";
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
-import FreeChart from "../components/FreeChart.js";
 import FreePieChart from "../components/FreePieChart.js";
 import "./css/FreeDashboard.css";
 import FreeDashboardQRList from "../components/FreeDashboardQRlist"
-
+import DashboardTopImage from "../components/DashboardTopImage"
 
 
 function FreeDashboardView() { 
 
-
-
-
-  var graph2 = {
-    chartData:{
-      labels: ['Billar', 'Pista de Baile', 'Futbolin', 'Otros'],
-      datasets:[
-        {
-          label:'Busquedas',
-          data:[
-            111455,
-            23444,
-            13060,
-            331,
-          ],
-          backgroundColor:[
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-          ],
-          
-        }
-      ]
-    
-  }
-};
 
 
 
@@ -79,17 +51,14 @@ function FreeDashboardView() {
         <h3>Tus descuentos</h3>
       </div>
       
-      {/*<ListLoading isLoading={appState.loading} discounts={appState.discounts} stats = {appState.stats}/>*/}
+     
        <FreeDashboardQRList/>
         <Row>
           <Col md="6">
           <h3>La cerveza favorita de los Usuarios</h3>
             <Card>
               <Card.Body>
-              
-              
-              <img src="https://www.cruzcampo.es/img/cc/logo-vertical-cruzcampo@3x.png" alt="Cruzcampo"></img>
-              
+              <DashboardTopImage filter = {"Bebidas"}/>
               </Card.Body>
             </Card>
           </Col>
@@ -139,7 +108,7 @@ function FreeDashboardView() {
 
         <Row>
           <Col md="6">
-          <h3>Nuestro estabkecimiento más famoso</h3>
+          <h3>Nuestro establecimiento más famoso</h3>
             <Card>
               <Card.Header>
                {/*<Card.Title as="h4">Email Statistics</Card.Title>

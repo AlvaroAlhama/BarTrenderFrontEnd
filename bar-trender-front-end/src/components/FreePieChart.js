@@ -2,6 +2,7 @@ import React, { useEffect, useState, Component } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 
 
+
 function BeerPieChart(props) {
 
   const [modal1, setModal1] = React.useState(false);
@@ -91,11 +92,18 @@ function BeerPieChart(props) {
 
   return (
     <div className="chart">
+      <br/>
+      <h3>¿Qué se busca más?</h3>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <Pie
         data={graph2.chartData}
         options={{
           title: {
-            display: true,
+            display: false,
             text: '¿Qué se busca más?',
             fontSize: 25
           },

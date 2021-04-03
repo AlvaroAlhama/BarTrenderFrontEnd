@@ -55,7 +55,7 @@ console.log(appState)
     
 
     <ul className="ul-flex">
-      <h2 className='list-head'>Establecimientos</h2>
+      <h2 className='list-head'>Tus Descuentos</h2>
       <Row className='list'>
         {appState.discounts.results.map((discounts) => {
           return (
@@ -65,8 +65,8 @@ console.log(appState)
               <Card.Body>
                 <Row>
                     <div className="numbers">
-                      <p className="card-category">El descuento {discounts.name_text} ha sido canjeado por</p>
-                      <Card.Title as="h4">{discounts.scannedCodes_number} usuarios</Card.Title>
+                      <p >El descuento {discounts.name_text} ha sido canjeado por</p>
+                      <p>{discounts.scannedCodes_number} usuarios</p>
                     </div>
                 </Row>
               </Card.Body>
@@ -76,8 +76,9 @@ console.log(appState)
           );
         })}
          <Card>
-        <h3>Crear Más Descuentos</h3>
+      {/*  <h3>Crear Más Descuentos</h3>
         <button className="discounts"> Crear Más Descuentos</button>
+      */}
         </Card>
       </Row>
     </ul>

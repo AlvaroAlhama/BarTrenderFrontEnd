@@ -16,12 +16,20 @@ import {
   Tooltip,
 } from "react-bootstrap";
 
+import FreeDashboardQRList from "../components/FreeDashboardQRlist"
+import DashboardTopImage from "../components/DashboardTopImage"
+import FreePieChart from "../components/FreePieChart.js";
+
 function Dashboard() {
   return (
     <>
       <Container fluid>
         <Row>
-          <Col lg="3" sm="6">
+
+        
+        <FreeDashboardQRList/>
+
+         {/* <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -125,7 +133,39 @@ function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
+          */}
         </Row>
+  
+        <Row>
+          <Col md="6">
+          <h3>La cerveza favorita de los Usuarios</h3>
+            <Card>
+              <Card.Body>
+              <DashboardTopImage filter = {"Bebidas"}/>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="6">
+          <h3>Ranking de las 3 mejores cervezas</h3>
+            <Card>
+              <Card.Header>
+               {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>*/}
+              </Card.Header>
+              <Card.Body>
+               <FreePieChart filter = {"Bebidas"}/>
+               {/* <hr></hr>
+                <div className="stats">
+                  <i className="fas fa-check"></i>
+                 Ver las cervezas mas buscadas en tu zona
+               </div>*/}
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
+
+
         <Row>
           <Col md="8">
             <Card>

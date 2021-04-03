@@ -24,12 +24,12 @@ function Dashboard() {
   return (
     <>
       <Container fluid>
-        <Row>
-
+        
         
         <FreeDashboardQRList/>
 
-         {/* <Col lg="3" sm="6">
+         {/*  <Row>
+         <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
@@ -133,8 +133,9 @@ function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
+           </Row>
           */}
-        </Row>
+       
   
         <Row>
           <Col md="6">
@@ -154,18 +155,70 @@ function Dashboard() {
               </Card.Header>
               <Card.Body>
                <FreePieChart filter = {"Bebidas"}/>
-               {/* <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-check"></i>
-                 Ver las cervezas mas buscadas en tu zona
-               </div>*/}
+              </Card.Body>
+            </Card>
+          </Col>
+          
+          
+          
+        </Row>
+
+        <Row>
+          <Col md="6">
+          <h3>¿Que prefiere la gente para divertirse?</h3>
+            <Card>
+              <Card.Header>
+               {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>*/}
+              </Card.Header>
+              <Card.Body>
+              <img src="https://images-na.ssl-images-amazon.com/images/I/31tjReD7IGL._AC_.jpg" alt="billar"></img>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="6">
+            <h3>Los elementos de ocio preferidos por los usuarios</h3>
+            <Card>
+              <Card.Header>
+              </Card.Header>
+              <Card.Body>
+              <FreePieChart filter = {"ElementosDeOcio"}/>
               </Card.Body>
             </Card>
           </Col>
         </Row>
 
+        <Row>
+          <Col md="6">
+          <h3>El tipo de establecimiento más famoso</h3>
+            <Card>
+              <Card.Header>
+               {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>*/}
+              </Card.Header>
+              <Card.Body>
+              <h3>Cafetería</h3>
+              <img src="https://as.com/deporteyvida/imagenes/2018/02/16/portada/1518787733_123354_1518787790_noticia_normal.jpg" alt="El mejor"></img>
+            
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="6">
+            <h3>Los establecimientos más buscados</h3>
+            <Card>
+              <Card.Header>
+                {/*Por si hace falta un header
+                <Card.Title as="h4">2017 Sales</Card.Title>
+                <p className="card-category">All products including Taxes</p>*/}
+              </Card.Header>
+              <Card.Body>
+              <FreePieChart filter = {"Establecimientos"}/>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-
+{/*
         <Row>
           <Col md="8">
             <Card>
@@ -274,6 +327,7 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
+                 
         <Row>
           <Col md="6">
             <Card>
@@ -672,6 +726,7 @@ function Dashboard() {
             </Card>
           </Col>
         </Row>
+        */}
       </Container>
     </>
   );

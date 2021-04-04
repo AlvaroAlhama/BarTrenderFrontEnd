@@ -34,7 +34,7 @@ class POSTCreateDiscount extends React.Component {
     var token = sessionStorage.getItem("token");
     var query = window.location.pathname;
     var splited = query.split("/");
-    var idEstablishment = splited[2];
+    var idEstablishment = splited[3];
     const url =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       idEstablishment +

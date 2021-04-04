@@ -1,5 +1,3 @@
-import MainNavbar from "components/Navbars/MainNavbar";
-import DELETEDiscount from "components/ApiDeleteDIscount";
 import React, { useEffect, useState } from "react";
 import { Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
@@ -20,6 +18,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import ModalUpdateDiscount from "components/Modals/ModalUpdateDiscount";
 
 function EstablishmentView() {
   const [appState, setAppState] = useState({
@@ -255,10 +254,12 @@ function EstablishmentView() {
                           {discount.name}  /   {discount.description}
                         </td>
                         <td className="td-actions text-right">
-                          <OverlayTrigger
+                          <ModalUpdateDiscount discount = {discount}/>
+                          
+                          {/* <OverlayTrigger
                             overlay={
                               <Tooltip id="tooltip-488980961">
-                                Editar descuento
+                                Editar descuento    
                               </Tooltip>
                             }
                           >
@@ -269,7 +270,7 @@ function EstablishmentView() {
                             >
                               <i className="fas fa-edit"></i>
                             </Button>
-                          </OverlayTrigger>
+                          </OverlayTrigger> */}
                           {/* <OverlayTrigger
                             overlay={
                               <Tooltip id="tooltip-506045838">Eliminar descuento</Tooltip>

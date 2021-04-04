@@ -14,11 +14,8 @@ import {
   Col,
 } from "react-bootstrap";
 
-import MainNavbar from "components/Navbars/MainNavbar";
-import DELETEDiscount from "components/ApiDeleteDIscount";
 import React, { useEffect, useState } from "react";
 import { Modal, ModalBody } from "reactstrap";
-import POSTCreateDiscount from "components/ApiCreateDiscountForm";
 
 import Moment from "react-moment";
 import moment from "moment";
@@ -31,7 +28,6 @@ function ModalDeleteDiscount(props) {
     discounts: [],
   });
 
-  const [modal1, setModal1] = React.useState(false);
   const [modalDelete, setModalDelete] = React.useState(false);
 
   const idEstablishment = () => {
@@ -70,12 +66,6 @@ function ModalDeleteDiscount(props) {
 
   async function handleDelete(){
 
-    const scannedCodes = props.discount.scannedCodes;
-    const endDate = props.discount.endDate;
-
-    const today = new Date();
-    const todayTS = moment.utc(`${today}`).unix();
-
     if (validate()) {
       const discount = props.discount;
       console.log(discount)
@@ -83,7 +73,7 @@ function ModalDeleteDiscount(props) {
       var token = sessionStorage.getItem("token");
       var query = window.location.pathname;
       var splited = query.split("/");
-      var idEstablishment = splited[2];
+      var idEstablishment = splited[3];
       const url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" + idEstablishment + "/discounts/" + idDiscount + "/delete";
 
       const request = await fetch(url, {
@@ -97,6 +87,7 @@ function ModalDeleteDiscount(props) {
       if (request.ok) {
         var response = await request.json();
         setAppState({ msg: response.msg });
+        window.location.reload();
       } else {
         var response = await request.json();
         setAppState({ errors: response.error });
@@ -199,6 +190,10 @@ function ModalDeleteDiscount(props) {
             <div>
               <button type="button" className="btn btn-danger" onClick={() => handleDelete()}>Elminar</button>
             </div>
+          </div>
+          <div>
+            <p class= "text-danger">{appState.errors==undefined ? "" : appState.errors.errorCodes}</p>
+            <p class= "text-danger">{appState.errors==undefined ? "" : appState.errors.errorDate}</p>
           </div>
         </ModalBody>
       </Modal>

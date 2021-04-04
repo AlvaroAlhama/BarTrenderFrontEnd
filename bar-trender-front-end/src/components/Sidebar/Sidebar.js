@@ -112,7 +112,8 @@ function Sidebar({ color, image }) {
       icon: "nc-icon nc-bell-55",
       component: Establishments,
       layout: "/admin",
-    }],
+    },
+    ],
   }
   );
 
@@ -138,7 +139,15 @@ function Sidebar({ color, image }) {
               icon: "nc-icon nc-chart-pie-35",
               component: Dashboard,
               layout: "/admin",
-            }
+            },
+            {
+              upgrade: true,
+              path: "/upgrade",
+              name: "Desbloquear preimium",
+              icon: "nc-icon nc-bell-55",
+              component: Upgrade,
+              layout: "/admin",
+            },
            
           ];
 

@@ -92,7 +92,7 @@ function EstablishmentView() {
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                    <Col className="pl-1" md="5">
+                    {/* <Col className="pl-1" md="5">
                       <Form.Group>
                         <label htmlFor="exampleInputEmail1">
                           Correo electrónico
@@ -102,7 +102,7 @@ function EstablishmentView() {
                           type="email"
                         ></Form.Control>
                       </Form.Group>
-                    </Col>
+                    </Col> */}
                   </Row>
                   <Row>
                     <Col md="12">
@@ -141,7 +141,7 @@ function EstablishmentView() {
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                    <Col className="pl-1" md="4">
+                    {/* <Col className="pl-1" md="4">
                       <Form.Group>
                         <label>Código Postal</label>
                         <Form.Control
@@ -149,7 +149,7 @@ function EstablishmentView() {
                           type="number"
                         ></Form.Control>
                       </Form.Group>
-                    </Col>
+                    </Col> */}
                   </Row>
                   <Row>
                     <Col md="12">
@@ -202,7 +202,7 @@ function EstablishmentView() {
               </Card.Body>
             </Card>
           </Col>
-          <Col md="4">
+          {/* <Col md="4">
             <Card className="card-user">
               <div className="card-image">
                 <img
@@ -227,7 +227,7 @@ function EstablishmentView() {
                 </div>
               </Card.Body>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
       <Container fluid>

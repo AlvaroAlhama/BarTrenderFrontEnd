@@ -44,10 +44,10 @@ class ModalSearch extends React.Component {
       Cruzcampo: "off",
       Dardos: "off",
       Billar: "off",
+      Discounts: "off",
 
       pills: "1",
     };
-
 
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
@@ -67,7 +67,7 @@ class ModalSearch extends React.Component {
       Cruzcampo: "off",
       Dardos: "off",
       Billar: "off",
-
+      Discounts: "off",
     });
   }
   handleTermChange(e) {
@@ -90,6 +90,7 @@ class ModalSearch extends React.Component {
     let beers = [];
     let zones = [];
     let leisures = [];
+    let discounts = [];
 
     if (this.state['Paulaner'] == "on") {
       beers.push("Paulaner");
@@ -108,6 +109,10 @@ class ModalSearch extends React.Component {
     }
     if (this.state['Billar'] == "on") {
       leisures.push("Billar");
+    }
+
+    if (this.state['Discounts'] == "on") {
+      discounts.push("Discounts");
     }
 
     let params = "";
@@ -132,7 +137,14 @@ class ModalSearch extends React.Component {
         params += "," + e;
       }
     })
-
+    discounts.map((e, i) => {
+      if (i === 0) {
+        params += "&discounts=" + e;
+      } else {
+        params += "," + e;
+      }
+    })
+    
     // this.context.router.push("/list");
     // window.location.href = 'list';
 
@@ -331,7 +343,18 @@ class ModalSearch extends React.Component {
                         </FormGroup>
                       </TabPane>
                     </TabContent>
-
+                    <FormGroup check>
+                  <Label check>
+                    <Input type="checkbox"
+                      placeholder="Discounts"
+                      onChange={this.handleTermChange}
+                      onKeyDown={this.handleEnter}
+                      name="Discounts"
+                    />
+                    <span className="form-check-sign"></span>
+                  With discounts
+                  </Label>
+                  </FormGroup>
                   </Form>
                 </Col>
 
@@ -357,6 +380,8 @@ class ModalSearch extends React.Component {
                   Cruzcampo: this.state['Cruzcampo'],
                   Billar: this.state['Billar'],
                   Dardos: this.state['Dardos'],
+                  Discounts: this.state['Discounts'],
+
                 }]
               }}> <Button
                 color="primary"

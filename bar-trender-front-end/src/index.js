@@ -9,11 +9,20 @@ import './index.css';
 import App from './App';
 
 // styles for this kit
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "assets/css/animate.min.css";
+import "assets/scss/light-bootstrap-dashboard-react.scss?v=2.0.0";
+import "assets/css/demo.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+// styles for this kit
+
 import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss?v=1.4.0";
 import "./assets/demo/demo.css?v=1.4.0";
 import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
-// pages for this kit
+
+import "assets/css/dashboard.css";
 
 // import ErrorPage from "./views/ErrorPage.js";
 import Login from "./views/Login.js";
@@ -22,7 +31,7 @@ import LandingView from "./views/LandingView.js";
 import ListView from "./views/ListView.js";
 import ErrorView from "./views/ErrorView.js";
 import FreeDashboardView from "./views/FreeDashboardView.js";
-
+import AdminView from "./views/AdminView.js";
 
 
 const app = (
@@ -59,8 +68,16 @@ const app = (
           path="/dashboard"
           render={(props) => <FreeDashboardView {...props} />}
         />
+
+        <Route path="/admin" 
+          render={(props) => <AdminView {...props} />} /> 
+
+        <Route path="/admin/dashboard" 
+          render={(props) => <AdminView {...props} />} />
+
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
+        
 
 
       

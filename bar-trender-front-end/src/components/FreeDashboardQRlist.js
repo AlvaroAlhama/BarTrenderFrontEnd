@@ -55,30 +55,70 @@ console.log(appState)
     
 
     <ul className="ul-flex">
-      <h2 className='list-head'>Establecimientos</h2>
+      <h2 className='list-head'>Tus Descuentos</h2>
       <Row className='list'>
         {appState.discounts.results.map((discounts) => {
           return (
             <>
-              <Col lg="3" sm="6">
+
+            <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
                 <Row>
+                  <Col xs="5">
+                    <div className="icon-big text-center icon-warning">
+                      <i className="nc-icon nc-chart text-warning"></i>
+                    </div>
+                  </Col>
+                  <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">El descuento {discounts.name_text} ha sido canjeado por</p>
+                      <p className="card-category">El descuento {discounts.name_text} fue canjeado por</p>
                       <Card.Title as="h4">{discounts.scannedCodes_number} usuarios</Card.Title>
                     </div>
+                  </Col>
                 </Row>
               </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="fas fa-redo mr-1"></i>
+                  Update Now
+                </div>
+              </Card.Footer>
             </Card>
           </Col>
+
+
+
             </>
           );
         })}
-         <Card>
-        <h3>Crear Más Descuentos</h3>
-        <button className="discounts"> Crear Más Descuentos</button>
-        </Card>
+        <Col lg="3" sm="6">
+            <Card className="card-stats">
+              <Card.Body>
+                <Row>
+                  <Col xs="5">
+                    <div className="icon-big text-center icon-warning">
+                      <i className="nc-icon nc-favourite-28 text-primary"></i>
+                    </div>
+                  </Col>
+                  <Col xs="7">
+                    <div className="numbers">
+                      <p className="card-category">Numero de usuarios que han canjeado los descuentos que tiene en activo</p>
+                      <Card.Title as="h4">0</Card.Title>
+                    </div>
+                  </Col>
+                </Row>
+              </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="fas fa-redo mr-1"></i>
+                  Update now
+                </div>
+              </Card.Footer>
+            </Card>
+          </Col>
       </Row>
     </ul>
 
@@ -105,43 +145,7 @@ console.log(appState)
 
 
 
-     {/* <Row>
-          {
-          //Esto se debe convertir en una lista que por cada descuento que tenga 
-          //este local muestre el numero de veces que se ha usado este qr en una tarjeta como esta
-          }
-          
-
-
-
-          
-          <Col lg="3" sm="6">
-            <Card className="card-stats">
-              <Card.Body>
-                <Row>
-                    <div className="numbers">
-                      <p className="card-category">El descuento "2x1 en cervezas" ha sido canjeado por</p>
-                      <Card.Title as="h4">"147" usuarios</Card.Title>
-                    </div>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Col>
-
-
-
-
-
-        </Row>
-        
-        
-
-      
-
-      
-          )
-    }
-  */}
+     
   
   export default DashboardQRList;
 

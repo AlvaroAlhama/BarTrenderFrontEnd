@@ -84,7 +84,7 @@ var count = 0
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1"></i>
-                  Update Now
+                  Datos extraidos de la api de Bartrender
                 </div>
               </Card.Footer>
             </Card>
@@ -116,7 +116,7 @@ var count = 0
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1"></i>
-                  Update now
+                  Datos extraidos de la api de Bartrender
                 </div>
               </Card.Footer>
             </Card>

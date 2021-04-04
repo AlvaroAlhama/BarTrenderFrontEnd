@@ -241,6 +241,20 @@ class ModalSearch extends React.Component {
                           <i className="now-ui-icons sport_user-run"></i>
                         </NavLink>
                       </NavItem>
+                      <NavItem>
+                        <NavLink
+                          className={this.state['pills'] === "4" ? "active" : ""}
+                          href=""
+                          onClick={(e) => {
+                            e.preventDefault();
+                            this.setState({
+                              pills: "4",
+                            })
+                          }}
+                        >
+                          <i className="now-ui-icons sport_user-run"></i>
+                        </NavLink>
+                      </NavItem>
                     </Nav>
                   </div>
                 </Col>
@@ -342,19 +356,26 @@ class ModalSearch extends React.Component {
                         </Label>
                         </FormGroup>
                       </TabPane>
+
+                      <TabPane tabId="pills4">
+                        <h3 className="text-center mt-2"> Descuentos</h3>
+                        <FormGroup check>
+
+                        <Label check>
+                          <Input type="checkbox"
+                            placeholder="Discounts"
+                            onChange={this.handleTermChange}
+                            onKeyDown={this.handleEnter}
+                            name="Discounts"
+                          />
+                          <span className="form-check-sign"></span>
+                        Cualquier descuento
+                        </Label>
+                        </FormGroup>
+                      </TabPane>
+
                     </TabContent>
-                    <FormGroup check>
-                  <Label check>
-                    <Input type="checkbox"
-                      placeholder="Discounts"
-                      onChange={this.handleTermChange}
-                      onKeyDown={this.handleEnter}
-                      name="Discounts"
-                    />
-                    <span className="form-check-sign"></span>
-                  With discounts
-                  </Label>
-                  </FormGroup>
+                   
                   </Form>
                 </Col>
 

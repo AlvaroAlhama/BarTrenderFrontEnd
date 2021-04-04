@@ -41,7 +41,7 @@ function DashboardQRList(props) {
         loadDiscounts()
   },[setAppState]);
 console.log(appState)
-
+var count = 0
 
 
  
@@ -57,10 +57,11 @@ console.log(appState)
     <ul className="ul-flex">
       <h2 className='list-head'>Tus Descuentos</h2>
       <Row className='list'>
+     
         {appState.discounts.results.map((discounts) => {
           return (
             <>
-
+            
             <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
@@ -74,6 +75,7 @@ console.log(appState)
                     <div className="numbers">
                       <p className="card-category">El descuento {discounts.name_text} fue canjeado por</p>
                       <Card.Title as="h4">{discounts.scannedCodes_number} usuarios</Card.Title>
+                      <span hidden> {count= count+discounts.scannedCodes_number }</span>
                     </div>
                   </Col>
                 </Row>
@@ -82,7 +84,7 @@ console.log(appState)
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1"></i>
-                  Update Now
+                  Datos extraidos de la api de Bartrender
                 </div>
               </Card.Footer>
             </Card>
@@ -105,7 +107,7 @@ console.log(appState)
                   <Col xs="7">
                     <div className="numbers">
                       <p className="card-category">Numero de usuarios que han canjeado los descuentos que tiene en activo</p>
-                      <Card.Title as="h4">0</Card.Title>
+                      <Card.Title as="h4">{count}</Card.Title>
                     </div>
                   </Col>
                 </Row>
@@ -114,7 +116,7 @@ console.log(appState)
                 <hr></hr>
                 <div className="stats">
                   <i className="fas fa-redo mr-1"></i>
-                  Update now
+                  Datos extraidos de la api de Bartrender
                 </div>
               </Card.Footer>
             </Card>

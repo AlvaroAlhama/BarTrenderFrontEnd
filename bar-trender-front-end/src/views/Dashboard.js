@@ -138,15 +138,22 @@ function Dashboard() {
        
   
         <Row>
-          <Col md="6">
+          <Col md="4">
           <h3>La cerveza favorita de los Usuarios</h3>
             <Card>
               <Card.Body>
-              <DashboardTopImage filter = {"Bebidas"}/>
+              <DashboardTopImage filter = {"Bebida"}/>
               </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="now-ui-icons loader_refresh spin"></i>
+                  Datos obtenidos de la api de Bartrender
+                </div>
+              </Card.Footer>
             </Card>
           </Col>
-          <Col md="6">
+          <Col md="4">
           <h3>Ranking de las 3 mejores cervezas</h3>
             <Card>
               <Card.Header>
@@ -154,8 +161,15 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-               <FreePieChart filter = {"Bebidas"}/>
+               <FreePieChart filter = {"Bebida"}/>
               </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="now-ui-icons loader_refresh spin"></i>
+                  Datos actualizados mensualmente
+                </div>
+              </Card.Footer>
             </Card>
           </Col>
           
@@ -164,7 +178,7 @@ function Dashboard() {
         </Row>
 
         <Row>
-          <Col md="6">
+          <Col md="4">
           <h3>¿Que prefiere la gente para divertirse?</h3>
             <Card>
               <Card.Header>
@@ -172,24 +186,38 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-              <img src="https://images-na.ssl-images-amazon.com/images/I/31tjReD7IGL._AC_.jpg" alt="billar"></img>
+              <DashboardTopImage filter = {"Ocio"}/>
               </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                <i className="fas fa-check"></i>
+                  Datos obtenidos de la api de Bartrender
+                </div>
+              </Card.Footer>
             </Card>
           </Col>
-          <Col md="6">
-            <h3>Los elementos de ocio preferidos por los usuarios</h3>
+          <Col md="4">
+            <h3>Los elementos de ocio más buscados</h3>
             <Card>
               <Card.Header>
               </Card.Header>
               <Card.Body>
-              <FreePieChart filter = {"ElementosDeOcio"}/>
+              <FreePieChart filter = {"Ocio"}/>
               </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="now-ui-icons loader_refresh spin"></i>
+                  Datos actualizados mensualmente
+                </div>
+              </Card.Footer>
             </Card>
           </Col>
         </Row>
 
         <Row>
-          <Col md="6">
+          <Col md="4">
           <h3>El tipo de establecimiento más famoso</h3>
             <Card>
               <Card.Header>
@@ -197,14 +225,19 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-              <h3>Cafetería</h3>
-              <img src="https://as.com/deporteyvida/imagenes/2018/02/16/portada/1518787733_123354_1518787790_noticia_normal.jpg" alt="El mejor"></img>
-            
+              <DashboardTopImage filter = {"Establecimiento"}/>
               </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                <i className="fas fa-check"></i>
+                  Datos obtenidos de la api de Bartrender
+                </div>
+              </Card.Footer>
             </Card>
           </Col>
-          <Col md="6">
-            <h3>Los establecimientos más buscados</h3>
+          <Col md="4">
+            <h3>Los establecimientos que más interesan</h3>
             <Card>
               <Card.Header>
                 {/*Por si hace falta un header
@@ -212,8 +245,15 @@ function Dashboard() {
                 <p className="card-category">All products including Taxes</p>*/}
               </Card.Header>
               <Card.Body>
-              <FreePieChart filter = {"Establecimientos"}/>
+              <FreePieChart filter = {"Establecimiento"}/>
               </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="now-ui-icons loader_refresh spin"></i>
+                  Datos actualizados mensualmente
+                </div>
+              </Card.Footer>
             </Card>
           </Col>
         </Row>

@@ -3,6 +3,8 @@ import React, { useEffect, useState, Component } from 'react';
 import bartrenderBlack from "./Images/bartrenderBlack.png";
 import cruzcampo from "./Images/cruzcampo.png";
 import heineken from "./Images/heineken.png";
+import dardos from "./Images/dardos.jpg";
+import futbolin from "./Images/futbolin.png";
 
 
 
@@ -42,16 +44,21 @@ function DashboardTopImage(props) {
   //Añadir todas las cervezas posibles junto a las imagenes en la carpeta. Esto no es definitivo
 
   var imgBest = bartrenderBlack
-  var nameBest = "No hemos encontrado la cerveza más buscada"
+  var nameBest = "No hemos encontrado el elemento más buscado"
   if (appState.stats.first != undefined) {
      nameBest = appState.stats.first.name
-    if (nameBest == "Cruzcampo ")
+    if (nameBest == "Cruzcampo"){
      imgBest = cruzcampo
-  }else if(nameBest == "Heineken"){
+    }else if(nameBest == "Heineken"){
      imgBest = heineken
-  }
- 
-
+    }
+    else if(nameBest == "Dardos"){
+      imgBest = dardos
+    }else if(nameBest == "Futbolin"){
+        imgBest = futbolin
+    }
+  
+}
 
   return (
     <div>

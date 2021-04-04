@@ -19,6 +19,7 @@ import { Nav } from "react-bootstrap";
 import logo from "assets/img/reactlogo.png";
 import { useEffect, useState } from "react";
 
+import logoBartrender from "../Images/barTrender61.png";
 
 function Sidebar({ color, image }) {
   
@@ -179,12 +180,12 @@ function Sidebar({ color, image }) {
       <div className="sidebar-wrapper">
         <div className="logo d-flex align-items-center justify-content-start">
           <a
-            href="https://www.creative-tim.com?ref=lbd-sidebar"
+            href="../Images/barTrender61.png"
             className="simple-text logo-mini mx-1"
           >
             <div className="logo-img">
               <img
-                src={require("assets/img/reactlogo.png").default}
+                src={require("../Images/barTrender61.png").default}
                 alt="..."
               />
             </div>

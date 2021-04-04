@@ -65,7 +65,7 @@ function BeerPieChart(props) {
   } else {
     var graph2 = {
       chartData: {
-        labels: ['PLACEHOLDER', 'PLACEHOLDER', 'PLACEHOLDER', 'Otros'],
+        labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
         datasets: [
           {
             label: 'Busquedas',

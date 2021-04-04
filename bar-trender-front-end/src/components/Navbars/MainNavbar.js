@@ -111,7 +111,7 @@ function MainNavbar() {
                   id="instagram-tooltip"
                 >
                   <i className="fab fa-instagram"></i>
-                  <p className="d-lg-none d-xl-none">Instragam</p>
+                  <p className="d-lg-none d-xl-none">Instagram</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
                   Síguenos en Instagram

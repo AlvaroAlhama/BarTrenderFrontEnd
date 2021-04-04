@@ -4,4 +4,4 @@ node_js:
 script:
   - cd bar-trender-front-end
   - npm install
-  - CI=false npm run build
+  - CI= npm run build

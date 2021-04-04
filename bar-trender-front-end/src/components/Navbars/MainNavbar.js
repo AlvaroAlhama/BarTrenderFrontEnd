@@ -37,6 +37,7 @@ function MainNavbar() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
+  const isLoggedIn = sessionStorage.getItem("token") && sessionStorage.getItem("rol") == 'owner';
   return (
     <>
       {collapseOpen ? (
@@ -114,14 +115,7 @@ function MainNavbar() {
                   Síguenos en Instagram
                 </UncontrolledTooltip>
               </NavItem>
-              <NavItem>
-                <NavLink id="account-tooltip">
-                  <ModalLogin />
-                  <UncontrolledTooltip target="#account-tooltip">
-                    Iniciar sesión / Cerrar Sesión
-                  </UncontrolledTooltip>
-                </NavLink>
-              </NavItem>
+              {isLoggedIn &&
               <NavItem>
                 <NavLink 
                   id="discount-tooltip"
@@ -133,6 +127,16 @@ function MainNavbar() {
                   </UncontrolledTooltip>
                 </NavLink>
               </NavItem>
+              }
+              <NavItem>
+                <NavLink id="account-tooltip">
+                  <ModalLogin />
+                  <UncontrolledTooltip target="#account-tooltip">
+                    Iniciar sesión / Cerrar Sesión
+                  </UncontrolledTooltip>
+                </NavLink>
+              </NavItem>
+
             </Nav>
           </Collapse>
         </Container>

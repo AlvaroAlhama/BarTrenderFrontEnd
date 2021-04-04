@@ -33,7 +33,9 @@ class POSTLoginForm extends React.Component {
     if (response.ok) {
       var r = await response.json();
       var token = r.token;
+      var rol = r.rol;
       sessionStorage.setItem("token", token);
+      sessionStorage.setItem("rol", rol);
       window.location.href = "/index";
     } else {
       const data = await response.blob();

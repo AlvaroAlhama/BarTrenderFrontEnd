@@ -24,7 +24,7 @@ function BeerPieChart(props) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': token,
+          'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im93bmVyMUBnbWFpbC5jb20iLCJyb2wiOiJvd25lciIsImV4cGlyZXNJbiI6MTYxNzUzMTcxNn0.PKj5YNoOY59L2iNcMb-tEJAtFhEzIfrhmJht4S08tQI",
         },
 
         body: JSON.stringify({ filter: props.filter })

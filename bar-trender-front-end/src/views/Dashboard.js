@@ -142,7 +142,7 @@ function Dashboard() {
           <h3>La cerveza favorita de los Usuarios</h3>
             <Card>
               <Card.Body>
-              <DashboardTopImage filter = {"Bebidas"}/>
+              <DashboardTopImage filter = {"Bebida"}/>
               </Card.Body>
             </Card>
           </Col>
@@ -154,7 +154,7 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-               <FreePieChart filter = {"Bebidas"}/>
+               <FreePieChart filter = {"Bebida"}/>
               </Card.Body>
             </Card>
           </Col>
@@ -172,7 +172,7 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-              <img src="https://images-na.ssl-images-amazon.com/images/I/31tjReD7IGL._AC_.jpg" alt="billar"></img>
+              <DashboardTopImage filter = {"Ocio"}/>
               </Card.Body>
             </Card>
           </Col>
@@ -182,7 +182,7 @@ function Dashboard() {
               <Card.Header>
               </Card.Header>
               <Card.Body>
-              <FreePieChart filter = {"ElementosDeOcio"}/>
+              <FreePieChart filter = {"Ocio"}/>
               </Card.Body>
             </Card>
           </Col>
@@ -197,9 +197,7 @@ function Dashboard() {
                 <p className="card-category">Last Campaign Performance</p>*/}
               </Card.Header>
               <Card.Body>
-              <h3>Cafetería</h3>
-              <img src="https://as.com/deporteyvida/imagenes/2018/02/16/portada/1518787733_123354_1518787790_noticia_normal.jpg" alt="El mejor"></img>
-            
+              <DashboardTopImage filter = {"Establecimiento"}/>
               </Card.Body>
             </Card>
           </Col>
@@ -212,7 +210,7 @@ function Dashboard() {
                 <p className="card-category">All products including Taxes</p>*/}
               </Card.Header>
               <Card.Body>
-              <FreePieChart filter = {"Establecimientos"}/>
+              <FreePieChart filter = {"Establecimiento"}/>
               </Card.Body>
             </Card>
           </Col>

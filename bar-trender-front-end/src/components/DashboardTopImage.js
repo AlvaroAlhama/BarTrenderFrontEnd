@@ -27,7 +27,7 @@ function DashboardTopImage(props) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': token,
+          'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im93bmVyMUBnbWFpbC5jb20iLCJyb2wiOiJvd25lciIsImV4cGlyZXNJbiI6MTYxNzUzMTcxNn0.PKj5YNoOY59L2iNcMb-tEJAtFhEzIfrhmJht4S08tQI",
         },
 
         body: JSON.stringify({ filter: props.filter })
@@ -42,10 +42,10 @@ function DashboardTopImage(props) {
   //Añadir todas las cervezas posibles junto a las imagenes en la carpeta. Esto no es definitivo
 
   var imgBest = bartrenderBlack
-  var nameBest = "No hemos encontrado la cerveza más buscada"
+  var nameBest = "No hemos encontrado el elemento más buscado"
   if (appState.stats.first != undefined) {
      nameBest = appState.stats.first.name
-    if (nameBest == "Cruzcampo ")
+    if (nameBest == "Cruzcampo")
      imgBest = cruzcampo
   }else if(nameBest == "Heineken"){
      imgBest = heineken

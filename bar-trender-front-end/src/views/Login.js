@@ -40,24 +40,25 @@ function loginOwner(){
     }else{
         return (
             <>
-                <div class="row justify-content-center pt-5">
-                    <img src={barTrender60} class="img-fluid" />
-                    <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
-                </div>
-                <div class="container" id="container-validation">
-                    <div class="d-flex justify-content-center h-100">
-                        <div class="card" id="card-validation">
-                            <div class="card-header" id="card-header-validation">
-                                <h1 className="text-center pt-3">Validar Descuento</h1>
-                            </div>
+                <div id="validation">
+                    <div class="row justify-content-center pt-5">
+                        <img src={barTrender60} class="img-fluid" />
+                        <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
+                    </div>
+                    <div class="container" id="container-validation">
+                        <div class="d-flex justify-content-center h-100">
+                            <div class="card" id="card-validation">
+                                <div class="card-header" id="card-header-validation">
+                                    <h1 className="text-center pt-3">Validar Descuento</h1>
+                                </div>
 
-                            <div class="card-body">
-                                <FormQRValidatorAlreadyLogged />
+                                <div class="card-body">
+                                    <FormQRValidatorAlreadyLogged />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </>
         )
     }

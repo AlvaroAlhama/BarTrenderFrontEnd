@@ -47,6 +47,7 @@ function ListView() {
       let beers_aux = [];
       let zones_aux = [];
       let leisures_aux = [];
+      let discounts_aux = [];
 
       if (data['Paulaner'] == "on") {
         beers_aux.push("Paulaner");
@@ -66,6 +67,10 @@ function ListView() {
       if (data['Dardos'] == "on") {
         leisures_aux.push("Dardos");
       }
+      if (data['Discounts'] == "on") {
+        discounts_aux.push("true");
+      }
+
 
         if(zones_aux.length != 0){
           filter["filters"]["zones"] = zones_aux;
@@ -75,6 +80,9 @@ function ListView() {
         }
         if(leisures_aux.length != 0){
           filter["filters"]["leisures"] = leisures_aux;
+        }
+        if(discounts_aux.length != 0){
+          filter["filters"]["discounts"] = discounts_aux;
         }
       
     }

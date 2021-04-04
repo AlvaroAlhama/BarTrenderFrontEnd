@@ -24,7 +24,7 @@ function BeerPieChart(props) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im93bmVyMUBnbWFpbC5jb20iLCJyb2wiOiJvd25lciIsImV4cGlyZXNJbiI6MTYxNzUzMTcxNn0.PKj5YNoOY59L2iNcMb-tEJAtFhEzIfrhmJht4S08tQI",
+          'token': token,
         },
 
         body: JSON.stringify({ filter: props.filter })
@@ -65,7 +65,7 @@ function BeerPieChart(props) {
   } else {
     var graph2 = {
       chartData: {
-        labels: ['PLACEHOLDER', 'PLACEHOLDER', 'PLACEHOLDER', 'Otros'],
+        labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
         datasets: [
           {
             label: 'Busquedas',

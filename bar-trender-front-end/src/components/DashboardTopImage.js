@@ -3,6 +3,8 @@ import React, { useEffect, useState, Component } from 'react';
 import bartrenderBlack from "./Images/bartrenderBlack.png";
 import cruzcampo from "./Images/cruzcampo.png";
 import heineken from "./Images/heineken.png";
+import dardos from "./Images/dardos.jpg";
+import futbolin from "./Images/futbolin.png";
 
 
 
@@ -27,7 +29,7 @@ function DashboardTopImage(props) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6Im93bmVyMUBnbWFpbC5jb20iLCJyb2wiOiJvd25lciIsImV4cGlyZXNJbiI6MTYxNzUzMTcxNn0.PKj5YNoOY59L2iNcMb-tEJAtFhEzIfrhmJht4S08tQI",
+          'token': token,
         },
 
         body: JSON.stringify({ filter: props.filter })
@@ -45,13 +47,18 @@ function DashboardTopImage(props) {
   var nameBest = "No hemos encontrado el elemento más buscado"
   if (appState.stats.first != undefined) {
      nameBest = appState.stats.first.name
-    if (nameBest == "Cruzcampo")
+    if (nameBest == "Cruzcampo"){
      imgBest = cruzcampo
-  }else if(nameBest == "Heineken"){
+    }else if(nameBest == "Heineken"){
      imgBest = heineken
-  }
- 
-
+    }
+    else if(nameBest == "Dardos"){
+      imgBest = dardos
+    }else if(nameBest == "Futbolin"){
+        imgBest = futbolin
+    }
+  
+}
 
   return (
     <div>

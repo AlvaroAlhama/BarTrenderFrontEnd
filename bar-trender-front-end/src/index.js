@@ -66,11 +66,6 @@ const app = (
           render={(props) => <ErrorView {...props} />}
         />
 
-        <Route
-          path="/dashboard"
-          render={(props) => <FreeDashboardView {...props} />}
-        />
-
         <Route path="/admin" 
           render={(props) => <AdminView {...props} />} /> 
 

@@ -1,4 +1,5 @@
 import MainNavbar from "components/Navbars/MainNavbar";
+import DELETEDiscount from "components/ApiDeleteDIscount";
 import React, { useEffect, useState } from "react";
 import { Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
@@ -27,6 +28,7 @@ function EstablishmentView() {
   });
 
   const [modal1, setModal1] = React.useState(false);
+  const [modalDelete, setModalDelete] = React.useState(false);
 
   const idEstablishment = () => {
     var query = window.location.pathname;
@@ -275,10 +277,29 @@ function EstablishmentView() {
                               className="btn-simple btn-link p-1"
                               type="button"
                               variant="danger"
+                              onClick={()=> setModalDelete(true)}
                             >
                               <i className="fas fa-times"></i>
                             </Button>
                           </OverlayTrigger>
+                          <Modal isOpen={modalDelete} toogle = {() => setModalDelete(false)}>
+                                <div className="modal-header justify-content-center">
+                                    <button
+                                        className="close"
+                                        type="button"
+                                        onClick={() => setModalDelete(false)}
+                                    >
+                                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                                    </button>
+                                    <h4 className="title title-up">Eliminar descuento</h4>
+                                </div>
+                                <div class="container">
+                                    <hr />
+                                </div>
+                                <ModalBody>
+                                    <DELETEDiscount discount = {discount}/>
+                                </ModalBody>
+                            </Modal>
                         </td>
                       </tr>
                       
@@ -293,6 +314,8 @@ function EstablishmentView() {
           </Col>
         </Row>
       </Container>
+
+      
     </>
   );
 }

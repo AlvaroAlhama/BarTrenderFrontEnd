@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Row,
-  Col,
-} from "reactstrap";
+
 
 // reactstrap components
 import {
@@ -10,6 +7,9 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
+  Container,
+  Row,
+  Col,
 } from "reactstrap";
 
 // core components
@@ -103,12 +103,16 @@ function ModalSelectedElement(prop) {
             onClick={() => setModal1(true)}
             alt=""
           />
-          <h3>Información del establecimiento</h3>
+         
+          <h3 className="mt-4">Información del establecimiento</h3>
+          
           <p>
-            {element.name_text}
+            Nombre: {element.name}
           </p>
-          <p>{element.phone_number}</p>
-          <p>{element.zone_enum}</p>
+          <p>Telefono: {element.phone}</p>
+          <p>Zona: {element.zone}</p>
+         
+          
           <ListDiscount discounts={appState.discounts}/>
           
         </ModalBody>

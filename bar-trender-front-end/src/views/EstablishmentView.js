@@ -5,151 +5,99 @@ import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
 
 // react-bootstrap components
 import {
-    Badge,
-    Button,
-    Card,
-    Form,
-    Navbar,
-    Nav,
-    Container,
-    Row,
-    Col,
-  } from "react-bootstrap";
+  Badge,
+  Button,
+  Card,
+  Form,
+  Navbar,
+  OverlayTrigger,
+  Tooltip,
+  Table,
+  Nav,
+  Container,
+  Row,
+  Col,
+} from "react-bootstrap";
 
-  
-function EstablishmentView(){
+function EstablishmentView() {
+  const [appState, setAppState] = useState({
+    loading: false,
+    establishment: {},
+    discounts: [],
+  });
 
-    const [appState, setAppState] = useState({
-        loading: false,
-        establishment: {},
-        discounts: [],
-    });
-    
-    const [modal1, setModal1] = React.useState(false);
+  const [modal1, setModal1] = React.useState(false);
 
-    const idEstablishment = () => {
-        var query = window.location.pathname;
-        var splited = query.split("/");
-        var idEstablishment = splited[2];
+  const idEstablishment = () => {
+    var query = window.location.pathname;
+    var splited = query.split("/");
+    var idEstablishment = splited[3];
 
-        return idEstablishment;
-    }
-    const id_establishment = idEstablishment();
+    return idEstablishment;
+  };
+  const id_establishment = idEstablishment();
 
-    useEffect(() => {
-        setAppState({loading:true});
-            var token = sessionStorage.getItem("token");
+  useEffect(() => {
+    setAppState({ loading: true });
+    var token = sessionStorage.getItem("token");
 
-             fetch("https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+id_establishment+"/get", {
-                method:"GET",
-                headers: {
-                    "token": token
-                }
-            }).then(response => response.json())
-            .then(data => {
-                setAppState({loading:false, establishment: data.establishment, discounts: data.discounts})
+    fetch(
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+        id_establishment +
+        "/get",
+      {
+        method: "GET",
+        headers: {
+          token: token,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setAppState({
+          loading: false,
+          establishment: data.establishment,
+          discounts: data.discounts,
         });
-    }, [setAppState]);
-    
-    
-    return (
-        <>
-            {/* <MainNavbar /> */}
-            <h1>{appState.establishment == undefined ? "" : appState.establishment.name}</h1>
-            <div class="establishment-props">
-                <h2>Teléfono: </h2>
-                <p>{appState.establishment == undefined ? "" : appState.establishment.phone}</p>
-                <h2>Zona:</h2>
-                <p>{appState.establishment == undefined ? "" : appState.establishment.zone}</p>
-            </div>
-            <div class="establsihment-discounts">
-                <h1>Descuentos</h1>
-                <button type="button" className="btn btn-primary" onClick = {() => setModal1(true)}>Añadir Descuento</button>
-                <Modal isOpen={modal1} toggle={() => setModal1(false)}>
-                    <div className="modal-header justify-content-center">
-                        <button
-                            className="close"
-                            type="button"
-                            onClick={() => setModal1(false)}
-                        >
-                            <i className="now-ui-icons ui-1_simple-remove"></i>
-                        </button>
-                        <h4 className="title title-up">Nuevo descuento</h4>
-                    </div>
-                    <div class="container">
-                        <hr />
-                    </div>
-                    <ModalBody>
-                        <POSTCreateDiscount />
-                    </ModalBody>
-                </Modal>
-                {appState.establishment == undefined ? "" : appState.discounts.map((discount) => {
-                    return (
-                        <p>{discount.name}</p>
-                    )
-                })}
-            </div>
-            <Container fluid>
+      });
+  }, [setAppState]);
+
+  return (
+    <>
+      <Container fluid>
         <Row>
           <Col md="8">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Edit Profile</Card.Title>
+                <Card.Title className="ml-3 mt-3" as="h2">
+                  Detalles del establecimiento
+                </Card.Title>
               </Card.Header>
               <Card.Body>
                 <Form>
                   <Row>
                     <Col className="pr-1" md="5">
                       <Form.Group>
-                        <label>Company (disabled)</label>
+                        <label>Establecimiento</label>
                         <Form.Control
-                          defaultValue="Creative Code Inc."
-                          disabled
-                          placeholder="Company"
+                          defaultValue={
+                            appState.establishment == undefined
+                              ? ""
+                              : appState.establishment.name
+                          }
+                          placeholder="Nombre del establecimiento"
                           type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                    <Col className="px-1" md="3">
-                      <Form.Group>
-                        <label>Username</label>
-                        <Form.Control
-                          defaultValue="michael23"
-                          placeholder="Username"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="4">
+                    <Col className="pl-1" md="5">
                       <Form.Group>
                         <label htmlFor="exampleInputEmail1">
-                          Email address
+                          Correo electrónico
                         </label>
                         <Form.Control
-                          placeholder="Email"
+                          placeholder="-correoElectrónicoOwner"
                           type="email"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="pr-1" md="6">
-                      <Form.Group>
-                        <label>First Name</label>
-                        <Form.Control
-                          defaultValue="Mike"
-                          placeholder="Company"
-                          type="text"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <Form.Group>
-                        <label>Last Name</label>
-                        <Form.Control
-                          defaultValue="Andrew"
-                          placeholder="Last Name"
-                          type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
@@ -157,9 +105,13 @@ function EstablishmentView(){
                   <Row>
                     <Col md="12">
                       <Form.Group>
-                        <label>Address</label>
+                        <label>Zona</label>
                         <Form.Control
-                          defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                          defaultValue={
+                            appState.establishment == undefined
+                              ? ""
+                              : appState.establishment.zone
+                          }
                           placeholder="Home Address"
                           type="text"
                         ></Form.Control>
@@ -169,29 +121,29 @@ function EstablishmentView(){
                   <Row>
                     <Col className="pr-1" md="4">
                       <Form.Group>
-                        <label>City</label>
+                        <label>Ciudad</label>
                         <Form.Control
-                          defaultValue="Mike"
-                          placeholder="City"
+                          defaultValue="Sevilla"
+                          placeholder="Ciudad"
                           type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
                     <Col className="px-1" md="4">
                       <Form.Group>
-                        <label>Country</label>
+                        <label>País</label>
                         <Form.Control
-                          defaultValue="Andrew"
-                          placeholder="Country"
+                          defaultValue="España"
+                          placeholder="País"
                           type="text"
                         ></Form.Control>
                       </Form.Group>
                     </Col>
                     <Col className="pl-1" md="4">
                       <Form.Group>
-                        <label>Postal Code</label>
+                        <label>Código Postal</label>
                         <Form.Control
-                          placeholder="ZIP Code"
+                          placeholder="-códigoPostalEstablishment"
                           type="number"
                         ></Form.Control>
                       </Form.Group>
@@ -200,12 +152,11 @@ function EstablishmentView(){
                   <Row>
                     <Col md="12">
                       <Form.Group>
-                        <label>About Me</label>
+                        <label>Sobre el establecimiento</label>
                         <Form.Control
                           cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                          that two seat Lambo."
-                          placeholder="Here can be your description"
+                          defaultValue=""
+                          placeholder="Aquí una descripción del establecimiento"
                           rows="4"
                           as="textarea"
                         ></Form.Control>
@@ -217,8 +168,33 @@ function EstablishmentView(){
                     type="submit"
                     variant="info"
                   >
-                    Update Profile
+                    Editar Perfil
                   </Button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => setModal1(true)}
+                  >
+                    Añadir Descuento
+                  </button>
+                  <Modal isOpen={modal1} toggle={() => setModal1(false)}>
+                    <div className="modal-header justify-content-center">
+                      <button
+                        className="close"
+                        type="button"
+                        onClick={() => setModal1(false)}
+                      >
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                      <h4 className="title title-up">Nuevo descuento</h4>
+                    </div>
+                    <div class="container">
+                      <hr />
+                    </div>
+                    <ModalBody>
+                      <POSTCreateDiscount />
+                    </ModalBody>
+                  </Modal>
                   <div className="clearfix"></div>
                 </Form>
               </Card.Body>
@@ -243,49 +219,82 @@ function EstablishmentView(){
                       className="avatar border-gray"
                       src={require("assets/img/faces/face-3.jpg").default}
                     ></img>
-                    <h5 className="title">Mike Andrew</h5>
+                    <h5 className="title">-OwnerName</h5>
                   </a>
-                  <p className="description">michael24</p>
+                  <p className="description">-OwnerEmail</p>
                 </div>
-                <p className="description text-center">
-                  "Lamborghini Mercy <br></br>
-                  Your chick she so thirsty <br></br>
-                  I'm in that two seat Lambo"
-                </p>
               </Card.Body>
-              <hr></hr>
-              <div className="button-container mr-auto ml-auto">
-                <Button
-                  className="btn-simple btn-icon"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  variant="link"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </Button>
-                <Button
-                  className="btn-simple btn-icon"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  variant="link"
-                >
-                  <i className="fab fa-twitter"></i>
-                </Button>
-                <Button
-                  className="btn-simple btn-icon"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                  variant="link"
-                >
-                  <i className="fab fa-google-plus-square"></i>
-                </Button>
-              </div>
             </Card>
           </Col>
         </Row>
       </Container>
-        </>
-    )
+      <Container fluid>
+        <Row>
+          <Col md="8">
+            <Card>
+              <Card.Header>
+                <Card.Title className="ml-3 mt-3" as="h2">
+                  Descuentos activos
+                </Card.Title>
+              </Card.Header>
+              <Card.Body>
+                <div class="establsihment-discounts">
+                  {appState.establishment == undefined
+                    ? ""
+                    : appState.discounts.map((discount) => {
+                        return(
+                          <>
+                                           <Table>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {discount.name}  /   {discount.description}
+                        </td>
+                        <td className="td-actions text-right">
+                          <OverlayTrigger
+                            overlay={
+                              <Tooltip id="tooltip-488980961">
+                                Editar descuento
+                              </Tooltip>
+                            }
+                          >
+                            <Button
+                              className="btn-simple btn-link p-1"
+                              type="button"
+                              variant="info"
+                            >
+                              <i className="fas fa-edit"></i>
+                            </Button>
+                          </OverlayTrigger>
+                          <OverlayTrigger
+                            overlay={
+                              <Tooltip id="tooltip-506045838">Eliminar descuento</Tooltip>
+                            }
+                          >
+                            <Button
+                              className="btn-simple btn-link p-1"
+                              type="button"
+                              variant="danger"
+                            >
+                              <i className="fas fa-times"></i>
+                            </Button>
+                          </OverlayTrigger>
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </Table>
+                          </>
+                        ); 
+                      })}
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
 }
 
 export default EstablishmentView;

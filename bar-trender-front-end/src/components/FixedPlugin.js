@@ -68,7 +68,7 @@ function FixedPlugin({
               onChange={setHasImage}
             />
           </li>
-          <li className="adjustments-line mt-3">
+          {/* <li className="adjustments-line mt-3">
             <p>Filters</p>
             <div className="pull-right">
               <Badge
@@ -103,7 +103,7 @@ function FixedPlugin({
               ></Badge>
             </div>
             <div className="clearfix"></div>
-          </li>
+          </li> */}
           <li className="header-title">Sidebar Images</li>
           <li className={image === sideBarImage1 ? "active" : ""}>
             <a
@@ -153,7 +153,7 @@ function FixedPlugin({
               <img alt="..." src={sideBarImage4}></img>
             </a>
           </li>
-          <li className="button-container">
+          {/* <li className="button-container">
             <div>
               <Button
                 block
@@ -216,7 +216,7 @@ function FixedPlugin({
             >
               <i className="fab fa-facebook-square"></i>· 426
             </Button>
-          </li>
+          </li> */}
         </Dropdown.Menu>
       </Dropdown>
     </div>

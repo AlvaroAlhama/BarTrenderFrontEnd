@@ -3,6 +3,7 @@ import DELETEDiscount from "components/ApiDeleteDIscount";
 import React, { useEffect, useState } from "react";
 import { Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
+import ModalDeleteDiscount from "../components/Modals/ModalDeleteDiscount";
 
 // react-bootstrap components
 import {
@@ -244,6 +245,7 @@ function EstablishmentView() {
                   {appState.establishment == undefined
                     ? ""
                     : appState.discounts.map((discount) => {
+                      console.log(discount);
                         return(
                           <>
                                            <Table>
@@ -268,7 +270,7 @@ function EstablishmentView() {
                               <i className="fas fa-edit"></i>
                             </Button>
                           </OverlayTrigger>
-                          <OverlayTrigger
+                          {/* <OverlayTrigger
                             overlay={
                               <Tooltip id="tooltip-506045838">Eliminar descuento</Tooltip>
                             }
@@ -282,6 +284,7 @@ function EstablishmentView() {
                               <i className="fas fa-times"></i>
                             </Button>
                           </OverlayTrigger>
+                          
                           <Modal isOpen={modalDelete} toogle = {() => setModalDelete(false)}>
                                 <div className="modal-header justify-content-center">
                                     <button
@@ -299,7 +302,8 @@ function EstablishmentView() {
                                 <ModalBody>
                                     <DELETEDiscount discount = {discount}/>
                                 </ModalBody>
-                            </Modal>
+                            </Modal> */}
+                            <ModalDeleteDiscount discount = {discount}/>
                         </td>
                       </tr>
                       

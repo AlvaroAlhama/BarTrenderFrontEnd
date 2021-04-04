@@ -189,8 +189,8 @@ function Sidebar({ color, image }) {
               />
             </div>
           </a>
-          <a className="simple-text" href="http://www.creative-tim.com">
-            Creative Tim
+          <a className="simple-text" href="#">
+            BARTRENDER
           </a>
         </div>
         <Nav>

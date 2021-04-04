@@ -38,7 +38,8 @@ function MainNavbar() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
-  const isLoggedIn = sessionStorage.getItem("token") && sessionStorage.getItem("rol") == 'owner';
+  const isLoggedIn =
+    sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
   return (
     <>
       {collapseOpen ? (
@@ -116,19 +117,20 @@ function MainNavbar() {
                   Síguenos en Instagram
                 </UncontrolledTooltip>
               </NavItem>
-              {isLoggedIn &&
-              <NavItem>
-                <NavLink 
-                  id="discount-tooltip"
-                  href="/myEstablishments"
-                  className="now-ui-icons shopping_shop"
+              {isLoggedIn && (
+                <NavItem>
+                  <NavLink
+                    href="/admin/dashboard"
+                    id="discount-tooltip"
                   >
+                    <i class="fal fa-tachometer-alt-fastest fa-lg mt-1"></i>
+                    <p className="d-lg-none d-xl-none">Panel de control</p>
+                  </NavLink>
                   <UncontrolledTooltip target="#discount-tooltip">
-                    Mis Establecimientos
+                    Panel de control
                   </UncontrolledTooltip>
-                </NavLink>
-              </NavItem>
-              }
+                </NavItem>
+              )}
               <NavItem>
                 <NavLink id="account-tooltip">
                   <ModalLogin />
@@ -137,7 +139,6 @@ function MainNavbar() {
                   </UncontrolledTooltip>
                 </NavLink>
               </NavItem>
-
             </Nav>
           </Collapse>
         </Container>

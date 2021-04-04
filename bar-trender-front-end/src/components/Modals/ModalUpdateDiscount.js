@@ -18,8 +18,7 @@ import { Modal, ModalBody } from "reactstrap";
 
 import Moment from "react-moment";
 import moment from "moment";
-import "moment/locale/es"
-
+import "moment/locale/es";
 
 function ModalUpdateDiscount(props) {
   const [appState, setAppState] = useState({
@@ -31,9 +30,8 @@ function ModalUpdateDiscount(props) {
     endDate: null,
     endTime: null,
     input: {},
-    errors: {}
+    errors: {},
   });
-
 
   const [modalUpdate, setModalUpdate] = React.useState(false);
 
@@ -47,19 +45,21 @@ function ModalUpdateDiscount(props) {
   const id_establishment = idEstablishment();
 
   useEffect(() => {
-    setAppState({ loading: true,
+    setAppState({
+      loading: true,
       initialDate: null,
       initialTime: null,
       endDate: null,
       endTime: null,
       input: {},
-      errors: {} });
+      errors: {},
+    });
     var token = sessionStorage.getItem("token");
 
     fetch(
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
-      id_establishment +
-      "/get",
+        id_establishment +
+        "/get",
       {
         method: "GET",
         headers: {
@@ -86,18 +86,33 @@ function ModalUpdateDiscount(props) {
   async function handleUpdate() {
     const discount = props.discount;
     // console.log(discount, 'discount')
-    console.log(appState,'appState update')
+    console.log(appState, "appState update");
 
     var idDiscount = discount.id;
     var token = sessionStorage.getItem("token");
     var query = window.location.pathname;
     var splited = query.split("/");
     var idEstablishment = splited[3];
-    const url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" + idEstablishment + "/discounts/" + idDiscount + "/update";
+    const url =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      idEstablishment +
+      "/discounts/" +
+      idDiscount +
+      "/update";
 
     var input = appState.input;
     console.log(input, "pre input");
-    input = input['scannedCodes: 0'];
+    var costFloat = parseFloat(input["cost"]);
+    var totalCodesInt = parseInt(input["totalCodes"]);
+    var endDate = input["endDate"];
+    var endTime = input["endTime"];
+    const timeStampInitial = moment.utc(`${endDate} ${endTime}`).unix();
+    input["endDate"] = timeStampInitial;
+    input["cost"] = costFloat;
+    input["totalCodes"] = totalCodesInt;
+    input["scannedCodes"] = props.discount.scannedCodes;
+    input["initialDate"] = props.discount.initialDate;
+
     console.log(input, "postpush input");
     // input.push('scannedCodes: 0')
     // console.log(input, "postpush input");
@@ -105,8 +120,8 @@ function ModalUpdateDiscount(props) {
     const request = await fetch(url, {
       method: "PUT",
       headers: {
-        "token": token,
-        "Content-type": "application/json"
+        token: token,
+        "Content-type": "application/json",
       },
       body: JSON.stringify(appState.input),
     });
@@ -124,17 +139,14 @@ function ModalUpdateDiscount(props) {
   function handleChange(event) {
     let input = appState.input;
     appState.input[event.target.name] = event.target.value;
-    appState.input['scannedCodes'] = "0";
-
     setAppState({
       input,
-
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(appState,'appState submit')
+    console.log(appState, "appState submit");
     if (validate()) {
       let errors = {};
 
@@ -148,10 +160,6 @@ function ModalUpdateDiscount(props) {
 
       input["totalCodes"] = "";
 
-      input["initialDate"] = "";
-
-      input["initialTime"] = "";
-
       input["endDate"] = "";
 
       input["endTime"] = "";
@@ -162,35 +170,80 @@ function ModalUpdateDiscount(props) {
 
   function validate() {
     let input = appState.input;
-    console.log(appState, 'appState pre validate')
     var today = new Date();
 
     let errors = {};
 
     let isValid = true;
 
+    var t = new Date();
+
     if (!input["name"]) {
       isValid = false;
 
       errors["name"] = "Escriba un nombre del descuento.";
     }
+
+    if (!input["description"]) {
+      isValid = false;
+
+      errors["description"] = "Escriba una descripción para el descuento";
+    }
+
+    if (!input["cost"] || input["cost"] <= 0) {
+      isValid = false;
+
+      errors["cost"] = "Escriba un precio para el descuento.";
+    }
+
+    if (!input["totalCodes"] || input["totalcodes"] <= 0) {
+      isValid = false;
+
+      errors["totalCodes"] = "Escriba un número total de códigos.";
+    }
+    if (input["totalCodes"] && input["totalCodes"] > 0) {
+      if (input["totalCodes"] < props.discount.scannedCodes) {
+        isValid = false;
+
+        errors["totalCodes"] =
+          "No se puede introducir menos códigos de los que ya han sido escaneados ";
+      }
+    }
+
+    if (!input["endDate"]) {
+      isValid = false;
+
+      errors["endDate"] = "Introduzca una fecha para el fin del desucento.";
+    }
+
+    // if(input["initialDate"] && input["initialTime"]) {
+    //   var initialDate = new Date(input["initialDate"])
+    //   var initialTime = new Date(input["initialTime"])
+    //   if (initialDate)
+
+    // }
+
+    if (input["endDate"]) {
+      var endDate = new Date(input["endDate"]);
+      if (endDate <= props.discount.initialDate) {
+        isValid = false;
+        errors["endDate"] =
+          "Introduzca una fecha de fin posterior a la fecha de inicio.";
+      }
+    }
+
     setAppState({
       errors: errors,
     });
-    console.log(appState, 'appState post validate')
+    console.log(appState, "appState post validate");
 
     return isValid;
   }
 
-
   return (
     <>
       <OverlayTrigger
-        overlay={
-          <Tooltip id="tooltip-488980961">
-            Editar descuento
-                              </Tooltip>
-        }
+        overlay={<Tooltip id="tooltip-488980961">Editar descuento</Tooltip>}
       >
         <Button
           className="btn-simple btn-link p-1"
@@ -212,6 +265,9 @@ function ModalUpdateDiscount(props) {
           </button>
           <h4 className="title title-up">Editar Descuento</h4>
         </div>
+        <div className="text-danger">
+          {appState.errors == undefined ? "" : appState.errors.error}
+        </div>
         <div class="container">
           <hr />
         </div>
@@ -219,82 +275,87 @@ function ModalUpdateDiscount(props) {
           <div>
             <form onSubmit={handleSubmit}>
               <div class="form-group my-1">
+                <label for="name" className="w-100">
+                  Nombre del descuento
+                </label>
                 <input
                   type="text"
                   name="name"
                   onChange={handleChange}
                   class="form-control"
-                  placeholder="Nombre del descuento"
+                  placeholder={props.discount.name}
                   id="name"
                 />
 
-                <div className="text-danger">{appState.errors == undefined ? "" : appState.errors.name}</div>
+                <div className="text-danger">
+                  {appState.errors == undefined ? "" : appState.errors.name}
+                </div>
               </div>
               <div class="form-group my-1">
+                <label for="description" className="w-100">
+                  Descripción del descuento
+                </label>
                 <input
                   type="text"
-                  name="descripcion"
+                  name="description"
                   onChange={handleChange}
                   class="form-control"
-                  id="name"
+                  placeholder={props.discount.description}
+                  id="description"
                 />
 
-                <div className="text-danger">{appState.errors == undefined ? "" : appState.errors.descripcion}</div>
+                <div className="text-danger">
+                  {appState.errors == undefined
+                    ? ""
+                    : appState.errors.descripcion}
+                </div>
               </div>
               <div class="form-group my-1">
+                <label for="name" className="w-100">
+                  Precio del descuento
+                </label>
                 <input
                   type="number"
                   step="0.01"
                   name="cost"
                   onChange={handleChange}
                   class="form-control"
-                  placeholder="Precio del descuento"
+                  placeholder={props.discount.cost}
                   id="cost"
                 />
 
-                <div className="text-danger">{appState.errors == undefined ? "" : appState.errors.cost}</div>
+                <div className="text-danger">
+                  {appState.errors == undefined ? "" : appState.errors.cost}
+                </div>
               </div>
               <div class="form-group my-1">
+                <label for="totalCodes" className="w-100">
+                  Número total de descuentos
+                </label>
                 <input
                   type="number"
                   name="totalCodes"
                   onChange={handleChange}
                   class="form-control"
-                  placeholder="Número total de códigos"
+                  placeholder={props.discount.totalCodes}
                   id="totalCodes"
                 />
 
-                <div className="text-danger">{appState.errors == undefined ? "" : appState.errors.totalCodes}</div>
+                <div className="text-danger">
+                  {appState.errors == undefined
+                    ? ""
+                    : appState.errors.totalCodes}
+                </div>
+              </div>
+              <div class="form-group my-1">
+                <p>
+                  Número de descuentos escaneados:{props.discount.scannedCodes}{" "}
+                </p>
               </div>
               <div class="form-group my-1 row justify-content-center">
-                <label for="initialDate">
-                  Fecha y hora de inicio del descuento
-              </label>
-                <div className="col-6">
-                  <input
-                    type="date"
-                    name="initialDate"
-                    onChange={handleChange}
-                    class="form-control"
-                    placeholder="Fecha de inicio del descuento"
-                    id="initialDate"
-                  />
-                </div>
-                <div className="col-6">
-                  <input
-                    type="time"
-                    name="initialTime"
-                    onChange={handleChange}
-                    class="form-control"
-                    placeholder="Hora de inicio del descuento"
-                    id="initialDate"
-                  />
-                </div>
-
-                <div className="text-danger">{appState.errors == undefined ? "" : appState.errors.initialDate}</div>
-              </div>
-              <div class="form-group my-1 row justify-content-center">
-                <label for="endDate" className="w-100 text-center">Fecha y hora de fin del descuento</label>
+                <label for="endDate" className="w-100">
+                  Fecha y hora de fin del descuento
+                </label>
                 <div className="col-6">
                   <input
                     type="date"
@@ -305,6 +366,7 @@ function ModalUpdateDiscount(props) {
                     id="endDate"
                   />
                 </div>
+
                 <div className="col-6">
                   <input
                     type="time"
@@ -317,11 +379,13 @@ function ModalUpdateDiscount(props) {
                   <input
                     type="hidden"
                     name="scannedCodes"
-                    value = {props.scannedCodes}
+                    value={props.scannedCodes}
                     id="scannedCodes"
                   />
                 </div>
-                <div className="text-danger">{appState.errors == undefined ? "" : appState.errors.endDate}</div>
+                <div className="text-danger">
+                  {appState.errors == undefined ? "" : appState.errors.endDate}
+                </div>
               </div>
               <div class="text-center">
                 <input
@@ -334,7 +398,6 @@ function ModalUpdateDiscount(props) {
           </div>
         </ModalBody>
       </Modal>
-
     </>
   );
 }

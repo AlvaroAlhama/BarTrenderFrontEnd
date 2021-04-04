@@ -244,74 +244,42 @@ function EstablishmentView() {
                   {appState.establishment == undefined
                     ? ""
                     : appState.discounts.map((discount) => {
-                      console.log(discount);
-                        return(
+                        var edit = true;
+                        const isTotalScannedCode =
+                          discount.totalCodes == discount.scannedCodes;
+                        var today = new Date();
+                        const isExpiredDate = discount.endDate > today;
+
+                        const canDelete = discount.scannedCodes <= 0;
+                        if (isTotalScannedCode || isExpiredDate) {
+                          edit = false;
+                        }
+                        return (
                           <>
-                                           <Table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          {discount.name}  /   {discount.description}
-                        </td>
-                        <td className="td-actions text-right">
-                          <ModalUpdateDiscount discount = {discount}/>
-                          
-                          {/* <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-488980961">
-                                Editar descuento    
-                              </Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="info"
-                            >
-                              <i className="fas fa-edit"></i>
-                            </Button>
-                          </OverlayTrigger> */}
-                          {/* <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-506045838">Eliminar descuento</Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="danger"
-                              onClick={()=> setModalDelete(true)}
-                            >
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </OverlayTrigger>
-                          
-                          <Modal isOpen={modalDelete} toogle = {() => setModalDelete(false)}>
-                                <div className="modal-header justify-content-center">
-                                    <button
-                                        className="close"
-                                        type="button"
-                                        onClick={() => setModalDelete(false)}
-                                    >
-                                        <i className="now-ui-icons ui-1_simple-remove"></i>
-                                    </button>
-                                    <h4 className="title title-up">Eliminar descuento</h4>
-                                </div>
-                                <div class="container">
-                                    <hr />
-                                </div>
-                                <ModalBody>
-                                    <DELETEDiscount discount = {discount}/>
-                                </ModalBody>
-                            </Modal> */}
-                            <ModalDeleteDiscount discount = {discount}/>
-                        </td>
-                      </tr>
-                      
-                    </tbody>
-                  </Table>
+                            <Table>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    {discount.name} / {discount.description}
+                                  </td>
+                                  <td>
+                                    {discount.scannedCodes} / {discount.totalCodes}
+                                  </td>
+                                  <td className="td-actions text-right">
+                                    {edit && (
+                                      <ModalUpdateDiscount
+                                        discount={discount}
+                                      />
+                                    )}
+                                    {canDelete && (
+                                    <ModalDeleteDiscount discount={discount} />
+                                    )}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </Table>
                           </>
-                        ); 
+                        );
                       })}
                 </div>
               </Card.Body>
@@ -319,8 +287,6 @@ function EstablishmentView() {
           </Col>
         </Row>
       </Container>
-
-      
     </>
   );
 }

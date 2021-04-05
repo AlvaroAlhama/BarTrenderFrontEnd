@@ -63,7 +63,7 @@ function MainNavbar() {
               <NavLink className="Logo" href="/main" style={{ float: "left" }}>
                 <img alt="" src={barTrender} />
               </NavLink>
-              <NavbarBrand href="/main" target="_blank" id="navbar-brand">
+              <NavbarBrand href="/main" id="navbar-brand">
                 BarTrender
               </NavbarBrand>
 

@@ -143,7 +143,7 @@ function Sidebar({ color, image }) {
             {
               upgrade: true,
               path: "/upgrade",
-              name: "Desbloquear preimium",
+              name: "Desbloquear premium",
               icon: "nc-icon nc-bell-55",
               component: Upgrade,
               layout: "/admin",

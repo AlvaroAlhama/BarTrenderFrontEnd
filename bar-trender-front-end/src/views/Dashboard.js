@@ -216,13 +216,13 @@ function Dashboard() {
           </Col>
         </Row>
 
-        <Row>
+        {/*<Row>
           <Col md="4">
           <h3>El tipo de establecimiento más famoso</h3>
             <Card>
               <Card.Header>
-               {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
+               {<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>}
               </Card.Header>
               <Card.Body>
               <DashboardTopImage filter = {"Establecimiento"}/>
@@ -242,7 +242,7 @@ function Dashboard() {
               <Card.Header>
                 {/*Por si hace falta un header
                 <Card.Title as="h4">2017 Sales</Card.Title>
-                <p className="card-category">All products including Taxes</p>*/}
+                <p className="card-category">All products including Taxes</p>}
               </Card.Header>
               <Card.Body>
               <FreePieChart filter = {"Establecimiento"}/>
@@ -256,7 +256,7 @@ function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-        </Row>
+        </Row>*/}
 
 {/*
         <Row>

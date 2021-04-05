@@ -189,7 +189,7 @@ function Sidebar({ color, image }) {
       <div className="sidebar-wrapper">
         <div className="logo d-flex align-items-center justify-content-start">
           <a
-            href="../Images/barTrender61.png"
+            href="/main"
             className="simple-text logo-mini mx-1"
           >
             <div className="logo-img">

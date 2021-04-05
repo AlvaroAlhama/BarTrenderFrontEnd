@@ -25,7 +25,7 @@ const MyEstablishmentList = (props) => {
                     <p class="card-title">
                       {establishment.name_text}
                     </p>
-                    <button type="buton" className= "btn btn-primary" onClick={() => window.location.href = "/establishment/"+establishment.id}>Ver Establecimiento</button>
+                    <button type="buton" className= "btn btn-primary" onClick={() => window.location.href = "admin/establishment/"+establishment.id}>Ver Establecimiento</button>
                   </div>
                 </div>
               </Col>

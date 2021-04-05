@@ -71,6 +71,7 @@ const app = (
 
         <Route path="/admin/dashboard" 
           render={(props) => <AdminView {...props} />} />
+          
         <Route
           path ="/myEstablishments"
           render = {(props) => <EstablismentByOwnerView {...props}/>}

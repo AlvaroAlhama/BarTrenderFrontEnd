@@ -128,11 +128,11 @@ function ModalUpdateDiscount(props) {
 
     if (request.ok) {
       var response = await request.json();
-      setAppState({ msg: response.msg });
+      setAppState({ msg: response.msg, input: {} });
       window.location.reload();
     } else {
       var response = await request.json();
-      setAppState({ errors: response.error });
+      setAppState({ errors: response.error, input: {} });
     }
   }
 
@@ -165,6 +165,8 @@ function ModalUpdateDiscount(props) {
       input["endTime"] = "";
 
       handleUpdate(event);
+    }else{
+      document.getElementById("form-update").reset();
     }
   }
 
@@ -234,6 +236,7 @@ function ModalUpdateDiscount(props) {
 
     setAppState({
       errors: errors,
+      input: appState.input,
     });
     console.log(appState, "appState post validate");
 
@@ -273,7 +276,7 @@ function ModalUpdateDiscount(props) {
         </div>
         <ModalBody>
           <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id = "form-update">
               <div class="form-group my-1">
                 <label for="name" className="w-100">
                   Nombre del descuento
@@ -307,7 +310,7 @@ function ModalUpdateDiscount(props) {
                 <div className="text-danger">
                   {appState.errors == undefined
                     ? ""
-                    : appState.errors.descripcion}
+                    : appState.errors.description}
                 </div>
               </div>
               <div class="form-group my-1">

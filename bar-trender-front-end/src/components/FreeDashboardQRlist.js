@@ -48,7 +48,7 @@ var count = 0
   if (!appState.discounts.results || appState.discounts.count == 0) return (
     <Card>
   <h3>No tiene descuentos, le gustaria crear alguno?</h3>
-  <button className="discounts"> Crear Descuentos</button>
+  <button className="btn btn-primary"> Crear Descuentos</button>
   </Card>
   );
   return (

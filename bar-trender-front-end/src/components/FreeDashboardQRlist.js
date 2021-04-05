@@ -18,12 +18,13 @@ function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
   const { element } = props;
+  var idEstablishment = props.idEstablishment;
   const [appState, setAppState] = useState({
     discounts: {},
   });
 
    useEffect(() => {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+"1"+"/discounts/get?page=1&all=True";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+idEstablishment+"/discounts/get?page=1&all=True";
     async function loadDiscounts(){
       await fetch(apiUrl, {
         method: 'GET',
@@ -40,7 +41,7 @@ function DashboardQRList(props) {
         });} 
         loadDiscounts()
   },[setAppState]);
-console.log(appState)
+
 var count = 0
 
 

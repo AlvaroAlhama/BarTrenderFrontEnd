@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 // core components
-import image_left from '../../assets/img/bg-landing.png';
+import image_left from '../../assets/img/bar-interior.jpg';
 import Qr from '../../App.js'
 
 //css components

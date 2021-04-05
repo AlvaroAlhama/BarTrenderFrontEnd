@@ -21,10 +21,12 @@ function Upgrade() {
           <Col className="ml-auto mr-auto" md="8">
             <Card>
               <div className="header text-center">
-                <h4 className="title">Light Bootstrap Dashboard PRO React</h4>
-                <p className="category">
-                  Are you looking for more components? Please check our Premium
-                  Version of Light Bootstrap Dashboard React.
+                <h4 className="title">Diferencias entre la versión gratuita y premium de BarTrender</h4>
+                <p className="text-center">
+                  ¿Estás buscando información más específica a cerca de las búsquedas de los consumidores?
+                </p>
+                <p className="text-center">
+                 ¡Compra nuestra versión premium por tan solo 7.99€ al mes y disfruta de todas sus ventajas!
                 </p>
                 <br></br>
               </div>
@@ -32,28 +34,23 @@ function Upgrade() {
                 <thead>
                   <tr>
                     <th></th>
-                    <th className="text-center">Free</th>
-                    <th className="text-center">PRO</th>
+                    <th className="text-center">Gratuita</th>
+                    <th className="text-center">Premium</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Components</td>
-                    <td>16</td>
-                    <td>115+</td>
-                  </tr>
-                  <tr>
-                    <td>Plugins</td>
+                    <td>Numeros de rankings</td>
+                    <td>2</td>
                     <td>4</td>
-                    <td>14+</td>
                   </tr>
                   <tr>
-                    <td>Example Pages</td>
-                    <td>4</td>
-                    <td>22+</td>
+                    <td>Resultados de rankings</td>
+                    <td>3</td>
+                    <td>5+</td>
                   </tr>
                   <tr>
-                    <td>Documentation</td>
+                    <td>Estadisticas por zona</td>
                     <td>
                       <i className="fas fa-times text-danger"></i>
                     </td>
@@ -62,7 +59,7 @@ function Upgrade() {
                     </td>
                   </tr>
                   <tr>
-                    <td>SASS Files</td>
+                    <td>Estadisticas por fechas</td>
                     <td>
                       <i className="fas fa-times text-danger"></i>
                     </td>
@@ -71,16 +68,7 @@ function Upgrade() {
                     </td>
                   </tr>
                   <tr>
-                    <td>Login/Register/Lock Pages</td>
-                    <td>
-                      <i className="fas fa-times text-danger"></i>
-                    </td>
-                    <td>
-                      <i className="fas fa-check text-success"></i>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Premium Support</td>
+                    <td>Estadisticas a tiempo real</td>
                     <td>
                       <i className="fas fa-times text-danger"></i>
                     </td>
@@ -90,8 +78,8 @@ function Upgrade() {
                   </tr>
                   <tr>
                     <td></td>
-                    <td>Free</td>
-                    <td>Just $49</td>
+                    <td>Gratis</td>
+                    <td>7.99€/mes</td>
                   </tr>
                   <tr className="last-row">
                     <td></td>
@@ -108,11 +96,9 @@ function Upgrade() {
                     <td>
                       <Button
                         className="btn-round btn-fill"
-                        href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro-react/?ref=lbdrupgrade"
-                        target="_blank"
-                        variant="info"
+                       
                       >
-                        Upgrade to PRO
+                        Hazte Trender
                       </Button>
                     </td>
                   </tr>

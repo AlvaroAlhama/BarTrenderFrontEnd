@@ -121,6 +121,35 @@ var count = 0
               </Card.Footer>
             </Card>
           </Col>
+          <Col lg="3" sm="6">
+            <Card className="card-stats">
+              <Card.Body>
+                <Row>
+                  <Col xs="5">
+                    <div className="icon-big text-center icon-warning">
+                      <i className="nc-icon nc-money-coins text-success"></i>
+                    </div>
+                  </Col>
+                  <Col xs="7">
+                    <div className="numbers">
+                      <p className="card-category">Total a pagar por los descuentos escaneados</p>
+                      <Card.Title as="h4">7,90€</Card.Title>
+                    </div>
+                    <div className = "row justify-content-center">
+                  <button className="btn btn-primary">Pagar descuentos</button>
+                  </div>
+                  </Col>
+                </Row>
+              </Card.Body>
+              <Card.Footer>
+                <hr></hr>
+                <div className="stats">
+                  <i className="fas fa-redo mr-1"></i>
+                  Datos extraidos de la api de Bartrender
+                </div>
+              </Card.Footer>
+            </Card>
+          </Col>
       </Row>
     </ul>
 

@@ -21,7 +21,7 @@ export default class App extends React.Component {
     if(!token){
       this.setState({error: "Necesitas haber iniciado sesión para poder ver el descuento"})
     }else{
-      const url = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR';
+      const url = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-develop-sprint-01.netlify.app';
       const response = await fetch(url, {
         method: 'GET',
           headers: {

@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 // core components
-import image_left from '../../assets/img/bg-landing.png';
+import image_left from '../../assets/img/bar-interior.jpg';
 import Qr from '../../App.js'
 
 //css components
@@ -94,7 +94,7 @@ function ModalSelectedElement(prop) {
           >
             <i className="now-ui-icons ui-1_simple-remove"></i>
           </button>
-          <h4 className="title title-up">{element.name_text}</h4>
+          <h4 className="title title-up">{element.name}</h4>
         </div>
         <ModalBody >
           <img
@@ -105,10 +105,10 @@ function ModalSelectedElement(prop) {
           />
           <h3>Información del establecimiento</h3>
           <p>
-            {element.name_text}
+            {element.name}
           </p>
-          <p>{element.phone_number}</p>
-          <p>{element.zone_enum}</p>
+          <p>{element.phone}</p>
+          <p>{element.zone}</p>
           <ListDiscount discounts={appState.discounts}/>
           
         </ModalBody>

@@ -23,7 +23,7 @@ function DashboardQRList(props) {
   });
 
    useEffect(() => {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+"1"+"/discounts/get?page=1&all=True";
+    const apiUrl = "https://main-backend-sprint-01.herokuapp.com/v1/establishments/"+"1"+"/discounts/get?page=1&all=True";
     async function loadDiscounts(){
       await fetch(apiUrl, {
         method: 'GET',

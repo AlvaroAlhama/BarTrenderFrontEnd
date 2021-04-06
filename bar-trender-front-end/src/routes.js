@@ -23,8 +23,6 @@ import Icons from "views/Icons.js";
 import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
-import Establishments from "./views/EstablishmentByOwnerView.js"
-import EstablishmentView from "./views/EstablishmentView.js"
 
 const dashboardRoutes = [
   {
@@ -84,28 +82,6 @@ const dashboardRoutes = [
     component: Notifications,
     layout: "/admin",
   },
-  {
-    path: "/myEstablishments",
-    name: "Establishments",
-    icon: "nc-icon nc-bell-55",
-    component: Establishments,
-    layout: "/admin",
-  },
-  {
-    path: "/myEstablishments",
-    name: "Establishments",
-    icon: "nc-icon nc-bell-55",
-    component: Establishments,
-    layout: "/admin",
-  },
-  {
-    path: "/establishment/:id",
-    name: "Establishments",
-    icon: "nc-icon nc-bell-55",
-    component: EstablishmentView,
-    layout: "/admin",
-  },
-
 ];
 
 export default dashboardRoutes;

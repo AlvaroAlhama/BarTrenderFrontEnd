@@ -48,6 +48,7 @@ function ListView() {
 
       }
     }
+    console.log(data, 'data');
  
     }
 

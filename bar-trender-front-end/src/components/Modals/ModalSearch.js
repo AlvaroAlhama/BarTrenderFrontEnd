@@ -41,7 +41,7 @@ class ModalSearch extends React.Component {
       pills: "",
     };
 
-   
+
     this.tags = [
       {
         name: "Cruzcampo",
@@ -72,6 +72,7 @@ class ModalSearch extends React.Component {
 
 
     this.handleTermChange = this.handleTermChange.bind(this);
+    this.updateNameField = this.updateNameField.bind(this);
 
     this.toggle = this.toggle.bind(this);
   }
@@ -86,28 +87,66 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
+    // console.log(e);
 
-    if (e.target.checked){
+    if (e.target.checked == true) {
       // this.setState({ [type] : [name] },
       //   () => console.log(this.state),
       // );
-      if (this.state[type] == undefined){
-       this.setState({ [type] : [name] },
-        () => console.log(this.state),
-      );
-      }else{
-        this.state[type].push(name); 
-        console.log(this.state);
-
+      if (this.state[type] == undefined) {
+        this.setState({ [type]: [name] },
+          // () => console.log(this.state),
+        );
+      } else {
+        this.state[type].push(name);
+        // console.log(this.state);
       }
-
-    }else{
-      var nameIndex = this.state[type].indexOf("name");
-      this.state[type].splice(nameIndex, 1); 
-      console.log(this.state);
     }
-   
-    
+    else {
+      var nameIndex = this.state[type].indexOf("name");
+      this.state[type].splice(nameIndex, 1);
+      // console.log(this.state);
+    }
+
+
+
+  }
+  updateNameField(e) {
+    // var type = e.target.name.split(":")[0];
+    // var name = e.target.name.split(":")[1];
+
+    var x = document.getElementById("name").value;
+    console.log(x);
+    this.setState({'name': x },
+       () => console.log(this.state),
+    );
+    // if (e.target.checked == true) {
+    //   // this.setState({ [type] : [name] },
+    //   //   () => console.log(this.state),
+    //   // );
+    //   if (this.state[type] == undefined) {
+    //     this.setState({ [type]: [name] },
+    //       () => console.log(this.state),
+    //     );
+    //   } else {
+    //     this.state[type].push(name);
+    //     console.log(this.state);
+
+    //   }
+
+    // } else {
+    //   if (type == 'name'){
+    //     console.log('name');
+    //   }
+    //   else{
+    //     var nameIndex = this.state[type].indexOf("name");
+    //     this.state[type].splice(nameIndex, 1);
+    //     console.log(this.state);
+    //   }
+
+    // }
+
+
   }
 
   render() {
@@ -181,6 +220,11 @@ class ModalSearch extends React.Component {
                 <Col>
 
                   <Form className="searchbox" onSubmit={this.handleSubmit}>
+                    <FormGroup>
+                      <Label for="name">Nombre del establecimiento</Label>
+                      <Input type="text" name="name" id="name" />
+                    </FormGroup>
+
                     {Object.entries(this.tags_grouped).map(([type, index]) => {
                       return (
                         <>
@@ -198,8 +242,7 @@ class ModalSearch extends React.Component {
                                         <Input type="checkbox"
                                           placeholder={tag.name}
                                           onChange={this.handleTermChange}
-                                          onKeyDown={this.handleEnter}
-                                          name={type + ":" +tag.name}
+                                          name={type + ":" + tag.name}
                                         />
                                         <span className="form-check-sign"></span>
                                         {tag.name}
@@ -226,9 +269,18 @@ class ModalSearch extends React.Component {
           <div className="modal-footer">
 
             <Link
-              onClick={
-                this.toggle
-              }
+
+              onClick={() => { 
+                
+                var x = document.getElementById("name").value;
+                this.setState({'name': x },
+                  () => 
+                  console.log(this.state),
+                  this.toggle()
+                );
+                
+                 }}
+
               to={{
                 pathname: '/list',
                 key: uuid.v4(),

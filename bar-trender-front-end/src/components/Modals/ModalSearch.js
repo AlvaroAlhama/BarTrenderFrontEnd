@@ -72,7 +72,7 @@ class ModalSearch extends React.Component {
 
 
     this.handleTermChange = this.handleTermChange.bind(this);
-    this.updateNameField = this.updateNameField.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
 
     this.toggle = this.toggle.bind(this);
   }
@@ -111,41 +111,11 @@ class ModalSearch extends React.Component {
 
 
   }
-  updateNameField(e) {
-    // var type = e.target.name.split(":")[0];
-    // var name = e.target.name.split(":")[1];
+  handleNameChange(e) {
 
     var x = document.getElementById("name").value;
-    console.log(x);
     this.setState({'name': x },
-       () => console.log(this.state),
     );
-    // if (e.target.checked == true) {
-    //   // this.setState({ [type] : [name] },
-    //   //   () => console.log(this.state),
-    //   // );
-    //   if (this.state[type] == undefined) {
-    //     this.setState({ [type]: [name] },
-    //       () => console.log(this.state),
-    //     );
-    //   } else {
-    //     this.state[type].push(name);
-    //     console.log(this.state);
-
-    //   }
-
-    // } else {
-    //   if (type == 'name'){
-    //     console.log('name');
-    //   }
-    //   else{
-    //     var nameIndex = this.state[type].indexOf("name");
-    //     this.state[type].splice(nameIndex, 1);
-    //     console.log(this.state);
-    //   }
-
-    // }
-
 
   }
 
@@ -222,7 +192,7 @@ class ModalSearch extends React.Component {
                   <Form className="searchbox" onSubmit={this.handleSubmit}>
                     <FormGroup>
                       <Label for="name">Nombre del establecimiento</Label>
-                      <Input type="text" name="name" id="name" />
+                      <Input type="text" name="name" id="name" onChange={this.handleNameChange} />
                     </FormGroup>
 
                     {Object.entries(this.tags_grouped).map(([type, index]) => {
@@ -272,12 +242,7 @@ class ModalSearch extends React.Component {
 
               onClick={() => { 
                 
-                var x = document.getElementById("name").value;
-                this.setState({'name': x },
-                  () => 
-                  console.log(this.state),
-                  this.toggle()
-                );
+                this.toggle()
                 
                  }}
 

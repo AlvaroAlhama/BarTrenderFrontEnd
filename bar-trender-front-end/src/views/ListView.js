@@ -48,7 +48,7 @@ function ListView() {
 
       }
     }
-    console.log(data, 'data');
+    console.log(filter, 'filter');
  
     }
 

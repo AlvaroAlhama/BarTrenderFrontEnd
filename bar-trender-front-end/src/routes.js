@@ -23,7 +23,8 @@ import Icons from "views/Icons.js";
 import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
-
+import EstablishmentView from "views/EstablishmentView"
+import Establishments from "views/EstablishmentByOwnerView"
 const dashboardRoutes = [
   {
     upgrade: true,
@@ -80,6 +81,27 @@ const dashboardRoutes = [
     name: "Pagina principal",
     icon: "nc-icon nc-bell-55",
     component: Notifications,
+    layout: "/admin",
+  },
+  {
+    path: "/myEstablishments",
+    name: "Establishments",
+    icon: "nc-icon nc-bell-55",
+    component: Establishments,
+    layout: "/admin",
+  },
+  {
+    path: "/myEstablishments",
+    name: "Establishments",
+    icon: "nc-icon nc-bell-55",
+    component: Establishments,
+    layout: "/admin",
+  },
+  {
+    path: "/establishment/:id",
+    name: "Establishments",
+    icon: "nc-icon nc-bell-55",
+    component: EstablishmentView,
     layout: "/admin",
   },
 ];

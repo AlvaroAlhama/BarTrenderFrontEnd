@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component} from 'react';
+import React, { useEffect, useState, Component } from "react";
 import {
   Badge,
   Button,
@@ -23,95 +23,102 @@ function DashboardQRList(props) {
     discounts: {},
   });
 
-   useEffect(() => {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+idEstablishment+"/discounts/get?page=1&all=True";
-    async function loadDiscounts(){
+  useEffect(() => {
+    const apiUrl =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      idEstablishment +
+      "/discounts/get?page=1&all=True";
+    async function loadDiscounts() {
       await fetch(apiUrl, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': 'application/json',
-          'apiKey':'8dDc431125634ef43cD13c388e6eCf11',
-          'token': '',
-
+          "Content-Type": "application/json",
+          apiKey: "8dDc431125634ef43cD13c388e6eCf11",
+          token: "",
         },
-        
-      }).then(response => response.json())
-        .then(discounts => {
+      })
+        .then((response) => response.json())
+        .then((discounts) => {
           setAppState({ discounts: discounts });
-        });} 
-        loadDiscounts()
-  },[setAppState]);
+        });
+    }
+    loadDiscounts();
+  }, [setAppState]);
 
-var count = 0
+  var count = 0;
 
-
- 
-  if (!appState.discounts.results || appState.discounts.count == 0) return (
-    <Card>
-  <h3>No tiene descuentos, le gustaria crear alguno?</h3>
-  <button className="btn btn-primary"> Crear Descuentos</button>
-  </Card>
-  );
+  if (!appState.discounts.results || appState.discounts.count == 0)
+    return (
+      <Card>
+        <h3>No tiene descuentos, le gustaria crear alguno?</h3>
+        <button className="btn btn-primary"> Crear Descuentos</button>
+      </Card>
+    );
   return (
-    
-
     <ul className="ul-flex">
-      <h2 className='list-head'>Tus Descuentos</h2>
-      <Row className='list'>
-     
-        {appState.discounts.results.map((discounts) => {
-          return (
-            <>
-            
-            <Col lg="3" sm="6">
+      <h2 className="list-head">Tus Descuentos</h2>
+      <Container fluid>
+        <Row className="list">
+          {appState.discounts.results.map((discounts) => {
+            return (
+              <>
+                <Col lg="4" md="6" xs="12">
+                  <Card className="card-stats">
+                    <Card.Body>
+                      <Container fluid>
+                        <Row className="justify-content-center">
+                          <div className="icon-big text-center icon-warning">
+                            <i className="nc-icon nc-chart text-warning"></i>
+                          </div>
+                        </Row>
+                        <Row className="justify-content-center">
+                          <div className="numbers text-center">
+                            <p className="card-category">
+                              El descuento {discounts.name_text} fue canjeado
+                              por
+                            </p>
+                            <Card.Title as="h4">
+                              {discounts.scannedCodes_number} usuarios
+                            </Card.Title>
+                            <span hidden>
+                              {" "}
+                              {(count = count + discounts.scannedCodes_number)}
+                            </span>
+                          </div>
+                        </Row>
+                      </Container>
+                    </Card.Body>
+                    <Card.Footer>
+                      <hr></hr>
+                      <div className="stats">
+                        <i className="fas fa-redo mr-1"></i>
+                        Datos extraidos de la api de Bartrender
+                      </div>
+                    </Card.Footer>
+                  </Card>
+                </Col>
+              </>
+            );
+          })}
+          <Col lg="4" md="6" xs="12">
             <Card className="card-stats">
               <Card.Body>
-                <Row>
-                  <Col xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-chart text-warning"></i>
-                    </div>
-                  </Col>
-                  <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">El descuento {discounts.name_text} fue canjeado por</p>
-                      <Card.Title as="h4">{discounts.scannedCodes_number} usuarios</Card.Title>
-                      <span hidden> {count= count+discounts.scannedCodes_number }</span>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
-                  Datos extraidos de la api de Bartrender
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-
-
-
-            </>
-          );
-        })}
-        <Col lg="3" sm="6">
-            <Card className="card-stats">
-              <Card.Body>
-                <Row>
-                  <Col xs="5">
-                    <div className="icon-big text-center icon-warning">
+                <Container fluid>
+                  <Row className="justify-content-center">
+                    <div className="icon-big icon-warning">
                       <i className="nc-icon nc-favourite-28 text-primary"></i>
                     </div>
-                  </Col>
-                  <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">Numero de usuarios que han canjeado los descuentos que tiene en activo</p>
-                      <Card.Title as="h4">{count}</Card.Title>
+                  </Row>
+                  <Row classname="justify-content-center">
+                    <div className="numbers text-center">
+                      <p className="card-category">
+                        Número de usuarios que han canjeado los descuentos que
+                        tiene en activo
+                      </p>
+                      <Card.Title as="h4">{count} usuarios</Card.Title>
                     </div>
-                  </Col>
-                </Row>
+                  </Row>
+                </Container>
               </Card.Body>
               <Card.Footer>
                 <hr></hr>
@@ -122,66 +129,52 @@ var count = 0
               </Card.Footer>
             </Card>
           </Col>
-          <Col lg="3" sm="6">
-            <Card className="card-stats">
-              <Card.Body>
-                <Row>
-                  <Col xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-money-coins text-success"></i>
-                    </div>
-                  </Col>
-                  <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">Total a pagar por los descuentos escaneados</p>
-                      <Card.Title as="h4">7,90€</Card.Title>
-                    </div>
-                    <div className = "row justify-content-center">
-                  <button className="btn btn-primary">Pagar descuentos</button>
+        </Row>
+
+        <Row>
+          <Card className="card-stats">
+            <Card.Body>
+              <Container fluid>
+                <Row className="justify-content-center">
+                  <div className="icon-big text-center icon-warning">
+                    <i className="nc-icon nc-money-coins text-success"></i>
                   </div>
-                  </Col>
                 </Row>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
-                  Datos extraidos de la api de Bartrender
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-      </Row>
+                <Row className="justify-content-center">
+                  <Container fluid> 
+                  <div className="numbers text-center">
+                    <p className="card-category">
+                      Total a pagar por los descuentos escaneados
+                    </p>
+                    <Card.Title as="h4">7,90€</Card.Title>
+                  </div>
+                  <div className="row justify-content-center">
+                    <button className="btn btn-primary">
+                      Pagar descuentos
+                    </button>
+                  </div>
+                  </Container>
+                </Row>
+              </Container>
+            </Card.Body>
+            <Card.Footer>
+              <hr></hr>
+              <div className="stats">
+                <i className="fas fa-redo mr-1"></i>
+                Datos extraidos de la api de Bartrender
+              </div>
+            </Card.Footer>
+          </Card>
+        </Row>
+      </Container>
     </ul>
-
-
-  )
+  );
 }
 
+export default DashboardQRList;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-  
-  export default DashboardQRList;
-
-       {/*
+{
+  /*
           //Esto se debe convertir en una lista que por cada descuento que tenga 
         //este local muestre el numero de veces que se ha usado este qr en una tarjeta como esta
         <Col lg="3" sm="6">
@@ -211,9 +204,11 @@ var count = 0
             </div>
           </Card.Footer>
         </Card>
-        </Col>*/}
+        </Col>*/
+}
 
-  {/*<Row>
+{
+  /*<Row>
           <Col lg="3" sm="6">
             <Card className="card-stats">
               <Card.Body>
@@ -320,4 +315,5 @@ var count = 0
             </Card>
           </Col>
         </Row>
-        */}
+        */
+}

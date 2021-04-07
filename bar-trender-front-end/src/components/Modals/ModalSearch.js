@@ -72,8 +72,6 @@ class ModalSearch extends React.Component {
 
 
     this.handleTermChange = this.handleTermChange.bind(this);
-    this.handleEnter = this.handleEnter.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.toggle = this.toggle.bind(this);
   }
@@ -82,32 +80,34 @@ class ModalSearch extends React.Component {
     this.setState({
       modal: !this.state.modal,
       fade: !this.state.fade,
-      Paulaner: "off",
-      Cruzcampo: "off",
 
     });
   }
   handleTermChange(e) {
-    var checked_map = e.target.checked ? "on" : "off";
+    var type = e.target.name.split(":")[0];
+    var name = e.target.name.split(":")[1];
 
-    this.setState({ [e.target.name]: checked_map },
+    if (e.target.checked){
+      // this.setState({ [type] : [name] },
+      //   () => console.log(this.state),
+      // );
+      if (this.state[type] == undefined){
+       this.setState({ [type] : [name] },
+        () => console.log(this.state),
+      );
+      }else{
+        this.state[type].push(name); 
+        console.log(this.state);
 
-    );
-  }
+      }
 
-
- 
-
-  handleEnter(e) {
-    if (e.key === 13) {
-      this.handleSearch();
+    }else{
+      var nameIndex = this.state[type].indexOf("name");
+      this.state[type].splice(nameIndex, 1); 
+      console.log(this.state);
     }
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.handleSearch();
-
+   
+    
   }
 
   render() {
@@ -181,28 +181,28 @@ class ModalSearch extends React.Component {
                 <Col>
 
                   <Form className="searchbox" onSubmit={this.handleSubmit}>
-                    {Object.entries(this.tags_grouped).map(([key, index]) => {
+                    {Object.entries(this.tags_grouped).map(([type, index]) => {
                       return (
                         <>
                           <TabContent className="gallery" activeTab={"pills" + this.state['pills']}>
 
-                            <TabPane tabId={"pills" + key}>
-                              <h3 className="text-center mt-2"> {key}</h3>
+                            <TabPane tabId={"pills" + type}>
+                              <h3 className="text-center mt-2"> {type}</h3>
 
 
-                              {this.tags_grouped[key].map((key) => {
+                              {this.tags_grouped[type].map((tag) => {
                                 return (
                                   <>
                                     <FormGroup check>
                                       <Label check>
                                         <Input type="checkbox"
-                                          placeholder={key.name}
+                                          placeholder={tag.name}
                                           onChange={this.handleTermChange}
                                           onKeyDown={this.handleEnter}
-                                          name={key.name}
+                                          name={type + ":" +tag.name}
                                         />
                                         <span className="form-check-sign"></span>
-                                        {key.name}
+                                        {tag.name}
                                       </Label>
                                     </FormGroup>
 
@@ -227,7 +227,6 @@ class ModalSearch extends React.Component {
 
             <Link
               onClick={
-                this.handleSearch,
                 this.toggle
               }
               to={{

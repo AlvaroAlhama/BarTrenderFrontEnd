@@ -5,15 +5,10 @@ import ModalDeleteDiscount from "../components/Modals/ModalDeleteDiscount";
 
 // react-bootstrap components
 import {
-  Badge,
   Button,
   Card,
   Form,
-  Navbar,
-  OverlayTrigger,
-  Tooltip,
   Table,
-  Nav,
   Container,
   Row,
   Col,

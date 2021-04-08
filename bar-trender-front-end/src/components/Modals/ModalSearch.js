@@ -15,155 +15,134 @@ import {
   Nav,
   Container,
   Row,
-  UncontrolledTooltip,
 } from "reactstrap";
 
 // core components
-import POSTForm from "../ApiFormSubmit";
-import NavPillsFilters from "../NavPillsFilters";
-
-import image_0 from '../../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
-import image_left from '../../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
-import image_left_2 from "../../assets/img/expositions/Yn0xRl4G5E1eabgf9nyC9j6DVQVHd5DBNcPehVZwakLHYP-toRbW22a8kFesYK_taX0ZY_WviWVcT3bQ40tlKhaKSuAQAu6graIF.png";
-import image_right from "../../assets/img/expositions/TR9IDnSgMV79XktfRCxesUmLacTZJI9fb3Cv3-aMamIGyWdL_OagKWYcJJAPqgm62bjW9I6yHlMsOhowVROsAUiNui0CGo-qmPU-.png";
-
 
 class ModalSearch extends React.Component {
 
   constructor(props) {
     // const [pills, setPills] = React.useState("2");
-
     super(props);
+
     this.state = {
       modal: props.initialModalState,
       fade: true,
-
-      Paulaner: "off",
-      Triana: "off",
-      Alameda: "off",
-      Cruzcampo: "off",
-      Dardos: "off",
-      Billar: "off",
-      Discounts: "off",
-
-      pills: "1",
+      pills: "",
     };
 
+
+    this.tags = [
+      // {
+      //   name: "Cruzcampo",
+      //   type: "Bebidas"
+      // },
+      // {
+      //   name: "Paulaner",
+      //   type: "Bebidas"
+      // },
+      // {
+      //   name: "Billar",
+      //   type: "Instalacion"
+      // },
+      // {
+      //   name: "Dardos",
+      //   type: "Instalacion"
+      // },
+      // {
+      //   name: "Arabe",
+      //   type: "Estilo"
+      // },
+    ];
+    console.log(this.tags, "construyendose")
+    this.tags_grouped = [];
+    function groupBy(xs, f) {
+      return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+    }
+
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+
+     fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
+      }
+    }).then(response => response.json())
+      .then(tags => {
+       this.tags = tags.tags;
+       this.tags_grouped = groupBy(this.tags, (t) => t.type);
+      // console.log(this.tags)
+      // console.log(this.tags_grouped, "tags gruo")
+    })
+
     this.handleTermChange = this.handleTermChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    this.handleEnter = this.handleEnter.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
 
     this.toggle = this.toggle.bind(this);
+    this.renderSwitch = this.renderSwitch.bind(this);
+    
   }
 
+  // EN cuanto se haga el fetch, se mete la respuesta en this.tags y se llama a la fun groupBy;
   toggle() {
     this.setState({
       modal: !this.state.modal,
-      fade: !this.state.fade,
-      Paulaner: "off",
-      Triana: "off",
-      Alameda: "off",
-      Cruzcampo: "off",
-      Dardos: "off",
-      Billar: "off",
-      Discounts: "off",
+      fade: !this.state.fade
     });
   }
   handleTermChange(e) {
-    var checked_map = e.target.checked ? "on" : "off";
-    this.setState({ [e.target.name]: checked_map },
-      // () => console.log(this.state, 'this.state'),
+    var type = e.target.name.split(":")[0];
+    var name = e.target.name.split(":")[1];
+    //console.log(e);
+
+    if (e.target.checked == true) {
+      // this.setState({ [type] : [name] },
+      //   () => console.log(this.state, "checked"),
+      // );
+      if (this.state[type] == undefined) {
+        this.setState({ [type]: [name] },
+          () => console.log(this.state),
+        );
+      } else {
+        this.state[type].push(name);
+        console.log(this.state, "El doblao");
+      }
+    }
+    else {
+      var nameIndex = this.state[type].indexOf("name");
+      this.state[type].splice(nameIndex, 1);
+      console.log(this.state);
+    }
+
+
+
+  }
+  handleNameChange(e) {
+
+    var x = document.getElementById("name").value;
+    this.setState({'name': x },
     );
-    // console.log([e.target.checked], 'toggle value on');
-  }
-
-  async handleSearch(e) {
-    // this.props.searchEngine(this.state.term);
-
-
-    // console.log(this.state.filters);
-    // let temp_state = JSON.stringify(this.state.filters)
-
-    // console.log(this.state)
-
-    let beers = [];
-    let zones = [];
-    let leisures = [];
-    let discounts = [];
-
-    if (this.state['Paulaner'] == "on") {
-      beers.push("Paulaner");
-    }
-    if (this.state['Cruzcampo'] == "on") {
-      beers.push("Cruzcampo");
-    }
-    if (this.state['Alameda'] == "on") {
-      zones.push("Alameda");
-    }
-    if (this.state['Triana'] == "on") {
-      zones.push("Triana");
-    }
-    if (this.state['Dardos'] == "on") {
-      leisures.push("Dardos");
-    }
-    if (this.state['Billar'] == "on") {
-      leisures.push("Billar");
-    }
-
-    if (this.state['Discounts'] == "on") {
-      discounts.push("Discounts");
-    }
-
-    let params = "";
-    beers.map((e, i) => {
-      if (i === 0) {
-        params += "beers=" + e;
-      } else {
-        params += "," + e;
-      }
-    })
-    zones.map((e, i) => {
-      if (i === 0) {
-        params += "&zones=" + e;
-      } else {
-        params += "," + e;
-      }
-    })
-    leisures.map((e, i) => {
-      if (i === 0) {
-        params += "&leisures=" + e;
-      } else {
-        params += "," + e;
-      }
-    })
-    discounts.map((e, i) => {
-      if (i === 0) {
-        params += "&discounts=" + e;
-      } else {
-        params += "," + e;
-      }
-    })
-    
-    // this.context.router.push("/list");
-    // window.location.href = 'list';
-
 
   }
 
-  handleEnter(e) {
-    if (e.key === 13) {
-      this.handleSearch();
+  renderSwitch(key) {
+    switch(key) {
+      case 'Zona':
+        return 'now-ui-icons location_world';
+      case 'Bebida':
+        return 'fal fa-beer w-100';
+      case 'Ocio':
+        return 'fal fa-bowling-ball w-100';
+      case 'Estilo':
+        return 'fal fa-chess-rook w-100';
+      case 'Instalacion':
+        return 'fal fa-umbrella-beach w-100';
+      default:
+        return 'now-ui-icons location_bookmark';
     }
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.handleSearch();
-
-  }
-
-  // const [modal1, setModal1] = React.useState(false);
   render() {
     return (
 
@@ -187,195 +166,93 @@ class ModalSearch extends React.Component {
             <h4 className="title title-up">Filtros</h4>
           </div>
           <ModalBody>
+
             <Container>
               <Row>
                 <Col className="ml-auto mr-auto" >
 
                   <div className="nav-align-center">
 
+
                     <Nav
-                      className="nav-pills-info nav-pills-just-icons"
+                      className="nav-pills-info nav-pills-just-icons justify-content-center w-100"
                       pills
                       role="tablist"
                     >
-                      <NavItem>
-                        <NavLink
-                          className={this.state['pills'] === "1" ? "active" : ""}
-                          href=""
-                          onClick={(e) => {
-                            e.preventDefault();
 
-                            this.setState({
-                              pills: "1",
-                            })
-                          }}
-                        >
-                          <i className="now-ui-icons location_world"></i>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={this.state['pills'] === "2" ? "active" : ""}
-                          href=""
-                          onClick={(e) => {
-                            e.preventDefault();
-                            this.setState({
-                              pills: "2",
-                            })
-                          }}
-                        >
-                          <i className="now-ui-icons  design_image"></i>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={this.state['pills'] === "3" ? "active" : ""}
-                          href=""
-                          onClick={(e) => {
-                            e.preventDefault();
-                            this.setState({
-                              pills: "3",
-                            })
-                          }}
-                        >
-                          <i className="now-ui-icons sport_user-run"></i>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={this.state['pills'] === "4" ? "active" : ""}
-                          href=""
-                          onClick={(e) => {
-                            e.preventDefault();
-                            this.setState({
-                              pills: "4",
-                            })
-                          }}
-                        >
-                          <i className="now-ui-icons sport_user-run"></i>
-                        </NavLink>
-                      </NavItem>
+                      {Object.entries(this.tags_grouped).map(([key, index]) => {
+                        return (
+                          <>
+
+                            <NavItem className="col-4">
+                              <Container className="mt-3 mb-3">
+                              <NavLink
+                                className={this.state['pills'] === key ? "active" : ""}
+                                href=""
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  this.setState({
+                                    pills: key,
+                                  })
+
+                                }}
+                              >
+                                <i className={this.renderSwitch(key)}></i>
+                              </NavLink>
+                              <h6 class="align-center ">{key}</h6>
+                              </Container>
+                            </NavItem>
+                          </>
+                        );
+                      })}
                     </Nav>
+
+
+
                   </div>
                 </Col>
               </Row>
-              <Row>
+              <Row className="mt-3">
                 <Col>
 
                   <Form className="searchbox" onSubmit={this.handleSubmit}>
-                    <TabContent className="gallery" activeTab={"pills" + this.state['pills']}>
+                    <FormGroup>
+                      <Label for="name">Nombre del establecimiento</Label>
+                      <Input type="text" name="name" id="name" onChange={this.handleNameChange} />
+                    </FormGroup>
 
-                      <TabPane tabId="pills1">
-                        <h3 className="text-center mt-2"> Zonas</h3>
+                    {Object.entries(this.tags_grouped).map(([type, index]) => {
+                      return (
+                        <>
+                          <TabContent className="gallery" activeTab={"pills" + this.state['pills']}>
 
-                        <FormGroup check>
-                          <Label check>
-                            <Input type="checkbox"
-                              placeholder="Alameda"
-                              onChange={this.handleTermChange}
-                              onKeyDown={this.handleEnter}
-                              name="Alameda"
-                            />
-                            <span className="form-check-sign"></span>
-                      Alameda
-                      </Label>
-                        </FormGroup>
-
-                        <FormGroup check>
-
-                          <Label check>
-                            <Input type="checkbox"
-                              placeholder="Triana"
-                              onChange={this.handleTermChange}
-                              onKeyDown={this.handleEnter}
-                              name="Triana"
-                            />
-                            <span className="form-check-sign"></span>
-                          Triana
-                          </Label>
-                        </FormGroup>
-                      </TabPane>
-                      <TabPane tabId="pills2">
-                        <h3 className="text-center mt-2"> Cervezas</h3>
-
-                        <FormGroup check>
-
-                          <Label check>
-                            <Input type="checkbox"
-                              placeholder="Paulaner"
-                              onChange={this.handleTermChange}
-                              onKeyDown={this.handleEnter}
-                              name="Paulaner"
-                            />
-                            <span className="form-check-sign"></span>
-                        Paulaner
-                        </Label>
-                        </FormGroup>
-                        <FormGroup check>
-
-                          <Label check>
-                            <Input type="checkbox"
-                              placeholder="Cruzcampo"
-                              onChange={this.handleTermChange}
-                              onKeyDown={this.handleEnter}
-                              name="Cruzcampo"
-                            />
-                            <span className="form-check-sign"></span>
-                      Cruzcampo
-                      </Label>
-                        </FormGroup>
-                      </TabPane>
-                      <TabPane tabId="pills3">
-                        <h3 className="text-center mt-2"> Ocio</h3>
+                            <TabPane tabId={"pills" + type}>
+                              <h3 className="text-center mt-2"> {type}</h3>
 
 
-                        <FormGroup check>
+                              {this.tags_grouped[type].map((tag) => {
+                                return (
+                                  <>
+                                    <FormGroup check>
+                                      <Label check>
+                                        <Input type="checkbox"
+                                          placeholder={tag.name}
+                                          onChange={this.handleTermChange}
+                                          name={type + ":" + tag.name}
+                                        />
+                                        <span className="form-check-sign"></span>
+                                        {tag.name}
+                                      </Label>
+                                    </FormGroup>
 
-                          <Label check>
-                            <Input type="checkbox"
-                              placeholder="Dardos"
-                              onChange={this.handleTermChange}
-                              onKeyDown={this.handleEnter}
-                              name="Dardos"
-                            />
-                            <span className="form-check-sign"></span>
-                          Dardos
-                        </Label>
-                        </FormGroup>
-                        <FormGroup check>
-
-                          <Label check>
-                            <Input type="checkbox"
-                              placeholder="Billar"
-                              onChange={this.handleTermChange}
-                              onKeyDown={this.handleEnter}
-                              name="Billar"
-                            />
-                            <span className="form-check-sign"></span>
-                          Billar
-                        </Label>
-                        </FormGroup>
-                      </TabPane>
-
-                      <TabPane tabId="pills4">
-                        <h3 className="text-center mt-2"> Descuentos</h3>
-                        <FormGroup check>
-
-                        <Label check>
-                          <Input type="checkbox"
-                            placeholder="Discounts"
-                            onChange={this.handleTermChange}
-                            onKeyDown={this.handleEnter}
-                            name="Discounts"
-                          />
-                          <span className="form-check-sign"></span>
-                        Cualquier descuento
-                        </Label>
-                        </FormGroup>
-                      </TabPane>
-
-                    </TabContent>
-                   
+                                  </>
+                                );
+                              })}
+                            </TabPane>
+                          </TabContent>
+                        </>
+                      );
+                    })}
                   </Form>
                 </Col>
 
@@ -383,27 +260,25 @@ class ModalSearch extends React.Component {
 
             </Container>
 
+
           </ModalBody>
           <div className="modal-footer">
 
             <Link
-              onClick={
-                this.handleSearch,
-                this.toggle
-              }
+
+              onClick={() => { 
+                
+                this.toggle()
+                
+                
+                 }}
+
               to={{
                 pathname: '/list',
                 key: uuid.v4(),
-                state: [{
-                  Paulaner: this.state['Paulaner'],
-                  Triana: this.state['Triana'],
-                  Alameda: this.state['Alameda'],
-                  Cruzcampo: this.state['Cruzcampo'],
-                  Billar: this.state['Billar'],
-                  Dardos: this.state['Dardos'],
-                  Discounts: this.state['Discounts'],
-
-                }]
+                state: [
+                  this.state
+                ]
               }}> <Button
                 color="primary"
                 type="button"

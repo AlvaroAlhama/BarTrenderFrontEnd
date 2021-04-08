@@ -36,60 +36,26 @@ function ListView() {
   const location = useLocation();
 
   useEffect(() => {
-
+    console.log("Construyendo view")
     setAppState({ loading: true });
 
     if (location.state != undefined) {
       var data = location.state[0];
-      // console.log(data);
+    
+      for (const key in data) {
+        if (!(key === 'modal' || key === 'fade' ||  key ==='pills')){
+          filter["filters"][key] = data[key];
 
-      //MAPPING FORM DATA
-      let beers_aux = [];
-      let zones_aux = [];
-      let leisures_aux = [];
-      let discounts_aux = [];
-
-      if (data['Paulaner'] == "on") {
-        beers_aux.push("Paulaner");
       }
-      if (data['Cruzcampo'] == "on") {
-        beers_aux.push("Cruzcampo");
-      }
-      if (data['Alameda'] == "on") {
-        zones_aux.push("Alameda");
-      }
-      if (data['Triana'] == "on") {
-        zones_aux.push("Triana");
-      }
-      if (data['Billar'] == "on") {
-        leisures_aux.push("Billar");
-      }
-      if (data['Dardos'] == "on") {
-        leisures_aux.push("Dardos");
-      }
-      if (data['Discounts'] == "on") {
-        discounts_aux.push("true");
-      }
-
-
-        if(zones_aux.length != 0){
-          filter["filters"]["zones"] = zones_aux;
-        }
-        if(beers_aux.length != 0){
-          filter["filters"]["beers"] = beers_aux;
-        }
-        if(leisures_aux.length != 0){
-          filter["filters"]["leisures"] = leisures_aux;
-        }
-        if(discounts_aux.length != 0){
-          filter["filters"]["discounts"] = discounts_aux;
-        }
-      
+    }
+    console.log(filter, 'filter');
+ 
     }
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
 
     async function loadResults() {
+      console.log(filter, 'filter');
       await fetch(apiUrl, {
         method: 'POST',
         body: JSON.stringify(filter),
@@ -101,6 +67,9 @@ function ListView() {
         .then(response => response.json())
         .then(establishments => {
           setAppState({ loading: false, establishments: establishments });
+          console.log(appState)
+          filter = {
+            "filters": {}}
         });
     }
     loadResults()
@@ -110,15 +79,7 @@ function ListView() {
 
 
   React.useEffect(() => {
-    document.body.classList.add("landing-page");
-    document.body.classList.add("sidebar-collapse");
-    document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-    return function cleanup() {
-      document.body.classList.remove("landing-page");
-      document.body.classList.remove("sidebar-collapse");
-    };
+  
   }, []);
   return (
     <>

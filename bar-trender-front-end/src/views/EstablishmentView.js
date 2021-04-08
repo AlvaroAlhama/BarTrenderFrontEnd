@@ -5,15 +5,10 @@ import ModalDeleteDiscount from "../components/Modals/ModalDeleteDiscount";
 
 // react-bootstrap components
 import {
-  Badge,
   Button,
   Card,
   Form,
-  Navbar,
-  OverlayTrigger,
-  Tooltip,
   Table,
-  Nav,
   Container,
   Row,
   Col,
@@ -21,6 +16,7 @@ import {
 import ModalUpdateDiscount from "components/Modals/ModalUpdateDiscount";
 
 function EstablishmentView() {
+  console.log("Llega");
   const [appState, setAppState] = useState({
     loading: false,
     establishment: {},
@@ -92,17 +88,6 @@ function EstablishmentView() {
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                    {/* <Col className="pl-1" md="5">
-                      <Form.Group>
-                        <label htmlFor="exampleInputEmail1">
-                          Correo electrónico
-                        </label>
-                        <Form.Control
-                          placeholder="-correoElectrónicoOwner"
-                          type="email"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col> */}
                   </Row>
                   <Row>
                     <Col md="12">
@@ -141,15 +126,6 @@ function EstablishmentView() {
                         ></Form.Control>
                       </Form.Group>
                     </Col>
-                    {/* <Col className="pl-1" md="4">
-                      <Form.Group>
-                        <label>Código Postal</label>
-                        <Form.Control
-                          placeholder="-códigoPostalEstablishment"
-                          type="number"
-                        ></Form.Control>
-                      </Form.Group>
-                    </Col> */}
                   </Row>
                   <Row>
                     <Col md="12">
@@ -202,32 +178,6 @@ function EstablishmentView() {
               </Card.Body>
             </Card>
           </Col>
-          {/* <Col md="4">
-            <Card className="card-user">
-              <div className="card-image">
-                <img
-                  alt="..."
-                  src={
-                    require("assets/img/photo-1431578500526-4d9613015464.jpeg")
-                      .default
-                  }
-                ></img>
-              </div>
-              <Card.Body>
-                <div className="author">
-                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                    <img
-                      alt="..."
-                      className="avatar border-gray"
-                      src={require("assets/img/faces/face-3.jpg").default}
-                    ></img>
-                    <h5 className="title">-OwnerName</h5>
-                  </a>
-                  <p className="description">-OwnerEmail</p>
-                </div>
-              </Card.Body>
-            </Card>
-          </Col> */}
         </Row>
       </Container>
       <Container fluid>
@@ -263,7 +213,8 @@ function EstablishmentView() {
                                     {discount.name} / {discount.description}
                                   </td>
                                   <td>
-                                    {discount.scannedCodes} / {discount.totalCodes}
+                                    {discount.scannedCodes} /{" "}
+                                    {discount.totalCodes}
                                   </td>
                                   <td className="td-actions text-right">
                                     {edit && (
@@ -272,7 +223,9 @@ function EstablishmentView() {
                                       />
                                     )}
                                     {canDelete && (
-                                    <ModalDeleteDiscount discount={discount} />
+                                      <ModalDeleteDiscount
+                                        discount={discount}
+                                      />
                                     )}
                                   </td>
                                 </tr>

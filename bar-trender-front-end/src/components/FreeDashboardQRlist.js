@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Component } from "react";
 import { Modal, ModalBody } from "reactstrap";
 
-import { Card, Container, Row, Col, Table } from "react-bootstrap";
+import { Card, Container, Row, Col, Table, Button } from "react-bootstrap";
 import "../views/css/FreeDashboard.css";
 function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
@@ -209,7 +209,10 @@ function DashboardQRList(props) {
                                       return (
                                         <>
                                           <tr>
-                                            <th scope="row" className="text-left">
+                                            <th
+                                              scope="row"
+                                              className="text-left"
+                                            >
                                               {discounts.name_text}
                                             </th>
                                             <td>{discounts.cost_number}€</td>
@@ -218,7 +221,8 @@ function DashboardQRList(props) {
                                             </td>
                                             <td>
                                               {discounts.scannedCodes_number *
-                                                discounts.cost_number}€
+                                                discounts.cost_number}
+                                              €
                                             </td>
                                           </tr>
                                         </>
@@ -233,6 +237,9 @@ function DashboardQRList(props) {
                                   </tr>
                                 </tbody>
                               </Table>
+                              <Row className="justify-content-center">
+                                <Button>Finalizar el pago</Button>
+                              </Row>
                             </Container>
                           </ModalBody>
                         </Modal>

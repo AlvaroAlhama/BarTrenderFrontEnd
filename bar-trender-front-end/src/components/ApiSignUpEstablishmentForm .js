@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-class ApiSignUpClientForm extends React.Component {
+class ApiSignUpEstablishmentForm extends React.Component {
   constructor() {
     super();
 
@@ -15,7 +15,7 @@ class ApiSignUpClientForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
-  // TODO CALL THE API
+  // TODO CALL THE API 
   async handleSignUp() {
     /*let errors = {};
     var url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/login";
@@ -63,9 +63,10 @@ class ApiSignUpClientForm extends React.Component {
       input["password"] = "";
 
       input["birthDate"] = "";
-
+      
       this.handleSignUp(event);
     }
+
   }
 
   validate() {
@@ -94,10 +95,8 @@ class ApiSignUpClientForm extends React.Component {
       }
     }
 
-    if (typeof input["password"] !== "undefined") {
-      var pattern = new RegExp(
-        /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
-      );
+    if(typeof input["password"] !== "undefined"){
+      var pattern = new RegExp(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i);
       if (!pattern.test(input["password"])) {
         isValid = false;
 
@@ -112,35 +111,16 @@ class ApiSignUpClientForm extends React.Component {
       errors["password"] = "Escriba una contraseña.";
     }
 
-    if (!input["birthDate"]) {
+    if (!input["phone"]) {
       isValid = false;
 
-      errors["birthDate"] = "Escriba una fecha de nacimiento. ";
+      errors["phone"] = "Escriba un número de teléfono correcto. ";
     }
-    if (typeof input["birthDate"] !== "undefined") {
-      var today = new Date();
-      var birthDate = new Date(input["birthDate"]);
-
-      if (today.getFullYear() - birthDate.getFullYear() < 18) {
+    if (input["phone"]) {
+      var phone = input["phone"];
+      if (phone / 100000000 < 1 || phone / 100000000 >= 10 ){
         isValid = false;
-
-        errors["birthDate"] =
-          "Para registrarte como usuario al menos tienes que tener 18 años.";
-      }
-      if (today.getFullYear() - birthDate.getFullYear() == 18) {
-        if (today.getMonth() < birthDate.getMonth()) {
-          isValid = false;
-
-          errors["birthDate"] =
-            "Para registrarte como usuario al menos tienes que tener 18 años.";
-        }
-        if (today.getMonth() == birthDate.getMonth()) {
-          if (today.getDate() < birthDate.getDate()) {
-            isValid = false;
-            errors["birthDate"] =
-              "Para registrarte como usuario al menos tienes que tener 18 años.";
-          }
-        }
+        errors["phone"] = "Escriba un número de teléfono correcto. ";
       }
     }
 
@@ -155,7 +135,7 @@ class ApiSignUpClientForm extends React.Component {
     return (
       <div>
         <div className="row">
-        <i className="fal fa-glass-cheers fa-5x w-100 mb-4"></i>
+        <i className="fal fa-store fa-5x w-100 mb-4"></i>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div class="form-group my-1">
@@ -183,23 +163,26 @@ class ApiSignUpClientForm extends React.Component {
             />
           </div>
           <div className="text-danger align-center">
-            {this.state.errors.password}
-          </div>
+              {this.state.errors.password}
+            </div>
 
           <div class="form-group my-4">
             <input
-              name="birthDate"
-              type="date"
+              name="phone"
+              type="number"
               value={this.state.input.birthDate}
               onChange={this.handleChange}
-              placeholder="Fecha de Nacimiento"
+              placeholder="Número de teléfono"
+              minLength="9"
+              maxLength="9"
               class="form-control"
             />
 
             <div className="text-danger align-center">
-              {this.state.errors.birthDate}
+              {this.state.errors.phone}
             </div>
           </div>
+
 
           <div class="text-center">
             <input
@@ -214,4 +197,4 @@ class ApiSignUpClientForm extends React.Component {
   }
 }
 
-export default ApiSignUpClientForm;
+export default ApiSignUpEstablishmentForm;

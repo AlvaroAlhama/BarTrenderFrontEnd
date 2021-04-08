@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Component } from "react";
 import { Modal, ModalBody } from "reactstrap";
 
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Card, Container, Row, Col, Table } from "react-bootstrap";
 import "../views/css/FreeDashboard.css";
 function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
@@ -174,68 +174,65 @@ function DashboardQRList(props) {
                           </div>
                           <ModalBody>
                             <Container fluid>
-                              <Row>
-                                <Col className="col-5">
-                                  <p className="font-weight-bold">Nombre Descuento</p>
-                                </Col>
-                                <Col className="col-3"> 
-                                  <p className="font-weight-bold text-center">Precio Descuento</p>
-                                </Col>
-                                <Col className="col-2">
-                                  <p className="font-weight-bold text-center">Total Códigos</p>
-                                </Col>
-                                <Col className="col-2">
-                                  <p className="font-weight-bold text-center">
-                                    Precio total
-                                  </p>
-                                </Col>
-                              </Row>
-                              <hr></hr>
-                              {appState.discounts.results.map((discounts) => {
-                                return (
-                                  <>
-                                    <Row>
-                                      <Col className="col-5" >
-                                        <p className="font-weight-light">
-                                          {discounts.name_text}
-                                        </p>
-                                      </Col>
-                                      <Col className="col-3">
-                                        <p className="font-weight-light text-center">
-                                          {discounts.cost_number}
-                                        </p>
-                                      </Col>
-                                      <Col className="col-2">
-                                        <p className="font-weight-light text-center">
-                                          {discounts.scannedCodes_number}
-                                        </p>
-                                      </Col>
-                                      <Col className="col-2">
-                                        <p className="font-weight-light text-center">
-                                          {discounts.scannedCodes_number *
-                                            discounts.cost_number}
-                                        </p>
-                                      </Col>
-                                    </Row>
-                                  </>
-                                );
-                              })}
-                              <hr></hr>
-                              <Row>
-                                
-                                <Col className="col-5">
-                                  <p className="font-weight-bold">TOTAL</p>
-                                </Col>
-                                <Col  className="col-3">
-                                </Col>
-                                <Col  className="col-2">
-                                </Col>
-                                <Col className="col-2">
-                                  <p className="font-weight-bold text-center">
-                                    {totalPriceDiscounts}
-                                  </p>
-                                </Col>
-                              </Row>
+                              <Table className="text-center overflow-auto ">
+                                <thead>
+                                  <tr>
+                                    <th
+                                      className="font-weight-bold text-center"
+                                      scope="col-5"
+                                    >
+                                      Nombre Descuento
+                                    </th>
+                                    <th
+                                      className="font-weight-bold text-center"
+                                      scope="col-3"
+                                    >
+                                      Precio Producto
+                                    </th>
+                                    <th
+                                      className="font-weight-bold text-center"
+                                      scope="col-2"
+                                    >
+                                      Total Códigos
+                                    </th>
+                                    <th
+                                      className="font-weight-bold text-center"
+                                      scope="col-2"
+                                    >
+                                      Precio total
+                                    </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {appState.discounts.results.map(
+                                    (discounts) => {
+                                      return (
+                                        <>
+                                          <tr>
+                                            <th scope="row" className="text-left">
+                                              {discounts.name_text}
+                                            </th>
+                                            <td>{discounts.cost_number}€</td>
+                                            <td>
+                                              {discounts.scannedCodes_number}
+                                            </td>
+                                            <td>
+                                              {discounts.scannedCodes_number *
+                                                discounts.cost_number}€
+                                            </td>
+                                          </tr>
+                                        </>
+                                      );
+                                    }
+                                  )}
+                                  <tr>
+                                    <th scope="row">TOTAL</th>
+                                    <td></td>
+                                    <td></td>
+                                    <th scope="row">{totalPriceDiscounts}€</th>
+                                  </tr>
+                                </tbody>
+                              </Table>
                             </Container>
                           </ModalBody>
                         </Modal>

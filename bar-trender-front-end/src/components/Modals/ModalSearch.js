@@ -15,19 +15,9 @@ import {
   Nav,
   Container,
   Row,
-  UncontrolledTooltip,
 } from "reactstrap";
 
 // core components
-import POSTForm from "../ApiFormSubmit";
-import NavPillsFilters from "../NavPillsFilters";
-
-import image_0 from '../../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
-import image_left from '../../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
-import image_left_2 from "../../assets/img/expositions/Yn0xRl4G5E1eabgf9nyC9j6DVQVHd5DBNcPehVZwakLHYP-toRbW22a8kFesYK_taX0ZY_WviWVcT3bQ40tlKhaKSuAQAu6graIF.png";
-import image_right from "../../assets/img/expositions/TR9IDnSgMV79XktfRCxesUmLacTZJI9fb3Cv3-aMamIGyWdL_OagKWYcJJAPqgm62bjW9I6yHlMsOhowVROsAUiNui0CGo-qmPU-.png";
-
-import PaneContentFilters from "components/PaneContentFilters.js";
 
 class ModalSearch extends React.Component {
 
@@ -43,69 +33,86 @@ class ModalSearch extends React.Component {
 
 
     this.tags = [
-      {
-        name: "Cruzcampo",
-        type: "Bebida"
-      },
-      {
-        name: "Paulaner",
-        type: "Bebida"
-      },
-      {
-        name: "Billar",
-        type: "Instalacion"
-      },
-      {
-        name: "Dardos",
-        type: "Instalacion"
-      },
-      {
-        name: "Arabe",
-        type: "Estilo"
-      },
+      // {
+      //   name: "Cruzcampo",
+      //   type: "Bebidas"
+      // },
+      // {
+      //   name: "Paulaner",
+      //   type: "Bebidas"
+      // },
+      // {
+      //   name: "Billar",
+      //   type: "Instalacion"
+      // },
+      // {
+      //   name: "Dardos",
+      //   type: "Instalacion"
+      // },
+      // {
+      //   name: "Arabe",
+      //   type: "Estilo"
+      // },
     ];
-
+    console.log(this.tags, "construyendose")
+    this.tags_grouped = [];
     function groupBy(xs, f) {
       return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
     }
-    this.tags_grouped = groupBy(this.tags, (t) => t.type);
 
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+
+     fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
+      }
+    }).then(response => response.json())
+      .then(tags => {
+       this.tags = tags.tags;
+       this.tags_grouped = groupBy(this.tags, (t) => t.type);
+      // console.log(this.tags)
+      // console.log(this.tags_grouped, "tags gruo")
+    })
 
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
 
     this.toggle = this.toggle.bind(this);
+    this.renderSwitch = this.renderSwitch.bind(this);
+    
   }
 
+  // EN cuanto se haga el fetch, se mete la respuesta en this.tags y se llama a la fun groupBy;
   toggle() {
     this.setState({
       modal: !this.state.modal,
-      fade: !this.state.fade,
-
+      fade: !this.state.fade
     });
   }
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-    // console.log(e);
+    //console.log(e);
 
     if (e.target.checked == true) {
       // this.setState({ [type] : [name] },
-      //   () => console.log(this.state),
+      //   () => console.log(this.state, "checked"),
       // );
       if (this.state[type] == undefined) {
         this.setState({ [type]: [name] },
-          // () => console.log(this.state),
+          () => console.log(this.state),
         );
       } else {
         this.state[type].push(name);
-        // console.log(this.state);
+        console.log(this.state, "El doblao");
       }
     }
     else {
       var nameIndex = this.state[type].indexOf("name");
       this.state[type].splice(nameIndex, 1);
-      // console.log(this.state);
+      console.log(this.state);
     }
 
 
@@ -117,6 +124,23 @@ class ModalSearch extends React.Component {
     this.setState({'name': x },
     );
 
+  }
+
+  renderSwitch(key) {
+    switch(key) {
+      case 'Zona':
+        return 'now-ui-icons location_world';
+      case 'Bebida':
+        return 'fal fa-beer w-100';
+      case 'Ocio':
+        return 'fal fa-bowling-ball w-100';
+      case 'Estilo':
+        return 'fal fa-chess-rook w-100';
+      case 'Instalacion':
+        return 'fal fa-umbrella-beach w-100';
+      default:
+        return 'now-ui-icons location_bookmark';
+    }
   }
 
   render() {
@@ -151,7 +175,7 @@ class ModalSearch extends React.Component {
 
 
                     <Nav
-                      className="nav-pills-info nav-pills-just-icons"
+                      className="nav-pills-info nav-pills-just-icons justify-content-center w-100"
                       pills
                       role="tablist"
                     >
@@ -160,7 +184,8 @@ class ModalSearch extends React.Component {
                         return (
                           <>
 
-                            <NavItem>
+                            <NavItem className="col-4">
+                              <Container className="mt-3 mb-3">
                               <NavLink
                                 className={this.state['pills'] === key ? "active" : ""}
                                 href=""
@@ -172,9 +197,10 @@ class ModalSearch extends React.Component {
 
                                 }}
                               >
-                                <i className="now-ui-icons  design_image"></i>
+                                <i className={this.renderSwitch(key)}></i>
                               </NavLink>
-                              {key}
+                              <h6 class="align-center ">{key}</h6>
+                              </Container>
                             </NavItem>
                           </>
                         );
@@ -186,7 +212,7 @@ class ModalSearch extends React.Component {
                   </div>
                 </Col>
               </Row>
-              <Row>
+              <Row className="mt-3">
                 <Col>
 
                   <Form className="searchbox" onSubmit={this.handleSubmit}>
@@ -243,6 +269,7 @@ class ModalSearch extends React.Component {
               onClick={() => { 
                 
                 this.toggle()
+                
                 
                  }}
 

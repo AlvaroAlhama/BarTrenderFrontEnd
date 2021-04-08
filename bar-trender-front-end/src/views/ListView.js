@@ -36,7 +36,7 @@ function ListView() {
   const location = useLocation();
 
   useEffect(() => {
-
+    console.log("Construyendo view")
     setAppState({ loading: true });
 
     if (location.state != undefined) {
@@ -55,6 +55,7 @@ function ListView() {
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
 
     async function loadResults() {
+      console.log(filter, 'filter');
       await fetch(apiUrl, {
         method: 'POST',
         body: JSON.stringify(filter),
@@ -66,6 +67,9 @@ function ListView() {
         .then(response => response.json())
         .then(establishments => {
           setAppState({ loading: false, establishments: establishments });
+          console.log(appState)
+          filter = {
+            "filters": {}}
         });
     }
     loadResults()

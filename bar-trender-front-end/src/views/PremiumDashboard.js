@@ -20,14 +20,19 @@ import {
 import DashboardTopImage from "../components/DashboardTopImage"
 import FreePieChart from "../components/FreePieChart.js";
 import PremiumBarChart from "../components/PremiumBarChart.js"
+import ShowPremiumStats from "../components/ShowPremiumStats.js"
 
 function PremiumDashboard() {
 
     var token = sessionStorage.getItem("token");
    
+    var query = window.location.search;
+    let params = new URLSearchParams(query);
+    var zone = params.get("zone");
+    var filter = params.get("filter");
     
       {
-          //Añadir requerimiento del boolean premium
+          //Añadir requerimiento del boolean premium, modificar este if
       }
      if(!token){
       return(
@@ -40,60 +45,53 @@ function PremiumDashboard() {
        return (
     <>
       <Container fluid>
-
-        <Row>
           
-            <Card  style={{width:"80%", height:"60%"}}>
-              <Card.Body>
-              
-              <PremiumBarChart filter = {"Bebida"}/>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="now-ui-icons loader_refresh spin"></i>
-                  Datos obtenidos de la api de Bartrender
-                </div>
-              </Card.Footer>
-            </Card>
+        <Row>
+        <Col md="6">
+          <Card>
+         
+            <h3>Bienvenido a la version premium de nuestro dashboard, tu suscripción 
+              tiene una duración de 24 dias
+            </h3>
+         
+          </Card>
+          </Col>
+
+          <Col md="6">
+          <Card>
+         
+          <form>
+            <h3>  Zona en la que quieres buscar(deje en blanco para las estadisticas generales):</h3>
+            <label class="container">
+              <br/>
+              <input class = "textimput" type="text" name="zone" />
+            </label>
+            <br/>
+           <h3 class = "center">Filtros</h3>
+           <select  class = "filterimput" id="filterImput" name="filter">
+            <option value="Bebida">Bebida</option>
+            <option value="Instalacion">Instalacion</option>
+            <option value="Ocio">Ocio</option>
+          </select>
+            <br/>
+            <br/>
+            <input  className="btn btn-primary" type="submit" value="Buscar" />
+          </form>
+         
+          </Card>
+          </Col>
+
+        </Row>
+        
+        <Row>
+       
+            <ShowPremiumStats zone= {zone} filter = {filter} />
+
+
+           
           
         </Row>
-        <Row>
-          
-          <Card  style={{width:"80%", height:"60%"}}>
-            <Card.Body>
-            
-            <PremiumBarChart filter = {"Ocio"}/>
-            </Card.Body>
-            <Card.Footer>
-              <hr></hr>
-              <div className="stats">
-                <i className="now-ui-icons loader_refresh spin"></i>
-                Datos obtenidos de la api de Bartrender
-              </div>
-            </Card.Footer>
-          </Card>
-        
-      </Row>
-
-      <Row>
-          
-          <Card  style={{width:"80%", height:"60%"}}>
-            <Card.Body>
-            
-            <PremiumBarChart filter = {"Instalacion"}/>
-            </Card.Body>
-            <Card.Footer>
-              <hr></hr>
-              <div className="stats">
-                <i className="now-ui-icons loader_refresh spin"></i>
-                Datos obtenidos de la api de Bartrender
-              </div>
-            </Card.Footer>
-          </Card>
-        
-      </Row>
-
+ 
        
         </Container>
     </>

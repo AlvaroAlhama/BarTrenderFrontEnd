@@ -24,8 +24,9 @@ import Icons from "views/Icons.js";
 import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
-import Establishments from "./views/EstablishmentView.js"
-import EstablishmentView from "./views/EstablishmentByOwnerView"
+
+import EstablishmentView from "views/EstablishmentView"
+import Establishments from "views/EstablishmentByOwnerView"
 
 const dashboardRoutes = [
   {
@@ -87,6 +88,7 @@ const dashboardRoutes = [
   },
 
   {
+
     path: "/myEstablishments",
     name: "Establishments",
     icon: "nc-icon nc-bell-55",
@@ -101,7 +103,6 @@ const dashboardRoutes = [
     layout: "/admin",
   },
 
-
   {
     path: "/premiumDashboard",
     name: "Premium Dashboard",
@@ -110,6 +111,5 @@ const dashboardRoutes = [
     layout: "/admin",
   },
 
-];
 
 export default dashboardRoutes;

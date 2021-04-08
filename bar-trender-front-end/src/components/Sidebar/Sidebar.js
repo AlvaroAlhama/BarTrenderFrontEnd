@@ -10,7 +10,7 @@ import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
-import EstablishmentView from "views/EstablishmentView.js";
+import EstablishmentView from "views/EstablishmentView";
 import React, { Component } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 

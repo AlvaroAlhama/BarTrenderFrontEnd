@@ -78,6 +78,7 @@ class ModalSearch extends React.Component {
 
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDiscountChange = this.handleDiscountChange.bind(this);
 
     this.toggle = this.toggle.bind(this);
     this.renderSwitch = this.renderSwitch.bind(this);
@@ -122,6 +123,13 @@ class ModalSearch extends React.Component {
 
     var x = document.getElementById("name").value;
     this.setState({'name': x },
+    );
+
+  }
+  handleDiscountChange(e) {
+
+    var x = document.getElementById("discounts").value;
+    this.setState({'discounts': x=='on' ? true : false },
     );
 
   }
@@ -205,6 +213,23 @@ class ModalSearch extends React.Component {
                           </>
                         );
                       })}
+                      <NavItem>
+                      <Container className="mt-3 mb-3">
+                        <NavLink
+                          className={this.state['pills'] === "Descuentos" ? "active" : ""}
+                          href=""
+                          onClick={(e) => {
+                            e.preventDefault();
+                            this.setState({
+                              pills: "Descuentos",
+                            })
+                          }}
+                        >
+                          <i className="now-ui-icons sport_user-run"></i>
+                        </NavLink>
+                        <h6 class="align-center ">Descuentos</h6>
+                              </Container>
+                      </NavItem>
                     </Nav>
 
 
@@ -253,6 +278,23 @@ class ModalSearch extends React.Component {
                         </>
                       );
                     })}
+                    <TabPane tabId="pillsDescuentos">
+                        <h3 className="text-center mt-2"> Descuentos</h3>
+                        <FormGroup check>
+
+                        <Label check>
+                          <Input type="checkbox"
+                            placeholder="discounts"
+                            onChange={this.handleDiscountChange}
+                            onKeyDown={this.handleEnter}
+                            name="discounts"
+                            id = "discounts"
+                          />
+                          <span className="form-check-sign"></span>
+                        Cualquier descuento
+                        </Label>
+                        </FormGroup>
+                      </TabPane>
                   </Form>
                 </Col>
 

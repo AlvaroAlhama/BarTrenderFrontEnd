@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import ModalSearch from "../../components/Modals/ModalSearch";
 import ModalLogin from "../../components/Modals/ModalLogin";
-import ModalSignUpClient from "../../components/Modals/ModalSignUpClient";
+import ModalSignUp from "../../components/Modals/ModalSignUp";
 
 import "./MainNavbar.css";
 
@@ -141,7 +141,7 @@ function MainNavbar() {
               {!logged && (
                 <NavItem>
                   <NavLink id="signup-tooltip">
-                    <ModalSignUpClient/>
+                    <ModalSignUp/>
                   <UncontrolledTooltip target="#signup-tooltip">
                     Registro
                   </UncontrolledTooltip>

@@ -5,7 +5,7 @@ import { Button, Modal, ModalBody } from "reactstrap";
 import ApiSignUpClientForm from "../ApiSignUpClientForm";
 import ApiSignUpEstablishmentForm from "../ApiSignUpEstablishmentForm ";
 
-function ModalSignUpClient() {
+function ModalSignUp() {
   const [modal1, setModal1] = React.useState(false);
   const [establishmentUserForm, setEstablishmentUserForm] = React.useState(
     false
@@ -84,4 +84,4 @@ function ModalSignUpClient() {
   );
 }
 
-export default ModalSignUpClient;
+export default ModalSignUp;

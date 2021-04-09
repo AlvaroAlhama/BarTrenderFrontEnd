@@ -6,7 +6,9 @@ class ApiSignUpEstablishmentForm extends React.Component {
     super();
 
     this.state = {
-      input: {},
+      input: {
+        rol: "owner",
+      },
 
       errors: {},
     };
@@ -15,10 +17,11 @@ class ApiSignUpEstablishmentForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
-  // TODO CALL THE API 
+  // TODO CALL THE API
   async handleSignUp() {
-    /*let errors = {};
-    var url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/login";
+    let errors = {};
+    var url =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -33,13 +36,9 @@ class ApiSignUpEstablishmentForm extends React.Component {
       sessionStorage.setItem("rol", rol);
       window.location.href = "/index";
     } else {
-      const data = await response.blob();
-      this.setState({ loading: false });
-      errors["email"] = "Email o contraseña incorrecta.";
+      const data = await response.json();
+      this.setState({ error: data.error, modalFail: true, loading: false });
     }
-    this.setState({
-      errors: errors,
-    });*/
   }
 
   handleChange(event) {
@@ -55,18 +54,23 @@ class ApiSignUpEstablishmentForm extends React.Component {
 
     if (this.validate()) {
       let errors = {};
-
+      
       let input = {};
+
+      console.log(typeof(this.state.input.phone));
+
+      this.state.input.phone=parseInt(this.state.input.phone, 10);
 
       input["email"] = "";
 
       input["password"] = "";
 
-      input["birthDate"] = "";
-      
+      input["phone"] = "";
+
+      input["rol"] = "";
+
       this.handleSignUp(event);
     }
-
   }
 
   validate() {
@@ -95,8 +99,10 @@ class ApiSignUpEstablishmentForm extends React.Component {
       }
     }
 
-    if(typeof input["password"] !== "undefined"){
-      var pattern = new RegExp(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i);
+    if (typeof input["password"] !== "undefined") {
+      var pattern = new RegExp(
+        /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
+      );
       if (!pattern.test(input["password"])) {
         isValid = false;
 
@@ -118,7 +124,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     }
     if (input["phone"]) {
       var phone = input["phone"];
-      if (phone / 100000000 < 1 || phone / 100000000 >= 10 ){
+      if (phone / 100000000 < 1 || phone / 100000000 >= 10) {
         isValid = false;
         errors["phone"] = "Escriba un número de teléfono correcto. ";
       }
@@ -134,9 +140,15 @@ class ApiSignUpEstablishmentForm extends React.Component {
   render() {
     return (
       <div>
-        <div className="row">
-        <i className="fal fa-store fa-5x w-100 mb-4"></i>
+        <div className="text-danger">
+          <h6 class="my-3 text-center">
+            {this.state.error}
+          </h6>
         </div>
+        <div className="row">
+          <i className="fal fa-store fa-5x w-100 mb-4"></i>
+        </div>
+
         <form onSubmit={this.handleSubmit}>
           <div class="form-group my-1">
             <input
@@ -163,14 +175,14 @@ class ApiSignUpEstablishmentForm extends React.Component {
             />
           </div>
           <div className="text-danger align-center">
-              {this.state.errors.password}
-            </div>
+            {this.state.errors.password}
+          </div>
 
           <div class="form-group my-4">
             <input
               name="phone"
               type="number"
-              value={this.state.input.birthDate}
+              value={this.state.input.phone}
               onChange={this.handleChange}
               placeholder="Número de teléfono"
               minLength="9"
@@ -182,8 +194,6 @@ class ApiSignUpEstablishmentForm extends React.Component {
               {this.state.errors.phone}
             </div>
           </div>
-
-
           <div class="text-center">
             <input
               type="submit"

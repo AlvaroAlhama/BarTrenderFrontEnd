@@ -1,12 +1,14 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import moment from "moment";
 
 class ApiSignUpClientForm extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      input: {},
+      input: {
+        rol: "client",
+      },
 
       errors: {},
     };
@@ -17,8 +19,9 @@ class ApiSignUpClientForm extends React.Component {
   }
   // TODO CALL THE API
   async handleSignUp() {
-    /*let errors = {};
-    var url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/login";
+    let errors = {};
+    var url =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -33,13 +36,9 @@ class ApiSignUpClientForm extends React.Component {
       sessionStorage.setItem("rol", rol);
       window.location.href = "/index";
     } else {
-      const data = await response.blob();
-      this.setState({ loading: false });
-      errors["email"] = "Email o contraseña incorrecta.";
+      const data = await response.json();
+      this.setState({ error: data.error, modalFail: true, loading: false });
     }
-    this.setState({
-      errors: errors,
-    });*/
   }
 
   handleChange(event) {
@@ -57,12 +56,19 @@ class ApiSignUpClientForm extends React.Component {
       let errors = {};
 
       let input = {};
+      const birthday = moment.utc(`${this.state.input.birthday}`).unix();
+      console.log(birthday);
+      this.state.input.birthday = birthday;
+      input["rol"] ="client"
+      this.setState({
+        input: input,
+      });
 
       input["email"] = "";
 
       input["password"] = "";
 
-      input["birthDate"] = "";
+      input["birthday"] = "";
 
       this.handleSignUp(event);
     }
@@ -112,32 +118,32 @@ class ApiSignUpClientForm extends React.Component {
       errors["password"] = "Escriba una contraseña.";
     }
 
-    if (!input["birthDate"]) {
+    if (!input["birthday"]) {
       isValid = false;
 
-      errors["birthDate"] = "Escriba una fecha de nacimiento. ";
+      errors["birthday"] = "Escriba una fecha de nacimiento. ";
     }
-    if (typeof input["birthDate"] !== "undefined") {
+    if (typeof input["birthday"] !== "undefined") {
       var today = new Date();
-      var birthDate = new Date(input["birthDate"]);
+      var birthday = new Date(input["birthday"]);
 
-      if (today.getFullYear() - birthDate.getFullYear() < 18) {
+      if (today.getFullYear() - birthday.getFullYear() < 18) {
         isValid = false;
 
-        errors["birthDate"] =
+        errors["birthday"] =
           "Para registrarte como usuario al menos tienes que tener 18 años.";
       }
-      if (today.getFullYear() - birthDate.getFullYear() == 18) {
-        if (today.getMonth() < birthDate.getMonth()) {
+      if (today.getFullYear() - birthday.getFullYear() == 18) {
+        if (today.getMonth() < birthday.getMonth()) {
           isValid = false;
 
-          errors["birthDate"] =
+          errors["birthday"] =
             "Para registrarte como usuario al menos tienes que tener 18 años.";
         }
-        if (today.getMonth() == birthDate.getMonth()) {
-          if (today.getDate() < birthDate.getDate()) {
+        if (today.getMonth() == birthday.getMonth()) {
+          if (today.getDate() < birthday.getDate()) {
             isValid = false;
-            errors["birthDate"] =
+            errors["birthday"] =
               "Para registrarte como usuario al menos tienes que tener 18 años.";
           }
         }
@@ -154,8 +160,11 @@ class ApiSignUpClientForm extends React.Component {
   render() {
     return (
       <div>
+        <div className="text-danger">
+          <h6 class="my-3 text-center">{this.state.error}</h6>
+        </div>
         <div className="row">
-        <i className="fal fa-glass-cheers fa-5x w-100 mb-4"></i>
+          <i className="fal fa-glass-cheers fa-5x w-100 mb-4"></i>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div class="form-group my-1">
@@ -188,16 +197,16 @@ class ApiSignUpClientForm extends React.Component {
 
           <div class="form-group my-4">
             <input
-              name="birthDate"
+              name="birthday"
               type="date"
-              value={this.state.input.birthDate}
+              value={this.state.input.birthday}
               onChange={this.handleChange}
               placeholder="Fecha de Nacimiento"
               class="form-control"
             />
 
             <div className="text-danger align-center">
-              {this.state.errors.birthDate}
+              {this.state.errors.birthday}
             </div>
           </div>
 

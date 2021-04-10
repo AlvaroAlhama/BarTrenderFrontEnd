@@ -62,7 +62,8 @@ class ModalSearch extends React.Component {
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
 
-     fetch(apiUrl, {
+     
+    fetch(apiUrl, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -81,10 +82,8 @@ class ModalSearch extends React.Component {
     this.handleDiscountChange = this.handleDiscountChange.bind(this);
 
     this.toggle = this.toggle.bind(this);
-    this.renderSwitch = this.renderSwitch.bind(this);
-    
+    this.renderSwitch = this.renderSwitch.bind(this);    
   }
-
   // EN cuanto se haga el fetch, se mete la respuesta en this.tags y se llama a la fun groupBy;
   toggle() {
     this.setState({
@@ -146,12 +145,14 @@ class ModalSearch extends React.Component {
         return 'fal fa-chess-rook w-100';
       case 'Instalacion':
         return 'fal fa-umbrella-beach w-100';
+      case 'Ambiente':
+        return 'fal fa-gramophone w-100'
       default:
         return 'now-ui-icons location_bookmark';
     }
   }
 
-  render() {
+  render( ){
     return (
 
       <>
@@ -213,7 +214,7 @@ class ModalSearch extends React.Component {
                           </>
                         );
                       })}
-                      <NavItem>
+                      <NavItem className="col-4">
                       <Container className="mt-3 mb-3">
                         <NavLink
                           className={this.state['pills'] === "Descuentos" ? "active" : ""}
@@ -225,7 +226,7 @@ class ModalSearch extends React.Component {
                             })
                           }}
                         >
-                          <i className="now-ui-icons sport_user-run"></i>
+                          <i className="now-ui-icons shopping_tag-content"></i>
                         </NavLink>
                         <h6 class="align-center ">Descuentos</h6>
                               </Container>
@@ -274,6 +275,7 @@ class ModalSearch extends React.Component {
                                 );
                               })}
                             </TabPane>
+                            
                           </TabContent>
                         </>
                       );

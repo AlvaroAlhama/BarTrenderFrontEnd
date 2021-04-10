@@ -42,7 +42,7 @@ function FreeDashboardView() {
     <Card/>
     <Card/>
     <Card/>
-      <Container fluid>
+      <Container fluid id="container-dashboard">
       
       <div>
         <br/>

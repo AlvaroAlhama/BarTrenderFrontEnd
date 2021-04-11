@@ -1,7 +1,12 @@
 language: node_js
 node_js:
   - "stable"
+language: python 
+python: 
+- "3.9"
 script:
   - cd bar-trender-front-end
   - npm install
   - CI= npm run build
+  - cd src/tests
+  - pytest test_all.py

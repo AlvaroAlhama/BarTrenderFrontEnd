@@ -160,6 +160,7 @@ class ModalSearch extends React.Component {
           color="primary"
           className="mr-1"
           onClick={this.toggle}
+          id="filters"
         >
           Filtros
         </Button>
@@ -206,7 +207,7 @@ class ModalSearch extends React.Component {
 
                                 }}
                               >
-                                <i className={this.renderSwitch(key)}></i>
+                                <i class={this.renderSwitch(key)}></i>
                               </NavLink>
                               <h6 class="align-center ">{key}</h6>
                               </Container>
@@ -260,7 +261,7 @@ class ModalSearch extends React.Component {
                                 return (
                                   <>
                                     <FormGroup check>
-                                      <Label check>
+                                      <Label id={"label-"+ tag.name} check>
                                         <Input type="checkbox"
                                           placeholder={tag.name}
                                           onChange={this.handleTermChange}
@@ -284,7 +285,7 @@ class ModalSearch extends React.Component {
                         <h3 className="text-center mt-2"> Descuentos</h3>
                         <FormGroup check>
 
-                        <Label check>
+                        <Label id="discount-label" check>
                           <Input type="checkbox"
                             placeholder="discounts"
                             onChange={this.handleDiscountChange}
@@ -326,6 +327,7 @@ class ModalSearch extends React.Component {
               }}> <Button
                 color="primary"
                 type="button"
+                id="filter-search"
 
               >
                 Buscar

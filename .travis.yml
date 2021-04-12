@@ -7,6 +7,6 @@ python:
 script:
   - cd bar-trender-front-end
   - npm install
-  - CI= npm run build
+  - CI = false npm run build
   - cd src/tests
   - pytest test_all.py

@@ -18,9 +18,9 @@ class TestAll(StaticLiveServerTestCase):
     options.headless = True
     self.driver = webdriver.Chrome(options=options)
 
-     u1 = User(username='client1', email='client1@gmail.com')
-     u1.set_password('vekto1234')
-     u1.save()
+    u1 = User(username='client1', email='client1@gmail.com')
+    u1.set_password('vekto1234')
+    u1.save()
   
   def teardown_method(self, method):
     self.driver.quit()

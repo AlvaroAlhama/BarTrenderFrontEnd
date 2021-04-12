@@ -3,8 +3,8 @@ project:
   owner: 'cardobherUS'
   teamId: '14'
   identities:
-    heroku:
-      url: 'https://develop-backend-sprint-01.herokuapp.com/'
+    netlify:
+      url: 'https://bartrender-develop-sprint-01.netlify.app'
     travis:
       url: 'https://travis-ci.com/github/BarTrender/BarTrenderFront'
   members:

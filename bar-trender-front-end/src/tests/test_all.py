@@ -11,8 +11,9 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class TestAll():
   def setup_method(self, method):
-    self.driver = webdriver.Firefox(executable_path="C:/Users/semah/Downloads/geckodriver-v0.29.1-win64/geckodriver.exe")
-    self.vars = {}
+    options = webdriver.ChromeOptions()
+    options.headless = True
+    self.driver = webdriver.Chrome(options=options)
   
   def teardown_method(self, method):
     self.driver.quit()

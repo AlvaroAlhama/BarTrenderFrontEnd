@@ -9,6 +9,10 @@ before_script:
   - CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAIN_VERSION"`
   - curl "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
   - unzip chromedriver_linux64.zip -d ~/bin
+  - cd bar-trender-front-end
+  - npm install
+  - CI = npm run build
+  - npm start
 before_install:
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
   - tar -xzf geckodriver-v0.27.0-linux64.tar.gz
@@ -19,10 +23,5 @@ install:
  - pip install codacy-coverage
  - pip install selenium
 script:
-  - cd bar-trender-front-end
-  - npm install
-  - CI = npm run build
-  - npm start
-script:
-  - cd src/tests
+  - cd bar-trender-front-end/src/tests
   - pytest test_all.py

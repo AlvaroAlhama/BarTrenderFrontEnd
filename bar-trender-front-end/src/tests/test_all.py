@@ -22,7 +22,7 @@ class TestAll():
     # Test name: LoginFailView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
     # 3 | click | css=.btn:nth-child(1) | 
@@ -36,7 +36,7 @@ class TestAll():
     # Test name: LoginView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
     # 3 | type | id=email | client1@gmail.com
@@ -55,7 +55,7 @@ class TestAll():
     # Test name: Filters
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | id=filters | 
     time.sleep(2)
     self.driver.find_element(By.ID, "filters").click()
@@ -72,7 +72,7 @@ class TestAll():
     # Test name: ListView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | css=.mr-1 | 
     self.driver.find_element(By.CSS_SELECTOR, ".mr-1").click()
     # 3 | click | css=.btn:nth-child(1) | 
@@ -88,7 +88,7 @@ class TestAll():
     # Test name: EstablishmentDetailsView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | css=.mr-1 | 
     time.sleep(2)
     self.driver.find_element(By.ID, "filters").click()
@@ -107,7 +107,7 @@ class TestAll():
     # Test name: GetQRNotLogged
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | css=.mr-1 | 
     self.driver.find_element(By.ID, "filters").click()
     time.sleep(2)
@@ -127,7 +127,7 @@ class TestAll():
     # Test name: GetQRClaimed
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
     # 3 | click | id=email | 
@@ -164,7 +164,7 @@ class TestAll():
     # Test name: GetQRSuccess
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
     # 3 | click | id=email | 
@@ -193,7 +193,7 @@ class TestAll():
     # Test name: MulipleFilters
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     # 2 | click | id=filters | 
     self.driver.find_element(By.ID, "filters").click()
     time.sleep(2)
@@ -222,7 +222,7 @@ class TestAll():
     # Test name: DashboardNotLogged
     # Step # | name | target | value
     # 1 | open | /admin/dashboard | 
-    self.driver.get(f'{self.live_server_url}')
+    self.driver.get(f'{self.live_server_url}/')
     time.sleep(1)
     self.driver.get(f'{self.live_server_url}/admin/dashboard')
     # 2 | verifyText | css=h1 | Necesitas estar Logueado para poder acceder a la vista

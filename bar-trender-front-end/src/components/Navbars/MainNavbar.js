@@ -1,6 +1,8 @@
 import React from "react";
 
 import barTrender from "../../assets/img/barTrender60.png";
+import * as uuid from 'uuid';
+
 // reactstrap components
 import {
   Collapse,
@@ -84,7 +86,7 @@ function MainNavbar() {
               </button>
             </Nav>
           </div>
-          <ModalSearch />
+          <ModalSearch key={uuid.v4()} />
 
           <Collapse
             className="justify-content-end"

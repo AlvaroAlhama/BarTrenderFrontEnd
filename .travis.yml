@@ -5,3 +5,31 @@ script:
   - cd bar-trender-front-end
   - npm install
   - CI= npm run build
+# Este travis de abajo es una guía para hacer que travis pase los tests de selenium, pero no termina de funcionar
+# language: node_js
+# node_js:
+#   - "stable"
+# language: python 
+# python: 
+# - "3.9"
+# before_script:
+#   - CHROME_MAIN_VERSION=`google-chrome-stable --version | sed -E 's/(^Google Chrome |\.[0-9]+ )//g'`
+#   - CHROMEDRIVER_VERSION=`curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAIN_VERSION"`
+#   - curl "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip" -O
+#   - unzip chromedriver_linux64.zip -d ~/bin
+#   - cd bar-trender-front-end
+#   - npm install
+#   - CI= false npm run build
+#   - npm start
+# before_install:
+#   - wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
+#   - tar -xzf geckodriver-v0.27.0-linux64.tar.gz
+#   - chmod +x geckodriver 
+#   - sudo cp geckodriver /usr/bin/
+# install:
+#  - pip install -r requirements.txt
+#  - pip install codacy-coverage
+#  - pip install selenium
+# script:
+#   - cd bar-trender-front-end/src/tests
+#   - pytest test_all.py

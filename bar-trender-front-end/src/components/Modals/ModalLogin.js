@@ -17,7 +17,7 @@ function ModalLogin() {
           className="mr-1"
           onClick={() => setModal1(true)}
           id="login-tooltip"
-          className="now-ui-icons users_single-02"
+          className="far fa-user fa-lg mt-1"
         ></i>
         <p className="d-lg-none d-xl-none">Inicio de Sesión</p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
@@ -48,14 +48,14 @@ function ModalLogin() {
       <>
         <i
           color="primary"
-          className="mr-1"
+          className="mt-1"
           id="logout-tooltip"
           onClick={() => {
-            console.log("DELETING TOKEN...");
             sessionStorage.clear();
             window.location.href = "/index";
           }}
-          className="now-ui-icons media-1_button-power"
+          className="fas fa-power-off fa-lg mt-1"
+          
         />
         <p className="d-lg-none d-xl-none">Cerrar sesión</p>
         

@@ -14,6 +14,8 @@ import {
 } from "reactstrap";
 import ModalSearch from "../../components/Modals/ModalSearch";
 import ModalLogin from "../../components/Modals/ModalLogin";
+import ModalSignUp from "../../components/Modals/ModalSignUp";
+
 import "./MainNavbar.css";
 
 function MainNavbar() {
@@ -38,8 +40,8 @@ function MainNavbar() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
-  const isLoggedIn =
-    sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
+  const logged = sessionStorage.getItem("token");
+  const isLoggedOwner = logged && sessionStorage.getItem("rol") == "owner";
   return (
     <>
       {collapseOpen ? (
@@ -96,7 +98,7 @@ function MainNavbar() {
                   target="_blank"
                   id="twitter-tooltip"
                 >
-                  <i className="fab fa-twitter"></i>
+                  <i class="fab fa-twitter fa-lg"></i>
                   <p className="d-lg-none d-xl-none">Twitter</p>
                 </NavLink>
                 <UncontrolledTooltip target="#twitter-tooltip">
@@ -110,19 +112,16 @@ function MainNavbar() {
                   target="_blank"
                   id="instagram-tooltip"
                 >
-                  <i className="fab fa-instagram"></i>
+                  <i class="fab fa-instagram fa-lg"></i>
                   <p className="d-lg-none d-xl-none">Instagram</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
                   Síguenos en Instagram
                 </UncontrolledTooltip>
               </NavItem>
-              {isLoggedIn && (
+              {isLoggedOwner && (
                 <NavItem>
-                  <NavLink
-                    href="/admin/dashboard"
-                    id="discount-tooltip"
-                  >
+                  <NavLink href="/admin/dashboard" id="discount-tooltip">
                     <i class="fal fa-tachometer-alt-fastest fa-lg mt-1"></i>
                     <p className="d-lg-none d-xl-none">Panel de control</p>
                   </NavLink>
@@ -139,6 +138,16 @@ function MainNavbar() {
                   </UncontrolledTooltip>
                 </NavLink>
               </NavItem>
+              {!logged && (
+                <NavItem>
+                  <NavLink id="signup-tooltip">
+                    <ModalSignUp/>
+                  <UncontrolledTooltip target="#signup-tooltip">
+                    Registro
+                  </UncontrolledTooltip>
+                  </NavLink>
+                </NavItem>
+              )}
             </Nav>
           </Collapse>
         </Container>

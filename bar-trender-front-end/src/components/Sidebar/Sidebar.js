@@ -1,6 +1,7 @@
 
 // Routing
 import Dashboard from "views/Dashboard.js";
+import PremiumDashboard from "views/PremiumDashboard.js";
 import UserProfile from "views/UserProfile.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
@@ -9,7 +10,7 @@ import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
-import EstablishmentView from "views/EstablishmentView.js";
+import EstablishmentView from "views/EstablishmentView";
 import React, { Component } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
@@ -138,6 +139,14 @@ function Sidebar({ color, image }) {
               name: "Dashboard",
               icon: "nc-icon nc-chart-pie-35",
               component: Dashboard,
+              layout: "/admin",
+            },
+
+            {
+              path: "/PremiumDashboard",
+              name: "Premium Dashboard",
+              icon: "nc-icon nc-chart-pie-35",
+              component: PremiumDashboard,
               layout: "/admin",
             },
             {

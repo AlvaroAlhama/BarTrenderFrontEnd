@@ -30,7 +30,7 @@ import MainView from "./views/MainView.js";
 import LandingView from "./views/LandingView.js";
 import ListView from "./views/ListView.js";
 import ErrorView from "./views/ErrorView.js";
-import FreeDashboardView from "./views/FreeDashboardView.js";
+
 import AdminView from "./views/AdminView.js";
 import EstablismentByOwnerView from "./views/EstablishmentByOwnerView.js"
 import EstablishmentView from "./views/EstablishmentView.js"
@@ -71,6 +71,10 @@ const app = (
 
         <Route path="/admin/dashboard" 
           render={(props) => <AdminView {...props} />} />
+
+        
+        <Route path="/admin/premiumDashboard" 
+          render={(props) => <AdminView {...props} />} />
           
         <Route
           path ="/myEstablishments"
@@ -78,7 +82,7 @@ const app = (
         />
 
         <Route
-          path = "/establishment/:id"
+          path = "/establishment"
           render = {(props) =>  <EstablishmentView {...props}/>}
         />
 

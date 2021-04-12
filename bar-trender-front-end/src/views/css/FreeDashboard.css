@@ -10,7 +10,7 @@ Card{
   background-color: rgb(233, 112, 69);
 }
 
-.container {
+#container-dashboard {
   display: block;
   position: relative;
   padding-left: 35px;

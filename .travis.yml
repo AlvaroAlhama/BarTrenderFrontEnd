@@ -21,5 +21,8 @@ install:
 script:
   - cd bar-trender-front-end
   - npm install
+  - CI = npm run build
+  - npm start
+script:
   - cd src/tests
   - pytest test_all.py

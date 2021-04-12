@@ -9,7 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-class TestAll():
+class TestAll(StaticLiveServerTestCase):
   def setup_method(self, method):
     options = webdriver.ChromeOptions()
     options.headless = True

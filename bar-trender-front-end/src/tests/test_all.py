@@ -2,6 +2,7 @@ import pytest
 import time
 import json
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.contrib.auth.models import User
 from django.test import TestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -13,9 +14,16 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class TestAll(StaticLiveServerTestCase):
   def setup_method(self, method):
-    options = webdriver.ChromeOptions()
+    options = webdriver.ChromeOptions(executable_path="./chromedriver.exe")
     options.headless = True
     self.driver = webdriver.Chrome(options=options)
+
+    super().setUp()
+
+    u1 = User(username='client1', email='client1@gmail.com')
+    u1.set_password('vekto1234')
+    u1.save()
+    self.user1 = u1
   
   def teardown_method(self, method):
     self.driver.quit()
@@ -24,9 +32,11 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: LoginFailView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
+    self.driver.find_element(By.ID, "email").send_keys("client1@gmail.com")
+    self.driver.find_element(By.NAME, "password").send_keys("vekto1234")
     # 3 | click | css=.btn:nth-child(1) | 
     self.driver.find_element(By.CSS_SELECTOR, ".btn:nth-child(1)").click()
     # 4 | waitForElementPresent | css=.my-1 > .text-danger | 2000
@@ -38,7 +48,7 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: LoginView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
     # 3 | type | id=email | client1@gmail.com
@@ -57,7 +67,7 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: Filters
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | id=filters | 
     time.sleep(2)
     self.driver.find_element(By.ID, "filters").click()
@@ -74,7 +84,7 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: ListView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | css=.mr-1 | 
     self.driver.find_element(By.CSS_SELECTOR, ".mr-1").click()
     # 3 | click | css=.btn:nth-child(1) | 
@@ -90,7 +100,7 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: EstablishmentDetailsView
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | css=.mr-1 | 
     time.sleep(2)
     self.driver.find_element(By.ID, "filters").click()
@@ -109,7 +119,7 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: GetQRNotLogged
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | css=.mr-1 | 
     self.driver.find_element(By.ID, "filters").click()
     time.sleep(2)
@@ -129,7 +139,7 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: GetQRClaimed
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
     # 3 | click | id=email | 
@@ -166,7 +176,7 @@ class TestAll(StaticLiveServerTestCase):
     # Test name: GetQRSuccess
     # Step # | name | target | value
     # 1 | open | /main | 
-    self.driver.get(f'{self.live_server_url}/')
+    self.driver.get(f'{self.live_server_url}/main')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
     # 3 | click | id=email | 

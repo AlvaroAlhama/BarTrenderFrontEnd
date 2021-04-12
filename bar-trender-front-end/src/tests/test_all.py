@@ -2,7 +2,6 @@ import pytest
 import time
 import json
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.contrib.auth.models import User
 from django.test import TestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -17,10 +16,6 @@ class TestAll(StaticLiveServerTestCase):
     options = webdriver.ChromeOptions()
     options.headless = True
     self.driver = webdriver.Chrome(options=options)
-
-    u1 = User(username='client1', email='client1@gmail.com')
-    u1.set_password('vekto1234')
-    u1.save()
   
   def teardown_method(self, method):
     self.driver.quit()
@@ -32,9 +27,6 @@ class TestAll(StaticLiveServerTestCase):
     self.driver.get(f'{self.live_server_url}/')
     # 2 | click | id=login-tooltip | 
     self.driver.find_element(By.ID, "login-tooltip").click()
-    self.driver.find_element(By.ID, "id_email").send_keys("client1@gmail.com")
-    self.driver.find_element(By.ID, "id_password").send_keys("vekto1234")
-    self.driver.find_element(By.ID, "id_password").send_keys(Keys.ENTER)
     # 3 | click | css=.btn:nth-child(1) | 
     self.driver.find_element(By.CSS_SELECTOR, ".btn:nth-child(1)").click()
     # 4 | waitForElementPresent | css=.my-1 > .text-danger | 2000

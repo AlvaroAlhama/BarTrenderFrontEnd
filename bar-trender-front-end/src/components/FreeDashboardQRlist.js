@@ -3,12 +3,23 @@ import { Modal, ModalBody } from "reactstrap";
 
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
 import "../views/css/FreeDashboard.css";
+import ReactDOM from "react-dom";
+const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+
 function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
   const { element } = props;
   var idEstablishment = props.idEstablishment;
+  var token = sessionStorage.getItem("token");
   const [appState, setAppState] = useState({
     discounts: {},
+  });
+  const [paymentState, setPaymentState] = useState({
+    create_time: null,
+    order_id: null
+  });
+  const [discountPaymentInfoState, setDiscountPaymentInfoState] = useState({
+    discountPaymentInfo: {},
   });
 
   useEffect(() => {
@@ -33,6 +44,29 @@ function DashboardQRList(props) {
     loadDiscounts();
   }, [setAppState]);
 
+  useEffect(() => {
+    const apiUrl =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
+      idEstablishment +
+      "/calculate";
+    async function loadDiscountPaymentInfo() {
+      await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          apiKey: "8dDc431125634ef43cD13c388e6eCf11",
+          token: token,
+        },
+      })
+        .then((response) => response.json())
+        .then((discountPaymentInfo) => {
+          setDiscountPaymentInfoState({ discountPaymentInfo: discountPaymentInfo });
+        });
+    }
+    loadDiscountPaymentInfo();
+  }, [setDiscountPaymentInfoState]);
+
+  console.log(discountPaymentInfoState)
   var count = 0;
 
   if (!appState.discounts.results || appState.discounts.count == 0) {
@@ -43,11 +77,41 @@ function DashboardQRList(props) {
       </Card>
     );
   } else {
-    var totalPriceDiscounts = 0;
-    for (var discount of appState.discounts.results) {
-      totalPriceDiscounts +=
-        discount.scannedCodes_number * discount.cost_number;
+    var totalPriceDiscounts = discountPaymentInfoState.discountPaymentInfo.total == undefined?0.0:discountPaymentInfoState.discountPaymentInfo.total.toFixed(2);
+    
+
+    const createOrder = (data, actions) =>{
+      return actions.order.create({
+        purchase_units: [
+          {
+            amount: {
+              value: String(totalPriceDiscounts),
+            },
+          },
+        ],
+      });
     }
+  
+    const onApprove = (data, actions) => {
+      return actions.order.capture().then(function(details){
+        console.log(data)
+        setPaymentState({create_time: details.create_time, order_id: details.id })
+      });
+    }
+
+    const paymentUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
+
+    if(paymentState != null){
+      console.log(paymentState)
+      const setPaidDiscounts =  
+        fetch(paymentUrl, {
+        method: "POST",
+        headers: {
+          token: token,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(paymentState),
+      });}
 
     return (
       <ul className="ul-flex">
@@ -233,6 +297,10 @@ function DashboardQRList(props) {
                                   </tr>
                                 </tbody>
                               </Table>
+                              <PayPalButton
+                              createOrder={(data, actions) => createOrder(data, actions)}
+                               onApprove={(data, actions) => onApprove(data, actions)}
+                              />
                             </Container>
                           </ModalBody>
                         </Modal>

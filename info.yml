@@ -4,7 +4,7 @@ project:
   teamId: '14'
   identities:
     heroku:
-      url: 'https://bartrender-develop-sprint-01.netlify.app'
+      url: 'https://develop-backend-sprint-01.herokuapp.com/'
     travis:
       url: 'https://travis-ci.com/github/BarTrender/BarTrenderFront'
   members:

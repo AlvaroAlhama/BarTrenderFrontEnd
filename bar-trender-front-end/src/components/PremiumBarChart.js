@@ -9,8 +9,8 @@ function PremiumBarChart(props) {
   const [modal2, setModal2] = React.useState(false);
   const { element } = props;
 
-  const datenowms = Math.round(Date.now()/1000)
-  const date1monthms= Math.round((Date.now()-2629800000)/1000)
+  const datenowms = Math.round((Date.now()-2629800000)/1000) 
+  const date1monthms= Math.round((Date.now()+86400000)/1000)
   
   const [appState, setAppState] = useState({
     stats: {},

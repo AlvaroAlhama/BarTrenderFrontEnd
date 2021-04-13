@@ -50,10 +50,9 @@ function PremiumDashboard() {
         <Col md="6">
           <Card>
          
-            <h3>Bienvenido a la version premium de nuestro dashboard, tu suscripción 
-              tiene una duración de 24 dias
+            <h3>Bienvenido a la version premium de nuestro dashboard, ¿Quiere revisar su suscripción?
             </h3>
-         
+          <button  className="btn btn-primary" value = "Revisar Suscripción">Revisar Suscripción</button>
           </Card>
           </Col>
 

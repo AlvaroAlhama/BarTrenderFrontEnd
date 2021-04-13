@@ -9,8 +9,9 @@ function PremiumBarChart(props) {
   const [modal2, setModal2] = React.useState(false);
   const { element } = props;
 
-
-
+  const datenowms = Math.round(Date.now()/1000)
+  const date1monthms= Math.round((Date.now()-2629800000)/1000)
+  
   const [appState, setAppState] = useState({
     stats: {},
   });
@@ -18,7 +19,9 @@ function PremiumBarChart(props) {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
     console.log(token, 'token');
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
+    {/*const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";*/}
+     {/*const apiUrl = " http://127.0.0.1:8000/v1/stats/getPremium";*/}
+     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
     async function loadStats() {
       await fetch(apiUrl, {
         method: 'POST',
@@ -27,11 +30,15 @@ function PremiumBarChart(props) {
           'token': token,
         },
 
-        body: JSON.stringify({ filter: props.filter })
+        body: JSON.stringify({  initial_date: datenowms, end_date: date1monthms, zone: props.zone, filter:props.filter })
       }).then(response => response.json())
         .then(stats => {
           setAppState({ stats: stats });
         });
+    }
+
+    {
+    
     }
     loadStats()
   }, [setAppState]);
@@ -40,7 +47,7 @@ function PremiumBarChart(props) {
   if (appState.stats.first != undefined) {
     var graph2 = {
       chartData: {
-        labels: [appState.stats.first.name, appState.stats.second.name, appState.stats.third.name,'Otros','Otros','Otros','Otros','Otros','Otros','Otros'],
+        labels: [appState.stats.first.name, appState.stats.second.name, appState.stats.third.name,appState.stats.fourth.name,appState.stats.fifth.name,appState.stats.sixth.name,appState.stats.seventh.name,appState.stats.eighth.name,appState.stats.ninth.name,'Otros'],
         datasets: [
           {
             label: 'Busquedas',
@@ -48,12 +55,12 @@ function PremiumBarChart(props) {
               appState.stats.first.percentage,
               appState.stats.second.percentage,
               appState.stats.third.percentage,
-              appState.stats.other.percentage,
-              appState.stats.first.percentage,
-              appState.stats.second.percentage,
-              appState.stats.third.percentage,
-              appState.stats.other.percentage,
-              appState.stats.third.percentage,
+              appState.stats.fourth.percentage,
+              appState.stats.fifth.percentage,
+              appState.stats.sixth.percentage,
+              appState.stats.seventh.percentage,
+              appState.stats.eighth.percentage,
+              appState.stats.ninth.percentage,
               appState.stats.other.percentage,
             ],
             backgroundColor: [
@@ -65,8 +72,8 @@ function PremiumBarChart(props) {
               'rgba(54, 162, 235, 0.6)',
               'rgba(255, 206, 86, 0.6)',
               'rgba(75, 192, 192, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
             ],
 
           }
@@ -100,11 +107,15 @@ function PremiumBarChart(props) {
       }
     };
   }
-
-
+      if (props.filter != "Bebida" && props.filter != "Ocio" && props.filter != "Instalacion"){
+        return(
+       <h3> {props.filter} escriba un filtro</h3>
+        )
+      }else {
   return (
     <div className="chart">
       <br/>
+      
       <h3> {props.filter}  con mayor preferencia de los Usuarios en tu zona</h3>
      
       <Bar
@@ -126,5 +137,5 @@ function PremiumBarChart(props) {
   )
 }
 
-
+}
 export default PremiumBarChart;

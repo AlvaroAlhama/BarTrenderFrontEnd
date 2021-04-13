@@ -23,6 +23,28 @@ function DashboardQRList(props) {
   });
 
   useEffect(() => {
+      const apiUrl =
+        "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
+        idEstablishment +
+        "/calculate";
+      async function loadDiscountPaymentInfo() {
+        await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            apiKey: "8dDc431125634ef43cD13c388e6eCf11",
+            token: token,
+          },
+        })
+          .then((response) => response.json())
+          .then((discountPaymentInfo) => {
+            setDiscountPaymentInfoState({ discountPaymentInfo: discountPaymentInfo });
+          });
+      }
+      loadDiscountPaymentInfo();
+    }, [setDiscountPaymentInfoState]);
+
+  useEffect(() => {
     const apiUrl =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       idEstablishment +
@@ -44,29 +66,10 @@ function DashboardQRList(props) {
     loadDiscounts();
   }, [setAppState]);
 
-  useEffect(() => {
-    const apiUrl =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
-      idEstablishment +
-      "/calculate";
-    async function loadDiscountPaymentInfo() {
-      await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          apiKey: "8dDc431125634ef43cD13c388e6eCf11",
-          token: token,
-        },
-      })
-        .then((response) => response.json())
-        .then((discountPaymentInfo) => {
-          setDiscountPaymentInfoState({ discountPaymentInfo: discountPaymentInfo });
-        });
-    }
-    loadDiscountPaymentInfo();
-  }, [setDiscountPaymentInfoState]);
+  
 
-  console.log(discountPaymentInfoState)
+  console.log(discountPaymentInfoState);
+  console.log(appState);
   var count = 0;
 
   if (!appState.discounts.results || appState.discounts.count == 0) {
@@ -94,7 +97,6 @@ function DashboardQRList(props) {
   
     const onApprove = (data, actions) => {
       return actions.order.capture().then(function(details){
-        console.log(data)
         setPaymentState({create_time: details.create_time, order_id: details.id })
       });
     }
@@ -247,50 +249,44 @@ function DashboardQRList(props) {
                                     >
                                       Nombre Descuento
                                     </th>
+                                    <th></th>
                                     <th
                                       className="font-weight-bold text-center"
-                                      scope="col-3"
-                                    >
-                                      Precio Producto
-                                    </th>
-                                    <th
-                                      className="font-weight-bold text-center"
-                                      scope="col-2"
+                                      scope="col-5"
                                     >
                                       Total Códigos
                                     </th>
+                                    <th></th>
                                     <th
                                       className="font-weight-bold text-center"
-                                      scope="col-2"
+                                      scope="col-5"
                                     >
                                       Precio total
                                     </th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {appState.discounts.results.map(
-                                    (discounts) => {
+                                  {discountPaymentInfoState.discountPaymentInfo.payments != undefined?
+                                  discountPaymentInfoState.discountPaymentInfo.payments.map(
+                                    (payments) => {
                                       return (
                                         <>
                                           <tr>
-                                            <th scope="row" className="text-left">
-                                              {discounts.name_text}
-                                            </th>
-                                            <td>{discounts.cost_number}€</td>
-                                            <td>
-                                              {discounts.scannedCodes_number}
+                                            <td scope="row" className="text-left">
+                                              {payments.discount_name}
                                             </td>
-                                            <td>
-                                              {discounts.scannedCodes_number *
-                                                discounts.cost_number}€
-                                            </td>
+                                            <td></td>
+                                            <td>{payments.payment_scanned_codes}</td>
+                                            <td></td>
+                                            <td>{payments.value}€</td>
                                           </tr>
                                         </>
                                       );
                                     }
-                                  )}
+                                  ):<p>loading</p>}
                                   <tr>
                                     <th scope="row">TOTAL</th>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <th scope="row">{totalPriceDiscounts}€</th>

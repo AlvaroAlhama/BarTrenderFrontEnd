@@ -19,9 +19,9 @@ function PremiumBarChart(props) {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
     console.log(token, 'token');
-    {/*const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";*/}
+    {/*const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";*/}
      {/*const apiUrl = " http://127.0.0.1:8000/v1/stats/getPremium";*/}
-     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
+     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";
     async function loadStats() {
       await fetch(apiUrl, {
         method: 'POST',

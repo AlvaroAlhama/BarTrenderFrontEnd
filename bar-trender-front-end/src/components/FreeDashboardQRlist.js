@@ -3,13 +3,46 @@ import { Modal, ModalBody } from "reactstrap";
 
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
 import "../views/css/FreeDashboard.css";
+import ReactDOM from "react-dom";
+const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+
 function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
   const { element } = props;
   var idEstablishment = props.idEstablishment;
+  var token = sessionStorage.getItem("token");
   const [appState, setAppState] = useState({
     discounts: {},
   });
+  const [paymentState, setPaymentState] = useState({
+    create_time: null,
+    order_id: null
+  });
+  const [discountPaymentInfoState, setDiscountPaymentInfoState] = useState({
+    discountPaymentInfo: {},
+  });
+
+  useEffect(() => {
+      const apiUrl =
+        "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
+        idEstablishment +
+        "/calculate";
+      async function loadDiscountPaymentInfo() {
+        await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            apiKey: "8dDc431125634ef43cD13c388e6eCf11",
+            token: token,
+          },
+        })
+          .then((response) => response.json())
+          .then((discountPaymentInfo) => {
+            setDiscountPaymentInfoState({ discountPaymentInfo: discountPaymentInfo });
+          });
+      }
+      loadDiscountPaymentInfo();
+    }, [setDiscountPaymentInfoState]);
 
   useEffect(() => {
     const apiUrl =
@@ -33,6 +66,10 @@ function DashboardQRList(props) {
     loadDiscounts();
   }, [setAppState]);
 
+  
+
+  console.log(discountPaymentInfoState);
+  console.log(appState);
   var count = 0;
 
   if (!appState.discounts.results || appState.discounts.count == 0) {
@@ -43,11 +80,40 @@ function DashboardQRList(props) {
       </Card>
     );
   } else {
-    var totalPriceDiscounts = 0;
-    for (var discount of appState.discounts.results) {
-      totalPriceDiscounts +=
-        discount.scannedCodes_number * discount.cost_number;
+    var totalPriceDiscounts = discountPaymentInfoState.discountPaymentInfo.total == undefined?0.0:discountPaymentInfoState.discountPaymentInfo.total.toFixed(2);
+    
+
+    const createOrder = (data, actions) =>{
+      return actions.order.create({
+        purchase_units: [
+          {
+            amount: {
+              value: String(totalPriceDiscounts),
+            },
+          },
+        ],
+      });
     }
+  
+    const onApprove = (data, actions) => {
+      return actions.order.capture().then(function(details){
+        setPaymentState({create_time: details.create_time, order_id: details.id })
+      });
+    }
+
+    const paymentUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
+
+    if(paymentState != null){
+      console.log(paymentState)
+      const setPaidDiscounts =  
+        fetch(paymentUrl, {
+        method: "POST",
+        headers: {
+          token: token,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(paymentState),
+      });}
 
     return (
       <ul className="ul-flex">
@@ -183,56 +249,54 @@ function DashboardQRList(props) {
                                     >
                                       Nombre Descuento
                                     </th>
+                                    <th></th>
                                     <th
                                       className="font-weight-bold text-center"
-                                      scope="col-3"
-                                    >
-                                      Precio Producto
-                                    </th>
-                                    <th
-                                      className="font-weight-bold text-center"
-                                      scope="col-2"
+                                      scope="col-5"
                                     >
                                       Total Códigos
                                     </th>
+                                    <th></th>
                                     <th
                                       className="font-weight-bold text-center"
-                                      scope="col-2"
+                                      scope="col-5"
                                     >
                                       Precio total
                                     </th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {appState.discounts.results.map(
-                                    (discounts) => {
+                                  {discountPaymentInfoState.discountPaymentInfo.payments != undefined?
+                                  discountPaymentInfoState.discountPaymentInfo.payments.map(
+                                    (payments) => {
                                       return (
                                         <>
                                           <tr>
-                                            <th scope="row" className="text-left">
-                                              {discounts.name_text}
-                                            </th>
-                                            <td>{discounts.cost_number}€</td>
-                                            <td>
-                                              {discounts.scannedCodes_number}
+                                            <td scope="row" className="text-left">
+                                              {payments.discount_name}
                                             </td>
-                                            <td>
-                                              {discounts.scannedCodes_number *
-                                                discounts.cost_number}€
-                                            </td>
+                                            <td></td>
+                                            <td>{payments.payment_scanned_codes}</td>
+                                            <td></td>
+                                            <td>{payments.value}€</td>
                                           </tr>
                                         </>
                                       );
                                     }
-                                  )}
+                                  ):<p>loading</p>}
                                   <tr>
                                     <th scope="row">TOTAL</th>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <th scope="row">{totalPriceDiscounts}€</th>
                                   </tr>
                                 </tbody>
                               </Table>
+                              <PayPalButton
+                              createOrder={(data, actions) => createOrder(data, actions)}
+                               onApprove={(data, actions) => onApprove(data, actions)}
+                              />
                             </Container>
                           </ModalBody>
                         </Modal>

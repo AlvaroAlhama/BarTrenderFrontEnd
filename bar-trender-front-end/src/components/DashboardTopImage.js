@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from 'react';
+import React, { useEffect, useState, Component } from "react";
 
 import bartrenderBlack from "./Images/bartrenderBlack.png";
 import cruzcampo from "./Images/cruzcampo.png";
@@ -22,40 +22,40 @@ function DashboardTopImage(props) {
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-    console.log(token, 'token');
+    console.log(token, "token");
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
     async function loadStats() {
       await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': token,
+          "token": token,
         },
 
         body: JSON.stringify({ filter: props.filter })
-      }).then(response => response.json())
-        .then(stats => {
+      }).then((response) => response.json())
+        .then((stats) => {
           setAppState({ stats: stats });
         });
     }
-    loadStats()
+    loadStats();
   }, [setAppState]);
 
   //Añadir todas las cervezas posibles junto a las imagenes en la carpeta. Esto no es definitivo
 
-  var imgBest = bartrenderBlack
-  var nameBest = "No hemos encontrado el elemento más buscado"
-  if (appState.stats.first != undefined) {
-     nameBest = appState.stats.first.name
-    if (nameBest == "Cruzcampo"){
-     imgBest = cruzcampo
-    }else if(nameBest == "Heineken"){
-     imgBest = heineken
+  var imgBest = bartrenderBlack;
+  var nameBest = "No hemos encontrado el elemento más buscado";
+  if (appState.stats.first !== undefined) {
+     nameBest = appState.stats.first.name;
+    if (nameBest === "Cruzcampo"){
+     imgBest = cruzcampo;
+    }else if(nameBest === "Heineken"){
+     imgBest = heineken;
     }
-    else if(nameBest == "Dardos"){
-      imgBest = dardos
-    }else if(nameBest == "Futbolin"){
-        imgBest = futbolin
+    else if(nameBest === "Dardos"){
+      imgBest = dardos;
+    }else if(nameBest === "Futbolin"){
+        imgBest = futbolin;
     }
   
 }

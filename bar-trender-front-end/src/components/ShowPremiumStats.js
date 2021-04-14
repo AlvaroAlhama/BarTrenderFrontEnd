@@ -1,6 +1,6 @@
-import React, { useEffect, useState, Component } from 'react';
+import React, { useEffect, useState, Component } from "react";
 
-import PremiumBarChart from "./PremiumBarChart.js"
+import PremiumBarChart from "./PremiumBarChart.js";
 
   import {
     Card,
@@ -31,6 +31,6 @@ import PremiumBarChart from "./PremiumBarChart.js"
 
 
 
-  )
+  );
   }
-  export default ShowPremiumStats
+  export default ShowPremiumStats;

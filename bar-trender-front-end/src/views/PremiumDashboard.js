@@ -17,10 +17,8 @@ import {
 } from "react-bootstrap";
 
 
-import DashboardTopImage from "../components/DashboardTopImage"
-import FreePieChart from "../components/FreePieChart.js";
-import PremiumBarChart from "../components/PremiumBarChart.js"
-import ShowPremiumStats from "../components/ShowPremiumStats.js"
+
+import ShowPremiumStats from "../components/ShowPremiumStats.js";
 
 function PremiumDashboard() {
 

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, Component } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import React, { useEffect, useState, Component } from "react";
+import { Bar, Line, Pie } from "react-chartjs-2";
 
 
 
@@ -17,33 +17,33 @@ function BeerPieChart(props) {
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-    console.log(token, 'token');
+    console.log(token, "token");
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
     async function loadStats() {
       await fetch(apiUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'token': token,
+          "Content-Type": "application/json",
+          "token": token,
         },
 
         body: JSON.stringify({ filter: props.filter })
-      }).then(response => response.json())
-        .then(stats => {
+      }).then((response) => response.json())
+        .then((stats) => {
           setAppState({ stats: stats });
         });
     }
     loadStats()
   }, [setAppState]);
 
-  console.log(appState.stats, 'appState.stats');
+  console.log(appState.stats, "appState.stats");
   if (appState.stats.first != undefined) {
     var graph2 = {
       chartData: {
         labels: [appState.stats.first.name, appState.stats.second.name, appState.stats.third.name, 'Otros'],
         datasets: [
           {
-            label: 'Busquedas',
+            label: "Busquedas",
             data: [
               appState.stats.first.percentage,
               appState.stats.second.percentage,
@@ -51,10 +51,10 @@ function BeerPieChart(props) {
               appState.stats.other.percentage,
             ],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
+              "rgba(255, 99, 132, 0.6)",
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
             ],
 
           }
@@ -65,10 +65,10 @@ function BeerPieChart(props) {
   } else {
     var graph2 = {
       chartData: {
-        labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
+        labels: ["Billar", "Futbolin", "Futbol en television", "Otros"],
         datasets: [
           {
-            label: 'Busquedas',
+            label: "Busquedas",
             data: [
               10,
               20,
@@ -76,10 +76,10 @@ function BeerPieChart(props) {
               40,
             ],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
+              "rgba(255, 99, 132, 0.6)",
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
             ],
 
           }
@@ -104,18 +104,18 @@ function BeerPieChart(props) {
         options={{
           title: {
             display: false,
-            text: '¿Qué se busca más?',
+            text: "¿Qué se busca más?",
             fontSize: 25
           },
           legend: {
             display: true,
-            position: 'right'
+            position: "right"
           }
         }}
       />
 
     </div>
-  )
+  );
 }
 
 

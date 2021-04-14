@@ -60,7 +60,9 @@ function DashboardQRList(props) {
       })
         .then((response) => response.json())
         .then((discounts) => {
-          setAppState({ discounts: discounts });
+          setAppState({
+             discounts: discounts
+             });
         });
     }
     loadDiscounts();
@@ -93,7 +95,7 @@ function DashboardQRList(props) {
           },
         ],
       });
-    }
+    };
   
     const onApprove = (data, actions) => {
       return actions.order.capture().then(function(details){

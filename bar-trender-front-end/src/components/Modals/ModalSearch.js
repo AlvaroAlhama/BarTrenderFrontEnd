@@ -78,7 +78,7 @@ class ModalSearch extends React.Component {
     })
 
     this.handleTermChange = this.handleTermChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
+    // this.handleNameChange = this.handleNameChange.bind(this);
     this.handleDiscountChange = this.handleDiscountChange.bind(this);
 
     this.toggle = this.toggle.bind(this);
@@ -94,37 +94,41 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-    //console.log(e);
-
-    if (e.target.checked == true) {
-      // this.setState({ [type] : [name] },
-      //   () => console.log(this.state, "checked"),
-      // );
-      if (this.state[type] == undefined) {
-        this.setState({ [type]: [name] },
-          () => console.log(this.state),
-        );
-      } else {
-        this.state[type].push(name);
-        console.log(this.state, "El doblao");
+    if(e.target.name){
+      console.log(e.target.value);
+      this.setState({'name': e.target.value },);
+    }else{
+      if (e.target.checked == true) {
+        // this.setState({ [type] : [name] },
+        //   () => console.log(this.state, "checked"),
+        // );
+        if (this.state[type] == undefined) {
+          this.setState({ [type]: [name] },
+            () => console.log(this.state),
+          );
+        } else {
+          this.state[type].push(name);
+          console.log(this.state, "El doblao");
+        }
+      }
+      else {
+        var nameIndex = this.state[type].indexOf("name");
+        this.state[type].splice(nameIndex, 1);
+        console.log(this.state);
       }
     }
-    else {
-      var nameIndex = this.state[type].indexOf("name");
-      this.state[type].splice(nameIndex, 1);
-      console.log(this.state);
-    }
+    
 
 
 
   }
-  handleNameChange(e) {
+  // handleNameChange(e) {
 
-    var x = document.getElementById("name").value;
-    this.setState({'name': x },
-    );
+  //   var x = document.getElementById("name").value;
+  //   this.setState({'name': x },
+  //   );
 
-  }
+  // }
   handleDiscountChange(e) {
 
     var x = document.getElementById("discounts").value;
@@ -245,7 +249,7 @@ class ModalSearch extends React.Component {
                   <Form className="searchbox" onSubmit={this.handleSubmit}>
                     <FormGroup>
                       <Label for="name">Nombre del establecimiento</Label>
-                      <Input type="text" name="name" id="name" onChange={this.handleNameChange} />
+                      <Input type="text" name="name" id="name" onChange={this.handleTermChange} />
                     </FormGroup>
 
                     {Object.entries(this.tags_grouped).map(([type, index]) => {

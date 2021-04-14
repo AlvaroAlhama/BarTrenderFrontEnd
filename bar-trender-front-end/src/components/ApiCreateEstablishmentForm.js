@@ -7,7 +7,17 @@ class ApiCreateEstablishmentForm extends React.Component {
     super();
 
     this.state = {
-      input: {},
+        input: {
+        tags: [],  
+      },
+
+      send: {
+        name_text: null,
+        cif_text: null,
+        phone_number: null,
+        zone_enum: null,
+        tags: [],
+      },
 
       tags: [],
 
@@ -23,9 +33,6 @@ class ApiCreateEstablishmentForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleCreate.bind(this);
-    this.handleSend = this.handleSend.bind(this);
-    this.changeTag = this.changeTag.bind(this);
-
     this.getTags();
   }
 
@@ -42,25 +49,21 @@ class ApiCreateEstablishmentForm extends React.Component {
         apiKey: "8dDc431125634ef43cD13c388e6eCf11",
       },
     });
-    console.log(response);
     const data = await response.json();
     this.state.tags = data.tags;
-    console.log("Aqui tags constructor");
-    console.log(this.state.tags);
   }
 
   async handleCreate() {
     let errors = {};
+      this.state.send.name_text = this.state.input.name_text;
+      this.state.send.cif_text = this.state.input.cif_text;
+      this.state.send.phone_number = Number.parseInt(this.state.input.phone_number, 10);
+      this.state.send.zone_enum = this.state.input.zone_enum;
+      this.state.send.tags = this.state.input.tags;
     var token = sessionStorage.getItem("token");
-    var query = window.location.pathname;
-    var splited = query.split("/");
-    var idEstablishment = splited[3];
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
-      idEstablishment +
-      "/discounts/create";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/create";
 
-    console.log(this.state.send);
     const create = await fetch(url, {
       method: "POST",
       headers: {
@@ -76,57 +79,6 @@ class ApiCreateEstablishmentForm extends React.Component {
     } else {
       var response = await create.json();
       this.setState({ errors: response.error, modalFail: true });
-    }
-  }
-
-  handleSend() {
-    const initialDate = this.state.input.initialDate;
-    const initialTime = this.state.input.initialTime;
-    const timeStampInitial = moment.utc(`${initialDate} ${initialTime}`).unix();
-
-    const endDate = this.state.input.endDate;
-
-    const endTime = this.state.input.endTime;
-
-    if (endDate != undefined) {
-      const timeStampEnd = moment.utc(`${endDate} ${endTime}`).unix();
-
-      let send2 = {
-        name: this.state.input.name,
-        description: this.state.input.descripcion,
-        cost: parseFloat(this.state.input.cost),
-        totalCodes: parseInt(this.state.input.totalCodes),
-        initialDate: timeStampInitial,
-        endDate: timeStampEnd,
-        scannedCodes: 0,
-      };
-
-      this.setState(
-        {
-          send: send2,
-        },
-        () => {
-          this.handleCreate();
-        }
-      );
-    } else {
-      let send2 = {
-        name: this.state.input.name,
-        description: this.state.input.descripcion,
-        cost: parseFloat(this.state.input.cost),
-        totalCodes: parseInt(this.state.input.totalCodes),
-        initialDate: timeStampInitial,
-        scannedCodes: 0,
-      };
-
-      this.setState(
-        {
-          send: send2,
-        },
-        () => {
-          this.handleCreate();
-        }
-      );
     }
   }
 
@@ -154,43 +106,23 @@ class ApiCreateEstablishmentForm extends React.Component {
 
       input["zone_enum"] = "";
 
+      this.state.tags.map((tag) => {
+        if(this.state.input[tag.name]=="true"){
+          if(!this.state.input.tags.some(t => (t.name === tag.name ))){
+            this.state.input.tags = this.state.input.tags.concat(tag.name);
+          }
+        }
+      }
+      
+      );
+      console.log("AQUI TAGS INPUT")
+      console.log(this.state.input.tags)
+
       input["tags"] = "";
 
-      this.handleSend(event);
+      this.handleCreate(event);
     }
   }
-  async changeTag(tag_type){
-    if(tag_type == "Ocio"){
-      console.log("AQUI ACTIVE TAG")
-      console.log(document.getElementsByClassName("active-tag"))
-      document.getElementsByClassName("active-tag").classList.add('d-none');
-      document.getElementById("active-tag").classList.remove("active-tag");
-      document.getElementById("content-ocio").classList.remove("d-none");
-      document.getElementById("content-ocio").classList.add("active-tag");
-    }
-    if(tag_type == "Bebida"){
-      document.getElementsByClassName("active-tag").classList.add("d-none");
-      document.getElementsByClassName("active-tag").classList.remove("active-tag");
-      document.getElementById("content-bebida").classList.remove("d-none");
-      document.getElementById("content-bebida").classList.add("active-tag");
-    }
-
-    if(tag_type == "Zona"){
-      document.getElementsByClassName("active-tag").classList.add("d-none");
-      document.getElementsByClassName("active-tag").classList.remove("active-tag");
-      document.getElementById("content-zona").classList.remove("d-none");
-      document.getElementById("content-zona").classList.add("active-tag");
-    }
-
-    if(tag_type == "Instalacion"){
-      document.getElementsByClassName("active-tag").classList.add("d-none");
-      document.getElementsByClassName("active-tag").classList.remove("active-tag");
-      document.getElementById("content-instalacion").classList.remove("d-none");
-      document.getElementById("content-instalacion").classList.add("active-tag");
-    }
-  }
-
-
   validate() {
     let input = this.state.input;
 
@@ -207,9 +139,9 @@ class ApiCreateEstablishmentForm extends React.Component {
     }
 
     if (input["cif_text"]) {
-      isValid = false;
       var pattern = new RegExp(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/);
       if (!pattern.test(input["cif_text"])) {
+        isValid = false;
         errors["cif_text"] = "Introduzca un CIF correcto.";
       }
     }
@@ -236,37 +168,39 @@ class ApiCreateEstablishmentForm extends React.Component {
         "Introduzca la zona en la cuál se encuentra el establecimiento.";
     }
 
-    if (!input["tags"]) {
-      isValid = false;
-
-      errors["tags"] =
-        "Introduzca al menos una etiqueta para su establecimiento.";
-    }
-
     this.setState({
       errors: errors,
     });
 
     return isValid;
-  } 
+  }
   render() {
-    console.log("AQUI ESTADO");
-    console.log(this.state.tags);
     this.state.tags.map((tag) => {
-      console.log(tag.type)
       if (tag.type == "Ocio") {
-        this.state.tags_group.ocio.concat(tag.name);
-        console.log("AQUI OCIO")
-        console.log(this.state.tags_group.ocio);
+        if (!this.state.tags_group.ocio.some((t) => t.name === tag.name)) {
+          this.state.tags_group.ocio = this.state.tags_group.ocio.concat(tag);
+        }
       }
       if (tag.type == "Bebida") {
-        this.state.tags_group.bebida.concat(tag);
+        if (!this.state.tags_group.bebida.some((t) => t.name === tag.name)) {
+          this.state.tags_group.bebida = this.state.tags_group.bebida.concat(
+            tag
+          );
+        }
       }
       if (tag.type == "Zona") {
-        this.state.tags_group.zona.concat(tag);
+        if (!this.state.tags_group.zona.some((t) => t.name === tag.name)) {
+          this.state.tags_group.zona = this.state.tags_group.zona.concat(tag);
+        }
       }
       if (tag.type == "Instalacion") {
-        this.state.tags_group.instalacion.concat(tag);
+        if (
+          !this.state.tags_group.instalacion.some((t) => t.name === tag.name)
+        ) {
+          this.state.tags_group.instalacion = this.state.tags_group.instalacion.concat(
+            tag
+          );
+        }
       }
     });
     return (
@@ -284,7 +218,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                 id="name_text"
               />
 
-              <div className="text-danger">{this.state.errors.name_text}</div>
+              <div class="text-danger">{this.state.errors.name_text}</div>
             </div>
             <div class="form-group my-1">
               <input
@@ -293,11 +227,11 @@ class ApiCreateEstablishmentForm extends React.Component {
                 value={this.state.input.cif_text}
                 onChange={this.handleChange}
                 class="form-control"
-                placeholder="Nombre del establecimiento"
+                placeholder="CIF del establecimiento"
                 id="cif_text"
               />
 
-              <div className="text-danger">{this.state.errors.cif_text}</div>
+              <div class="text-danger">{this.state.errors.cif_text}</div>
             </div>
 
             <div class="form-group my-1">
@@ -308,9 +242,9 @@ class ApiCreateEstablishmentForm extends React.Component {
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Número de teléfono del establecimiento."
-                id="cif_text"
+                id="phone_number"
               />
-              <div className="text-danger">
+              <div class="text-danger">
                 {this.state.errors.phone_number}
               </div>
             </div>
@@ -330,49 +264,147 @@ class ApiCreateEstablishmentForm extends React.Component {
               <div class="card-header">
                 <ul class="nav nav-tabs nav-pills-info nav-pills-just-icons row justify-content-between">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#" onClick={this.changeTag("Ocio")}>
-                    <i class="fal fa-bowling-ball fa-2x w-100"></i>                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" onClick={this.changeTag("Bebida")}>
-                      <i class="fal fa-beer fa-2x w-100"></i>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#" onClick={this.changeTag("Zona")}>
-                      <i class="fal fa-globe-europe fa-2x w-100"></i>
+                    <a id="link-ocio"
+                      class="nav-link text-danger"
+                      aria-current="page"
+                      href="#"
+                      onClick={() => {
+                        document.getElementsByClassName("text-danger")[0].classList.remove("text-danger");
+                        document.getElementById("link-ocio").classList.add("text-danger");
+                        document
+                          .getElementsByClassName("active-tag")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("active-tag")[0]
+                          .classList.remove("active-tag");
+                        document
+                          .getElementById("content-ocio")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-ocio")
+                          .classList.add("active-tag");
+
+                      }}
+                    >
+                      <i class="fal fa-bowling-ball fa-2x w-100"></i>{" "}
                     </a>
                   </li>
                   <li class="nav-item">
                     <a
                       class="nav-link"
+                      id="link-bebida"
                       href="#"
-                      onClick={this.changeTag("Instalacion")}>
-                      <i class="fal fa-umbrella-beach fa-2x w-100"></i>
+                      onClick={() => {
+                        document.getElementsByClassName("text-danger")[0].classList.remove("text-danger");
+                        document.getElementById("link-bebida").classList.add("text-danger");
+                        document
+                          .getElementsByClassName("active-tag")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("active-tag")[0]
+                          .classList.remove("active-tag");
+                        document
+                          .getElementById("content-bebida")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-bebida")
+                          .classList.add("active-tag");
+                      }}
+                    >
+                      <i class="fal fa-beer fa-2x w-100"></i>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      id="link-zona"
+                      href="#"
+                      onClick={() => {
+                        document.getElementsByClassName("text-danger")[0].classList.remove("text-danger");
+                        document.getElementById("link-zona").classList.add("text-danger");
+                        document
+                          .getElementsByClassName("active-tag")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("active-tag")[0]
+                          .classList.remove("active-tag");
+                        document
+                          .getElementById("content-zona")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-zona")
+                          .classList.add("active-tag");
+                      }}
+                    >
+                      <i class="fal fa-globe-europe fa-2x w-100"></i>
                     </a>
                   </li>
                 </ul>
               </div>
-              <div class="card-body tab-content">
-              <div className="active-tag">
-                  <h1> ocio</h1>
+              <div id="content-ocio" class=" card-body active-tag">
+                <h4>Ocio</h4>
+                <ul>
+                  {this.state.tags_group.ocio.map((tag) => {
+                    return (
+                      <>
+                        <div class="row">
+                          <input
+                            type="checkbox"
+                            name={tag.name}
+                            value="true"
+                            onChange={this.handleChange}
+                          ></input>
+                          {tag.name}
+                        </div>
+                      </>
+                    );
+                  })}
+                </ul>
               </div>
-              <div className="d-none">
-              <h1> bebida</h1>
+              <div id="content-bebida" class="card-body d-none">
+                <h4>Bebida</h4>
+                <ul>
+                  {this.state.tags_group.bebida.map((tag) => {
+                    return (
+                      <>
+                        <div class="row">
+                          <input type="checkbox"
+                           name={tag.name}
+                           value="true"
+                           onChange={this.handleChange}
+                          ></input>
+                          {tag.name}
+                        </div>
+                      </>
+                    );
+                  })}
+                </ul>
               </div>
-              <div className="d-none">
-              <h1> Zona</h1>
+              <div id="content-zona" class="card-body d-none">
+                <h4>Zona</h4>
+                <ul>
+                  {this.state.tags_group.zona.map((tag) => {
+                    return (
+                      <>
+                        <div class="row">
+                          <input type="checkbox"
+                           name={tag.name}
+                           value="true"
+                           onChange={this.handleChange}
+                          ></input>
+                          {tag.name}
+                        </div>
+                      </>
+                    );
+                  })}
+                </ul>
               </div>
-              <div className="d-none">
-              <h1> Instalacion</h1>
-              </div>
-                <div class="text-center">
-                  <input
-                    type="submit"
-                    value="Añadir establecimiento"
-                    class="btn btn-primary"
-                  />
-                </div>
+              <div class="text-center">
+                <input
+                  type="submit"
+                  value="Añadir establecimiento"
+                  class="btn btn-primary"
+                />
               </div>
             </div>
           </form>
@@ -387,11 +419,29 @@ class ApiCreateEstablishmentForm extends React.Component {
             >
               <i className="now-ui-icons ui-1_simple-remove"></i>
             </button>
-            <h4 className="title title-up">Resultado</h4>
+            <h4 className="title title-up">¡ÉXITO!</h4>
           </div>
           <ModalBody>
             <div className="mt-2 mb-4 text-center">
-              <p> Descuento creado con éxito</p>
+              <p class="text-success"> Establecimiento creado con éxito</p>
+            </div>
+          </ModalBody>
+        </Modal>
+
+        <Modal isOpen={this.state.modalFail}>
+          <div className="modal-header justify-content-center">
+            <button
+              className="close"
+              type="button"
+              onClick={() => window.location.reload()}
+            >
+              <i className="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 className="title title-up">¡ERROR!</h4>
+          </div>
+          <ModalBody>
+            <div className="mt-2 mb-4 text-center">
+              <p class="text-danger">{this.state.errors}</p>
             </div>
           </ModalBody>
         </Modal>

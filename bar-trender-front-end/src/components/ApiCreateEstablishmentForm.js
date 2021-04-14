@@ -24,6 +24,8 @@ class ApiCreateEstablishmentForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleCreate.bind(this);
     this.handleSend = this.handleSend.bind(this);
+    this.changeTag = this.changeTag.bind(this);
+
     this.getTags();
   }
 
@@ -157,6 +159,37 @@ class ApiCreateEstablishmentForm extends React.Component {
       this.handleSend(event);
     }
   }
+  async changeTag(tag_type){
+    if(tag_type == "Ocio"){
+      console.log("AQUI ACTIVE TAG")
+      console.log(document.getElementsByClassName("active-tag"))
+      document.getElementsByClassName("active-tag").classList.add('d-none');
+      document.getElementById("active-tag").classList.remove("active-tag");
+      document.getElementById("content-ocio").classList.remove("d-none");
+      document.getElementById("content-ocio").classList.add("active-tag");
+    }
+    if(tag_type == "Bebida"){
+      document.getElementsByClassName("active-tag").classList.add("d-none");
+      document.getElementsByClassName("active-tag").classList.remove("active-tag");
+      document.getElementById("content-bebida").classList.remove("d-none");
+      document.getElementById("content-bebida").classList.add("active-tag");
+    }
+
+    if(tag_type == "Zona"){
+      document.getElementsByClassName("active-tag").classList.add("d-none");
+      document.getElementsByClassName("active-tag").classList.remove("active-tag");
+      document.getElementById("content-zona").classList.remove("d-none");
+      document.getElementById("content-zona").classList.add("active-tag");
+    }
+
+    if(tag_type == "Instalacion"){
+      document.getElementsByClassName("active-tag").classList.add("d-none");
+      document.getElementsByClassName("active-tag").classList.remove("active-tag");
+      document.getElementById("content-instalacion").classList.remove("d-none");
+      document.getElementById("content-instalacion").classList.add("active-tag");
+    }
+  }
+
 
   validate() {
     let input = this.state.input;
@@ -215,8 +248,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     });
 
     return isValid;
-  }
-
+  } 
   render() {
     console.log("AQUI ESTADO");
     console.log(this.state.tags);
@@ -296,51 +328,44 @@ class ApiCreateEstablishmentForm extends React.Component {
             </div>
             <div class="card">
               <div class="card-header">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs nav-pills-info nav-pills-just-icons row justify-content-between">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">
-                      Ocio
+                    <a class="nav-link" aria-current="page" href="#" onClick={this.changeTag("Ocio")}>
+                    <i class="fal fa-bowling-ball fa-2x w-100"></i>                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" onClick={this.changeTag("Bebida")}>
+                      <i class="fal fa-beer fa-2x w-100"></i>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      Bebida
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">
-                      Zona
+                    <a class="nav-link" href="#" onClick={this.changeTag("Zona")}>
+                      <i class="fal fa-globe-europe fa-2x w-100"></i>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a
-                      class="nav-link disabled"
+                      class="nav-link"
                       href="#"
-                      tabindex="-1"
-                      aria-disabled="true">
-                      instalacion
+                      onClick={this.changeTag("Instalacion")}>
+                      <i class="fal fa-umbrella-beach fa-2x w-100"></i>
                     </a>
                   </li>
                 </ul>
               </div>
               <div class="card-body tab-content">
-                {this.state.tags_group.bebida.map((tag) => {
-                  console.log("TAG")
-                  console.log(tag)
-                  return (
-                    <>
-                      <label for="tag">{tag.name}</label>
-                      <input
-                        type="checkbox"
-                        name="tag"
-                        value={this.state.input.tag}
-                        onChange={this.handleChange}
-                        class="form-control"
-                        placeholder="tag"
-                      />
-                    </>
-                  );
-                })}
+              <div className="active-tag">
+                  <h1> ocio</h1>
+              </div>
+              <div className="d-none">
+              <h1> bebida</h1>
+              </div>
+              <div className="d-none">
+              <h1> Zona</h1>
+              </div>
+              <div className="d-none">
+              <h1> Instalacion</h1>
+              </div>
                 <div class="text-center">
                   <input
                     type="submit"

@@ -36,16 +36,13 @@ class POSTCreateDiscount extends React.Component {
     var splited = query.split("/");
     var idEstablishment = splited[3];
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+    "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/create";
-
-    console.log(this.state.send);
     const create = await fetch(url, {
       method: "POST",
       headers: {
         token: token,
-        "Content-type": "application/json",
       },
       body: JSON.stringify(this.state.send),
     });

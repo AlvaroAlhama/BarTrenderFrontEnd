@@ -114,7 +114,7 @@ export default class EditOwnerProfile extends React.Component {
                 send['name'] = inputs.name;
                 send['surname'] = inputs.surname;
                 send['email'] = inputs.email;
-                send['phone'] = inputs.phone;
+                send['phone'] = parseInt(inputs.phone);
                 send['old_password'] = inputs.old_password;
 
                 this.state.sendFinal = send;
@@ -125,7 +125,7 @@ export default class EditOwnerProfile extends React.Component {
                 sendWithNewpass['name'] = inputs.name;
                 sendWithNewpass['surname'] = inputs.surname;
                 sendWithNewpass['email'] = inputs.email;
-                sendWithNewpass['phone'] = inputs.phone;
+                sendWithNewpass['phone'] = parseInt(inputs.phone);
                 sendWithNewpass['old_password'] = inputs.old_password;
                 sendWithNewpass['password'] = inputs.password;
 

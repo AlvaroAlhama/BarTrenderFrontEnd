@@ -4,19 +4,33 @@ import POSTLoginForm from "../ApiLoginForm";
 
 function ModalLogin() {
   const [modal1, setModal1] = React.useState(false);
-
+  const [clientUserForm, setClientUserForm] = React.useState(false);
+  function reportWindowSize() {
+    const { innerWidth: width, innerHeight: height } = window;
+    if(width < 800 && document.getElementById("login-tooltip")!=null ){
+      document.getElementById("login-tooltip").classList.remove("mt-1");
+      document.getElementById("login-tooltip").classList.add("my-auto");
+    }
+    if(width > 800 && document.getElementById("login-tooltip")!=null ){
+      document.getElementById("login-tooltip").classList.remove("my-auto");
+      document.getElementById("login-tooltip").classList.add("mt-1");
+    }
+  }
+  window.addEventListener('resize', reportWindowSize);
   var token = sessionStorage.getItem("token");
   if (!token) {
     return (
       <>
-        <i
+        <a
           color="primary"
           className="mr-1"
           onClick={() => setModal1(true)}
           id="login-tooltip"
           className="far fa-user fa-lg mt-1"
-        ></i>
-        <p className="d-lg-none d-xl-none">Inicio de Sesión</p>
+        >
+          
+        </a>
+        <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto ml-2">Inicio de Sesión</p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <div className="modal-header justify-content-center">
             <button

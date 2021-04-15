@@ -158,7 +158,7 @@ class ModalSearch extends React.Component {
       <>
         <Button
           color="primary"
-          className="mr-1"
+          className="ml-4 my-auto"
           onClick={this.toggle}
           id="filters"
         >

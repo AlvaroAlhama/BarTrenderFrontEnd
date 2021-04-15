@@ -1,15 +1,4 @@
 import React from 'react'
-import {
-    Badge,
-    Button,
-    Card,
-    Form,
-    Navbar,
-    Nav,
-    Container,
-    Row,
-    Col,
-} from "react-bootstrap";
 
 export default class EditOwnerProfile extends React.Component {
     constructor() {
@@ -78,7 +67,6 @@ export default class EditOwnerProfile extends React.Component {
 
     async handleUpdate() {
         var token = sessionStorage.getItem('token');
-        console.log(this.state.sendFinal)
         const urlUpdate = "http://develop-backend-sprint-01.herokuapp.com/v1/authentication/user/edit"
 
         const update = await fetch(urlUpdate, {
@@ -96,13 +84,12 @@ export default class EditOwnerProfile extends React.Component {
                 msg: data.msg,
             })
             sessionStorage.setItem("token", data.token)
-            setTimeout(window.location.reload(), 2000)
+            setTimeout(window.location.reload(), 5000)
         } else {
             const data = await update.json();
             this.setState({
                 errorsApiPut: data
             })
-            console.log(this.state.errorsApiPut.error)
         }
     }
 
@@ -114,51 +101,38 @@ export default class EditOwnerProfile extends React.Component {
                 [event.target.name]: event.target.value
             }
         })
-
-        console.log(this.state.input)
     }
 
     handleSubmit(event) {
         event.preventDefault();
         let inputs = this.state.input;
-        console.log(inputs, "Estos son los inputs")
-
         let sendWithNewpass = {};
         let send = {};
 
-        console.log(this.validate(), "este es el validate")
         if (this.validate()) {
             if (inputs['password'] == undefined) {
-                console.log(send, "Send antes de asignar")
                 send['name'] = inputs.name;
                 send['surname'] = inputs.surname;
                 send['email'] = inputs.email;
                 send['phone'] = inputs.phone;
                 send['old_password'] = inputs.old_password;
-                console.log(send, "Despues de Asignar")
 
                 this.state.sendFinal = send;
 
                 this.handleUpdate()
 
-                console.log(this.state.sendFinal, "Lo que se va a enviar")
             } else {
-                console.log(sendWithNewpass, "Send antes de asignar")
                 sendWithNewpass['name'] = inputs.name;
                 sendWithNewpass['surname'] = inputs.surname;
                 sendWithNewpass['email'] = inputs.email;
                 sendWithNewpass['phone'] = inputs.phone;
                 sendWithNewpass['old_password'] = inputs.old_password;
                 sendWithNewpass['password'] = inputs.password;
-                console.log(sendWithNewpass, "Despues de Asignar")
 
                 this.state.sendFinal = sendWithNewpass;
                 this.handleUpdate()
 
-                console.log(this.state.sendFinal, "Lo que se envia si tiene password nuevo")
             }
-
-
         }
     }
 
@@ -235,8 +209,8 @@ export default class EditOwnerProfile extends React.Component {
         } else {
             return (
                 <>
-                    <div class='container-fluid'>
-                        <div class='header'>
+                    <div class='container-fluid bg-white'>
+                        <div class='header pt-3'>
                             <h2>Mi Perfil</h2>
                         </div>
                         <hr></hr>
@@ -334,7 +308,7 @@ export default class EditOwnerProfile extends React.Component {
                                 </div>
                             </div>
 
-                            <div class="text-center">
+                            <div class="text-center pb-5">
                                 <input
                                     type="submit"
                                     value="Guardar cambios"
@@ -342,11 +316,11 @@ export default class EditOwnerProfile extends React.Component {
                                 />
                             </div>
                         </form>
-                        <div class='row '>
-                            <div class="text-danger">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
+                        <div class='container-fluid bg-danger'>
+                            <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
                         </div>
-                        <div class='row'>
-                            <div class="text-success">{this.state.msg == undefined ? "" : this.state.msg}</div>
+                        <div class='container-fluid bg-success'>
+                            <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
                         </div>
                     </div>
 

@@ -17,6 +17,7 @@ import {
 import ModalSearch from "../../components/Modals/ModalSearch";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalSignUp from "../../components/Modals/ModalSignUp";
+import ModalEditClient from "../../components/Modals/ModalEditClient.js"
 
 import "./MainNavbar.css";
 
@@ -44,6 +45,7 @@ function MainNavbar() {
   });
   const logged = sessionStorage.getItem("token");
   const isLoggedOwner = logged && sessionStorage.getItem("rol") == "owner";
+  const isLoggedClient = logged && sessionStorage.getItem('rol') == 'client'
   return (
     <>
       {collapseOpen ? (
@@ -146,6 +148,16 @@ function MainNavbar() {
                     <ModalSignUp/>
                   <UncontrolledTooltip target="#signup-tooltip">
                     Registro
+                  </UncontrolledTooltip>
+                  </NavLink>
+                </NavItem>
+              )}
+              {isLoggedClient && (
+                <NavItem>
+                  <NavLink id="edit-profile-tooltip">
+                    <ModalEditClient/>
+                  <UncontrolledTooltip target="#edit-profile-tooltip">
+                    Mi perfil
                   </UncontrolledTooltip>
                   </NavLink>
                 </NavItem>

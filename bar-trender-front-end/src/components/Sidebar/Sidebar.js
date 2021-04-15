@@ -11,6 +11,7 @@ import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
 import EstablishmentView from "views/EstablishmentView";
+import EditOwnerProfile from "components/EditOwnerProfile.js"
 import React, { Component } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
@@ -155,6 +156,14 @@ function Sidebar({ color, image }) {
               name: "Desbloquear premium",
               icon: "nc-icon nc-bell-55",
               component: Upgrade,
+              layout: "/admin",
+            },
+
+            {
+              path: "/myProfile",
+              name: "Mi Perfil",
+              icon: "nc-icon nc-circle-09",
+              component: EditOwnerProfile,
               layout: "/admin",
             },
            

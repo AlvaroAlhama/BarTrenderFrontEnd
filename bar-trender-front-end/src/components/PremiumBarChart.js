@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Component } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
+import moment from "moment";
 
 
 
@@ -9,8 +10,10 @@ function PremiumBarChart(props) {
   const [modal2, setModal2] = React.useState(false);
   const { element } = props;
 
-  const datenowms = Math.round((Date.now()-2629800000)/1000) 
-  const date1monthms= Math.round((Date.now()+86400000)/1000)
+      const tsInitialDate = moment.utc(`${props.initialDate}`).unix();
+      const tsEndDate = moment.utc(`${props.endDate}`).unix();
+      const tsEndDateplus1 = tsEndDate+86400;
+      
   
   const [appState, setAppState] = useState({
     stats: {},
@@ -19,8 +22,7 @@ function PremiumBarChart(props) {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
     console.log(token, 'token');
-    {/*const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";*/}
-     {/*const apiUrl = " http://127.0.0.1:8000/v1/stats/getPremium";*/}
+   
      const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";
     async function loadStats() {
       await fetch(apiUrl, {
@@ -30,7 +32,7 @@ function PremiumBarChart(props) {
           'token': token,
         },
 
-        body: JSON.stringify({  initial_date: datenowms, end_date: date1monthms, zone: props.zone, filter:props.filter })
+        body: JSON.stringify({  initial_date: tsInitialDate, end_date: tsEndDateplus1, zone: props.zone, filter:props.filter })
       }).then(response => response.json())
         .then(stats => {
           setAppState({ stats: stats });

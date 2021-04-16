@@ -163,7 +163,7 @@ function Dashboard() {
     return (
       <>
         <Container fluid>    
-        <h3>Los descuentos de tus establecimientos</h3>        
+        <h3>Tus Descuentos en uso</h3>        
               {listQREstablishments
               }
             

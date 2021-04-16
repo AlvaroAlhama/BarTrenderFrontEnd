@@ -34,10 +34,10 @@ function ModalSelectedElement(prop) {
     discounts: {},
   });
   const ubicacion = {
-    lat: 36.92043226009566, 
+    lat: 36.92043226009566,
     lng: -6.080399144405965
   };
-  const location = element.street +", "+ element.number + ", "+ element.zone+ ", "+ element.locality; 
+  const location = element.street + ", " + element.number + ", " + element.zone + ", " + element.locality;
   //  useEffect(() => {
   //   const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
   //   async function loadDiscounts(){
@@ -88,12 +88,24 @@ function ModalSelectedElement(prop) {
 
   return (
     <>
-      <img
-        className=""
-        src={image_left}
-        onClick={() => { setModal1(true); loadDiscounts(); }}
-        alt=""
-      />
+      <div class="card h-auto bg-white border border-dark">
+        <div class="card-body card-img-top">
+          <img
+            className=""
+            src={element.image}
+            onClick={() => { setModal1(true); loadDiscounts(); }}
+            alt=""
+          />
+
+        </div>
+        <div class="card-footer">
+          <p class="card-title text-center">
+            {element.name}
+          </p>
+
+        </div>
+      </div>
+
       <Modal animation={false} size="lg" modalClassName="modal-info" isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">
           <button
@@ -103,7 +115,6 @@ function ModalSelectedElement(prop) {
           >
             <i className="now-ui-icons ui-1_simple-remove"></i>
           </button>
-          <h4 className="title title-up">{element.name}</h4>
         </div>
         <ModalBody >
           <img
@@ -121,7 +132,7 @@ function ModalSelectedElement(prop) {
           <ListDiscount discounts={appState.discounts} />
 
           <h3>Ubicacion</h3>
-          <Map location= {location}/>
+          <Map location={location} />
 
         </ModalBody>
         <div className="modal-footer">

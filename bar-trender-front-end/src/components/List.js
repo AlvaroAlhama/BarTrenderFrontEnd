@@ -26,9 +26,9 @@ const List = (props) => {
                 <div class="card h-100">
                   <ModalSelectedElement element={establishment} />
                   <div class="card-body card-img-top">
-                    <p class="card-title">
+                    {/* <p class="card-title">
                       {establishment.name}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </Col>

@@ -10,8 +10,8 @@ function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
   const { element } = props;
   var idEstablishment = props.idEstablishment;
+ 
 
-  var idest = String(props.idEstablishment)
   var nameEstablishment = props.nameEstablishment;
   var token = sessionStorage.getItem("token");
   const [appState, setAppState] = useState({
@@ -28,7 +28,7 @@ function DashboardQRList(props) {
   useEffect(() => {
       const apiUrl =
         "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
-        idest +
+        idEstablishment +
         "/calculate";
       async function loadDiscountPaymentInfo() {
         await fetch(apiUrl, {
@@ -50,7 +50,7 @@ function DashboardQRList(props) {
   useEffect(() => {
     const apiUrl =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
-      idest +
+      idEstablishment +
       "/discounts/get?page=1&all=True";
     async function loadDiscounts() {
       await fetch(apiUrl, {

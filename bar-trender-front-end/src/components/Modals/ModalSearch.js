@@ -62,7 +62,7 @@ class ModalSearch extends React.Component {
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
 
-     
+
     fetch(apiUrl, {
       method: 'GET',
       headers: {
@@ -71,18 +71,18 @@ class ModalSearch extends React.Component {
       }
     }).then(response => response.json())
       .then(tags => {
-       this.tags = tags.tags;
-       this.tags_grouped = groupBy(this.tags, (t) => t.type);
-      // console.log(this.tags)
-      // console.log(this.tags_grouped, "tags gruo")
-    })
+        this.tags = tags.tags;
+        this.tags_grouped = groupBy(this.tags, (t) => t.type);
+        // console.log(this.tags)
+        // console.log(this.tags_grouped, "tags gruo")
+      })
 
     this.handleTermChange = this.handleTermChange.bind(this);
-    // this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDiscountChange = this.handleDiscountChange.bind(this);
 
     this.toggle = this.toggle.bind(this);
-    this.renderSwitch = this.renderSwitch.bind(this);    
+    this.renderSwitch = this.renderSwitch.bind(this);
   }
   // EN cuanto se haga el fetch, se mete la respuesta en this.tags y se llama a la fun groupBy;
   toggle() {
@@ -94,10 +94,10 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-    if(e.target.name){
+    if (e.target.name) {
       console.log(e.target.value);
-      this.setState({'name': e.target.value },);
-    }else{
+      this.setState({ 'name': e.target.value },);
+    } else {
       if (e.target.checked == true) {
         // this.setState({ [type] : [name] },
         //   () => console.log(this.state, "checked"),
@@ -117,10 +117,12 @@ class ModalSearch extends React.Component {
         console.log(this.state);
       }
     }
-    
 
+  }
 
-
+  handleSubmit(event) {
+    event.preventDefault();
+    // this.handleTermChange(event);
   }
   // handleNameChange(e) {
 
@@ -132,13 +134,13 @@ class ModalSearch extends React.Component {
   handleDiscountChange(e) {
 
     var x = document.getElementById("discounts").value;
-    this.setState({'discounts': x=='on' ? true : false },
+    this.setState({ 'discounts': x == 'on' ? true : false },
     );
 
   }
 
   renderSwitch(key) {
-    switch(key) {
+    switch (key) {
       case 'Zona':
         return 'now-ui-icons location_world';
       case 'Bebida':
@@ -156,7 +158,7 @@ class ModalSearch extends React.Component {
     }
   }
 
-  render( ){
+  render() {
     return (
 
       <>
@@ -200,41 +202,41 @@ class ModalSearch extends React.Component {
 
                             <NavItem className="col-4">
                               <Container className="mt-3 mb-3">
-                              <NavLink
-                                className={this.state['pills'] === key ? "active" : ""}
-                                href=""
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  this.setState({
-                                    pills: key,
-                                  })
+                                <NavLink
+                                  className={this.state['pills'] === key ? "active" : ""}
+                                  href=""
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    this.setState({
+                                      pills: key,
+                                    })
 
-                                }}
-                              >
-                                <i class={this.renderSwitch(key)}></i>
-                              </NavLink>
-                              <h6 class="align-center ">{key}</h6>
+                                  }}
+                                >
+                                  <i class={this.renderSwitch(key)}></i>
+                                </NavLink>
+                                <h6 class="align-center ">{key}</h6>
                               </Container>
                             </NavItem>
                           </>
                         );
                       })}
                       <NavItem className="col-4">
-                      <Container className="mt-3 mb-3">
-                        <NavLink
-                          className={this.state['pills'] === "Descuentos" ? "active" : ""}
-                          href=""
-                          onClick={(e) => {
-                            e.preventDefault();
-                            this.setState({
-                              pills: "Descuentos",
-                            })
-                          }}
-                        >
-                          <i className="now-ui-icons shopping_tag-content"></i>
-                        </NavLink>
-                        <h6 class="align-center ">Descuentos</h6>
-                              </Container>
+                        <Container className="mt-3 mb-3">
+                          <NavLink
+                            className={this.state['pills'] === "Descuentos" ? "active" : ""}
+                            href=""
+                            onClick={(e) => {
+                              e.preventDefault();
+                              this.setState({
+                                pills: "Descuentos",
+                              })
+                            }}
+                          >
+                            <i className="now-ui-icons shopping_tag-content"></i>
+                          </NavLink>
+                          <h6 class="align-center ">Descuentos</h6>
+                        </Container>
                       </NavItem>
                     </Nav>
 
@@ -265,7 +267,7 @@ class ModalSearch extends React.Component {
                                 return (
                                   <>
                                     <FormGroup check>
-                                      <Label id={"label-"+ tag.name} check>
+                                      <Label id={"label-" + tag.name} check>
                                         <Input type="checkbox"
                                           placeholder={tag.name}
                                           onChange={this.handleTermChange}
@@ -280,14 +282,14 @@ class ModalSearch extends React.Component {
                                 );
                               })}
                             </TabPane>
-                            
+
                           </TabContent>
                         </>
                       );
                     })}
                     <TabPane tabId="pillsDescuentos">
-                        <h3 className="text-center mt-2"> Descuentos</h3>
-                        <FormGroup check>
+                      <h3 className="text-center mt-2"> Descuentos</h3>
+                      <FormGroup check>
 
                         <Label id="discount-label" check>
                           <Input type="checkbox"
@@ -295,13 +297,13 @@ class ModalSearch extends React.Component {
                             onChange={this.handleDiscountChange}
                             onKeyDown={this.handleEnter}
                             name="discounts"
-                            id = "discounts"
+                            id="discounts"
                           />
                           <span className="form-check-sign"></span>
                         Cualquier descuento
                         </Label>
-                        </FormGroup>
-                      </TabPane>
+                      </FormGroup>
+                    </TabPane>
                   </Form>
                 </Col>
 
@@ -315,12 +317,12 @@ class ModalSearch extends React.Component {
 
             <Link
 
-              onClick={() => { 
-                
+              onClick={() => {
+
                 this.toggle()
-                
-                
-                 }}
+
+
+              }}
 
               to={{
                 pathname: '/list',

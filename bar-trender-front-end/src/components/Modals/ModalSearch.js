@@ -54,7 +54,7 @@ class ModalSearch extends React.Component {
       //   type: "Estilo"
       // },
     ];
-    console.log(this.tags, "construyendose")
+    // console.log(this.tags, "construyendose")
     this.tags_grouped = [];
     function groupBy(xs, f) {
       return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
@@ -106,7 +106,7 @@ class ModalSearch extends React.Component {
         );
       } else {
         this.state[type].push(name);
-        console.log(this.state, "El doblao");
+        // console.log(this.state, "El doblao");
       }
     }
     else {

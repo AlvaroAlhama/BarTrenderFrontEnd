@@ -37,7 +37,7 @@ function ModalSelectedElement(prop) {
     lat: 36.92043226009566, 
     lng: -6.080399144405965
   };
-
+  const location = element.street +", "+ element.number + ", "+ element.zone+ ", "+ element.locality; 
   //  useEffect(() => {
   //   const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
   //   async function loadDiscounts(){
@@ -121,7 +121,7 @@ function ModalSelectedElement(prop) {
           <ListDiscount discounts={appState.discounts} />
 
           <h3>Ubicacion</h3>
-          <Map location="Calle Adán y Eva, 3, 41740 Lebrija, Sevilla" />
+          <Map location= {location}/>
 
         </ModalBody>
         <div className="modal-footer">

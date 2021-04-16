@@ -19,6 +19,7 @@ const List = (props) => {
       <h2 className='list-head'>Establecimientos</h2>
       <Row className='list'>
         {establishments.map((establishment) => {
+          console.log(establishment);
           return (
             <>
               <Col className="col-lg-3 col-md-3 mb-4" >

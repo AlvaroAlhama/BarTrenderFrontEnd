@@ -17,8 +17,7 @@ import PremiumBarChart from "./PremiumBarChart.js"
         
     <Card  style={{width:"80%", height:"60%"}}>
     <Card.Body>
-    
-    <PremiumBarChart filter = {props.filter} zone = {props.zone}/>
+    <PremiumBarChart filter = {props.filter} zone = {props.zone} initialDate ={props.initialDate} endDate = {props.endDate}/>
     </Card.Body>
     <Card.Footer>
       <hr></hr>

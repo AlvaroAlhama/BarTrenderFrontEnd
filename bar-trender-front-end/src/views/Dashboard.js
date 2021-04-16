@@ -1,5 +1,11 @@
 import React, { useEffect, useState, Component } from "react";
 import ChartistGraph from "react-chartist";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 // react-bootstrap components
 import {
   Badge,
@@ -51,17 +57,110 @@ function Dashboard() {
     return (
       <Container fluid>
         <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
+        <Link to="/main" className="btn btn-primary">Volver</Link>
       </Container>
     );
-  } else {
+  
+    }
+  else if(appState.bar == undefined){
+    return(
+      <>
+      <Container fluid>
+        <Row>
+          <Card>
+            <h2>No ha añadido ningun establecimiento a nuestra aplicación. Puede acceder a las estadisticas gratuitas, pero no podrá acceder a la creacion de descuentos hasta que añada uno </h2>
+          </Card>
+        </Row>
+      <Row>
+            <Col md="4">
+              <h3>La cerveza favorita de los Usuarios</h3>
+              <Card>
+                <Card.Body>
+                  <DashboardTopImage filter={"Bebida"} />
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="now-ui-icons loader_refresh spin"></i>
+                    Datos obtenidos de la api de Bartrender
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+            <Col md="4">
+              <h3>Ranking de las 3 mejores cervezas</h3>
+              <Card>
+                <Card.Header>
+                  {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>*/}
+                </Card.Header>
+                <Card.Body>
+                  <FreePieChart filter={"Bebida"} />
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="now-ui-icons loader_refresh spin"></i>
+                    Datos actualizados mensualmente
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="4">
+              <h3>¿Que prefiere la gente para divertirse?</h3>
+              <Card>
+                <Card.Header>
+                  {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                <p className="card-category">Last Campaign Performance</p>*/}
+                </Card.Header>
+                <Card.Body>
+                  <DashboardTopImage filter={"Ocio"} />
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="fas fa-check"></i>
+                    Datos obtenidos de la api de Bartrender
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+            <Col md="4">
+              <h3>Los elementos de ocio más buscados</h3>
+              <Card>
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <FreePieChart filter={"Ocio"} />
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="now-ui-icons loader_refresh spin"></i>
+                    Datos actualizados mensualmente
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </>
+   
+    )
+  }
+
+
+
+
+
+  else {
     return (
       <>
         <Container fluid>
-          {appState.bar.id == undefined ? (
-            "Un momento"
-          ) : (
             <FreeDashboardQRList idEstablishment={appState.bar.id} />
-          )}
+         
           <Row>
             <Col md="4">
               <h3>La cerveza favorita de los Usuarios</h3>

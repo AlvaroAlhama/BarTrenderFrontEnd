@@ -75,8 +75,7 @@ function DashboardQRList(props) {
   if (!appState.discounts.results || appState.discounts.count == 0) {
     return (
       <Card>
-        <h3>No tiene descuentos, le gustaria crear alguno?</h3>
-        <button className="btn btn-primary"> Crear Descuentos</button>
+        <h3>No tiene descuentos para este establecimiento , le gustaria crear alguno?</h3> 
       </Card>
     );
   } else {

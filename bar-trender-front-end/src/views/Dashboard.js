@@ -47,7 +47,7 @@ function Dashboard() {
       })
         .then((response) => response.json())
         .then((bar) => {
-          setAppState({ bar: bar[0] });
+          setAppState({ bar: bar });
         });
     }
     loadBar();
@@ -62,7 +62,8 @@ function Dashboard() {
     );
   
     }
-  else if(appState.bar == undefined){
+  else if(appState.bar[0] == undefined){
+    
     return(
       <>
       <Container fluid>
@@ -156,11 +157,17 @@ function Dashboard() {
 
 
   else {
+    const listQREstablishments = appState.bar.map((i) =>
+      <FreeDashboardQRList nameEstablishment ={i.name_text} idEstablishment={i.id}/>
+    );
     return (
       <>
-        <Container fluid>
-            <FreeDashboardQRList idEstablishment={appState.bar.id} />
-         
+        <Container fluid>    
+        <h3>Los descuentos de tus establecimientos</h3>        
+              {listQREstablishments
+              }
+            
+        
           <Row>
             <Col md="4">
               <h3>La cerveza favorita de los Usuarios</h3>

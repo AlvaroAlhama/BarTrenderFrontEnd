@@ -123,7 +123,7 @@ export default class EditEstablishment extends React.Component {
                     number_text: data.establishment.number,
                     locality_text: data.establishment.locality,
                     image_ulr: data.establishment.image,
-                    desc_text: data.establishment.desc_text,
+                    desc_text: data.establishment.desc,
                     tags: tagsConcat
                 },
                 selected: tagsConcat

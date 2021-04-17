@@ -224,7 +224,7 @@ export default class EditEstablishment extends React.Component {
         }
 
         if (inputs['phone_number']) {
-            var pattern = new RegExp(/[\d]{3}[-]*([\d]{2}[-]*){2}[\d]{2}$/);
+            var pattern = new RegExp(/^\d{9}$/);
             if (!pattern.test(inputs['phone_number'])) {
                 isValid = false;
                 errors['phone_number'] = 'El télefono introducido no es válido'

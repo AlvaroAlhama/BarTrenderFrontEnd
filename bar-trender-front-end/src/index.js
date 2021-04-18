@@ -65,14 +65,15 @@ const app = (
           path="/error"
           render={(props) => <ErrorView {...props} />}
         />
+        <Route path="/admin" 
+          render={(props) => <AdminView {...props} />} />
+        
+        {/* <Route path="/admin/dashboard" 
+          render={(props) => <AdminView {...props} />} /> */}
 
         
-        <Route path="/admin/dashboard" 
-          render={(props) => <AdminView {...props} />} />
-
-        
-        <Route path="/admin/premiumDashboard" 
-          render={(props) => <AdminView {...props} />} />
+        {/* <Route path="/admin/premiumDashboard" 
+          render={(props) => <AdminView {...props} />} /> */}
           
         <Route
           path ="/myEstablishments"
@@ -84,7 +85,7 @@ const app = (
           render = {(props) =>  <EstablishmentView {...props}/>}
         />
 
-        <Redirect from="/admin" to="/admin/dashboard" />
+        {/* <Redirect from="/admin" to="/admin/dashboard" /> */}
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
 

@@ -71,24 +71,44 @@ function AdminView() {
     });
   };
   React.useEffect(() => {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    mainPanel.current.scrollTop = 0;
-    if (
-      window.innerWidth < 993 &&
-      document.documentElement.className.indexOf("nav-open") !== -1
-    ) {
-      document.documentElement.classList.toggle("nav-open");
-      var element = document.getElementById("bodyClick");
-      element.parentNode.removeChild(element);
-    }
+    // document.documentElement.scrollTop = 0;
+    // document.scrollingElement.scrollTop = 0;
+    // mainPanel.current.scrollTop = 0;
+    // if (
+    //   window.innerWidth < 993 &&
+    //   document.documentElement.className.indexOf("nav-open") !== -1
+    // ) {
+    //   document.documentElement.classList.toggle("nav-open");
+    //   var element = document.getElementById("bodyClick");
+    //   element.parentNode.removeChild(element);
+    // }
   }, [location]);
 
   if (!token) {
     return (
-      <Container fluid>
-        <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
-      </Container>
+
+      <>
+        <div className="wrapper">
+          <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
+          <div className="main-panel" ref={mainPanel}>
+            <AdminNavbar />
+            <div className="content">
+              <Container fluid>
+                <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
+              </Container>
+            </div>
+            {/* <Footer /> */}
+          </div>
+        </div>
+        <FixedPlugin
+          hasImage={hasImage}
+          setHasImage={() => setHasImage(!hasImage)}
+          color={color}
+          setColor={(color) => setColor(color)}
+          image={image}
+          setImage={(image) => setImage(image)}
+        />
+      </>
     );
   } else {
     if (sessionStorage.getItem("rol") == "owner") {
@@ -124,10 +144,10 @@ function AdminView() {
             <div className="main-panel" ref={mainPanel}>
               <AdminNavbar />
               <div className="content">
-              <Container fluid>
-            <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
-            <Link to="/main" className="btn btn-primary">Volver</Link>
-          </Container>
+                <Container fluid>
+                  <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
+                  <Link to="/main" className="btn btn-primary">Volver</Link>
+                </Container>
               </div>
               {/* <Footer /> */}
             </div>
@@ -141,10 +161,10 @@ function AdminView() {
             setImage={(image) => setImage(image)}
           />
         </>
-        
+
       );
     }
   }
 }
 
-  export default AdminView;
+export default AdminView;

@@ -43,6 +43,7 @@ class POSTCreateDiscount extends React.Component {
       method: "POST",
       headers: {
         token: token,
+        'Content-type': 'application/json'
       },
       body: JSON.stringify(this.state.send),
     });

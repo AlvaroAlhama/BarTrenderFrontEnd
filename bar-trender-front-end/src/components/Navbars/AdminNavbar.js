@@ -38,7 +38,19 @@ function Header() {
     };
     document.body.appendChild(node);
   };
-
+  function reportWindowSize() {
+    const { innerWidth: width, innerHeight: height } = window;
+    if(width < 800 && document.getElementById("logout-tooltip")!=null ){
+      document.getElementById("logout-tooltip").classList.add("my-auto");
+      
+    }
+    if(width > 800 && document.getElementById("logout-tooltip")!=null ){
+      document.getElementById("logout-tooltip").classList.remove("my-auto");
+      
+    }
+  }
+  window.addEventListener('resize', reportWindowSize);
+  
   const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
@@ -48,10 +60,10 @@ function Header() {
     return "Brand";
   };
   const isLoggedIn =
-    sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
-
+  sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
+  
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
           <Button
@@ -68,7 +80,7 @@ function Header() {
           >
             {getBrandText()}
           </Navbar.Brand> */}
-          BarTrender
+          <h4 class="text-white my-auto">BarTrender</h4>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
           <span className="navbar-toggler-bar burger-lines"></span>
@@ -99,6 +111,7 @@ function Header() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    
   );
 }
 

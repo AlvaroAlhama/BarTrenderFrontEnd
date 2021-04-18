@@ -29,8 +29,11 @@ function MainNavbar() {
         document.documentElement.scrollTop > 200 ||
         document.body.scrollTop > 200
       ) {
-        setNavbarColor("bg-primary solid-color");
+        setNavbarColor("bg-primary");
+        document.getElementById("filters").classList.remove("btn-primary");
+        document.getElementById("filters").classList.add("btn-outline-light");
       } else if (
+
         document.documentElement.scrollTop < 201 ||
         document.body.scrollTop < 201
       ) {
@@ -42,6 +45,24 @@ function MainNavbar() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
   });
+  function reportWindowSize() {
+    const { innerWidth: width, innerHeight: height } = window;
+    if(width < 800 && document.getElementById("bartrender-title")!=null ){
+      document.getElementById("bartrender-title").classList.add("d-none");
+      document.getElementById("filters").classList.add("mx-auto");
+      document.getElementById("panel-control-icon").classList.add("my-auto");
+      document.getElementById("logout-tooltip").classList.add("my-auto");
+      
+    }
+    if(width > 800 && document.getElementById("bartrender-title")!=null ){
+      document.getElementById("bartrender-title").classList.remove("d-none");
+      document.getElementById("filters").classList.remove("mx-auto");
+      document.getElementById("panel-control-icon").classList.remove("my-auto");
+      document.getElementById("logout-tooltip").classList.remove("my-auto");
+      
+    }
+  }
+  window.addEventListener('resize', reportWindowSize);
   const logged = sessionStorage.getItem("token");
   const isLoggedOwner = logged && sessionStorage.getItem("rol") == "owner";
   return (
@@ -64,7 +85,7 @@ function MainNavbar() {
       <a class="navbar-brand" href="/main">
                   <img className="img-fluid" alt="" src={barTrender} />              
                   </a>
-      <a class="text-decoration-none"href="/main"><h1 class="my-auto ml-4">BarTrender</h1></a>
+      <a id="bartrender-title" class="text-decoration-none"href="/main"><h1 class="my-auto ml-4">BarTrender</h1></a>
       <ModalSearch key={uuid.v4()} />
       <button
             className="navbar-toggler navbar-toggler mr-5"
@@ -91,8 +112,8 @@ function MainNavbar() {
                   id="twitter-tooltip"
                   cursor="pointer"
                 >
-                  <i class="fab fa-twitter fa-lg w-100 my-auto"></i>
-                  <p className="d-lg-none d-xl-none mt-2 ml-2">Twitter</p>
+                  <i class="fab fa-twitter fa-lg w-100 text-white my-auto"></i>
+                  <p className="d-lg-none text-white d-xl-none mt-2 ml-2">Twitter</p>
                 </NavLink>
                 <UncontrolledTooltip target="#twitter-tooltip">
                   Síguenos en Twitter
@@ -105,8 +126,8 @@ function MainNavbar() {
                   target="_blank"
                   id="instagram-tooltip"
                 >
-                  <i class="fab fa-instagram fa-lg w-100 my-auto"></i>
-                  <p className="d-lg-none d-xl-none mt-2 ml-2">Instagram</p>
+                  <i class="fab fa-instagram fa-lg w-100 my-auto text-white"></i>
+                  <p className="d-lg-none text-white d-xl-none mt-2 ml-2">Instagram</p>
                 </NavLink>
                 <UncontrolledTooltip target="#instagram-tooltip">
                   Síguenos en Instagram
@@ -115,8 +136,9 @@ function MainNavbar() {
               {isLoggedOwner && (
                 <NavItem>
                   <NavLink href="/admin/dashboard" id="discount-tooltip">
-                    <i class="fal fa-tachometer-alt-fastest fa-lg mt-1 w-100 my-auto"></i>
-                    <p className="d-lg-none d-xl-none mt-2 ml-2">Panel de control</p>
+                  
+                  <i id="panel-control-icon"class="fal fa-joystick text-white mt-1 fa-lg"></i>
+                    <p className="d-lg-none text-white d-xl-none ml-2 my-auto">Panel de control</p>
                   </NavLink>
                   <UncontrolledTooltip target="#discount-tooltip">
                     Panel de control

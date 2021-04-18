@@ -34,10 +34,10 @@ function ModalSignUp() {
         className="mr-1"
         onClick={() => setModal1(true)}
         id="register-tooltip"
-        className="fal fa-key w-100 fa-lg mt-1"
+        className="fal fa-key text-white w-100 fa-lg mt-1"
       ></i>
 
-      <p className="d-lg-none d-xl-none my-auto ml-2">Registro</p>
+      <p className="d-lg-none d-xl-none my-auto text-white ml-2">Registro</p>
       <Modal isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">
           <button

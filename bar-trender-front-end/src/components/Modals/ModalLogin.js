@@ -22,15 +22,13 @@ function ModalLogin() {
     return (
       <>
         <a
-          color="primary"
-          className="mr-1"
           onClick={() => setModal1(true)}
           id="login-tooltip"
-          className="far fa-user fa-lg mt-1"
+          className="far fa-user text-white  fa-lg mt-1"
         >
           
         </a>
-        <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto ml-2">Inicio de Sesión</p>
+        <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto text-white ml-2">Inicio de Sesión</p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <div className="modal-header justify-content-center">
             <button
@@ -58,17 +56,16 @@ function ModalLogin() {
     return (
       <>
         <i
-          color="primary"
           className="mt-1"
           id="logout-tooltip"
           onClick={() => {
             sessionStorage.clear();
             window.location.href = "/index";
           }}
-          className="fas fa-power-off fa-lg mt-1"
+          className="fal fa-power-off text-white fa-lg mt-1"
           
         />
-        <p className="d-lg-none d-xl-none">Cerrar sesión</p>
+        <p className="d-lg-none d-xl-none my-auto text-white ml-2">Cerrar sesión</p>
         
       </>
     );

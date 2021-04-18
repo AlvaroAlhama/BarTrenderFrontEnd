@@ -11,9 +11,9 @@ function ModelCreateEstablishment() {
           className="mr-1"
           onClick={() => setModal1(true)}
           id="login-tooltip"
-          className="fal fa-plus-square fa-lg"
+          className="fal fa-plus-square mt-1 text-white fa-lg"
         ></i>
-        <p className="d-lg-none d-xl-none">Inicio de Sesión</p>
+        <p className="d-lg-none text-white d-xl-none ml-2">Crear establecimiento</p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <div className="modal-header justify-content-center">
             <button

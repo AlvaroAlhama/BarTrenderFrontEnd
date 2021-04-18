@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
 import ModalDeleteDiscount from "../components/Modals/ModalDeleteDiscount";
+import EditDeleteDiscounts from '../components/EditDeleteDiscounts';
 
 // react-bootstrap components
 import {
@@ -175,6 +176,22 @@ function EstablishmentView() {
                   </Modal>
                   <div className="clearfix"></div>
                 </Form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      <Container fluid>
+        <Row>
+          <Col md='8'>
+            <Card>
+              <Card.Header>
+                <Card.Title className="ml-3 mt-3" as="h2">
+                  Mis Descuentos
+                </Card.Title>
+              </Card.Header>
+              <Card.Body>
+                  <EditDeleteDiscounts/>
               </Card.Body>
             </Card>
           </Col>

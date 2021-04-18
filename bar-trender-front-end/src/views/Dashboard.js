@@ -161,7 +161,7 @@ function Dashboard() {
 
 
           <Row>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>La cerveza favorita de los Usuarios</h3>
               <Card>
                 <Card.Body>
@@ -176,7 +176,7 @@ function Dashboard() {
                 </Card.Footer>
               </Card>
             </Col>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>Ranking de las 3 mejores cervezas</h3>
               <Card>
                 <Card.Header>
@@ -198,7 +198,7 @@ function Dashboard() {
           </Row>
 
           <Row>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>¿Que prefiere la gente para divertirse?</h3>
               <Card>
                 <Card.Header>
@@ -217,7 +217,7 @@ function Dashboard() {
                 </Card.Footer>
               </Card>
             </Col>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>Los elementos de ocio más buscados</h3>
               <Card>
                 <Card.Header></Card.Header>

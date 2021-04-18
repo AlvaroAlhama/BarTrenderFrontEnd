@@ -29,7 +29,7 @@ function ModalSelectedDiscount(prop) {
 
   return (
     <>
-      <Button color="default" type="button" onClick={() => setModal2(true)}>
+      <Button color="default" color="primary" type="button" onClick={() => setModal2(true)}>
           Obtener Descuento
       </Button>
       <Modal className="modal-qr" centered="true" isOpen={modal2} toggle={() => setModal2(false)}>

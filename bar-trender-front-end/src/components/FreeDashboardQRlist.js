@@ -194,9 +194,8 @@ function DashboardQRList(props) {
                 </Card.Footer>
               </Card>
             </Col>
-          </Row>
 
-          <Row>
+          <Col lg="12" md="12" xs="12">
             <Card className="card-stats">
               <Card.Body>
                 <Container fluid>
@@ -314,6 +313,7 @@ function DashboardQRList(props) {
                 </div>
               </Card.Footer>
             </Card>
+          </Col>
           </Row>
         </Container>
       </ul>

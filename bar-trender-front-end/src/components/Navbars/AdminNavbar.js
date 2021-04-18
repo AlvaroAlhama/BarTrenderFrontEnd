@@ -20,6 +20,8 @@ import { useLocation } from "react-router-dom";
 import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
 import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
+import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
+
 
 import routes from "routes.js";
 
@@ -76,6 +78,14 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           
           <Nav className="ml-auto" navbar>
+          <NavItem>
+              <NavLink id="createEstablishment-tooltip">
+                <ModalCreateEstablishment />
+                <UncontrolledTooltip target="#createEstablishment-tooltip">
+                  Nuevo establecimiento
+                </UncontrolledTooltip>
+              </NavLink>
+            </NavItem>
             <NavItem>
               <NavLink id="account-tooltip">
                 <ModalLogin />
@@ -84,6 +94,7 @@ function Header() {
                 </UncontrolledTooltip>
               </NavLink>
             </NavItem>
+            
           </Nav>
         </Navbar.Collapse>
       </Container>

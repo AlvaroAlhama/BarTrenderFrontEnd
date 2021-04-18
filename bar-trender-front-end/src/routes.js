@@ -24,6 +24,7 @@ import Icons from "views/Icons.js";
 import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
+import EditOwnerProfile from "components/EditOwnerProfile.js"
 
 import EstablishmentView from "views/EstablishmentView"
 import Establishments from "views/EstablishmentByOwnerView"
@@ -108,6 +109,14 @@ const dashboardRoutes = [
     name: "Premium Dashboard",
     icon: "nc-icon nc-chart-pie-35",
     component: PremiumDashboard,
+    layout: "/admin",
+  },
+
+  {
+    path: "/myProfile",
+    name: "Mi Perfil",
+    icon: "nc-icon nc-chart-pie-35",
+    component: EditOwnerProfile,
     layout: "/admin",
   },
 

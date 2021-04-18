@@ -10,6 +10,9 @@ function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
   const { element } = props;
   var idEstablishment = props.idEstablishment;
+ 
+
+  var nameEstablishment = props.nameEstablishment;
   var token = sessionStorage.getItem("token");
   const [appState, setAppState] = useState({
     discounts: {},
@@ -68,15 +71,13 @@ function DashboardQRList(props) {
 
   
 
-  console.log(discountPaymentInfoState);
-  console.log(appState);
+ 
   var count = 0;
 
   if (!appState.discounts.results || appState.discounts.count == 0) {
     return (
       <Card>
-        <h3>No tiene descuentos, le gustaria crear alguno?</h3>
-        <button className="btn btn-primary"> Crear Descuentos</button>
+        <h3>No tiene descuentos para el establecimiento: {nameEstablishment}</h3> 
       </Card>
     );
   } else {

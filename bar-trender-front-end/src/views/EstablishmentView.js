@@ -18,11 +18,11 @@ import ModalUpdateDiscount from "components/Modals/ModalUpdateDiscount";
 
 
 function EstablishmentView() {
-  console.log("Llega");
   const [appState, setAppState] = useState({
     loading: false,
     establishment: {},
     discounts: [],
+    error: false,
   });
 
   const [modal1, setModal1] = React.useState(false);
@@ -38,13 +38,15 @@ function EstablishmentView() {
   const id_establishment = idEstablishment();
 
   useEffect(() => {
+    console.log('EstablishmentView loaded');
+
     setAppState({ loading: true });
     var token = sessionStorage.getItem("token");
 
     fetch(
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
-        id_establishment +
-        "/get",
+      id_establishment +
+      "/get",
       {
         method: "GET",
         headers: {
@@ -54,33 +56,56 @@ function EstablishmentView() {
     )
       .then((response) => response.json())
       .then((data) => {
-        setAppState({
-          loading: false,
-          establishment: data.establishment,
-          discounts: data.discounts,
-        });
+        console.log(data, 'establishments');
+        if (data['error'] == undefined) {
+          setAppState({
+
+            loading: false,
+            establishment: data.establishment,
+            discounts: data.discounts,
+          });
+        } else {
+          setAppState({
+            loading: false,
+            erorr: true,
+            erorr_info: data.error,
+
+          });
+        }
+
       });
   }, [setAppState]);
 
-  return (
-    <>
+  if (appState.erorr == true) {
+    return (
       <Container fluid>
-          <EditEstablishment/>
+        <h1>Error</h1>
+
+        <h2> {appState.erorr_info}</h2>
+
       </Container>
-      <Container fluid>
-        <Row>
-          <Col md="8">
-            <Card>
-              <Card.Header>
-                <Card.Title className="ml-3 mt-3" as="h2">
-                  Descuentos activos
-                </Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <div class="establsihment-discounts">
-                  {appState.establishment == undefined
-                    ? ""
-                    : appState.discounts.map((discount) => {
+    );
+  } else {
+    return (
+
+      <>
+        <Container fluid>
+          <EditEstablishment />
+        </Container>
+        <Container fluid>
+          <Row>
+            <Col md="8">
+              <Card>
+                <Card.Header>
+                  <Card.Title className="ml-3 mt-3" as="h2">
+                    Descuentos activos
+                 </Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <div class="establsihment-discounts">
+                    {appState.establishment == undefined
+                      ? ""
+                      : appState.discounts.map((discount) => {
                         var edit = true;
                         const isTotalScannedCode =
                           discount.totalCodes == discount.scannedCodes;
@@ -121,14 +146,17 @@ function EstablishmentView() {
                           </>
                         );
                       })}
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </>
+    );
+  }
+
+
 }
 
 export default EstablishmentView;

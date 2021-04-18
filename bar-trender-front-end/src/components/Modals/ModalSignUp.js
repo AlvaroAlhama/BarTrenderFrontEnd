@@ -11,6 +11,19 @@ function ModalSignUp() {
     false
   );
   const [clientUserForm, setClientUserForm] = React.useState(false);
+  function reportWindowSize() {
+    const { innerWidth: width, innerHeight: height } = window;
+    if(width < 800 && document.getElementById("login-tooltip")!=null ){
+      document.getElementById("register-tooltip").classList.remove("mt-1");
+      document.getElementById("register-tooltip").classList.add("my-auto");
+    }
+    if(width > 800 && document.getElementById("login-tooltip")!=null ){
+      document.getElementById("register-tooltip").classList.remove("my-auto");
+      document.getElementById("register-tooltip").classList.add("mt-1");
+    }
+  }
+  window.addEventListener('resize', reportWindowSize);
+
 
   var token = sessionStorage.getItem("token");
   var headerTitle = "Nuevo usuario"
@@ -20,11 +33,11 @@ function ModalSignUp() {
         color="primary"
         className="mr-1"
         onClick={() => setModal1(true)}
-        id="login-tooltip"
-        className="fal fa-key w-100 fa-lg mt-1"
+        id="register-tooltip"
+        className="fal fa-key text-white w-100 fa-lg mt-1"
       ></i>
 
-      <p className="d-lg-none d-xl-none">Regitstro</p>
+      <p className="d-lg-none d-xl-none my-auto text-white ml-2">Registro</p>
       <Modal isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">
           <button

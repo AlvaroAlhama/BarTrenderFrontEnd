@@ -53,26 +53,18 @@ function Dashboard() {
     loadBar();
   }, [setAppState]);
 
-  if (!token) {
+
+  if (appState.bar[0] == undefined) {
+
     return (
-      <Container fluid>
-        <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
-        <Link to="/main" className="btn btn-primary">Volver</Link>
-      </Container>
-    );
-  
-    }
-  else if(appState.bar[0] == undefined){
-    
-    return(
       <>
-      <Container fluid>
-        <Row>
-          <Card>
-            <h2>No ha añadido ningun establecimiento a nuestra aplicación. Puede acceder a las estadisticas gratuitas, pero no podrá acceder a la creacion de descuentos hasta que añada uno </h2>
-          </Card>
-        </Row>
-      <Row>
+        <Container fluid>
+          <Row>
+            <Card>
+              <h2>No ha añadido ningun establecimiento a nuestra aplicación. Puede acceder a las estadisticas gratuitas, pero no podrá acceder a la creacion de descuentos hasta que añada uno </h2>
+            </Card>
+          </Row>
+          <Row>
             <Col md="4">
               <h3>La cerveza favorita de los Usuarios</h3>
               <Card>
@@ -148,7 +140,7 @@ function Dashboard() {
           </Row>
         </Container>
       </>
-   
+
     )
   }
 
@@ -158,18 +150,18 @@ function Dashboard() {
 
   else {
     const listQREstablishments = appState.bar.map((i) =>
-      <FreeDashboardQRList nameEstablishment ={i.name_text} idEstablishment={i.id}/>
+      <FreeDashboardQRList nameEstablishment={i.name_text} idEstablishment={i.id} />
     );
     return (
       <>
-        <Container fluid>    
-        <h3>Tus Descuentos en uso</h3>        
-              {listQREstablishments
-              }
-            
-        
+        <Container fluid>
+          <h3>Tus Descuentos en uso</h3>
+          {listQREstablishments
+          }
+
+
           <Row>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>La cerveza favorita de los Usuarios</h3>
               <Card>
                 <Card.Body>
@@ -184,7 +176,7 @@ function Dashboard() {
                 </Card.Footer>
               </Card>
             </Col>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>Ranking de las 3 mejores cervezas</h3>
               <Card>
                 <Card.Header>
@@ -206,7 +198,7 @@ function Dashboard() {
           </Row>
 
           <Row>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>¿Que prefiere la gente para divertirse?</h3>
               <Card>
                 <Card.Header>
@@ -225,7 +217,7 @@ function Dashboard() {
                 </Card.Footer>
               </Card>
             </Col>
-            <Col md="4">
+            <Col lg="6" md="6" xs="12">
               <h3>Los elementos de ocio más buscados</h3>
               <Card>
                 <Card.Header></Card.Header>
@@ -247,6 +239,9 @@ function Dashboard() {
     );
   }
 }
+
+
+
 export default Dashboard;
 {
   /*  <Row>

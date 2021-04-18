@@ -46,49 +46,6 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/user",
-    name: "Tu perfil",
-    icon: "nc-icon nc-circle-09",
-    component: UserProfile,
-    layout: "/admin",
-  },
-  {
-    path: "/table",
-    name: "Tus Establecimientos",
-    icon: "nc-icon nc-notes",
-    component: TableList,
-    layout: "/admin",
-  },
-  {
-    path: "/typography",
-    name: "Ranking de cervezas",
-    icon: "nc-icon nc-paper-2",
-    component: Typography,
-    layout: "/admin",
-  },
-  {
-    path: "/icons",
-    name: "Mejores elementos de ocio",
-    icon: "nc-icon nc-atom",
-    component: Icons,
-    layout: "/admin",
-  },
-  {
-    path: "/maps",
-    name: "Tipos de establecimientos",
-    icon: "nc-icon nc-pin-3",
-    component: Maps,
-    layout: "/admin",
-  },
-  {
-    path: "/main",
-    name: "Pagina principal",
-    icon: "nc-icon nc-bell-55",
-    component: Notifications,
-    layout: "/admin",
-  },
-
-  {
 
     path: "/myEstablishments",
     name: "Establishments",

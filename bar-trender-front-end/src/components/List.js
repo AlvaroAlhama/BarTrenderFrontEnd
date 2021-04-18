@@ -22,7 +22,7 @@ const List = (props) => {
           console.log(establishment);
           return (
             <>
-              <Col className="col-lg-3 col-md-3 mb-4" >
+              <Col lg="4" md="6" xs="12" className="mb-4" >
                 <div class="card h-100">
                   <ModalSelectedElement element={establishment} />
                   <div class="card-body card-img-top">

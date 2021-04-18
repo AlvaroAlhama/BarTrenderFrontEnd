@@ -88,6 +88,7 @@ function ModalSelectedElement(prop) {
 
   return (
     <>
+
       <div class="card h-auto bg-white border border-dark">
         <div class="card-body card-img-top">
           <img
@@ -113,26 +114,30 @@ function ModalSelectedElement(prop) {
             type="button"
             onClick={() => setModal1(false)}
           >
-            <i className="now-ui-icons ui-1_simple-remove"></i>
+            <i className="now-ui-icons text-danger ui-1_simple-remove"></i>
           </button>
+          <h1 className="title text-center title-up my-auto">{element.name}</h1>
+
         </div>
-        <ModalBody >
+        <ModalBody className="text-white">
           <img
-            className="image-container image-left"
+            className="image-container img-fluid image-left mb-0"
             src={image_left}
             onClick={() => setModal1(true)}
             alt=""
           />
-          <h3>Información del establecimiento</h3>
+          <h3 className="text-center mt-3">Información del establecimiento</h3>
           <p>
-            {element.name}
+            Nombre del establecimiento: {element.name}
           </p>
+
           <p>{element.phone}</p>
           <p>{element.zone}</p>
           <ListDiscount discounts={appState.discounts} />
 
           <h3>Ubicacion</h3>
           <Map location={location} />
+
 
         </ModalBody>
         <div className="modal-footer">
@@ -143,7 +148,7 @@ function ModalSelectedElement(prop) {
             type="button"
             onClick={() => setModal1(false)}
           >
-            Close
+            Cerrar
                     </Button>
         </div>
       </Modal>

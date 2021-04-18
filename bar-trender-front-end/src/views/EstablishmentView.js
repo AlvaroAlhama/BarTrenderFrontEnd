@@ -18,16 +18,16 @@ import ModalUpdateDiscount from "components/Modals/ModalUpdateDiscount";
 
 
 function EstablishmentView() {
-  console.log("Llega");
   const [appState, setAppState] = useState({
     loading: false,
     establishment: {},
     discounts: [],
+    error: false,
   });
 
   const [modal1, setModal1] = React.useState(false);
   const [modalDelete, setModalDelete] = React.useState(false);
-
+  
   const idEstablishment = () => {
     var query = window.location.pathname;
     var splited = query.split("/");
@@ -54,81 +54,104 @@ function EstablishmentView() {
     )
       .then((response) => response.json())
       .then((data) => {
-        setAppState({
-          loading: false,
-          establishment: data.establishment,
-          discounts: data.discounts,
-        });
+        console.log(data, 'establishments');
+        if(data['error'] == undefined){
+          setAppState({
+          
+            loading: false,
+            establishment: data.establishment,
+            discounts: data.discounts,
+          });
+        }else{
+          setAppState({
+            loading: false,
+            erorr: true,
+            erorr_info: data.error,
+
+          });
+        }
+  
       });
   }, [setAppState]);
 
-  return (
-    <>
+  if(appState.erorr == false){
+    return (
+      <>
+        <Container fluid>
+            <EditEstablishment/>
+        </Container>
+        <Container fluid>
+          <Row>
+            <Col md="8">
+              <Card>
+                <Card.Header>
+                  <Card.Title className="ml-3 mt-3" as="h2">
+                    Descuentos activos
+                  </Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <div class="establsihment-discounts">
+                    {appState.establishment == undefined
+                      ? ""
+                      : appState.discounts.map((discount) => {
+                          var edit = true;
+                          const isTotalScannedCode =
+                            discount.totalCodes == discount.scannedCodes;
+                          var today = new Date();
+                          const isExpiredDate = discount.endDate > today;
+  
+                          const canDelete = discount.scannedCodes <= 0;
+                          if (isTotalScannedCode || isExpiredDate) {
+                            edit = false;
+                          }
+                          return (
+                            <>
+                              <Table>
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      {discount.name} / {discount.description}
+                                    </td>
+                                    <td>
+                                      {discount.scannedCodes} /{" "}
+                                      {discount.totalCodes}
+                                    </td>
+                                    <td className="td-actions text-right">
+                                      {edit && (
+                                        <ModalUpdateDiscount
+                                          discount={discount}
+                                        />
+                                      )}
+                                      {canDelete && (
+                                        <ModalDeleteDiscount
+                                          discount={discount}
+                                        />
+                                      )}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            </>
+                          );
+                        })}
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </>
+    );
+  }else{
+    return (
       <Container fluid>
-          <EditEstablishment/>
+        <h1> {appState.erorr_info}</h1>
+        
       </Container>
-      <Container fluid>
-        <Row>
-          <Col md="8">
-            <Card>
-              <Card.Header>
-                <Card.Title className="ml-3 mt-3" as="h2">
-                  Descuentos activos
-                </Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <div class="establsihment-discounts">
-                  {appState.establishment == undefined
-                    ? ""
-                    : appState.discounts.map((discount) => {
-                        var edit = true;
-                        const isTotalScannedCode =
-                          discount.totalCodes == discount.scannedCodes;
-                        var today = new Date();
-                        const isExpiredDate = discount.endDate > today;
+    );
+  }
 
-                        const canDelete = discount.scannedCodes <= 0;
-                        if (isTotalScannedCode || isExpiredDate) {
-                          edit = false;
-                        }
-                        return (
-                          <>
-                            <Table>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    {discount.name} / {discount.description}
-                                  </td>
-                                  <td>
-                                    {discount.scannedCodes} /{" "}
-                                    {discount.totalCodes}
-                                  </td>
-                                  <td className="td-actions text-right">
-                                    {edit && (
-                                      <ModalUpdateDiscount
-                                        discount={discount}
-                                      />
-                                    )}
-                                    {canDelete && (
-                                      <ModalDeleteDiscount
-                                        discount={discount}
-                                      />
-                                    )}
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </Table>
-                          </>
-                        );
-                      })}
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </>
-  );
+ 
 }
 
 export default EstablishmentView;

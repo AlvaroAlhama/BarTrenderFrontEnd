@@ -22,7 +22,25 @@ import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin.js";
-
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
+// react-bootstrap components
+import {
+  Badge,
+  Button,
+  Card,
+  Navbar,
+  Nav,
+  Table,
+  Container,
+  Row,
+  Col,
+  Form,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import routes from "routes.js";
 
 import sidebarImage from "assets/img/sidebar-3.jpg";
@@ -35,6 +53,8 @@ function AdminView() {
   const [hasImage, setHasImage] = React.useState(true);
   const location = useLocation();
   const mainPanel = React.useRef(null);
+  var token = sessionStorage.getItem("token");
+
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
@@ -63,28 +83,68 @@ function AdminView() {
       element.parentNode.removeChild(element);
     }
   }, [location]);
-  return (
-    <>
-      <div className="wrapper">
-        <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
-        <div className="main-panel" ref={mainPanel}>
-          <AdminNavbar />
-          <div className="content">
-            <Switch>{getRoutes(routes)}</Switch>
+
+  if (!token) {
+    return (
+      <Container fluid>
+        <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
+      </Container>
+    );
+  } else {
+    if (sessionStorage.getItem("rol") == "owner") {
+
+      return (
+        <>
+          <div className="wrapper">
+            <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
+            <div className="main-panel" ref={mainPanel}>
+              <AdminNavbar />
+              <div className="content">
+                <Switch>{getRoutes(routes)}</Switch>
+              </div>
+              {/* <Footer /> */}
+            </div>
           </div>
-          {/* <Footer /> */}
-        </div>
-      </div>
-      <FixedPlugin
-        hasImage={hasImage}
-        setHasImage={() => setHasImage(!hasImage)}
-        color={color}
-        setColor={(color) => setColor(color)}
-        image={image}
-        setImage={(image) => setImage(image)}
-      />
-    </>
-  );
+          <FixedPlugin
+            hasImage={hasImage}
+            setHasImage={() => setHasImage(!hasImage)}
+            color={color}
+            setColor={(color) => setColor(color)}
+            image={image}
+            setImage={(image) => setImage(image)}
+          />
+        </>
+      );
+    }
+    else {
+      return (
+        <>
+          <div className="wrapper">
+            <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
+            <div className="main-panel" ref={mainPanel}>
+              <AdminNavbar />
+              <div className="content">
+              <Container fluid>
+            <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
+            <Link to="/main" className="btn btn-primary">Volver</Link>
+          </Container>
+              </div>
+              {/* <Footer /> */}
+            </div>
+          </div>
+          <FixedPlugin
+            hasImage={hasImage}
+            setHasImage={() => setHasImage(!hasImage)}
+            color={color}
+            setColor={(color) => setColor(color)}
+            image={image}
+            setImage={(image) => setImage(image)}
+          />
+        </>
+        
+      );
+    }
+  }
 }
 
-export default AdminView;
+  export default AdminView;

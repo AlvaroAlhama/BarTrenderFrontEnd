@@ -19,13 +19,7 @@ import PremiumBarChart from "./PremiumBarChart.js"
     <Card.Body>
     <PremiumBarChart filter = {props.filter} zone = {props.zone} initialDate ={props.initialDate} endDate = {props.endDate}/>
     </Card.Body>
-    <Card.Footer>
-      <hr></hr>
-      <div className="stats">
-        <i className="now-ui-icons loader_refresh spin"></i>
-        Datos obtenidos de la api de Bartrender
-      </div>
-    </Card.Footer>
+    
   </Card>
 
 

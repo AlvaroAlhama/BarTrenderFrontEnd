@@ -2,6 +2,12 @@ import React, { useEffect, useState, Component } from 'react';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import moment from "moment";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 function PremiumBarChart(props) {
@@ -83,7 +89,8 @@ function PremiumBarChart(props) {
 
       }
     };
-  } else {
+  } 
+  else {
     var graph2 = {
       chartData: {
         labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
@@ -111,9 +118,28 @@ function PremiumBarChart(props) {
   }
       if (props.filter != "Bebida" && props.filter != "Ocio" && props.filter != "Instalacion"){
         return(
-       <h3> {props.filter} escriba un filtro</h3>
+       <h3> Escriba un filtro</h3>
         )
-      }else {
+      }
+      else if (props.initialDate == "" || props.endDate == ""){
+        return(
+       <h3>debe escribir una fecha de inicio y final válidas</h3>
+        )
+      }
+      else if (props.zone == ""){
+        return(
+       <h3>no ha añadido la zona</h3>
+        )
+      }
+      else if(appState.stats.error== "A017: El usuario que está logeado no es premium"){
+        return(
+        <div>
+          <h3>Debe ser usuario premium para acceder a las estadísticas que buscas</h3> 
+          <Link to="/admin/upgrade" className="btn btn-primary">Comprar Suscripción Premium</Link>
+        </div>
+        )
+      }
+      else {
   return (
     <div className="chart">
       <br/>
@@ -135,7 +161,10 @@ function PremiumBarChart(props) {
         }}
       />
 
+      <hr></hr>
+        <p>Datos obtenidos de la api de Bartrender</p>
     </div>
+    
   )
 }
 

@@ -30,21 +30,48 @@ import PremiumBarChart from "../components/PremiumBarChart.js"
 import ShowPremiumStats from "../components/ShowPremiumStats.js"
 
 function PremiumDashboard() {
+    var token = sessionStorage.getItem("token");
+   
+    var query = window.location.search;
+    let params = new URLSearchParams(query);
+    var zone = params.get("zone");
+    var filter = params.get("filter");
+    var initialDate = params.get("initial-date");
+    var endDate = params.get("end-date");
 
+    const [modal1, setModal1] = React.useState(false);
+  const [modal2, setModal2] = React.useState(false);
+  const [appState, setAppState] = useState({
+    user: {},
+  });
   var token = sessionStorage.getItem("token");
+  useEffect(() => {
+    const apiUrl =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user";
+    async function loadBar() {
+      await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          apiKey: "8dDc431125634ef43cD13c388e6eCf11",
+          token: token,
+        },
+      })
+        .then((response) => response.json())
+        .then((user) => {
+          setAppState({ user: user });
+        });
+    }
+    loadBar();
+  }, [setAppState]);
 
-  var query = window.location.search;
-  let params = new URLSearchParams(query);
-  var zone = params.get("zone");
-  var filter = params.get("filter");
-  var initialDate = params.get("initial-date");
-  var endDate = params.get("end-date");
-  {
-    //Añadir requerimiento del boolean premium, modificar este if
-  }
-  if (sessionStorage.getItem("premium") == true) {
-    return (
-      <>
+
+
+      {
+          //Añadir requerimiento del boolean premium, modificar este if
+      }
+     if (sessionStorage.getItem("premium") == true) {
+      return(
         <Container fluid>
 
           <Row>

@@ -40,7 +40,7 @@ class POSTLoginForm extends React.Component {
       sessionStorage.setItem("rol", rol);
       sessionStorage.setItem("premium", premium);
 
-      // window.location.href = "/index";
+      window.location.href = "/index";
     } else {
       const data = await response.blob();
       this.setState({ loading: false });

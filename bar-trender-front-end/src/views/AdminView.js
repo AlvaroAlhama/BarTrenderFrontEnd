@@ -71,6 +71,7 @@ function AdminView() {
     });
   };
   React.useEffect(() => {
+    console.log(sessionStorage.getItem("premium"));
     // document.documentElement.scrollTop = 0;
     // document.scrollingElement.scrollTop = 0;
     // mainPanel.current.scrollTop = 0;

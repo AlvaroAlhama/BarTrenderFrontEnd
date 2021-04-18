@@ -21,6 +21,10 @@ import '../../views/css/ModalQR.css'
 import ListDiscount from "../ListDiscount";
 import './ModalSelectedElement.css';
 
+import Map from "components/Map.js"
+
+
+
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
@@ -29,7 +33,11 @@ function ModalSelectedElement(prop) {
   const [appState, setAppState] = useState({
     discounts: {},
   });
-
+  const ubicacion = {
+    lat: 36.92043226009566,
+    lng: -6.080399144405965
+  };
+  const location = element.street + ", " + element.number + ", " + element.zone + ", " + element.locality;
   //  useEffect(() => {
   //   const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
   //   async function loadDiscounts(){
@@ -47,8 +55,8 @@ function ModalSelectedElement(prop) {
   //       loadDiscounts()
   // },[setAppState]);
 
-  async function loadDiscounts(){
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
+  async function loadDiscounts() {
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" + element.id + "/discounts/get?page=1&all=False";
 
     await fetch(apiUrl, {
       method: 'GET',
@@ -60,33 +68,47 @@ function ModalSelectedElement(prop) {
     }).then(response => response.json())
       .then(discounts => {
         setAppState({ discounts: discounts });
-      });} 
+      });
+  }
 
 
-// function loadInfo(){
-//   setModal1(true);
-//   const [] = useState({discounts:{}});
+  // function loadInfo(){
+  //   setModal1(true);
+  //   const [] = useState({discounts:{}});
 
-//   fetch("http://localhost:8000/v1/establishments/1/discounts/get", {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//      }
-//   }).then(response => response.json())
-//   .then(discounts => setAppState({discounts:discounts}))
-// };
+  //   fetch("http://localhost:8000/v1/establishments/1/discounts/get", {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //      }
+  //   }).then(response => response.json())
+  //   .then(discounts => setAppState({discounts:discounts}))
+  // };
 
 
   return (
     <>
-      <img
-        className=""
-        src={image_left}
-        onClick={() => {setModal1(true); loadDiscounts();}}
-        alt=""
-      />
-      <Modal animation={false} size="lg" modalClassName="modal-info " isOpen={modal1} toggle={() => setModal1(false)}>
-        <div className="modal-header justify-content-center border-light text-light">
+
+      <div class="card h-auto bg-white border border-dark">
+        <div class="card-body card-img-top">
+          <img
+            className=""
+            src={element.image}
+            onClick={() => { setModal1(true); loadDiscounts(); }}
+            alt=""
+          />
+
+        </div>
+        <div class="card-footer">
+          <p class="card-title text-center">
+            {element.name}
+          </p>
+
+        </div>
+      </div>
+
+      <Modal animation={false} size="lg" modalClassName="modal-info" isOpen={modal1} toggle={() => setModal1(false)}>
+        <div className="modal-header justify-content-center">
           <button
             className="close"
             type="button"
@@ -95,6 +117,7 @@ function ModalSelectedElement(prop) {
             <i className="now-ui-icons text-danger ui-1_simple-remove"></i>
           </button>
           <h1 className="title text-center title-up my-auto">{element.name}</h1>
+
         </div>
         <ModalBody className="text-white">
           <img
@@ -107,14 +130,18 @@ function ModalSelectedElement(prop) {
           <p>
             Nombre del establecimiento: {element.name}
           </p>
-          <p> Teléfono: {element.phone}</p>
-          <p>Zona: {element.zone}</p>
-          <p>Descuentos activos: </p>
-          <ListDiscount discounts={appState.discounts}/>
-          
+
+          <p>{element.phone}</p>
+          <p>{element.zone}</p>
+          <ListDiscount discounts={appState.discounts} />
+
+          <h3>Ubicacion</h3>
+          <Map location={location} />
+
+
         </ModalBody>
         <div className="modal-footer">
-          
+
 
           <Button
             color="danger"
@@ -135,10 +162,10 @@ function ModalSelectedElement(prop) {
           >
             <i className="now-ui-icons ui-1_simple-remove"></i>
           </button>
-          <h4 className="title title-up">Aquí tienes tu descuento </h4>        
+          <h4 className="title title-up">Aquí tienes tu descuento </h4>
         </div>
         <div className="bar-name">
-            <h3 className="bar-name-content">{element.name_text}</h3>
+          <h3 className="bar-name-content">{element.name_text}</h3>
         </div>
         <ModalBody>
           <p>{element.establishment_id}</p>
@@ -150,6 +177,3 @@ function ModalSelectedElement(prop) {
 }
 
 export default ModalSelectedElement;
-
-function callApi(prop) {
-}

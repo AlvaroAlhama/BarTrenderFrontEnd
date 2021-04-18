@@ -90,11 +90,6 @@ const app = (
         <Redirect from="/" to="/main" />
         
 
-
-      
-
-        
-
       </Switch>
     </Switch>
   </BrowserRouter>

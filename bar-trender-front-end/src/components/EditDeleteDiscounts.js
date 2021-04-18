@@ -1,8 +1,11 @@
 import React from 'react'
 import { Modal, ModalBody, ModalFooter } from 'reactstrap';
-import moment, { updateLocale } from "moment";
-
-
+import moment from "moment";
+import {
+    Button,
+    OverlayTrigger,
+    Tooltip,
+  } from "react-bootstrap";
 
 export default class EditDeleteDiscounts extends React.Component{
     constructor(){
@@ -36,12 +39,15 @@ export default class EditDeleteDiscounts extends React.Component{
                 endHour: ''
 
            },
+            initialDate: '',
             sendFinal: {},
             modalUpdate: false,
+            modalDelete: false,
             errors: {},
-            msg: {},
+            msg: '',
             errorApiGet: {},
-            errorApiUpdate: {}
+            errorApiUpdate: {},
+            errorApiDelete: {}
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -93,7 +99,13 @@ export default class EditDeleteDiscounts extends React.Component{
             this.setState({
                 msg: data.msg,
             })
-            setTimeout(() => window.location.reload(), 2000)
+            setTimeout(() => {
+                this.setState({
+                    modalUpdate: false,
+                    msg: '',
+                })
+                this.getDiscount();
+            }, 2000)
         }else{
             const data = await response.json();
             this.setState({
@@ -101,6 +113,46 @@ export default class EditDeleteDiscounts extends React.Component{
             })
         }
 
+    }
+
+    async handleDelete(){
+
+        if(this.validateDelete()){
+            var token = sessionStorage.getItem('token');
+            var query = window.location.pathname;
+            var splited = query.split("/");
+            var id_establishment = splited[3];
+            var id_discount = this.state.discount.id;
+        
+            const urlDelete = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' + id_establishment + '/discounts/' + id_discount + '/delete';
+            
+            const deleteRequest = await fetch(urlDelete, {
+                method: 'DELETE',
+                headers: {
+                    'token': token,
+                    'Content-type': 'application/json'
+                }
+            });
+            
+            if(deleteRequest.ok){
+                const data = await deleteRequest.json();
+                this.setState({
+                    msg: data.msg
+                })
+                setTimeout(() => {
+                    this.setState({
+                        modalDelete: false,
+                        msg: '',
+                    })
+                    this.getDiscount();
+                }, 2000)
+            }else{
+                const data = await deleteRequest.json();
+                this.setState({
+                    errorsApiDelete: data
+                })
+            }
+        }
     }
 
     async handleChange(event){
@@ -116,13 +168,7 @@ export default class EditDeleteDiscounts extends React.Component{
     
     selectDiscount(discount){
         const initDate = new Date(discount.initialDate * 1000).toISOString().slice(0, 10)
-        const initHour = new Date(discount.initialDate * 1000);
-        const initHourtocho = new Date(discount.initialDate * 1000).toISOString().slice(11, 16)
-        const x = initHour.getHours()+':'+ initHour.getMinutes();
-        console.log(discount)
-        console.log(x)
-        console.log(initHourtocho)
-        console.log(new Date((discount.initialDate*1000)))
+        const initHour = new Date(discount.initialDate * 1000).toISOString().slice(11, 16)
         
         if(discount.endDate != null){
             const endDate = new Date(discount.endDate * 1000).toISOString().slice(0, 10)
@@ -137,7 +183,7 @@ export default class EditDeleteDiscounts extends React.Component{
                      scannedCodes: discount.scannedCodes,
                      cost: discount.cost,
                      initialDate: initDate,
-                     initialHour: x,
+                     initialHour: initHour,
                      endDate: endDate,
                      endHour: endHour
                 },
@@ -149,13 +195,18 @@ export default class EditDeleteDiscounts extends React.Component{
                      scannedCodes: discount.scannedCodes,
                      cost: discount.cost,
                      initialDate: initDate,
-                     initialHour: x,
+                     initialHour: initHour,
                      endDate: endDate,
                      endHour: endHour
                 },
-                modalUpdate: true,
+                initialDate: discount.initialDate,
+                errors: {},
+                msg: '',
+                errorApiGet: {},
+                errorApiUpdate: {},
+                errorApiDelete: {}
             });
-            console.log(this.state.input, "DEBE DE TENER EL DESCUENTO UN ENDDATE")
+            console.log(this.state, "DEBE DE TENER EL DESCUENTO UN ENDDATE")
         }else{
 
             this.setState({
@@ -183,54 +234,114 @@ export default class EditDeleteDiscounts extends React.Component{
                     endDate: '',
                     endHour: ''
                 },
-                modalUpdate: true,
+                initialDate: discount.initialDate,
+                errors: {},
+                msg: '',
+                errorApiGet: {},
+                errorApiUpdate: {},
+                errorApiDelete: {}
             });
-            console.log(this.state.input, "NO DEBE DE TENER EL DESCUENTO UN ENDDATE")
+            console.log(this.state, "NO DEBE DE TENER EL DESCUENTO UN ENDDATE")
         };
     };
 
     handleSubmit(){
         let inputs = this.state.input;
         let send = {}
+        var today = new Date()
+        var todayTS = moment.utc(today).unix()
         console.log(inputs)
-        console.log(inputs.endDate != '' && inputs.endHour != '')
+        console.log(todayTS)
 
         if(this.validate()){
-            const initialDateTS = moment.utc(`${inputs.initialDate} ${inputs.initialHour}`+':00').unix()
+            const initialDateTS = moment.utc(`${inputs.initialDate} ${inputs.initialHour}`).unix()
             console.log(initialDateTS)
             if(inputs.endDate != '' && inputs.endHour != ''){
                 const endDateTs = moment.utc(`${inputs.endDate} ${inputs.endHour}`).unix()
+                if(todayTS > initialDateTS){
                 
-                send['name'] = inputs.name;
-                send['description'] = inputs.description;
-                send['cost'] = inputs.cost;
-                send['totalCodes'] = inputs.totalCodes;
-                send['scannedCodes'] = inputs.scannedCodes;
-                send['initialDate'] = initialDateTS;
-                send['endDate'] = endDateTs;
+                    send['name'] = inputs.name;
+                    send['description'] = inputs.description;
+                    send['cost'] = parseInt(inputs.cost);
+                    send['totalCodes'] = parseInt(inputs.totalCodes);
+                    send['scannedCodes'] = parseInt(inputs.scannedCodes);
+                    send['initialDate'] = this.state.initialDate;
+                    send['endDate'] = endDateTs;
 
-                this.state.sendFinal = send;
-                console.log(this.state.sendFinal, "tiene endDate")
+                    this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con Hora de back y endDate")
 
-                this.handleUpdate()
+                    this.handleUpdate()
+                }else{
+                    send['name'] = inputs.name;
+                    send['description'] = inputs.description;
+                    send['cost'] = parseInt(inputs.cost);
+                    send['totalCodes'] = parseInt(inputs.totalCodes);
+                    send['scannedCodes'] = parseInt(inputs.scannedCodes);
+                    send['initialDate'] = initialDateTS;
+                    send['endDate'] = endDateTs;
+                    
+                    this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con hora nueva y endate")
+                    this.handleUpdate()
 
+                }
             }else{
+                if(todayTS > initialDateTS){
+                
+                    send['name'] = inputs.name;
+                    send['description'] = inputs.description;
+                    send['cost'] = parseInt(inputs.cost);
+                    send['totalCodes'] = parseInt(inputs.totalCodes);
+                    send['scannedCodes'] = parseInt(inputs.scannedCodes);
+                    send['initialDate'] = this.state.initialDate;
 
-                send['name'] = inputs.name;
-                send['description'] = inputs.description;
-                send['cost'] = inputs.cost;
-                send['totalCodes'] = inputs.totalCodes;
-                send['scannedCodes'] = inputs.scannedCodes;
-                send['initialDate'] = initialDateTS;
+                    this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con hora back y sin eD")
 
-                this.state.sendFinal = send;
-                console.log(this.state.sendFinal, "no tiene endDate")
-                this.handleUpdate()
-
+                    this.handleUpdate()
+                }else{
+                    send['name'] = inputs.name;
+                    send['description'] = inputs.description;
+                    send['cost'] = parseInt(inputs.cost);
+                    send['totalCodes'] = parseInt(inputs.totalCodes);
+                    send['scannedCodes'] = parseInt(inputs.scannedCodes);
+                    send['initialDate'] = initialDateTS;
+                    
+                    this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con hora nueva y sin eD")
+                    this.handleUpdate()
+                }
             }
-
         }
     }
+
+    validateDelete(){
+        let isValid = true;
+        var today = new Date();
+        let errors = {};
+
+        const scannedCodes = this.state.discount.scannedCodes;
+        const endDate = this.state.discount.endDate;
+
+        if(scannedCodes > 0){
+            isValid = false;
+            errors['errorCodes'] = 'No se puede eliminar porque hay descuentos escaneados'
+        }
+
+        if(endDate != ''){
+            if(today > endDate){
+                isValid = false;
+                errors['errorDate'] = 'No se puede eliminar porque el descuento ya ha finalizado'
+            }
+        }
+        this.setState({
+            errors: errors
+        });
+        return isValid;
+    }
+
+    
 
     validate(){
         let inputs = this.state.input;
@@ -352,24 +463,45 @@ export default class EditDeleteDiscounts extends React.Component{
     render(){
         return(
             <>
-                <div class='table'>
+                <div class='table w-100'>
                     <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Códigos totales</th>
                             <th>Códigos escaneados</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.state.data == [] ? "" : this.state.data.map(discount => {
                             return (
-                                <tr>
+                                <tr class='text-center'>
                                     <td>{discount.name}</td>
                                     <td>{discount.totalCodes}</td>
                                     <td>{discount.scannedCodes}</td>
                                     <td>
-                                        <button className='btn btn-primary' onClick={()=>this.selectDiscount(discount)}>Editar</button>
-                                        <button className='btn btn-secondary'>Eliminar</button>
+                                        {/* <button className='btn btn-primary' onClick={()=>{this.selectDiscount(discount); this.setState({modalUpdate:true})}}>Editar</button> */}
+                                        <OverlayTrigger overlay={<Tooltip id="tooltip-506045838">Editar descuento</Tooltip>}>
+                                            <Button
+                                                className="btn-simple btn-link p-1"
+                                                type="button"
+                                                variant="info"
+                                                onClick={() => {this.selectDiscount(discount); this.setState({modalUpdate:true})}}
+                                                >
+                                            <i className="fas fa-edit"></i>
+                                            </Button>
+                                        </OverlayTrigger>
+
+                                        <OverlayTrigger overlay={<Tooltip id="tooltip-488980961">Eliminar descuento</Tooltip>}>
+                                            <Button
+                                                className="btn-simple btn-link p-1"
+                                                type="button"
+                                                variant="danger"
+                                                onClick={() => {this.selectDiscount(discount); this.setState({modalDelete:true})}}
+                                                >
+                                            <i className="fas fa-times"></i>
+                                            </Button>
+                                        </OverlayTrigger>
                                     </td>
                                 </tr>
                             )
@@ -377,6 +509,7 @@ export default class EditDeleteDiscounts extends React.Component{
                     </tbody>
                 </div>
                 {this.state.input == '' ? '' :
+                <>
                 <Modal isOpen={this.state.modalUpdate} toggle={() => this.setState({modalUpdate: false})}>
                     <div className="modal-header justify-content-center">
                         <button
@@ -504,15 +637,52 @@ export default class EditDeleteDiscounts extends React.Component{
                         <div class='container-fluid bg-danger'>
                             <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
                         </div>
-                        {/* <div class='container-fluid bg-success'>
+                        <div class='container-fluid bg-success'>
                             <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
-                        </div> */}
+                        </div>
                     </ModalFooter>
 
                 </Modal>
+
+                <Modal isOpen={this.state.modalDelete} toggle={() => this.setState({modalDelete: false})}>
+                    
+                    <div className="modal-header justify-content-center">
+                        <button
+                            className="close"
+                            type="button"
+                            onClick={() => this.setState({modalDelete: false})}
+                        >
+                            <i className="now-ui-icons ui-1_simple-remove"></i>
+                        </button> 
+                        <h4 id ="title_discount" className="title title-up">Eliminar Descuento</h4>    
+                    </div>
+                    
+                    <ModalBody>
+                        ¿Seguro que deseas eliminar el descuento: <b>{this.state.input && this.state.input.name}</b> ?
+                    </ModalBody>
+                    <ModalFooter>
+                        <div class='row w-100 justify-content-center'>
+                            <div class = 'text-center'>
+                                <button className='btn btn-danger' onClick={()=>this.handleDelete()}>Sí</button>
+                                {'    '}
+                                <button className='btn btn-secondary' onClick={()=>this.setState({modalDelete: false})}>No</button>
+                            </div>
+                        </div>
+                        <div class='mt-2 mb-4 text-center'>
+                            <p class='text-danger'>{this.state.errors.errorCodes}</p>
+                            <p class='text-danger'>{this.state.errors.errorDate}</p>
+                        </div>
+                        <div class='container-fluid bg-danger'>
+                            <div class="text-white fw-bold text-center">{this.state.errorsApiDelete== undefined ? "" : this.state.errorsApiDelete.error}</div>
+                        </div>
+                        <div class='container-fluid bg-success'>
+                            <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
+                        </div>
+                    </ModalFooter>
+                </Modal>
+                </>
                 }
                 </>
                 )
-           
     }
 }

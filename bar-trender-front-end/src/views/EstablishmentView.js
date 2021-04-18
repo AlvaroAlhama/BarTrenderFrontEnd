@@ -3,6 +3,7 @@ import { Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
 import ModalDeleteDiscount from "../components/Modals/ModalDeleteDiscount";
 import EditEstablishment from '../components/EditEstablishment.js'
+import EditDeleteDiscounts from '../components/EditDeleteDiscounts';
 
 // react-bootstrap components
 import {
@@ -14,7 +15,6 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import ModalUpdateDiscount from "components/Modals/ModalUpdateDiscount";
 
 
 function EstablishmentView() {
@@ -155,7 +155,6 @@ function EstablishmentView() {
       </>
     );
   }
-
 
 }
 

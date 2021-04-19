@@ -32,21 +32,6 @@ export default class PremiumDashboard extends React.Component {
     super();
 
     this.state = {
-      input: {
-        name_text: "",
-        phone_number: "",
-        zone_enum: "",
-        desc_text: "",
-        street_text: "",
-        number_text: "",
-        locality_text: "",
-        image_ulr: "",
-        tags: [],
-      },
-
-      selected: [],
-
-      tagsChange: [],
 
       otherTags: [],
 
@@ -64,7 +49,7 @@ export default class PremiumDashboard extends React.Component {
     };
     var query = window.location.search;
     let params = new URLSearchParams(query);
-    this.zone = params.get("zone");
+    this.zone = params.get("zone_enum");
     this.filter = params.get("filter");
     this.initialDate = params.get("initial-date");
     this.endDate = params.get("end-date");
@@ -75,8 +60,7 @@ export default class PremiumDashboard extends React.Component {
   async getTags() {
     var token = sessionStorage.getItem("token");
 
-    const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -142,13 +126,11 @@ export default class PremiumDashboard extends React.Component {
                       <div class="col-lg-4 col-md-6 col-xs-12">
                         <label class="container">Zona en la que buscar</label>
                       </div>
-                      <div class="col-lg-8 col-md-6 col-xs-12">
-                        <select
-                          name="zone_enum"
-                          value={this.state.input.zone_enum}
-                          onChange={this.handleChange}
-                          class="form-control"
-                        >
+                      <div class='col-lg-8 col-md-6 col-xs-12'>
+                        <select 
+                          name='zone_enum' 
+                          onChange={this.handleChange} 
+                           class='form-control'>
                           {this.state.zone.zona.map((zona) => {
                             return <option value={zona}>{zona}</option>;
                           })}
@@ -209,6 +191,12 @@ export default class PremiumDashboard extends React.Component {
                   endDate={this.endDate}
                 />
               </Col>
+            </Row>
+
+            <Row>
+
+              <ShowPremiumStats zone={this.zone} filter={this.filter} initialDate={this.initialDate} endDate={this.endDate} />
+    
             </Row>
           </Container>
         </>

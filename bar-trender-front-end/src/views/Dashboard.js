@@ -35,7 +35,7 @@ function Dashboard() {
   var token = sessionStorage.getItem("token");
   useEffect(() => {
     const apiUrl =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner";
+      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner";
     async function loadBar() {
       await fetch(apiUrl, {
         method: "GET",
@@ -126,7 +126,7 @@ function Dashboard() {
               <Card>
                 <Card.Header></Card.Header>
                 <Card.Body>
-                  <FreePieChart filter={"Ocio"} />
+                  {/* <FreePieChart filter={"Ocio"} /> */}
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>

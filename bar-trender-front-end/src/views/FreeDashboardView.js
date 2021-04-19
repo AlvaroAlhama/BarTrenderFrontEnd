@@ -100,7 +100,7 @@ function FreeDashboardView() {
               <Card.Header>
               </Card.Header>
               <Card.Body>
-              <FreePieChart filter = {"ElementosDeOcio"}/>
+              {/* <FreePieChart filter = {"ElementosDeOcio"}/> */}
               </Card.Body>
             </Card>
           </Col>

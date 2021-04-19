@@ -39,13 +39,13 @@ function Upgrade() {
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function(details){
       console.log(details);
-      setAppState({create_time: details.create_time, id: details.id })
+      setAppState({create_time: details.create_time, order_id: details.id })
     });
   } 
 
 
 
-  const url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/setpremium";
+  const url = "https://main-backend-sprint-02.herokuapp.com/v1/authentication/setpremium";
 
   if(appState != null){
   const setpremium =  
@@ -56,7 +56,10 @@ function Upgrade() {
       "Content-type": "application/json",
     },
     body: JSON.stringify(appState),
-  });}
+  }).then(response => {
+    sessionStorage.setItem("premium", "true")
+  });
+}
 
   return (
     

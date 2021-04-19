@@ -60,7 +60,7 @@ class ModalSearch extends React.Component {
       return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
     }
 
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_tags";
 
 
     fetch(apiUrl, {

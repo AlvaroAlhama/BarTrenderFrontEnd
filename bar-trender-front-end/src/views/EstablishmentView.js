@@ -4,6 +4,7 @@ import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
 import ModalDeleteDiscount from "../components/Modals/ModalDeleteDiscount";
 import EditEstablishment from '../components/EditEstablishment.js'
 import EditDeleteDiscounts from '../components/EditDeleteDiscounts';
+import ModalUpdateDiscount from "../components/Modals/ModalUpdateDiscount"
 
 // react-bootstrap components
 import {

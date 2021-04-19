@@ -38,22 +38,6 @@ export default class PremiumDashboard extends React.Component {
 
     this.state = {
 
-      input: {
-        name_text: '',
-        phone_number: '',
-        zone_enum: '',
-        desc_text: '',
-        street_text: '',
-        number_text: '',
-        locality_text: '',
-        image_ulr: '',
-        tags: []
-      },
-
-      selected: [],
-
-      tagsChange: [],
-
       otherTags: [],
 
       zone: {
@@ -71,12 +55,12 @@ export default class PremiumDashboard extends React.Component {
     }
     var query = window.location.search;
     let params = new URLSearchParams(query);
-    this.zone = params.get("zone");
+    this.zone = params.get("zone_enum");
     this.filter = params.get("filter");
     this.initialDate = params.get("initial-date");
     this.endDate = params.get("end-date");
 
-    this.getTags()
+    this.getTags();
 
   }
 
@@ -122,8 +106,6 @@ export default class PremiumDashboard extends React.Component {
     })
   }
 
-
-
   render() {
 
     if (sessionStorage.getItem("premium") == 'true') {
@@ -153,7 +135,7 @@ export default class PremiumDashboard extends React.Component {
 
                       </div>
                       <div class='col pr-1 md-6'>
-                        <select name='zone_enum' value={this.state.input.zone_enum} onChange={this.handleChange} class='form-control'>
+                        <select name='zone_enum' onChange={this.handleChange} class='form-control'>
                           {this.state.zone.zona.map((zona) => {
                             return (
                               <option value={zona}>{zona}</option>
@@ -202,10 +184,7 @@ export default class PremiumDashboard extends React.Component {
             <Row>
 
               <ShowPremiumStats zone={this.zone} filter={this.filter} initialDate={this.initialDate} endDate={this.endDate} />
-
-
-
-
+    
             </Row>
 
 

@@ -193,11 +193,6 @@ export default class PremiumDashboard extends React.Component {
               </Col>
             </Row>
 
-            <Row>
-
-              <ShowPremiumStats zone={this.zone} filter={this.filter} initialDate={this.initialDate} endDate={this.endDate} />
-    
-            </Row>
           </Container>
         </>
       );

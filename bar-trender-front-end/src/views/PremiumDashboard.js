@@ -23,11 +23,11 @@ import {
   Tooltip,
 } from "react-bootstrap";
 
-
 import DashboardTopImage from "../components/DashboardTopImage"
 import FreePieChart from "../components/FreePieChart.js";
 import PremiumBarChart from "../components/PremiumBarChart.js"
 import ShowPremiumStats from "../components/ShowPremiumStats.js"
+
 
 function PremiumDashboard() {
     var token = sessionStorage.getItem("token");
@@ -72,6 +72,7 @@ function PremiumDashboard() {
       }
      if (sessionStorage.getItem("premium") == true) {
       return(
+        <>
         <Container fluid>
 
           <Row>

@@ -23,7 +23,8 @@ class POSTLoginForm extends React.Component {
 
   async handleLogin() {
     let errors = {};
-    var url = "https://main-backend-sprint-01.herokuapp.com/v1/authentication/login";
+
+    var url = "https://main-backend-sprint-02.herokuapp.com/v1/authentication/login";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -34,8 +35,12 @@ class POSTLoginForm extends React.Component {
       var r = await response.json();
       var token = r.token;
       var rol = r.rol;
+      var premium = r.premium;
+
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("rol", rol);
+      sessionStorage.setItem("premium", premium);
+
       window.location.href = "/index";
     } else {
       const data = await response.blob();

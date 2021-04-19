@@ -17,6 +17,7 @@ class POSTCreateDiscount extends React.Component {
         endDate: null,
       },
       errors: {},
+      errorApiCreate: {},
       msg: {},
 
       modalSuccess: false,
@@ -30,22 +31,22 @@ class POSTCreateDiscount extends React.Component {
   }
 
   async handleCreate() {
-    let errors = {};
     var token = sessionStorage.getItem("token");
     var query = window.location.pathname;
     var splited = query.split("/");
     var idEstablishment = splited[3];
+    console.log(this.state.send, "esto es lo que se va a enviar")
     const url =
-      "https://main-backend-sprint-01.herokuapp.com/v1/establishments/" +
+
+    "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+
       idEstablishment +
       "/discounts/create";
-
-    console.log(this.state.send);
     const create = await fetch(url, {
       method: "POST",
       headers: {
         token: token,
-        "Content-type": "application/json",
+        'Content-type': 'application/json'
       },
       body: JSON.stringify(this.state.send),
     });
@@ -55,7 +56,7 @@ class POSTCreateDiscount extends React.Component {
       this.setState({ msg: response.msg, modalSuccess: true });
     } else {
       var response = await create.json();
-      this.setState({ errors: response.error, modalFail: true });
+      this.setState({ errorApiCreate: response, modalFail: true });
     }
   }
 
@@ -68,9 +69,9 @@ class POSTCreateDiscount extends React.Component {
 
     const endTime = this.state.input.endTime;
 
-    if (endDate != undefined) {
+    if (endDate != undefined && endDate != '') {
       const timeStampEnd = moment.utc(`${endDate} ${endTime}`).unix();
-
+      console.log("está entrando con el que lleva endDate")
       let send2 = {
         name: this.state.input.name,
         description: this.state.input.descripcion,
@@ -90,6 +91,8 @@ class POSTCreateDiscount extends React.Component {
         }
       );
     } else {
+      console.log("está entrando con el que no lleva endDate")
+
       let send2 = {
         name: this.state.input.name,
         description: this.state.input.descripcion,
@@ -179,23 +182,32 @@ class POSTCreateDiscount extends React.Component {
       errors["totalCodes"] = "Escriba un número total de códigos.";
     }
 
-    if (!input["initialDate"]) {
+    if (!input["initialDate"] || !input['initialTime']) {
       isValid = false;
 
       errors["initialDate"] =
-        "Introduzca una fecha para el inicio del desucento.";
+        "Introduzca una fecha y hora para el inicio del desucento.";
     }
 
-    // if(input["initialDate"] && input["initialTime"]) {
-    //   var initialDate = new Date(input["initialDate"])
-    //   var initialTime = new Date(input["initialTime"])
-    //   if (initialDate)
+    if(input['initialDate'] && input['initialTime']){
+      var initialDateFull = new Date(input['initialDate'].concat(" ", input['initialTime']));
 
-    // }
+      if(today > initialDateFull){
+        isValid = false;
+
+        errors['initialDate'] = 'La fecha de inicio debe ser en futuro';
+      }
+    }
+
+    if(input['endDate'] && !input['endTime']){
+      isValid = false;
+
+      errors['endDate'] = 'Si quiere una fecha final debe proporcionar la hora final'
+    }
 
     if (input["initialDate"] && input["endDate"]) {
-      var initialDate = new Date(input["initialDate"]);
-      var endDate = new Date(input["endDate"]);
+      var initialDate = new Date(input["initialDate"].concat(' ', input['initialTime']));
+      var endDate = new Date(input["endDate"].concat(' ', input['endTime']));
       if (initialDate <= today) {
         isValid = false;
         errors["initialDate"] =
@@ -352,6 +364,24 @@ class POSTCreateDiscount extends React.Component {
           <ModalBody>
             <div className="mt-2 mb-4 text-center">
               <p> Descuento creado con éxito</p>
+            </div>
+          </ModalBody>
+        </Modal>
+
+        <Modal isOpen={this.state.modalFail}>
+        <div className="modal-header justify-content-center">
+            <button
+              className="close"
+              type="button"
+              onClick={() => this.setState({modalFail: false})}
+            >
+              <i className="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 className="title title-up">¡ERROR!</h4>
+          </div>
+          <ModalBody>
+            <div className="mt-2 mb-4 text-center">
+              <p className='text-danger'>{this.state.errorApiCreate.error}</p>
             </div>
           </ModalBody>
         </Modal>

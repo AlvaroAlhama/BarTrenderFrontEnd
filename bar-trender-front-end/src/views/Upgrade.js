@@ -1,21 +1,70 @@
-import React from "react";
+import React, {useState} from "react";
 
 // react-bootstrap components
 import {
-  Badge,
   Button,
   Card,
-  Navbar,
-  Nav,
   Table,
   Container,
   Row,
   Col,
 } from "react-bootstrap";
 
+import ReactDOM from "react-dom";
+
+
+const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+
 function Upgrade() {
+
+  const [appState, setAppState] = useState({
+    create_time: null,
+    id: null
+  });
+
+  var token = sessionStorage.getItem("token");
+
+  const createOrder = (data, actions) =>{
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: "7.99",
+          },
+        },
+      ],
+    });
+  }
+
+  const onApprove = (data, actions) => {
+    return actions.order.capture().then(function(details){
+      console.log(details);
+      setAppState({create_time: details.create_time, order_id: details.id })
+    });
+  } 
+
+
+
+  const url = "https://main-backend-sprint-02.herokuapp.com/v1/authentication/setpremium";
+
+  if(appState != null){
+  const setpremium =  
+    fetch(url, {
+    method: "POST",
+    headers: {
+      token: token,
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(appState),
+  }).then(response => {
+    sessionStorage.setItem("premium", "true")
+  });
+}
+
   return (
+    
     <>
+     
       <Container fluid>
         <Row>
           <Col className="ml-auto mr-auto" md="8">
@@ -86,7 +135,6 @@ function Upgrade() {
                     <td>
                       <Button
                         className="btn-round btn-fill disabled"
-                        href="#pablo"
                         onClick={(e) => e.preventDefault()}
                         variant="default"
                       >
@@ -94,12 +142,10 @@ function Upgrade() {
                       </Button>
                     </td>
                     <td>
-                      <Button
-                        className="btn-round btn-fill"
-                       
-                      >
-                        Hazte Trender
-                      </Button>
+                      <PayPalButton
+                        createOrder={(data, actions) => createOrder(data, actions)}
+                        onApprove={(data, actions) => onApprove(data, actions)}
+                        />
                     </td>
                   </tr>
                 </tbody>
@@ -108,8 +154,11 @@ function Upgrade() {
           </Col>
         </Row>
       </Container>
+     
+  
     </>
-  );
-}
+  )
+  }
+
 
 export default Upgrade;

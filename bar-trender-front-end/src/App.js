@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+const url_dev = process.env.REACT_APP_URL_DEV;
+const url_local = process.env.REACT_APP_URL_LOCAL;
+const url_main = process.env.REACT_APP_URL_MAIN;
 
 export default class App extends React.Component {
   
@@ -13,7 +16,6 @@ export default class App extends React.Component {
 
   async componentDidMount()
   {
-
     var token = sessionStorage.getItem("token");
     const id_establishment = this.props.idEstablishment;
     const id_discount = this.props.idDiscount;
@@ -21,7 +23,9 @@ export default class App extends React.Component {
     if(!token){
       this.setState({error: "Necesitas haber iniciado sesión para poder ver el descuento"})
     }else{
-      const url = 'https://main-backend-sprint-01.herokuapp.com/v1/establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-sprint-01.netlify.app';
+      const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-sprint-02.netlify.app';
+      console.log(url)
+
       const response = await fetch(url, {
         method: 'GET',
           headers: {

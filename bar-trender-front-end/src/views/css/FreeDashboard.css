@@ -9,3 +9,34 @@ Card{
 .discounts{
   background-color: rgb(233, 112, 69);
 }
+
+#container-dashboard {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.textimput{
+  width: 70%;
+  padding: 2%;
+  margin-left:10%;
+
+}
+
+.filterimput{
+  width: 65%;
+  padding: 2%;
+  margin-left:14%;
+
+}
+
+.center {
+  margin-left:10%;
+
+}

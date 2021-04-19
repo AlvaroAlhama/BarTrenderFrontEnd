@@ -1,6 +1,7 @@
 
 // Routing
 import Dashboard from "views/Dashboard.js";
+import PremiumDashboard from "views/PremiumDashboard.js";
 import UserProfile from "views/UserProfile.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
@@ -9,7 +10,8 @@ import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
-import EstablishmentView from "views/EstablishmentView.js";
+import EstablishmentView from "views/EstablishmentView";
+import EditOwnerProfile from "components/EditOwnerProfile.js"
 import React, { Component } from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
@@ -28,81 +30,6 @@ function Sidebar({ color, image }) {
     return location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
 
-  // Getting establishments and adding links 
-  // var routes = [
-  //   {
-  //     upgrade: true,
-  //     path: "/upgrade",
-  //     name: "Upgrade to PRO",
-  //     icon: "nc-icon nc-alien-33",
-  //     component: Upgrade,
-  //     layout: "/admin",
-  //   },
-  //   {
-  //     path: "/dashboard",
-  //     name: "Dashboard",
-  //     icon: "nc-icon nc-chart-pie-35",
-  //     component: Dashboard,
-  //     layout: "/admin",
-  //   },
-  //   // {
-  //   //   path: "/user",
-  //   //   name: "User Profile",
-  //   //   icon: "nc-icon nc-circle-09",
-  //   //   component: UserProfile,
-  //   //   layout: "/admin",
-  //   // },
-  //   // {
-  //   //   path: "/table",
-  //   //   name: "Table List",
-  //   //   icon: "nc-icon nc-notes",
-  //   //   component: TableList,
-  //   //   layout: "/admin",
-  //   // },
-  //   // {
-  //   //   path: "/typography",
-  //   //   name: "Typography",
-  //   //   icon: "nc-icon nc-paper-2",
-  //   //   component: Typography,
-  //   //   layout: "/admin",
-  //   // },
-  //   // {
-  //   //   path: "/icons",
-  //   //   name: "Icons",
-  //   //   icon: "nc-icon nc-atom",
-  //   //   component: Icons,
-  //   //   layout: "/admin",
-  //   // },
-  //   // {
-  //   //   path: "/maps",
-  //   //   name: "Maps",
-  //   //   icon: "nc-icon nc-pin-3",
-  //   //   component: Maps,
-  //   //   layout: "/admin",
-  //   // },
-  //   // {
-  //   //   path: "/notifications",
-  //   //   name: "Notifications",
-  //   //   icon: "nc-icon nc-bell-55",
-  //   //   component: Notifications,
-  //   //   layout: "/admin",
-  //   // },
-  //   {
-  //     path: "/myEstablishments",
-  //     name: "Establishments",
-  //     icon: "nc-icon nc-bell-55",
-  //     component: Establishments,
-  //     layout: "/admin",
-  //   },
-  //   {
-  //     path: "/establishment/:id",
-  //     name: "Establishments",
-  //     icon: "nc-icon nc-bell-55",
-  //     component: EstablishmentView,
-  //     layout: "/admin",
-  //   },
-
-  // ];
   const [appState, setAppState] = useState({
     loading: false,
     establishments: {},
@@ -123,7 +50,8 @@ function Sidebar({ color, image }) {
     async function getEstablishmentsOwner() {
 
       var token = sessionStorage.getItem("token");
-      await fetch("https://main-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner", {
+      await fetch("https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner", {
+
         method: "GET",
         headers: {
           "token": token
@@ -140,12 +68,28 @@ function Sidebar({ color, image }) {
               component: Dashboard,
               layout: "/admin",
             },
+
+            {
+              path: "/PremiumDashboard",
+              name: "Premium Dashboard",
+              icon: "nc-icon nc-chart-pie-35",
+              component: PremiumDashboard,
+              layout: "/admin",
+            },
             {
               upgrade: true,
               path: "/upgrade",
               name: "Desbloquear premium",
               icon: "nc-icon nc-bell-55",
               component: Upgrade,
+              layout: "/admin",
+            },
+
+            {
+              path: "/myProfile",
+              name: "Mi Perfil",
+              icon: "nc-icon nc-circle-09",
+              component: EditOwnerProfile,
               layout: "/admin",
             },
            
@@ -199,7 +143,7 @@ function Sidebar({ color, image }) {
               />
             </div>
           </a>
-          <a className="simple-text" href="#">
+          <a className="simple-text" href="/main">
             BARTRENDER
           </a>
         </div>

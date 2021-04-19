@@ -16,6 +16,7 @@
 
 */
 import Dashboard from "views/Dashboard.js";
+import PremiumDashboard from "views/PremiumDashboard.js";
 import UserProfile from "views/UserProfile.js";
 import TableList from "views/TableList.js";
 import Typography from "views/Typography.js";
@@ -23,8 +24,10 @@ import Icons from "views/Icons.js";
 import Maps from "views/Maps.js";
 import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
-import Establishments from "./views/EstablishmentByOwnerView.js"
-import EstablishmentView from "./views/EstablishmentView.js"
+import EditOwnerProfile from "components/EditOwnerProfile.js"
+
+import EstablishmentView from "views/EstablishmentView"
+import Establishments from "views/EstablishmentByOwnerView"
 
 const dashboardRoutes = [
   {
@@ -43,55 +46,7 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/user",
-    name: "Tu perfil",
-    icon: "nc-icon nc-circle-09",
-    component: UserProfile,
-    layout: "/admin",
-  },
-  {
-    path: "/table",
-    name: "Tus Establecimientos",
-    icon: "nc-icon nc-notes",
-    component: TableList,
-    layout: "/admin",
-  },
-  {
-    path: "/typography",
-    name: "Ranking de cervezas",
-    icon: "nc-icon nc-paper-2",
-    component: Typography,
-    layout: "/admin",
-  },
-  {
-    path: "/icons",
-    name: "Mejores elementos de ocio",
-    icon: "nc-icon nc-atom",
-    component: Icons,
-    layout: "/admin",
-  },
-  {
-    path: "/maps",
-    name: "Tipos de establecimientos",
-    icon: "nc-icon nc-pin-3",
-    component: Maps,
-    layout: "/admin",
-  },
-  {
-    path: "/main",
-    name: "Pagina principal",
-    icon: "nc-icon nc-bell-55",
-    component: Notifications,
-    layout: "/admin",
-  },
-  {
-    path: "/myEstablishments",
-    name: "Establishments",
-    icon: "nc-icon nc-bell-55",
-    component: Establishments,
-    layout: "/admin",
-  },
-  {
+
     path: "/myEstablishments",
     name: "Establishments",
     icon: "nc-icon nc-bell-55",
@@ -106,6 +61,21 @@ const dashboardRoutes = [
     layout: "/admin",
   },
 
-];
+  {
+    path: "/premiumDashboard",
+    name: "Premium Dashboard",
+    icon: "nc-icon nc-chart-pie-35",
+    component: PremiumDashboard,
+    layout: "/admin",
+  },
 
+  {
+    path: "/myProfile",
+    name: "Mi Perfil",
+    icon: "nc-icon nc-chart-pie-35",
+    component: EditOwnerProfile,
+    layout: "/admin",
+  },
+
+]
 export default dashboardRoutes;

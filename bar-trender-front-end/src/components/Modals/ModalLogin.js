@@ -1,25 +1,35 @@
 import React from "react";
-
-
 import { Button, Modal, ModalBody } from "reactstrap";
-
 import POSTLoginForm from "../ApiLoginForm";
 
 function ModalLogin() {
   const [modal1, setModal1] = React.useState(false);
-
+  const [clientUserForm, setClientUserForm] = React.useState(false);
+  function reportWindowSize() {
+    const { innerWidth: width, innerHeight: height } = window;
+    if(width < 750 && document.getElementById("logout-tooltip")!=null ){
+      document.getElementById("logout-tooltip").classList.remove("mt-1");
+      document.getElementById("logout-tooltip").classList.add("my-auto");
+    }
+    if(width > 750 && document.getElementById("logout-tooltip")!=null ){
+      document.getElementById("logout-tooltip").classList.remove("my-auto");
+      document.getElementById("logout-tooltip").classList.add("mt-1");
+    }
+  }
+  reportWindowSize();
+  window.addEventListener('resize', reportWindowSize);
   var token = sessionStorage.getItem("token");
   if (!token) {
     return (
       <>
-        <i
-          color="primary"
-          className="mr-1"
+        <a
           onClick={() => setModal1(true)}
           id="login-tooltip"
-          className="now-ui-icons users_single-02"
-        ></i>
-        <p className="d-lg-none d-xl-none">Inicio de Sesión</p>
+          className="far fa-user text-white  fa-lg mt-1"
+        >
+          
+        </a>
+        <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto text-white ml-2">Inicio de Sesión</p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <div className="modal-header justify-content-center">
             <button
@@ -47,17 +57,16 @@ function ModalLogin() {
     return (
       <>
         <i
-          color="primary"
-          className="mr-1"
+          className="mt-1"
           id="logout-tooltip"
           onClick={() => {
-            console.log("DELETING TOKEN...");
             sessionStorage.clear();
             window.location.href = "/index";
           }}
-          className="now-ui-icons media-1_button-power"
+          className="fal fa-power-off text-white fa-lg mt-1"
+          
         />
-        <p className="d-lg-none d-xl-none">Cerrar sesión</p>
+        <p className="d-lg-none d-xl-none my-auto text-white ml-2">Cerrar sesión</p>
         
       </>
     );

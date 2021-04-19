@@ -35,7 +35,7 @@ function EstablishmentView() {
     var token = sessionStorage.getItem("token");
 
     fetch(
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/get",
       {

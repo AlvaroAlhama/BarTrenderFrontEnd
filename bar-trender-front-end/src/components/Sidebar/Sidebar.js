@@ -217,7 +217,7 @@ function Sidebar({ color, image }) {
               />
             </div>
           </a>
-          <a className="simple-text" href="#">
+          <a className="simple-text" href="/main">
             BARTRENDER
           </a>
         </div>

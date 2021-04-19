@@ -35,7 +35,9 @@ class POSTLoginFormQRValidator extends React.Component {
   async handleLogin() {
     
     let errors = {};
+
     var url = "https://main-backend-sprint-02.herokuapp.com/v1/authentication/login";
+
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -67,7 +69,9 @@ class POSTLoginFormQRValidator extends React.Component {
 
     var token = sessionStorage.getItem("token");
   
+
     var url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/"+establishment_id+"/discounts/"+discount_id+"/client/"+client_id+"/scan"
+
     
     const response = await fetch(url, {
       method: "GET",

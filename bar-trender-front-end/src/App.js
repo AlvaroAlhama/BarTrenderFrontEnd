@@ -25,6 +25,7 @@ export default class App extends React.Component {
     }else{
       const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-sprint-02.netlify.app';
       console.log(url)
+
       const response = await fetch(url, {
         method: 'GET',
           headers: {

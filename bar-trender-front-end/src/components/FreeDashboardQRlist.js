@@ -53,6 +53,7 @@ function DashboardQRList(props) {
       idEstablishment +
       "/discounts/get?page=1&all=True";
     async function loadDiscounts() {
+
       await fetch(apiUrl, {
         method: "GET",
         headers: {

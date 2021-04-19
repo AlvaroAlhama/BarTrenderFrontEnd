@@ -23,6 +23,7 @@ class POSTLoginForm extends React.Component {
 
   async handleLogin() {
     let errors = {};
+
     var url = "https://main-backend-sprint-02.herokuapp.com/v1/authentication/login";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {

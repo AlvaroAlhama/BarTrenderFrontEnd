@@ -3,10 +3,8 @@ project:
   owner: 'cardobherUS'
   teamId: '14'
   identities:
-    heroku:
-      url: 'https://develop-backend-sprint-01.herokuapp.com/'
     travis:
-      url: 'https://travis-ci.com/github/BarTrender/BarTrenderBack'
+      url: 'https://travis-ci.com/github/BarTrender/BarTrenderFront'
   members:
     member1:
       name: 'Álvaro'

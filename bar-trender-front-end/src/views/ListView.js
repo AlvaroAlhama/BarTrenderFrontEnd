@@ -54,6 +54,7 @@ function ListView() {
 
     const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get";
 
+
     async function loadResults() {
       console.log(filter, 'filter');
       await fetch(apiUrl, {

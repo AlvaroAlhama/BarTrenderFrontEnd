@@ -38,6 +38,7 @@ function EstablishmentView() {
       "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/get",
+
       {
         method: "GET",
         headers: {

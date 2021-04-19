@@ -58,6 +58,7 @@ function ModalUpdateDiscount(props) {
 
     fetch(
       "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+
         id_establishment +
         "/get",
       {
@@ -95,6 +96,7 @@ function ModalUpdateDiscount(props) {
     var idEstablishment = splited[3];
     const url =
       "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+
       idEstablishment +
       "/discounts/" +
       idDiscount +

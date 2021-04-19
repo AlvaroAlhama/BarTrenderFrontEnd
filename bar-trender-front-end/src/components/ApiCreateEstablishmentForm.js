@@ -47,7 +47,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "http://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {

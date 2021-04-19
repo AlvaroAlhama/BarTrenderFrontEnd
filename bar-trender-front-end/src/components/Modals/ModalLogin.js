@@ -7,15 +7,16 @@ function ModalLogin() {
   const [clientUserForm, setClientUserForm] = React.useState(false);
   function reportWindowSize() {
     const { innerWidth: width, innerHeight: height } = window;
-    if(width < 800 && document.getElementById("login-tooltip")!=null ){
-      document.getElementById("login-tooltip").classList.remove("mt-1");
-      document.getElementById("login-tooltip").classList.add("my-auto");
+    if(width < 750 && document.getElementById("logout-tooltip")!=null ){
+      document.getElementById("logout-tooltip").classList.remove("mt-1");
+      document.getElementById("logout-tooltip").classList.add("my-auto");
     }
-    if(width > 800 && document.getElementById("login-tooltip")!=null ){
-      document.getElementById("login-tooltip").classList.remove("my-auto");
-      document.getElementById("login-tooltip").classList.add("mt-1");
+    if(width > 750 && document.getElementById("logout-tooltip")!=null ){
+      document.getElementById("logout-tooltip").classList.remove("my-auto");
+      document.getElementById("logout-tooltip").classList.add("mt-1");
     }
   }
+  reportWindowSize();
   window.addEventListener('resize', reportWindowSize);
   var token = sessionStorage.getItem("token");
   if (!token) {

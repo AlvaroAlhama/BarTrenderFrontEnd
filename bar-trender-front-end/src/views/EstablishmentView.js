@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Modal, ModalBody } from "reactstrap";
-import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
-import ModalDeleteDiscount from "../components/Modals/ModalDeleteDiscount";
 import EditEstablishment from '../components/EditEstablishment.js'
 import EditDeleteDiscounts from '../components/EditDeleteDiscounts';
-import ModalUpdateDiscount from "../components/Modals/ModalUpdateDiscount"
-
+import * as uuid from 'uuid';
 // react-bootstrap components
 import {
-  Button,
   Card,
-  Form,
-  Table,
   Container,
   Row,
   Col,
@@ -25,9 +18,6 @@ function EstablishmentView() {
     discounts: [],
     error: false,
   });
-
-  const [modal1, setModal1] = React.useState(false);
-  const [modalDelete, setModalDelete] = React.useState(false);
 
   const idEstablishment = () => {
     var query = window.location.pathname;
@@ -77,7 +67,7 @@ function EstablishmentView() {
       });
   }, [setAppState]);
 
-  if (appState.erorr == true) {
+  if (appState.error == true) {
     return (
       <Container fluid>
         <h1>Error</h1>
@@ -91,67 +81,23 @@ function EstablishmentView() {
 
       <>
         <Container fluid>
-          <EditEstablishment />
+          <EditEstablishment key={uuid.v4()}/>
         </Container>
         <Container fluid>
-          <Row>
-            <Col md="8">
-              <Card>
-                <Card.Header>
-                  <Card.Title className="ml-3 mt-3" as="h2">
-                    Descuentos activos
-                 </Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <div class="establsihment-discounts">
-                    {appState.establishment == undefined
-                      ? ""
-                      : appState.discounts.map((discount) => {
-                        var edit = true;
-                        const isTotalScannedCode =
-                          discount.totalCodes == discount.scannedCodes;
-                        var today = new Date();
-                        const isExpiredDate = discount.endDate > today;
-
-                        const canDelete = discount.scannedCodes <= 0;
-                        if (isTotalScannedCode || isExpiredDate) {
-                          edit = false;
-                        }
-                        return (
-                          <>
-                            <Table>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    {discount.name} / {discount.description}
-                                  </td>
-                                  <td>
-                                    {discount.scannedCodes} /{" "}
-                                    {discount.totalCodes}
-                                  </td>
-                                  <td className="td-actions text-right">
-                                    {edit && (
-                                      <ModalUpdateDiscount
-                                        discount={discount}
-                                      />
-                                    )}
-                                    {canDelete && (
-                                      <ModalDeleteDiscount
-                                        discount={discount}
-                                      />
-                                    )}
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </Table>
-                          </>
-                        );
-                      })}
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+        <Row>
+          <Col>
+            <Card>
+              <Card.Header>
+                <Card.Title className="ml-3 mt-3" as="h2">
+                  Mis Descuentos
+                </Card.Title>
+              </Card.Header>
+              <Card.Body>
+                  <EditDeleteDiscounts key={uuid.v4()}/>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row> 
         </Container>
       </>
     );

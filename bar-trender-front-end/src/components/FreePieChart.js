@@ -20,8 +20,7 @@ function BeerPieChart(props) {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
     var send = {'filter': props.filter}
-    console.log(send, "Esto es lo que se envia");
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
+    const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/stats/get";
     async function loadStats() {
       await fetch(apiUrl, {
         method: 'POST',

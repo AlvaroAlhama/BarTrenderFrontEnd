@@ -125,7 +125,7 @@ function Sidebar({ color, image }) {
     async function getEstablishmentsOwner() {
 
       var token = sessionStorage.getItem("token");
-      await fetch("https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner", {
+      await fetch("https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner", {
         method: "GET",
         headers: {
           "token": token

@@ -45,7 +45,7 @@ function Upgrade() {
 
 
 
-  const url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/setpremium";
+  const url = "https://main-backend-sprint-02.herokuapp.com/v1/authentication/setpremium";
 
   if(appState != null){
   const setpremium =  

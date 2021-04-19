@@ -83,7 +83,7 @@ export default class PremiumDashboard extends React.Component {
   async getTags() {
     var token = sessionStorage.getItem("token");
 
-    const url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
         method: "GET",
         headers: {

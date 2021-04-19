@@ -3,6 +3,8 @@ import React, { useEffect, useState, Component } from 'react';
 import bartrenderBlack from "./Images/bartrenderBlack.png";
 import cruzcampo from "./Images/cruzcampo.png";
 import heineken from "./Images/heineken.png";
+import paulaner from "./Images/paulaner.jpg";
+
 import dardos from "./Images/dardos.jpg";
 import futbolin from "./Images/futbolin.png";
 
@@ -52,6 +54,9 @@ function DashboardTopImage(props) {
     }else if(nameBest == "Heineken"){
      imgBest = heineken
     }
+    else if(nameBest == "Paulaner"){
+      imgBest = paulaner
+     }
     else if(nameBest == "Dardos"){
       imgBest = dardos
     }else if(nameBest == "Futbolin"){

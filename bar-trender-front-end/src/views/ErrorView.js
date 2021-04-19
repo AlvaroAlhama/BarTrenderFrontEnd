@@ -26,7 +26,6 @@ function ErrorView() {
   }, []);
   return (
     <>
-
     <DeviceIdentifier isDesktop={true} isTablet={true} isMobile={true}>
       <MainNavbar />
       <div className="wrapper">

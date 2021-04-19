@@ -54,7 +54,7 @@ class ModalSearch extends React.Component {
       //   type: "Estilo"
       // },
     ];
-    // console.log(this.tags, "construyendose")
+    console.log(this.tags, "construyendose")
     this.tags_grouped = [];
     function groupBy(xs, f) {
       return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
@@ -94,9 +94,9 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-
-    if (e.target.name) {
-      console.log(e.target.value);
+    console.log(e.target);
+    if (e.target.name == 'name') {
+      console.log(e.target.value, 'name');
       this.setState({ 'name': e.target.value },);
     } else {
       if (e.target.checked == true) {
@@ -164,7 +164,8 @@ class ModalSearch extends React.Component {
 
       <>
         <Button
-          className="ml-4 btn btn-primary my-auto"
+          color="primary"
+          className="mr-1"
           onClick={this.toggle}
           id="filters"
         >

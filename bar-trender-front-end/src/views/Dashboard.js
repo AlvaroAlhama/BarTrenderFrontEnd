@@ -126,7 +126,7 @@ function Dashboard() {
               <Card>
                 <Card.Header></Card.Header>
                 <Card.Body>
-                  <FreePieChart filter={"Ocio"} />
+                  {/* <FreePieChart filter={"Ocio"} /> */}
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>

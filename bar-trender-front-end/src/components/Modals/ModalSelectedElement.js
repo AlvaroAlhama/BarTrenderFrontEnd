@@ -93,7 +93,7 @@ function ModalSelectedElement(prop) {
         <div class="card-body card-img-top">
           <img
             className=""
-            src={element.image}
+            src={element.image != null ? element.image: image_left}
             onClick={() => { setModal1(true); loadDiscounts(); }}
             alt=""
           />
@@ -122,7 +122,7 @@ function ModalSelectedElement(prop) {
         <ModalBody className="text-white">
           <img
             className="image-container img-fluid image-left mb-0"
-            src={image_left}
+            src={element.image != null ? element.image: image_left}
             onClick={() => setModal1(true)}
             alt=""
           />

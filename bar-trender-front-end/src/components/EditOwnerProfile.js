@@ -34,7 +34,7 @@ export default class EditOwnerProfile extends React.Component {
     async getOwner() {
         var token = sessionStorage.getItem("token");
 
-        const url = "http://develop-backend-sprint-01.herokuapp.com/v1/authentication/user";
+        const url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user";
 
         const response = await fetch(url, {
             method: 'GET',
@@ -67,7 +67,7 @@ export default class EditOwnerProfile extends React.Component {
 
     async handleUpdate() {
         var token = sessionStorage.getItem('token');
-        const urlUpdate = "http://develop-backend-sprint-01.herokuapp.com/v1/authentication/user/edit"
+        const urlUpdate = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user/edit"
 
         const update = await fetch(urlUpdate, {
             method: 'PUT',

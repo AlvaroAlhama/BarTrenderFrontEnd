@@ -70,7 +70,7 @@ function PremiumDashboard() {
       {
           //Añadir requerimiento del boolean premium, modificar este if
       }
-     if (sessionStorage.getItem("premium") == true) {
+     if (sessionStorage.getItem("premium") == 'true') {
       return(
         <>
         <Container fluid>

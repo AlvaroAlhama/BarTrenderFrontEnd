@@ -12,7 +12,7 @@ export default class EstablishmentByOwner extends React.Component{
     async componentDidMount(){
         var token = sessionStorage.getItem("token");
 
-        const url = "http://localhost:8000/v1/establishments/get_by_owner"
+        const url = "https://localhost:8000/v1/establishments/get_by_owner"
         const response = await fetch(url, {
             method: "GET",
                 headers:{

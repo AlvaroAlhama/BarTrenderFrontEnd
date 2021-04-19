@@ -262,7 +262,7 @@ export default class EditDeleteDiscounts extends React.Component{
                 
                     send['name'] = inputs.name;
                     send['description'] = inputs.description;
-                    send['cost'] = parseInt(inputs.cost);
+                    send['cost'] = parseFloat(inputs.cost);
                     send['totalCodes'] = parseInt(inputs.totalCodes);
                     send['scannedCodes'] = parseInt(inputs.scannedCodes);
                     send['initialDate'] = this.state.initialDate;
@@ -275,7 +275,7 @@ export default class EditDeleteDiscounts extends React.Component{
                 }else{
                     send['name'] = inputs.name;
                     send['description'] = inputs.description;
-                    send['cost'] = parseInt(inputs.cost);
+                    send['cost'] = parseFloat(inputs.cost);
                     send['totalCodes'] = parseInt(inputs.totalCodes);
                     send['scannedCodes'] = parseInt(inputs.scannedCodes);
                     send['initialDate'] = initialDateTS;
@@ -291,7 +291,7 @@ export default class EditDeleteDiscounts extends React.Component{
                 
                     send['name'] = inputs.name;
                     send['description'] = inputs.description;
-                    send['cost'] = parseInt(inputs.cost);
+                    send['cost'] = parseFloat(inputs.cost);
                     send['totalCodes'] = parseInt(inputs.totalCodes);
                     send['scannedCodes'] = parseInt(inputs.scannedCodes);
                     send['initialDate'] = this.state.initialDate;
@@ -303,7 +303,7 @@ export default class EditDeleteDiscounts extends React.Component{
                 }else{
                     send['name'] = inputs.name;
                     send['description'] = inputs.description;
-                    send['cost'] = parseInt(inputs.cost);
+                    send['cost'] = parseFloat(inputs.cost);
                     send['totalCodes'] = parseInt(inputs.totalCodes);
                     send['scannedCodes'] = parseInt(inputs.scannedCodes);
                     send['initialDate'] = initialDateTS;

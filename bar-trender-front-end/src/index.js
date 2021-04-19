@@ -69,10 +69,10 @@ const app = (
           render={(props) => <AdminView {...props} />} />
         
         {/* <Route path="/admin/dashboard" 
-          render={(props) => <AdminView {...props} />} /> */}
+          render={(props) => <AdminView {...props} />} />
 
         
-        {/* <Route path="/admin/premiumDashboard" 
+        <Route path="/admin/premiumDashboard" 
           render={(props) => <AdminView {...props} />} /> */}
           
         <Route

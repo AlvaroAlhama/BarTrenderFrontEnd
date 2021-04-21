@@ -29,7 +29,7 @@ function PremiumBarChart(props) {
     var token = sessionStorage.getItem("token");
     console.log(token, 'token');
    
-     const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/stats/getPremium";
+     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";
     async function loadStats() {
       await fetch(apiUrl, {
         method: 'POST',

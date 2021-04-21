@@ -38,7 +38,7 @@ class POSTCreateDiscount extends React.Component {
     console.log(this.state.send, "esto es lo que se va a enviar")
     const url =
 
-    "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+    "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
 
       idEstablishment +
       "/discounts/create";

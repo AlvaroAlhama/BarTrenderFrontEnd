@@ -26,7 +26,7 @@ function DashboardTopImage(props) {
     var token = sessionStorage.getItem("token");
     console.log(token, 'token');
 
-    const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/stats/get";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
 
     async function loadStats() {
       await fetch(apiUrl, {

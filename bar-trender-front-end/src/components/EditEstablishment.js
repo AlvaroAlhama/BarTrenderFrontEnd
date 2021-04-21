@@ -51,7 +51,7 @@ export default class EditEstablishment extends React.Component {
     async getTags() {
         var token = sessionStorage.getItem("token");
 
-        const url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_tags";
+        const url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
         const response = await fetch(url, {
             method: "GET",
             headers: {
@@ -97,7 +97,7 @@ export default class EditEstablishment extends React.Component {
         var splited = query.split("/");
         var id_establishment = splited[3];
 
-        const url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" + id_establishment + "/get";
+        const url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" + id_establishment + "/get";
 
         const response = await fetch(url, {
             method: 'GET',
@@ -139,7 +139,7 @@ export default class EditEstablishment extends React.Component {
         var query = window.location.pathname;
         var splited = query.split("/");
         var id_establishment = splited[3];
-        const urlUpdate = 'https://main-backend-sprint-02.herokuapp.com/v1/establishments/'+ id_establishment + '/update';
+        const urlUpdate = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+ id_establishment + '/update';
 
         const  update = await fetch(urlUpdate, {
             method: 'PUT',

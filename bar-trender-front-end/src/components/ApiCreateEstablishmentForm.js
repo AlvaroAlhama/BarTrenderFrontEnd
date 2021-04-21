@@ -47,7 +47,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_tags";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -72,7 +72,7 @@ class ApiCreateEstablishmentForm extends React.Component {
       this.state.send.locality_text = this.state.input.locality_text;
     var token = sessionStorage.getItem("token");
     const url =
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/create";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/create";
 
     const create = await fetch(url, {
       method: "POST",

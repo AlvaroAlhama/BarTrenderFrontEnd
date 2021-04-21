@@ -27,7 +27,7 @@ function DashboardQRList(props) {
 
   useEffect(() => {
       const apiUrl =
-        "https://main-backend-sprint-02.herokuapp.com/v1/payments/establishments/" +
+        "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
         idEstablishment +
         "/calculate";
       async function loadDiscountPaymentInfo() {
@@ -49,7 +49,7 @@ function DashboardQRList(props) {
 
   useEffect(() => {
     const apiUrl =
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/get?page=1&all=True";
     async function loadDiscounts() {
@@ -103,7 +103,7 @@ function DashboardQRList(props) {
       });
     }
 
-    const paymentUrl = "https://main-backend-sprint-02.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
+    const paymentUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
 
     if(paymentState != null){
       console.log(paymentState)

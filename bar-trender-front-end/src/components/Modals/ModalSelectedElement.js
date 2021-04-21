@@ -39,7 +39,7 @@ function ModalSelectedElement(prop) {
   };
   const location = element.street + ", " + element.number + ", " + element.zone + ", " + element.locality;
   //  useEffect(() => {
-  //   const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
+  //   const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
   //   async function loadDiscounts(){
   //     await fetch(apiUrl, {
   //       method: 'GET',
@@ -57,7 +57,7 @@ function ModalSelectedElement(prop) {
 
 
   async function loadDiscounts() {
-    const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" + element.id + "/discounts/get?page=1&all=False";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" + element.id + "/discounts/get?page=1&all=False";
     await fetch(apiUrl, {
       method: 'GET',
       headers: {

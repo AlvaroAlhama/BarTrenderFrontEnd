@@ -36,7 +36,7 @@ class FormQRValidatorAlreadyLogged extends React.Component {
 
     var token = sessionStorage.getItem("token");
   
-    var url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/"+establishment_id+"/discounts/"+discount_id+"/client/"+client_id+"/scan"
+    var url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+establishment_id+"/discounts/"+discount_id+"/client/"+client_id+"/scan"
 
     
     const response = await fetch(url, {

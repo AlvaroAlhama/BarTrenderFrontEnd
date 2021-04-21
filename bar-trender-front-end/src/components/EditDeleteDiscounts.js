@@ -58,7 +58,7 @@ export default class EditDeleteDiscounts extends React.Component{
         var query = window.location.pathname;
         var splited = query.split("/");
         var id_establishment = splited[3];
-        const urlGet = 'https://main-backend-sprint-02.herokuapp.com/v1/establishments/' + id_establishment +'/get'
+        const urlGet = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' + id_establishment +'/get'
     
         const get = await fetch(urlGet, {
             method: 'GET',
@@ -83,7 +83,7 @@ export default class EditDeleteDiscounts extends React.Component{
         var id_discount = this.state.discount.id;
         console.log(id_discount);
 
-        const urlUpdate = 'https://main-backend-sprint-02.herokuapp.com/v1/establishments/' +id_establishment +'/discounts/' +id_discount +'/update';
+        const urlUpdate = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' +id_establishment +'/discounts/' +id_discount +'/update';
     
         const response = await fetch(urlUpdate, {
             method: 'PUT',
@@ -124,7 +124,7 @@ export default class EditDeleteDiscounts extends React.Component{
             var id_establishment = splited[3];
             var id_discount = this.state.discount.id;
         
-            const urlDelete = 'https://main-backend-sprint-02.herokuapp.com/v1/establishments/' + id_establishment + '/discounts/' + id_discount + '/delete';
+            const urlDelete = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' + id_establishment + '/discounts/' + id_discount + '/delete';
             
             const deleteRequest = await fetch(urlDelete, {
                 method: 'DELETE',

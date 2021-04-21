@@ -57,7 +57,7 @@ function ModalUpdateDiscount(props) {
     var token = sessionStorage.getItem("token");
 
     fetch(
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
 
         id_establishment +
         "/get",
@@ -95,7 +95,7 @@ function ModalUpdateDiscount(props) {
     var splited = query.split("/");
     var idEstablishment = splited[3];
     const url =
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
 
       idEstablishment +
       "/discounts/" +

@@ -52,7 +52,7 @@ function ListView() {
  
     }
 
-    const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
 
 
     async function loadResults() {

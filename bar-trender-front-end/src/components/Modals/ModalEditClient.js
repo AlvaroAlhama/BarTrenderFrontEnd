@@ -14,9 +14,9 @@ function ModalEditClient() {
         className="mr-1"
         onClick={() => setModal1(true)}
         id="edit-profile-tooltip"
-        className="fal fa-user-circle w-100 fa-lg mt-1"
+        className="fal fa-user-circle w-100 text-white fa-lg mt-1"
       ></i>
-      <p className="d-lg-none d-xl-none">Mi perfil</p>
+      <p className="d-lg-none d-xl-none text-white">Mi perfil</p>
       <Modal className='modal-lg' isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">
           <button

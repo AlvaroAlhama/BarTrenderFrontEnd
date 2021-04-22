@@ -29,7 +29,7 @@ function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
-  // console.log(element, 'element');
+
   const [appState, setAppState] = useState({
     discounts: {},
   });
@@ -38,22 +38,6 @@ function ModalSelectedElement(prop) {
     lng: -6.080399144405965
   };
   const location = element.street + ", " + element.number + ", " + element.zone + ", " + element.locality;
-  //  useEffect(() => {
-  //   const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
-  //   async function loadDiscounts(){
-  //     await fetch(apiUrl, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'token': '',
-  //         'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
-  //       }
-  //     }).then(response => response.json())
-  //       .then(discounts => {
-  //         setAppState({ discounts: discounts });
-  //       });} 
-  //       loadDiscounts()
-  // },[setAppState]);
 
 
   async function loadDiscounts() {
@@ -70,20 +54,6 @@ function ModalSelectedElement(prop) {
         setAppState({ discounts: discounts });
       });
   }
-
-
-  // function loadInfo(){
-  //   setModal1(true);
-  //   const [] = useState({discounts:{}});
-
-  //   fetch("http://localhost:8000/v1/establishments/1/discounts/get", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //      }
-  //   }).then(response => response.json())
-  //   .then(discounts => setAppState({discounts:discounts}))
-  // };
 
 
   return (

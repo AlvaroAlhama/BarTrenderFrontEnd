@@ -24,7 +24,7 @@ import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 
 import "assets/css/dashboard.css";
 
-// import ErrorPage from "./views/ErrorPage.js";
+
 import Login from "./views/Login.js";
 import MainView from "./views/MainView.js";
 import LandingView from "./views/LandingView.js";
@@ -68,12 +68,7 @@ const app = (
         <Route path="/admin" 
           render={(props) => <AdminView {...props} />} />
         
-        {/* <Route path="/admin/dashboard" 
-          render={(props) => <AdminView {...props} />} />
-
         
-        <Route path="/admin/premiumDashboard" 
-          render={(props) => <AdminView {...props} />} /> */}
           
         <Route
           path ="/myEstablishments"
@@ -85,7 +80,7 @@ const app = (
           render = {(props) =>  <EstablishmentView {...props}/>}
         />
 
-        {/* <Redirect from="/admin" to="/admin/dashboard" /> */}
+        
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
 

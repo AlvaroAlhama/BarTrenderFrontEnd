@@ -70,7 +70,7 @@ function ModalDeleteDiscount(props) {
 
     if (validate()) {
       const discount = props.discount;
-      console.log(discount)
+     
       var idDiscount = discount.id;
       var token = sessionStorage.getItem("token");
       var query = window.location.pathname;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, ModalBody } from "reactstrap";
+import {Modal, ModalBody } from "reactstrap";
 import POSTLoginForm from "../ApiLoginForm";
 
 function ModalLogin() {
@@ -46,9 +46,6 @@ function ModalLogin() {
           </div>
           <ModalBody>
             <POSTLoginForm />
-            <div class="mt-2 mb-4 text-center">
-              <a href="#">¿Aún no tienes una cuenta? Regístrate</a>
-            </div>
           </ModalBody>
         </Modal>
       </>

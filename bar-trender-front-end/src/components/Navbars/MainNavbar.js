@@ -171,16 +171,16 @@ function MainNavbar() {
               </NavItem>
             )}
             <NavItem>
-              <NavLink id="account-tooltip">
+              <NavLink id="account-tooltip" role='button'>
                 <ModalLogin />
                 <UncontrolledTooltip target="#account-tooltip">
-                  Iniciar sesión / Cerrar Sesión
+                  {logged ? 'Cerrar Sesión' : 'Iniciar Sesión'}
                 </UncontrolledTooltip>
               </NavLink>
             </NavItem>
             {!logged && (
               <NavItem>
-                <NavLink id="signup-tooltip">
+                <NavLink id="signup-tooltip" role='button'>
                   <ModalSignUp />
                   <UncontrolledTooltip target="#signup-tooltip">
                     Registro
@@ -190,7 +190,7 @@ function MainNavbar() {
             )}
             {isLoggedClient && (
               <NavItem>
-                <NavLink id="edit-profile-tooltip">
+                <NavLink id="edit-profile-tooltip" role='button'>
                   <ModalEditClient />
                   <UncontrolledTooltip target="#edit-profile-tooltip">
                     Mi perfil

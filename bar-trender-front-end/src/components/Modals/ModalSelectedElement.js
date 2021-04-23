@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, ModalHeader } from "reactstrap";
+import { Container, Row, Col, ModalHeader, Card, CardBody, CardHeader } from "reactstrap";
 
 // reactstrap components
 import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
@@ -58,22 +58,24 @@ function ModalSelectedElement(prop) {
 
   return (
     <>
-      <div class="card h-auto bg-white border border-dark">
-        <div class="card-body card-img-top">
-          <img
+    <Card className="bg-primary">
+      <CardHeader>
+      <img
             className=""
-            src={element.image != null ? element.image : image_left}
+            src={element.photo_url != null ? element.photo_url : image_left}
             onClick={() => {
               setModal1(true);
               loadDiscounts();
             }}
             alt=""
           />
-        </div>
-        <div class="card-footer">
-          <p class="card-title text-center">{element.name}</p>
-        </div>
-      </div>
+      </CardHeader>
+      <CardBody>
+            <h3 class="text-center text-white">{element.name_text}</h3>
+            <h5 class="text-center text-white"><i class="fal fa-map-marker-alt mr-2"></i>{element.street_text} / {element.locality_text}</h5>
+      </CardBody>
+    </Card>
+      
 
       <Modal
         animation={false}
@@ -100,7 +102,7 @@ function ModalSelectedElement(prop) {
           <Row className="justify-content-center">
             <img
               className="image-container img-fluid mb-0 w-75"
-              src={element.image != null ? element.image : image_left}
+              src={element.photo_url != null ? element.photo_url : image_left}
               onClick={() => setModal1(true)}
               alt=""
             />

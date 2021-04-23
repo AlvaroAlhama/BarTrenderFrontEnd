@@ -21,8 +21,8 @@ import '../../views/css/ModalQR.css'
 import ListDiscount from "../ListDiscount";
 import './ModalSelectedElement.css';
 
+import { withScriptjs } from "react-google-maps";
 import Map from "components/Map.js"
-
 
 
 function ModalSelectedElement(prop) {
@@ -33,27 +33,28 @@ function ModalSelectedElement(prop) {
   const [appState, setAppState] = useState({
     discounts: {},
   });
+  
   const ubicacion = {
     lat: 36.92043226009566,
     lng: -6.080399144405965
   };
-  const location = element.street + ", " + element.number + ", " + element.zone + ", " + element.locality;
-  //  useEffect(() => {
-  //   const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/"+element.id+"/discounts/get?page=1&all=False";
-  //   async function loadDiscounts(){
-  //     await fetch(apiUrl, {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'token': '',
-  //         'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
+  const location = element.street_text + ", " + element.number_text + ", " + element.zone_enum + ", " + element.locality_text;
+  
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     console.log("Latitude is :", position.coords.latitude);
+  //     console.log("Longitude is :", position.coords.longitude);
+  //     setUserLocation({
+  //       user_location: {
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude
   //       }
-  //     }).then(response => response.json())
-  //       .then(discounts => {
-  //         setAppState({ discounts: discounts });
-  //       });} 
-  //       loadDiscounts()
-  // },[setAppState]);
+  //     });
+  //   });
+
+  // }, [setUserLocation]);
+
+
 
 
   async function loadDiscounts() {
@@ -84,7 +85,7 @@ function ModalSelectedElement(prop) {
   //   }).then(response => response.json())
   //   .then(discounts => setAppState({discounts:discounts}))
   // };
-
+  const MapLoader = withScriptjs(Map);
 
   return (
     <>
@@ -93,7 +94,7 @@ function ModalSelectedElement(prop) {
         <div class="card-body card-img-top">
           <img
             className=""
-            src={element.image != null ? element.image: image_left}
+            src={element.image != null ? element.image : image_left}
             onClick={() => { setModal1(true); loadDiscounts(); }}
             alt=""
           />
@@ -122,7 +123,7 @@ function ModalSelectedElement(prop) {
         <ModalBody className="text-white">
           <img
             className="image-container img-fluid image-left mb-0"
-            src={element.image != null ? element.image: image_left}
+            src={element.image != null ? element.image : image_left}
             onClick={() => setModal1(true)}
             alt=""
           />
@@ -136,8 +137,12 @@ function ModalSelectedElement(prop) {
           <ListDiscount discounts={appState.discounts} />
 
           <h3>Ubicacion</h3>
-          <Map location={location} />
-
+          {/* <Map location={location} /> */}
+          <MapLoader
+            location={location}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3iyCKwQGF0wXBZKOuKhdMIZivUEtMe4s"
+            loadingElement={<div style={{ height: `100%` }} />}
+          />
 
         </ModalBody>
         <div className="modal-footer">

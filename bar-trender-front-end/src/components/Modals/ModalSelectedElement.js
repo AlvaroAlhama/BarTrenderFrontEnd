@@ -54,8 +54,6 @@ function ModalSelectedElement(prop) {
       .then((discounts) => {
         setAppState({ discounts: discounts });
       });
-    console.log("ELEMENTO");
-    console.log(element);
   }
 
   return (

@@ -33,21 +33,7 @@ function FixedPlugin({
   image,
   setImage,
 }) {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     classes: "dropdown show-dropdown open",
-  //     bg_checked: true,
-  //     bgImage: this.props.bgImage,
-  //   };
-  // }
-  // handleClick = () => {
-  //   this.props.handleFixedClick();
-  // };
-  // onChangeClick = () => {
-  //   this.props.handleHasImage(!this.state.bg_checked);
-  //   this.setState({ bg_checked: !this.state.bg_checked });
-  // };
+  
   return (
     <div className="fixed-plugin">
       <Dropdown>
@@ -68,42 +54,7 @@ function FixedPlugin({
               onChange={setHasImage}
             />
           </li>
-          {/* <li className="adjustments-line mt-3">
-            <p>Filters</p>
-            <div className="pull-right">
-              <Badge
-                variant="secondary"
-                className={color === "black" ? "active" : ""}
-                onClick={() => setColor("black")}
-              ></Badge>
-              <Badge
-                variant="azure"
-                className={color === "azure" ? "active" : ""}
-                onClick={() => setColor("azure")}
-              ></Badge>
-              <Badge
-                variant="green"
-                className={color === "green" ? "active" : ""}
-                onClick={() => setColor("green")}
-              ></Badge>
-              <Badge
-                variant="orange"
-                className={color === "orange" ? "active" : ""}
-                onClick={() => setColor("orange")}
-              ></Badge>
-              <Badge
-                variant="red"
-                className={color === "red" ? "active" : ""}
-                onClick={() => setColor("red")}
-              ></Badge>
-              <Badge
-                variant="purple"
-                className={color === "purple" ? "active" : ""}
-                onClick={() => setColor("purple")}
-              ></Badge>
-            </div>
-            <div className="clearfix"></div>
-          </li> */}
+          
           <li className="header-title">Sidebar Images</li>
           <li className={image === sideBarImage1 ? "active" : ""}>
             <a

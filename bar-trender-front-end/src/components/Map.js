@@ -22,13 +22,11 @@ class Map extends Component {
     };
 
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
     this.mapDirection(this.props.location);
   }
   async mapDirection(location) {
     // Get latitude & longitude from address.
-    console.log(location, 'location');
+
     Geocode.fromAddress(location).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
@@ -38,14 +36,13 @@ class Map extends Component {
             lng: lng
           }
         });
-        console.log(lat, lng, 'coordinates');
+       
       },
       (error) => {
         console.error(error);
       }
     );
-    //   this.setState({ error: data.error, modalFail: true, loading: false });
-    // }
+ 
   }
 
   render() {

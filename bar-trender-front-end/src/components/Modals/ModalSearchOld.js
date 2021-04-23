@@ -83,19 +83,12 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var checked_map = e.target.checked ? "on" : "off";
     this.setState({ [e.target.name]: checked_map },
-      // () => console.log(this.state, 'this.state'),
+     
     );
-    // console.log([e.target.checked], 'toggle value on');
+    
   }
 
   async handleSearch(e) {
-    // this.props.searchEngine(this.state.term);
-
-
-    // console.log(this.state.filters);
-    // let temp_state = JSON.stringify(this.state.filters)
-
-    // console.log(this.state)
 
     let beers = [];
     let zones = [];
@@ -155,8 +148,6 @@ class ModalSearch extends React.Component {
       }
     })
     
-    // this.context.router.push("/list");
-    // window.location.href = 'list';
 
 
   }
@@ -172,36 +163,7 @@ class ModalSearch extends React.Component {
     this.handleSearch();
 
   }
-  // const { establishments } = props;
-  
-  // // console.log(establishments.establishments,"list");
 
-  // if (!establishments || establishments.length == undefined) return <p>No establishments, sorry</p>;
-  // return (
-
-  //   <ul className="ul-flex">
-  //     <h2 className='list-head'>Establecimientos</h2>
-  //     <Row className='list'>
-  //       {establishments.map((establishment) => {
-  //         return (
-  //           <>
-  //             <Col className="col-lg-3 col-md-3 mb-4" >
-  //               <div class="card h-100">
-  //                 <ModalSelectedElement element={establishment} />
-  //                 <div class="card-body card-img-top">
-  //                   <p class="card-title">
-  //                     {establishment.name}
-  //                   </p>
-  //                 </div>
-  //               </div>
-  //             </Col>
-  //           </>
-  //         );
-  //       })}
-  //     </Row>
-  //   </ul>
-  // );
-  // const [modal1, setModal1] = React.useState(false);
   render() {
     return (
 

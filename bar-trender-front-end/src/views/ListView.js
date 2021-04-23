@@ -48,7 +48,7 @@ function ListView() {
 
       }
     }
-    console.log(filter, 'filter');
+  
  
     }
 
@@ -56,7 +56,6 @@ function ListView() {
 
 
     async function loadResults() {
-      console.log(filter, 'filter');
       await fetch(apiUrl, {
         method: 'POST',
         body: JSON.stringify(filter),
@@ -68,7 +67,7 @@ function ListView() {
         .then(response => response.json())
         .then(establishments => {
           setAppState({ loading: false, establishments: establishments });
-          console.log(appState)
+      
           filter = {
             "filters": {}}
         });
@@ -103,11 +102,9 @@ function ListView() {
           <section>
           <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
           </section>
-          {/* <div class="container mt-5">
-            <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
-          </div> */}
+         
         </div>
-        {/* <DefaultFooter /> */}
+   
       </DeviceIdentifier>
 
     </>

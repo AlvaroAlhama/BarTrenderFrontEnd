@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 const url_dev = process.env.REACT_APP_URL_DEV;
-const url_local = process.env.REACT_APP_URL_LOCAL;
-const url_main = process.env.REACT_APP_URL_MAIN;
+
 
 export default class App extends React.Component {
   
@@ -24,7 +23,7 @@ export default class App extends React.Component {
       this.setState({error: "Necesitas haber iniciado sesión para poder ver el descuento"})
     }else{
       const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-sprint-02.netlify.app';
-      console.log(url)
+   
 
       const response = await fetch(url, {
         method: 'GET',
@@ -34,7 +33,7 @@ export default class App extends React.Component {
             'apiKey':'8dDc431125634ef43cD13c388e6eCf11'
           }
       });
-      if(response.status == 200){
+      if(response.status === 200){
         const data = await response.blob();
         this.setState({qr: URL.createObjectURL(data), loading: false});
       }else{

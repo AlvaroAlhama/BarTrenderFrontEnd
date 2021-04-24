@@ -57,7 +57,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
       
       let input = {};
 
-      console.log(typeof(this.state.input.phone));
+    
 
       this.state.input.phone=parseInt(this.state.input.phone, 10);
 

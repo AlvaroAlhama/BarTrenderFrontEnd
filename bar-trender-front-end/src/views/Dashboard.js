@@ -84,8 +84,6 @@ function Dashboard() {
               <h3>Ranking de las 3 mejores cervezas</h3>
               <Card>
                 <Card.Header>
-                  {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
                 </Card.Header>
                 <Card.Body>
                   <FreePieChart filter={"Bebida"} />
@@ -106,8 +104,7 @@ function Dashboard() {
               <h3>¿Que prefiere la gente para divertirse?</h3>
               <Card>
                 <Card.Header>
-                  {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
+                  
                 </Card.Header>
                 <Card.Body>
                   <DashboardTopImage filter={"Ocio"} />
@@ -126,7 +123,6 @@ function Dashboard() {
               <Card>
                 <Card.Header></Card.Header>
                 <Card.Body>
-                  {/* <FreePieChart filter={"Ocio"} /> */}
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
@@ -180,8 +176,7 @@ function Dashboard() {
               <h3>Ranking de las 3 mejores cervezas</h3>
               <Card>
                 <Card.Header>
-                  {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
+                 
                 </Card.Header>
                 <Card.Body>
                   <FreePieChart filter={"Bebida"} />
@@ -202,8 +197,7 @@ function Dashboard() {
               <h3>¿Que prefiere la gente para divertirse?</h3>
               <Card>
                 <Card.Header>
-                  {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
+                 
                 </Card.Header>
                 <Card.Body>
                   <DashboardTopImage filter={"Ocio"} />

@@ -17,7 +17,7 @@ class ApiSignUpClientForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
-  // TODO CALL THE API
+  // call the api
   async handleSignUp() {
     let errors = {};
     var url =
@@ -57,7 +57,7 @@ class ApiSignUpClientForm extends React.Component {
 
       let input = {};
       const birthday = moment.utc(`${this.state.input.birthday}`).unix();
-      console.log(birthday);
+    
       this.state.input.birthday = birthday;
       input["rol"] ="client"
       this.setState({

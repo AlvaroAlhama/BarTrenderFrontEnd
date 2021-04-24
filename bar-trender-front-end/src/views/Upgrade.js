@@ -38,7 +38,7 @@ function Upgrade() {
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function(details){
-      console.log(details);
+ 
       setAppState({create_time: details.create_time, order_id: details.id })
     });
   } 

@@ -100,8 +100,7 @@ export default class PremiumDashboard extends React.Component {
   }
 
   render() {
-    console.log("AQUI PREMIUM");
-    console.log(sessionStorage.getItem("premium"));
+    console.log("Check de que el usuario es premium",sessionStorage.getItem("premium"));
     if (sessionStorage.getItem("premium") == "true") {
       return (
         <>

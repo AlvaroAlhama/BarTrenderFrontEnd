@@ -15,7 +15,7 @@ import {
 const ListDiscount = (props) => {
   const { discounts } = props;
   
-  console.log(discounts.results);
+  
   if (!discounts.results || discounts.results.length == 0) return <p>No hay descuentos para este establecimiento</p>;
   return (
 

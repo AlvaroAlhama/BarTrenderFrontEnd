@@ -46,13 +46,3 @@ function LandingPageHeader() {
 }
 
 export default LandingPageHeader;
-{/* <div className="page-header page-header-medium">
-        <div
-          className="page-header-image"
-          style={{
-            backgroundImage: `url(${bg})`,
-          }}
-          ref={pageHeader}
-        ></div>
-         
-      </div> */}

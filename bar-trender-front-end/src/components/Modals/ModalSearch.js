@@ -54,7 +54,6 @@ class ModalSearch extends React.Component {
       //   type: "Estilo"
       // },
     ];
-    console.log(this.tags, "construyendose")
     this.tags_grouped = [];
     function groupBy(xs, f) {
       return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
@@ -73,8 +72,7 @@ class ModalSearch extends React.Component {
       .then(tags => {
         this.tags = tags.tags;
         this.tags_grouped = groupBy(this.tags, (t) => t.type);
-        // console.log(this.tags)
-        // console.log(this.tags_grouped, "tags gruo")
+     
       })
 
     this.handleTermChange = this.handleTermChange.bind(this);
@@ -94,9 +92,7 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-    console.log(e.target);
     if (e.target.name == 'name') {
-      console.log(e.target.value, 'name');
       this.setState({ 'name': e.target.value },);
     } else {
       if (e.target.checked == true) {
@@ -109,13 +105,11 @@ class ModalSearch extends React.Component {
           );
         } else {
           this.state[type].push(name);
-          console.log(this.state, "El doblao");
         }
       }
       else {
         var nameIndex = this.state[type].indexOf("name");
         this.state[type].splice(nameIndex, 1);
-        console.log(this.state);
       }
     }
 
@@ -234,6 +228,7 @@ class ModalSearch extends React.Component {
                               })
                             }}
                           >
+
                             <i className="now-ui-icons shopping_tag-content"></i>
                           </NavLink>
                           <h6 class="align-center ">Descuentos</h6>
@@ -288,23 +283,27 @@ class ModalSearch extends React.Component {
                         </>
                       );
                     })}
-                    <TabPane tabId="pillsDescuentos">
-                      <h3 className="text-center mt-2"> Descuentos</h3>
-                      <FormGroup check>
+                    <TabContent className="gallery" activeTab={"pills" + this.state['pills']}>
 
-                        <Label id="discount-label" check>
-                          <Input type="checkbox"
-                            placeholder="discounts"
-                            onChange={this.handleDiscountChange}
-                            onKeyDown={this.handleEnter}
-                            name="discounts"
-                            id="discounts"
-                          />
-                          <span className="form-check-sign"></span>
+                      <TabPane tabId="pillsDescuentos">
+                        <h3 className="text-center mt-2"> Descuentos</h3>
+                        <FormGroup check>
+
+                          <Label id="discount-label" check>
+                            <Input type="checkbox"
+                              placeholder="discounts"
+                              onChange={this.handleDiscountChange}
+                              onKeyDown={this.handleEnter}
+                              name="discounts"
+                              id="discounts"
+                            />
+                            <span className="form-check-sign"></span>
                         Cualquier descuento
                         </Label>
-                      </FormGroup>
-                    </TabPane>
+                        </FormGroup>
+                      </TabPane>
+                    </TabContent>
+
                   </Form>
                 </Col>
 

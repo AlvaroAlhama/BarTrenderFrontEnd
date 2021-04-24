@@ -43,8 +43,7 @@ function BeerPieChart(props) {
     loadStats()
   }, [setBebidaState, setOcioState]);
 
-  console.log(bebidaState, "Bebidas")
-  console.log(ocioState, "Ocio")
+  
 
   if (bebidaState.statsBebida.first != undefined) {
     var graph2 = {
@@ -97,7 +96,7 @@ function BeerPieChart(props) {
       }
     };
   }
-  console.log(props.filter, "elemento qu ese envia")
+ 
   if(props.filter == 'Bebida'){
     if (bebidaState.statsBebida.first != undefined) {
       var graph2 = {

@@ -28,13 +28,7 @@ class POSTForm extends Component {
     }
 
     async handleSearch(e) {
-        // this.props.searchEngine(this.state.term);
-
-
-        // console.log(this.state.filters);
-        // let temp_state = JSON.stringify(this.state.filters)
-
-        // console.log(this.state)
+       
 
         let beers = [];
         let zones = [];
@@ -68,8 +62,7 @@ class POSTForm extends Component {
             }
         })
 
-        // this.context.router.push("/list");
-        // window.location.href = 'list';
+       
 
 
     }

@@ -4,7 +4,7 @@ import bg from '../../assets/img/principalDefDef-min.jpeg';
 // reactstrap components
 import 'font-awesome/css/font-awesome.min.css';
 import './LandingPageHeader.css';
-import video from "../../assets/videos/Beer.mp4";
+import video from "../../assets/videos/Beer2.gif";
 
 // core components
 
@@ -27,19 +27,18 @@ function LandingPageHeader() {
   return (
     <>
     <header>
-    <div class="overlay"></div>
-    <video controls autoPlay loop muted id="myVideo">
-     <source src={video} type="video/mp4" /> 
-    </video>  
+    <div class="overlay">
+    <img className="beer" src={video}/> 
+    </div>
     
-    <div class="container h-100">
-      <div class="d-flex h-100 text-center align-items-center">
+   
+      <div class="container d-flex h-100 text-center align-items-center">
         <div class="w-100 text-white">
           <h1 class="display-3">BarTrender</h1>
           <p class="lead mb-0">Tu busca tu gente, nosotros te buscamos los bares</p>
         </div>
       </div>
-    </div>
+ 
   </header>
     </>
   );

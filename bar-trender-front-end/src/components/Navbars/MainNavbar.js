@@ -32,11 +32,13 @@ function MainNavbar() {
       ) {
         setNavbarColor("bg-primary");
         document.getElementById("filters").classList.remove("btn-primary");
-        document.getElementById("filters").classList.add("btn-outline-light");
+        document.getElementById("filters").classList.add("bg-dark"); 
+        
       } else if (
         document.documentElement.scrollTop < 201 ||
         document.body.scrollTop < 201
       ) {
+        
         setNavbarColor("navbar-transparent");
       }
     };

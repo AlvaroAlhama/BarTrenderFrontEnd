@@ -163,9 +163,13 @@ export default class EditEstablishment extends React.Component {
         imageUpload.append('street_text', inputs.street_text);
         imageUpload.append('number_text', inputs.number_text);
         imageUpload.append('locality_text', inputs.locality_text);
-        imageUpload.append('desc_text', '');
         imageUpload.append('tags', tagsBefore);
         imageUpload.append('zone_enum', inputs.zone_enum);
+
+        if(inputs.desc_text)
+            imageUpload.append('desc_text', inputs.desc_text);
+        else
+            imageUpload.append('desc_text', '');
 
         if(this.state.image)
         {
@@ -338,22 +342,6 @@ export default class EditEstablishment extends React.Component {
             const file = event.target.files
             console.log(file)
         })
-
-    }
-
-    updateImage(e)
-    {
-        e.preventDefault()
-        
-        const url = 'http://localhost:8000/v1/establishments/'+ 4 + '/update'; 
-        // const  update = fetch(url, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'token': token,
-        //         'Content-type': 'multipart/form-data; boundary=something',
-        //     },
-        //     body: imageUpload,
-        // });
 
     }
 
@@ -538,13 +526,6 @@ export default class EditEstablishment extends React.Component {
                         </div>
 
                     </div>
-                </div>
-
-                <div>
-                    <form>
-                        <input type="file" name="imagen_test" id="profile_pic"></input>
-                        <button onClick={e => this.updateImage(e)}>Submit</button>
-                    </form>
                 </div>
             </>
         )

@@ -11,9 +11,9 @@ import Qr from "../../App.js";
 //css components
 import "../../views/css/ModalQR.css";
 import ListDiscount from "../ListDiscount";
-import "./ModalSelectedElement.css";
-
-import Map from "components/Map.js";
+import './ModalSelectedElement.css';
+import { withScriptjs } from "react-google-maps";
+import Map from "components/Map.js"
 
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
@@ -25,14 +25,23 @@ function ModalSelectedElement(prop) {
     discounts: {},
   });
   
-  const location =
-    element.street +
-    ", " +
-    element.number +
-    ", " +
-    element.zone +
-    ", " +
-    element.locality;
+
+  const location = element.street_text + ", " + element.number_text + ", " + element.zone_enum + ", " + element.locality_text;
+  
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     console.log("Latitude is :", position.coords.latitude);
+  //     console.log("Longitude is :", position.coords.longitude);
+  //     setUserLocation({
+  //       user_location: {
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude
+  //       }
+  //     });
+  //   });
+
+  // }, [setUserLocation]);
+
 
   async function loadDiscounts() {
     const apiUrl =
@@ -53,17 +62,33 @@ function ModalSelectedElement(prop) {
       });
   }
 
+  // function loadInfo(){
+  //   setModal1(true);
+  //   const [] = useState({discounts:{}});
+
+  //   fetch("http://localhost:8000/v1/establishments/1/discounts/get", {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //      }
+  //   }).then(response => response.json())
+  //   .then(discounts => setAppState({discounts:discounts}))
+  // };
+  const MapLoader = withScriptjs(Map);
+
   return (
     <>
     <Card className="bg-primary">
       <CardHeader>
       <img
             className=""
+
             src={element.photo_url != null ? element.photo_url : image_left}
             onClick={() => {
               setModal1(true);
               loadDiscounts();
             }}
+
             alt=""
           />
       </CardHeader>
@@ -96,6 +121,7 @@ function ModalSelectedElement(prop) {
           </ModalHeader>
         </div>
         <ModalBody className="text-white">
+          
           <Row className="justify-content-center">
             <img
               className="image-container img-fluid mb-0 w-75"

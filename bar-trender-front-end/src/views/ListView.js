@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //css
 import {
-
   useLocation
 } from "react-router-dom";
 
@@ -39,24 +37,20 @@ function ListView() {
     console.log("Construyendo view")
     setAppState({ loading: true });
 
-    if (location.state != undefined) {
+    if (location.state !== undefined) {
       var data = location.state[0];
     
       for (const key in data) {
         if (!(key === 'modal' || key === 'fade' ||  key ==='pills')){
           filter["filters"][key] = data[key];
 
+        }
       }
-    }
-    console.log(filter, 'filter');
- 
     }
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
 
-
     async function loadResults() {
-      console.log(filter, 'filter');
       await fetch(apiUrl, {
         method: 'POST',
         body: JSON.stringify(filter),
@@ -68,18 +62,36 @@ function ListView() {
         .then(response => response.json())
         .then(establishments => {
           setAppState({ loading: false, establishments: establishments });
-          console.log(appState)
-          filter = {
-            "filters": {}}
+      
+         
         });
     }
     loadResults()
+
+    
+    filter = {
+      "filters": {  
+      }
+    }
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+      // console.log("Latitude is :", position.coords.latitude);
+      // console.log("Longitude is :", position.coords.longitude);
+      
+      sessionStorage.setItem("user_location_lat",position.coords.latitude);
+      sessionStorage.setItem("user_location_lng",position.coords.longitude);
+
+      
+
+    });
 
   }, [setAppState, location]);
 
 
 
   React.useEffect(() => {
+
+    
   
   }, []);
   return (
@@ -103,11 +115,9 @@ function ListView() {
           <section>
           <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
           </section>
-          {/* <div class="container mt-5">
-            <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
-          </div> */}
+         
         </div>
-        {/* <DefaultFooter /> */}
+   
       </DeviceIdentifier>
 
     </>

@@ -15,31 +15,18 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { Component } from "react";
+import React from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
 
 import AdminNavbar from "components/Navbars/AdminNavbar";
-import Footer from "components/Footer";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin.js";
 import {
-  BrowserRouter as Router,
   Link
 } from "react-router-dom";
 // react-bootstrap components
 import {
-  Badge,
-  Button,
-  Card,
-  Navbar,
-  Nav,
-  Table,
-  Container,
-  Row,
-  Col,
-  Form,
-  OverlayTrigger,
-  Tooltip,
+  Container
 } from "react-bootstrap";
 import routes from "routes.js";
 
@@ -71,18 +58,6 @@ function AdminView() {
     });
   };
   React.useEffect(() => {
-    console.log(sessionStorage.getItem("premium"));
-    // document.documentElement.scrollTop = 0;
-    // document.scrollingElement.scrollTop = 0;
-    // mainPanel.current.scrollTop = 0;
-    // if (
-    //   window.innerWidth < 993 &&
-    //   document.documentElement.className.indexOf("nav-open") !== -1
-    // ) {
-    //   document.documentElement.classList.toggle("nav-open");
-    //   var element = document.getElementById("bodyClick");
-    //   element.parentNode.removeChild(element);
-    // }
   }, [location]);
 
   if (!token) {
@@ -112,7 +87,7 @@ function AdminView() {
       </>
     );
   } else {
-    if (sessionStorage.getItem("rol") == "owner") {
+    if (sessionStorage.getItem("rol") === "owner") {
 
       return (
         <>
@@ -123,7 +98,7 @@ function AdminView() {
               <div className="content">
                 <Switch>{getRoutes(routes)}</Switch>
               </div>
-              {/* <Footer /> */}
+              
             </div>
           </div>
           <FixedPlugin
@@ -150,7 +125,7 @@ function AdminView() {
                   <Link to="/main" className="btn btn-primary">Volver</Link>
                 </Container>
               </div>
-              {/* <Footer /> */}
+              
             </div>
           </div>
           <FixedPlugin

@@ -2,26 +2,18 @@
 // Routing
 import Dashboard from "views/Dashboard.js";
 import PremiumDashboard from "views/PremiumDashboard.js";
-import UserProfile from "views/UserProfile.js";
-import TableList from "views/TableList.js";
-import Typography from "views/Typography.js";
-import Icons from "views/Icons.js";
-import Maps from "views/Maps.js";
-import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
 import EstablishmentView from "views/EstablishmentView";
 import EditOwnerProfile from "components/EditOwnerProfile.js"
-import React, { Component } from "react";
+import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
 
 import { Nav } from "react-bootstrap";
 
-import logo from "assets/img/reactlogo.png";
 import { useEffect, useState } from "react";
 
-import logoBartrender from "../Images/barTrender61.png";
 
 function Sidebar({ color, image }) {
   

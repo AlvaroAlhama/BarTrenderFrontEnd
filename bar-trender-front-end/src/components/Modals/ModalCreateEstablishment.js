@@ -1,11 +1,11 @@
 import React from "react";
 import ApiCreateEstablishmentForm from "../ApiCreateEstablishmentForm";
-import { Button, Modal, ModalBody } from "reactstrap";
+import { Modal, ModalBody } from "reactstrap";
 
 function ModelCreateEstablishment() {
   const [modal1, setModal1] = React.useState(false);
   function reportWindowSize() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const { innerWidth: width } = window;
     if(width < 750 && document.getElementById("create-tooltip")!=null ){
       document.getElementById("create-tooltip").classList.remove("mt-1");
       document.getElementById("create-tooltip").classList.add("my-auto");
@@ -21,7 +21,6 @@ function ModelCreateEstablishment() {
       <>
         <i
           color="primary"
-          className="mr-1"
           onClick={() => setModal1(true)}
           id="create-tooltip"
           className="fal fa-plus-square mt-1 text-white fa-lg"

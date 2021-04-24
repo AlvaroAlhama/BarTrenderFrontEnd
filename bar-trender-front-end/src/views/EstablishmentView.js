@@ -49,7 +49,7 @@ function EstablishmentView() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data, 'establishments');
-        if (data['error'] == undefined) {
+        if (data['error'] === undefined) {
           setAppState({
 
             loading: false,
@@ -68,7 +68,7 @@ function EstablishmentView() {
       });
   }, []);
 
-  if (appState.error == true) {
+  if (appState.error === true) {
     return (
       <Container fluid>
         <h1>Error</h1>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { useEffect, useState} from "react";
 import { Modal, ModalBody } from "reactstrap";
 
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
@@ -8,10 +8,7 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
-  const { element } = props;
   var idEstablishment = props.idEstablishment;
- 
-
   var nameEstablishment = props.nameEstablishment;
   var token = sessionStorage.getItem("token");
   const [appState, setAppState] = useState({
@@ -75,14 +72,14 @@ function DashboardQRList(props) {
  
   var count = 0;
 
-  if (!appState.discounts.results || appState.discounts.count == 0) {
+  if (!appState.discounts.results || appState.discounts.count === 0) {
     return (
       <Card>
         <h3>No tiene descuentos para el establecimiento: {nameEstablishment}</h3> 
       </Card>
     );
   } else {
-    var totalPriceDiscounts = discountPaymentInfoState.discountPaymentInfo.total == undefined?0.0:discountPaymentInfoState.discountPaymentInfo.total.toFixed(2);
+    var totalPriceDiscounts = discountPaymentInfoState.discountPaymentInfo.total === undefined?0.0:discountPaymentInfoState.discountPaymentInfo.total.toFixed(2);
     
 
     const createOrder = (data, actions) =>{
@@ -99,24 +96,28 @@ function DashboardQRList(props) {
   
     const onApprove = (data, actions) => {
       return actions.order.capture().then(function(details){
-        setPaymentState({create_time: details.create_time, order_id: details.id })
+        paymentState.create_time = details.create_time;
+        paymentState.order_id = details.id;
+        payment();
       });
     }
 
     const paymentUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
 
-    if(paymentState != null){
-      console.log(paymentState)
-      const setPaidDiscounts =  
-        fetch(paymentUrl, {
-        method: "POST",
-        headers: {
-          token: token,
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(paymentState),
-      });}
-
+    const payment = () => {
+      if(paymentState.create_time !== null && paymentState.order_id !== null){
+          fetch(paymentUrl, {
+            method: "POST",
+            headers: {
+              token: token,
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(paymentState),
+          }).then(response => {
+            window.location.reload()
+          });
+        }
+    }
     return (
       <ul className="ul-flex">
         <h2 className="list-head">Tus Descuentos</h2>

@@ -68,7 +68,7 @@ export default class EditDeleteDiscounts extends React.Component{
         });
         
         const data = await get.json();
-        console.log(data)
+        
         this.setState({
             data: data.discounts,
             establishments: data.establishment
@@ -81,7 +81,7 @@ export default class EditDeleteDiscounts extends React.Component{
         var splited = query.split("/");
         var id_establishment = splited[3];
         var id_discount = this.state.discount.id;
-        console.log(id_discount);
+       
 
         const urlUpdate = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' +id_establishment +'/discounts/' +id_discount +'/update';
     
@@ -163,7 +163,7 @@ export default class EditDeleteDiscounts extends React.Component{
 
             }
         })
-        console.log(this.state.input)
+        
     }
     
     selectDiscount(discount){

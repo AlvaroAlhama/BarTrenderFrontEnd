@@ -24,7 +24,7 @@ function DashboardTopImage(props) {
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-    console.log(token, 'token');
+   
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
 

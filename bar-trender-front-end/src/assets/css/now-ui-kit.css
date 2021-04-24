@@ -2579,7 +2579,10 @@ p {
 
 .text-primary {
   color: #f96332 !important; }
-
+  
+.text-primary:hover {
+    color: #f96332 !important; }
+    
 .text-info {
   color: #2CA8FF !important; }
 

@@ -4,9 +4,8 @@ import POSTLoginForm from "../ApiLoginForm";
 
 function ModalLogin() {
   const [modal1, setModal1] = React.useState(false);
-  const [clientUserForm, setClientUserForm] = React.useState(false);
   function reportWindowSize() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const { innerWidth: width } = window;
     if(width < 750 && document.getElementById("logout-tooltip")!=null ){
       document.getElementById("logout-tooltip").classList.remove("mt-1");
       document.getElementById("logout-tooltip").classList.add("my-auto");
@@ -22,13 +21,13 @@ function ModalLogin() {
   if (!token) {
     return (
       <>
-        <a
+        <i
           onClick={() => setModal1(true)}
           id="login-tooltip"
-          className="far fa-user text-white  fa-lg mt-1"
+          className="fal fa-user text-white fa-lg mt-1"
         >
           
-        </a>
+        </i>
         <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto text-white ml-2">Inicio de Sesión</p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <div className="modal-header justify-content-center">
@@ -54,7 +53,6 @@ function ModalLogin() {
     return (
       <>
         <i
-          className="mt-1"
           id="logout-tooltip"
           onClick={() => {
             sessionStorage.clear();

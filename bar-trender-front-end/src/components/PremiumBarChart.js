@@ -27,7 +27,7 @@ function PremiumBarChart(props) {
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-    console.log(token, 'token');
+
    
      const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";
     async function loadStats() {
@@ -51,7 +51,7 @@ function PremiumBarChart(props) {
     loadStats()
   }, [setAppState]);
 
-  console.log(appState.stats, 'appState.stats');
+ 
   if (appState.stats.first != undefined) {
     var graph2 = {
       chartData: {

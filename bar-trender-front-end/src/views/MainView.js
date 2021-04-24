@@ -16,15 +16,8 @@ import {
 // core components
 import MainNavbar from "../components/Navbars/MainNavbar.js";
 import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
-import DefaultFooter from "../components/Footers/DefaultFooter.js";
-import Carousel from "../components/Carousel.js";
-import ModalSelectedElement from "../components/Modals/ModalSelectedElement.js";
-
 import List from "../components/List";
 import withListLoading from '../components/withListLoading';
-
-import image_left from '../assets/img/expositions/hU-kQ3Epxeq2dhaBpUgYfYaPhHEOKXnHXSeUqLjTygYBV05OHhUSZEWilh_Da9zkI1d_cgz91KIPevD_BBhBWhaKevognkx6Bv7-QwkQdRG9oznKG6wOae4avH8ksi6bkJBLWl4.png';
-
 
 function LandingPage() {
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -48,17 +41,6 @@ function LandingPage() {
   }, [setAppState]);
 
 
-  // React.useEffect(() => {
-  //   document.body.classList.add("landing-page");
-  //   document.body.classList.add("sidebar-collapse");
-  //   document.documentElement.classList.remove("nav-open");
-  //   window.scrollTo(0, 0);
-  //   document.body.scrollTop = 0;
-  //   return function cleanup() {
-  //     document.body.classList.remove("landing-page");
-  //     document.body.classList.remove("sidebar-collapse");
-  //   };
-  // }, []);
 
   return (
     <>
@@ -66,13 +48,9 @@ function LandingPage() {
       <div className="wrapper">
         <LandingPageHeader />
        
-       {/* TODO: Implementar carrousel funcional */}
-          {/* <Container>   
-            <Carousel />
-            <div className="separator separator-primary"></div>
-          </Container> */}
+       
         </div>       
-        {/* <DefaultFooter /> */}
+       
 
     </>
   );

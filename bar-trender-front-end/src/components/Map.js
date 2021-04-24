@@ -28,11 +28,13 @@ class Map extends Component {
       directions_active: false
     };
 
+
     this.mapDirection(this.props.location);
   }
 
   async mapDirection(location) {
     // Get latitude & longitude from address.
+
     Geocode.fromAddress(location).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
@@ -42,6 +44,7 @@ class Map extends Component {
             lng: lng
           }
         });
+
         const directionsService = new google.maps.DirectionsService();
 
         const destination = this.state.coords;
@@ -81,13 +84,13 @@ class Map extends Component {
             }
           }
         );
+
       },
       (error) => {
         console.error(error);
       }
     );
-    //   this.setState({ error: data.error, modalFail: true, loading: false });
-    // }
+ 
   }
 
   render() {

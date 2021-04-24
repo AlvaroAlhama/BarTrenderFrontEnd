@@ -35,7 +35,7 @@ class POSTCreateDiscount extends React.Component {
     var query = window.location.pathname;
     var splited = query.split("/");
     var idEstablishment = splited[3];
-    console.log(this.state.send, "esto es lo que se va a enviar")
+
     const url =
 
     "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
@@ -69,9 +69,9 @@ class POSTCreateDiscount extends React.Component {
 
     const endTime = this.state.input.endTime;
 
-    if (endDate != undefined && endDate != '') {
+    if (endDate != undefined && endDate !== '') {
       const timeStampEnd = moment.utc(`${endDate} ${endTime}`).unix();
-      console.log("está entrando con el que lleva endDate")
+  
       let send2 = {
         name: this.state.input.name,
         description: this.state.input.descripcion,
@@ -91,7 +91,7 @@ class POSTCreateDiscount extends React.Component {
         }
       );
     } else {
-      console.log("está entrando con el que no lleva endDate")
+
 
       let send2 = {
         name: this.state.input.name,

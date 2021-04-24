@@ -19,11 +19,11 @@ export default class EstablishmentByOwner extends React.Component{
                     "token": token
                 }
         });
-        console.log(response);
+       
         const data = await response.json();
-        console.log(data);
+       
         this.setState({establishments: data});
-        console.log(this.state.establishments)
+       
     
     }
 

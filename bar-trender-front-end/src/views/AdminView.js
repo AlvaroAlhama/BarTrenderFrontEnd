@@ -71,18 +71,6 @@ function AdminView() {
     });
   };
   React.useEffect(() => {
-    console.log(sessionStorage.getItem("premium"));
-    // document.documentElement.scrollTop = 0;
-    // document.scrollingElement.scrollTop = 0;
-    // mainPanel.current.scrollTop = 0;
-    // if (
-    //   window.innerWidth < 993 &&
-    //   document.documentElement.className.indexOf("nav-open") !== -1
-    // ) {
-    //   document.documentElement.classList.toggle("nav-open");
-    //   var element = document.getElementById("bodyClick");
-    //   element.parentNode.removeChild(element);
-    // }
   }, [location]);
 
   if (!token) {
@@ -123,7 +111,7 @@ function AdminView() {
               <div className="content">
                 <Switch>{getRoutes(routes)}</Switch>
               </div>
-              {/* <Footer /> */}
+              
             </div>
           </div>
           <FixedPlugin
@@ -150,7 +138,7 @@ function AdminView() {
                   <Link to="/main" className="btn btn-primary">Volver</Link>
                 </Container>
               </div>
-              {/* <Footer /> */}
+              
             </div>
           </div>
           <FixedPlugin

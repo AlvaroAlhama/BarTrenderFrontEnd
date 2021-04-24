@@ -117,7 +117,7 @@ export default class EditClientProfile extends React.Component {
         let sendWithNewpass = {};
         let send = {};
 
-        console.log(this.validate(), "este es el validate")
+       
         if (this.validate()) {
             if (inputs['password'] == undefined) {
                 send['name'] = inputs.name;

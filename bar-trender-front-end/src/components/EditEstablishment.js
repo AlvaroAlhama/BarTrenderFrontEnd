@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { createRef, useRef } from 'react';
 import Select from 'react-select';
 import { CustomInput, FormGroup, Label, Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
 
 export default class EditEstablishment extends React.Component {
+        
     constructor() {
         super();
 
@@ -42,14 +43,14 @@ export default class EditEstablishment extends React.Component {
             errorsApiPut: {},
             errors: {},
             msg: null,
-
+            form: createRef(),
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleUpdate = this.handleSubmit.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
         this.getEstablishment = this.getEstablishment.bind(this);
-        this.getTags = this.getTags.bind(this);
+        this.getTags = this.getTags.bind(this);       
 
     }
 
@@ -139,6 +140,7 @@ export default class EditEstablishment extends React.Component {
         }
     }
 
+
     async handleUpdate(){
         var token = sessionStorage.getItem('token');
         var query = window.location.pathname;
@@ -150,11 +152,12 @@ export default class EditEstablishment extends React.Component {
         for (let tag of this.state.selected)
             tagsBefore.push(tag.value)
 
-        const urlUpdate = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+ id_establishment + '/update';
+        const urlUpdate = 'http://localhost:8000/v1/establishments/'+ id_establishment + '/update';
 
 
         //Form data con todos los atributos para enviar por Multipart (ahora mismo el image es obligatorio)
-        const imageUpload = new FormData();
+        //const imageUpload = new FormData(this.state.form.current);
+        var imageUpload = new FormData();
         imageUpload.append('name_text', inputs.name_text);
         imageUpload.append('phone_number', inputs.phone_number.toString());
         imageUpload.append('street_text', inputs.street_text);
@@ -163,15 +166,34 @@ export default class EditEstablishment extends React.Component {
         imageUpload.append('desc_text', '');
         imageUpload.append('tags', tagsBefore);
         imageUpload.append('zone_enum', inputs.zone_enum);
-        imageUpload.append('image', this.state.image, this.state.image.name);
 
+        if(this.state.image)
+        {
+            imageUpload.append('image_name', this.state.image.name);
+            
+            const toBase64 = file => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+            
+            imageUpload.append('image', await toBase64(this.state.image));
+        }
+            
+        var object = {};
+        imageUpload.forEach(function(value, key){
+            object[key] = value;
+        });
+        var json = JSON.stringify(object);
+  
         const  update = await fetch(urlUpdate, {
             method: 'PUT',
             headers: {
                 'token': token,
-                'Content-type': 'multipart/form-data',
+                'Content-type': 'application/json',
             },
-            body: imageUpload,
+            body: json,
         });
 
         if(update.ok){
@@ -207,7 +229,8 @@ export default class EditEstablishment extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
+        
+        event.preventDefault()
         let inputs = this.state.input;
         let send = {};
         let tagsBefore = [];
@@ -310,8 +333,29 @@ export default class EditEstablishment extends React.Component {
         this.getEstablishment();
         this.getTags();
 
+        var profile = document.getElementById("profile_pic")
+        profile.addEventListener('change', (event) => {
+            const file = event.target.files
+            console.log(file)
+        })
+
     }
 
+    updateImage(e)
+    {
+        e.preventDefault()
+        
+        const url = 'http://localhost:8000/v1/establishments/'+ 4 + '/update'; 
+        // const  update = fetch(url, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'token': token,
+        //         'Content-type': 'multipart/form-data; boundary=something',
+        //     },
+        //     body: imageUpload,
+        // });
+
+    }
 
     render() {
 
@@ -329,7 +373,7 @@ export default class EditEstablishment extends React.Component {
                                 </div>
                             </div>
                             <div class='card-body'>
-                                <form id='establishment-form' onSubmit={this.handleSubmit}>
+                                <form enctype="multipart/form-data" ref={this.state.form} id='establishment-form' onSubmit={(e)=>this.handleSubmit(e)}>
                                     <div class='row'>
                                         <div class='col pr-1 md-6'>
                                             <div class='form-group my-1'>
@@ -494,6 +538,13 @@ export default class EditEstablishment extends React.Component {
                         </div>
 
                     </div>
+                </div>
+
+                <div>
+                    <form>
+                        <input type="file" name="imagen_test" id="profile_pic"></input>
+                        <button onClick={e => this.updateImage(e)}>Submit</button>
+                    </form>
                 </div>
             </>
         )

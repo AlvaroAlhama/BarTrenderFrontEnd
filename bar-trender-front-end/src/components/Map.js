@@ -97,18 +97,25 @@ class Map extends Component {
 
   render() {
     console.log(this.state.directions_active, 'directions_active')
-    const GoogleMapExample = this.state.directions_active ? 
-    withGoogleMap(props => (
-      <GoogleMap
-        defaultCenter={{ lat: -3.745, lng: -38.523 }}
-        defaultZoom={13}
-        center={this.state.coords}
-        zoom={19}
-      >
-        <DirectionsRenderer
-          directions={this.state.directions}
-        />
-      </GoogleMap>)) 
+    if (this.state.directions != null) {
+      console.log(this.state.directions.routes[0].legs[0].distance.text, 'distance')
+      console.log(this.state.directions.routes[0].legs[0].duration.text, 'duration')
+      console.log(this.state.directions.routes[0].legs[0].steps[0].travel_mode, 'steps')
+
+    }
+
+    const GoogleMapExample = this.state.directions_active ?
+      withGoogleMap(props => (
+        <GoogleMap
+          defaultCenter={{ lat: -3.745, lng: -38.523 }}
+          defaultZoom={13}
+          center={this.state.coords}
+          zoom={19}
+        >
+          <DirectionsRenderer
+            directions={this.state.directions}
+          />
+        </GoogleMap>))
       : withGoogleMap(props => (
         <GoogleMap
           defaultCenter={{ lat: -3.745, lng: -38.523 }}
@@ -116,17 +123,32 @@ class Map extends Component {
           center={this.state.coords}
           zoom={19}
         >
-          
+
         </GoogleMap>));
 
     return (
       <div>
         <OverlayTrigger overlay={<Tooltip id="tooltip-506045838">Si has permitido el acceso a tu ubicación se mostrará la ruta al establecimiento</Tooltip>}>
-          <Button color="default" color="primary" type="button" onClick={() => { this.setState({ directions_active: !this.state.directions_active }) }}
+          <Button color="default" color="primary" type="button"
+            onClick={() => {
+              this.setState(
+                {
+                  directions_active: !this.state.directions_active,
+                  directions: this.state.directions
+                }
+              )
+            }}
           >
             Mostrar ruta
         </Button>
         </OverlayTrigger>
+        {(this.state.directions_active) ? 
+        <p>
+          Distancia: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].distance.text + " - " : 'None' + " - "}
+          Duración: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].duration.text + " - " : 'None' + " - "}
+          Modo de transporte: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].steps[0].travel_mode + " - " : 'None'}
+        </p>
+          : ""}
 
 
         <GoogleMapExample

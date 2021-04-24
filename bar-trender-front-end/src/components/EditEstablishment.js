@@ -336,13 +336,6 @@ export default class EditEstablishment extends React.Component {
     componentDidMount() {
         this.getEstablishment();
         this.getTags();
-
-        var profile = document.getElementById("profile_pic")
-        profile.addEventListener('change', (event) => {
-            const file = event.target.files
-            console.log(file)
-        })
-
     }
 
     render() {

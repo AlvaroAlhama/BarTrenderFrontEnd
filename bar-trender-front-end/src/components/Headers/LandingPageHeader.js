@@ -1,34 +1,19 @@
 import React from "react";
-import bg from '../../assets/img/principalDefDef-min.jpeg';
 
 // reactstrap components
 import 'font-awesome/css/font-awesome.min.css';
 import './LandingPageHeader.css';
-import video from "../../assets/videos/Beer2.gif";
+import video from "../../assets/videos/Beer.gif";
 
 // core components
 
 function LandingPageHeader() {
-  let pageHeader = React.createRef();
 
-  React.useEffect(() => {
-    // if (window.innerWidth > 991) {
-    //   const updateScroll = () => {
-    //     let windowScrollTop = window.pageYOffset / 3;
-    //     pageHeader.current.style.transform =
-    //       "translate3d(0," + windowScrollTop + "px,0)";
-    //   };
-    //   window.addEventListener("scroll", updateScroll);
-    //   return function cleanup() {
-    //     window.removeEventListener("scroll", updateScroll);
-    //   };  
-    // }
-  }); 
   return (
     <>
     <header>
     <div class="overlay">
-    <img className="beer" src={video}/> 
+    <img className="beer" alt="" src={video}/> 
     </div>
     
    

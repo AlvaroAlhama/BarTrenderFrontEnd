@@ -1,17 +1,14 @@
 import React from "react";
-
 import barTrender from "../../assets/img/barTrender60.png";
 import * as uuid from "uuid";
 
 // reactstrap components
 import {
   Collapse,
-  NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
   Nav,
-  Container,
   UncontrolledTooltip,
 } from "reactstrap";
 import ModalSearch from "../../components/Modals/ModalSearch";
@@ -48,7 +45,7 @@ function MainNavbar() {
     };
   });
   function reportWindowSize() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const { innerWidth: width } = window;
     if (width < 750 && document.getElementById("bartrender-title") != null) {
       if (document.getElementById("bartrender-title") != null) {
         document.getElementById("bartrender-title").classList.add("d-none");
@@ -84,8 +81,8 @@ function MainNavbar() {
   reportWindowSize()
   window.addEventListener("resize", reportWindowSize);
   const logged = sessionStorage.getItem("token");
-  const isLoggedOwner = logged && sessionStorage.getItem("rol") == "owner";
-  const isLoggedClient = logged && sessionStorage.getItem("rol") == "client";
+  const isLoggedOwner = logged && sessionStorage.getItem("rol") === "owner";
+  const isLoggedClient = logged && sessionStorage.getItem("rol") === "client";
   return (
     <>
       {collapseOpen ? (
@@ -174,6 +171,7 @@ function MainNavbar() {
             )}
             <NavItem>
               <NavLink id="account-tooltip" role='button'>
+                
                 <ModalLogin />
                 <UncontrolledTooltip target="#account-tooltip">
                   {logged ? 'Cerrar Sesión' : 'Iniciar Sesión'}

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, ModalHeader, Card, CardBody, CardHeader } from "reactstrap";
 
 // reactstrap components
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalBody } from "reactstrap";
 
 // core components
 import image_left from "../../assets/img/bar-interior.jpg";
@@ -24,10 +24,7 @@ function ModalSelectedElement(prop) {
   const [appState, setAppState] = useState({
     discounts: {},
   });
-  const ubicacion = {
-    lat: 36.92043226009566,
-    lng: -6.080399144405965,
-  };
+  
   const location =
     element.street +
     ", " +

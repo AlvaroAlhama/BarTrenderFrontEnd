@@ -1,13 +1,10 @@
-import React, { useEffect, useState, Component } from "react";
+import React from "react";
 
 import PremiumBarChart from "./PremiumBarChart.js";
 
-import { Row, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 function ShowPremiumStats(props) {
-  const [modal1, setModal1] = React.useState(false);
-  const [modal2, setModal2] = React.useState(false);
-  const { element } = props;
 
   return (
       <Card>

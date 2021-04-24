@@ -1,35 +1,25 @@
-import React, { useEffect, useState } from "react";
-import {
-  Row,
-  Col,
-} from "reactstrap";
+import React from "react";
 
 // reactstrap components
 import {
   Button,
   Modal,
   ModalBody,
-  ModalFooter,
 } from "reactstrap";
 
 // core components
-import image_left from '../../assets/img/bar-interior.jpg';
 import Qr from '../../App.js'
 
 //css components
 import '../../views/css/ModalQR.css'
-import ListDiscount from "../ListDiscount";
 
 function ModalSelectedDiscount(prop) {
   const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
-  const [appState, setAppState] = useState({
-    qr: null,
-  });
-
+  
   return (
     <>
-      <Button color="default" color="primary" type="button" onClick={() => setModal2(true)}>
+      <Button color="primary" type="button" onClick={() => setModal2(true)}>
           Obtener Descuento
       </Button>
       <Modal className="modal-qr" centered="true" isOpen={modal2} toggle={() => setModal2(false)}>

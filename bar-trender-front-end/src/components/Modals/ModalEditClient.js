@@ -11,7 +11,6 @@ function ModalEditClient() {
     <>
       <i
         color="primary"
-        className="mr-1"
         onClick={() => setModal1(true)}
         id="edit-profile-tooltip"
         className="fal fa-user-circle w-100 text-white fa-lg mt-1"

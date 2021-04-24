@@ -29,7 +29,7 @@ function ModalLogin() {
         >
           
         </a>
-        <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto text-white ml-2">Inicio de Sesión</p>
+        <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto text-white ml-2"></p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <div className="modal-header justify-content-center">
             <button

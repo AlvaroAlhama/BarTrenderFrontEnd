@@ -138,7 +138,7 @@ class Map extends Component {
         <p>
           Distancia: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].distance.text + " - " : 'None' + " - "}
           Duración: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].duration.text + " - " : 'None' + " - "}
-          Modo de transporte: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].steps[0].travel_mode + " - " : 'None'}
+          {/* Modo de transporte: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].steps[0].travel_mode + " - " : 'None'} */}
         </p>
           : ""}
 

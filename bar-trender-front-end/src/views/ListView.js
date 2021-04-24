@@ -48,12 +48,10 @@ function ListView() {
 
       }
     }
-  
- 
+
     }
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
-
 
     async function loadResults() {
       await fetch(apiUrl, {
@@ -74,11 +72,26 @@ function ListView() {
     }
     loadResults()
 
+    navigator.geolocation.getCurrentPosition(function (position) {
+      // console.log("Latitude is :", position.coords.latitude);
+      // console.log("Longitude is :", position.coords.longitude);
+      
+      sessionStorage.setItem("user_location_lat",position.coords.latitude);
+      sessionStorage.setItem("user_location_lng",position.coords.longitude);
+
+      
+
+    });
+
+    
+
   }, [setAppState, location]);
 
 
 
   React.useEffect(() => {
+
+    
   
   }, []);
   return (

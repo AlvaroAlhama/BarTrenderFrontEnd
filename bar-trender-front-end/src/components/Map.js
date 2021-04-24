@@ -33,7 +33,6 @@ class Map extends Component {
 
   async mapDirection(location) {
     // Get latitude & longitude from address.
-    console.log(location, 'location');
     Geocode.fromAddress(location).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
@@ -43,7 +42,6 @@ class Map extends Component {
             lng: lng
           }
         });
-        console.log(lat, lng, 'coordinates');
         const directionsService = new google.maps.DirectionsService();
 
         const destination = this.state.coords;
@@ -55,10 +53,7 @@ class Map extends Component {
           lat: parseFloat(user_location_lat),
           lng: parseFloat(user_location_lng)
         };
-        console.log(origin);
-        console.log("---------");
-
-        console.log(destination);
+        
 
 
         directionsService.route(
@@ -96,11 +91,8 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.state.directions_active, 'directions_active')
     if (this.state.directions != null) {
-      console.log(this.state.directions.routes[0].legs[0].distance.text, 'distance')
-      console.log(this.state.directions.routes[0].legs[0].duration.text, 'duration')
-      console.log(this.state.directions.routes[0].legs[0].steps[0].travel_mode, 'steps')
+      
 
     }
 

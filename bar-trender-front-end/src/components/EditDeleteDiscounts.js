@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, Table } from 'reactstrap';
 import moment from "moment";
 import {
     Button,
@@ -463,9 +463,9 @@ export default class EditDeleteDiscounts extends React.Component{
     render(){
         return(
             <>
-                <div class='table w-100'>
+                <Table responsive>
                     <thead>
-                        <tr>
+                        <tr class='text-center'>
                             <th>Nombre</th>
                             <th>Códigos totales</th>
                             <th>Códigos escaneados</th>
@@ -507,7 +507,7 @@ export default class EditDeleteDiscounts extends React.Component{
                             )
                         })}
                     </tbody>
-                </div>
+                </Table>
                 {this.state.input == '' ? '' :
                 <>
                 <Modal isOpen={this.state.modalUpdate} toggle={() => this.setState({modalUpdate: false})}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { Modal, ModalBody } from "reactstrap";
+import { CustomInput, FormGroup, Label, Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
 
 export default class EditEstablishment extends React.Component {
@@ -21,6 +21,10 @@ export default class EditEstablishment extends React.Component {
                 tags: []
             },
 
+            image_url: null,
+
+            image: null,
+            
             selected: [],
 
             tagsChange: [],
@@ -43,8 +47,9 @@ export default class EditEstablishment extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.getTags()
-
+        this.handleUpdate = this.handleSubmit.bind(this);
+        this.getEstablishment = this.getEstablishment.bind(this);
+        this.getTags = this.getTags.bind(this);
 
     }
 
@@ -116,17 +121,17 @@ export default class EditEstablishment extends React.Component {
 
             this.setState({
                 input: {
-                    name_text: data.establishment.name,
-                    phone_number: data.establishment.phone,
-                    zone_enum: data.establishment.zone,
-                    street_text: data.establishment.street,
-                    number_text: data.establishment.number,
-                    locality_text: data.establishment.locality,
-                    image_ulr: data.establishment.image,
-                    desc_text: data.establishment.desc,
+                    name_text: data.establishment.name_text,
+                    phone_number: data.establishment.phone_number,
+                    zone_enum: data.establishment.zone_enum,
+                    street_text: data.establishment.street_text,
+                    number_text: data.establishment.number_text,
+                    locality_text: data.establishment.locality_text,
+                    desc_text: data.establishment.desc_text,
                     tags: tagsConcat
                 },
-                selected: tagsConcat
+                selected: tagsConcat,
+                image_url: data.establishment.photo_url
             });
         } else {
             const data = await response.json();
@@ -139,15 +144,34 @@ export default class EditEstablishment extends React.Component {
         var query = window.location.pathname;
         var splited = query.split("/");
         var id_establishment = splited[3];
+        let inputs = this.state.input;
+        let tagsBefore = [];
+
+        for (let tag of this.state.selected)
+            tagsBefore.push(tag.value)
+
         const urlUpdate = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/'+ id_establishment + '/update';
+
+
+        //Form data con todos los atributos para enviar por Multipart (ahora mismo el image es obligatorio)
+        const imageUpload = new FormData();
+        imageUpload.append('name_text', inputs.name_text);
+        imageUpload.append('phone_number', inputs.phone_number.toString());
+        imageUpload.append('street_text', inputs.street_text);
+        imageUpload.append('number_text', inputs.number_text);
+        imageUpload.append('locality_text', inputs.locality_text);
+        imageUpload.append('desc_text', '');
+        imageUpload.append('tags', tagsBefore);
+        imageUpload.append('zone_enum', inputs.zone_enum);
+        imageUpload.append('image', this.state.image, this.state.image.name);
 
         const  update = await fetch(urlUpdate, {
             method: 'PUT',
             headers: {
                 'token': token,
-                'Content-type': 'application/json'
+                'Content-type': 'multipart/form-data',
             },
-            body: JSON.stringify(this.state.sendFinal),
+            body: imageUpload,
         });
 
         if(update.ok){
@@ -155,7 +179,12 @@ export default class EditEstablishment extends React.Component {
             this.setState({
                 msg: data.msg,
             })
-            setTimeout(window.location.reload(), 5000)
+            setTimeout(() => {
+                this.setState({
+                    msg: '',
+                })
+                this.getEstablishment();
+            }, 2000)
         }else{
             const data = await update.json();
             this.setState({
@@ -187,21 +216,26 @@ export default class EditEstablishment extends React.Component {
             tagsBefore.push(tag.value)
 
         if (this.validate()) {
-            send['name_text'] = inputs.name_text;
-            send['phone_number'] = inputs.phone_number.toString();
-            send['street_text'] = inputs.street_text;
-            send['number_text'] = inputs.number_text;
-            send['locality_text'] = inputs.locality_text;
-            send['image_url'] = inputs.image_ulr;
-            if(inputs['desc_text'] == undefined){
-                send['desc_text'] = '';
-            }else{
-                send['desc_text'] = inputs.desc_text;
-            }
-            send['zone_enum'] = inputs.zone_enum;
-            send['tags'] = tagsBefore;
 
-            this.state.sendFinal = send;
+        //Envio con JSON
+            // send['name_text'] = inputs.name_text;
+            // send['phone_number'] = inputs.phone_number.toString();
+            // send['street_text'] = inputs.street_text;
+            // send['number_text'] = inputs.number_text;
+            // send['locality_text'] = inputs.locality_text;
+            // send['image'] = imageUp;
+            
+            // if(inputs['desc_text'] == undefined){
+            //     send['desc_text'] = '';
+            // }else{
+            //     send['desc_text'] = inputs.desc_text;
+            // }
+            // send['zone_enum'] = inputs.zone_enum;
+            // send['tags'] = tagsBefore;
+            // console.log(send, "lo que se va a enviar")
+
+            // this.state.sendFinal = send;
+
             this.handleUpdate()
         
         }
@@ -274,6 +308,7 @@ export default class EditEstablishment extends React.Component {
 
     componentDidMount() {
         this.getEstablishment();
+        this.getTags();
 
     }
 
@@ -282,6 +317,9 @@ export default class EditEstablishment extends React.Component {
 
         return (
             <>
+                <div>
+                    <img src={this.state.image_url == null || {} ? '' : this.state.image_url}/>
+                </div>
                 <div class='row'>
                     <div class='col md-8'>
                         <div class='card'>
@@ -371,21 +409,6 @@ export default class EditEstablishment extends React.Component {
                                     <div class='row'>
                                         <div class='col md-12'>
                                             <div class='form-group my-1'>
-                                                <label>Imagen Url</label>
-                                                <input
-                                                    type='url'
-                                                    name='image_ulr'
-                                                    value={this.state.input.image_ulr}
-                                                    onChange={this.handleChange}
-                                                    class='form-control'
-                                                    id='image-url'
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class='row'>
-                                        <div class='col md-12'>
-                                            <div class='form-group my-1'>
                                                 <label>Descripción</label>
                                                 <textarea
                                                     name='desc_text'
@@ -411,13 +434,21 @@ export default class EditEstablishment extends React.Component {
                                                 <div class="text-danger">{this.state.errors.zone_enum}</div>
                                             </div>
                                         </div>
-                                        <div class='col'>
-                                            <div class='form-group my-1'>
+                                        <div class='col'> 
+                                            <FormGroup className='pt-2'>
+                                                <Label for="establishmentImage">Imagen</Label>
+                                                <CustomInput type="file" id="establishmentImage" name="image" label="Sube tu foto" onChange={(e) => this.setState({image: e.target.files[0]})} />
+                                            </FormGroup>
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class = 'col'>
+                                        <div class='form-group my-1'>
                                                 <label>Tags</label>
                                                 {this.state.input.tags.length != 0 ? <Select name='tags-selected' defaultValue={this.state.input.tags} isMulti options={this.state.otherTags} onChange={this.handleChange}></Select> : ""}
                                                 <div class="text-danger">{this.state.errors.tags_selected}</div>
                                             </div>
-                                        </div>
+                                            </div>
                                     </div>
                                     <div class='pull-right'>
                                         <input
@@ -425,6 +456,12 @@ export default class EditEstablishment extends React.Component {
                                             value='Guardar cambios'
                                             class='btn btn-info'
                                         />
+                                    </div>
+                                    <div class='container-fluid bg-danger'>
+                                        <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
+                                    </div>
+                                    <div class='container-fluid bg-success'>
+                                        <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
                                     </div>
                                 </form>
                                 <button
@@ -455,12 +492,7 @@ export default class EditEstablishment extends React.Component {
                                 <div className="clearfix"></div>
                             </div>
                         </div>
-                        <div class='container-fluid bg-danger'>
-                            <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
-                        </div>
-                        <div class='container-fluid bg-success'>
-                            <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
-                        </div>
+
                     </div>
                 </div>
             </>

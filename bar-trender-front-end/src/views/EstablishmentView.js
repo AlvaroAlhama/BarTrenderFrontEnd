@@ -66,7 +66,7 @@ function EstablishmentView() {
         }
 
       });
-  }, [setAppState]);
+  }, []);
 
   if (appState.error == true) {
     return (
@@ -82,7 +82,7 @@ function EstablishmentView() {
 
       <>
         <Container fluid>
-          <EditEstablishment key={uuid.v4()}/>
+          <EditEstablishment key={appState.establishment == undefined ? '' : appState.establishment.id}/>
         </Container>
         <Container fluid>
         <Row>

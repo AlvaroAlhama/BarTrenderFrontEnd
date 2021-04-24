@@ -6,6 +6,11 @@ import {
   GoogleMap,
   DirectionsRenderer
 } from "react-google-maps";
+import {
+  Button,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 import Geocode from "react-geocode";
 Geocode.setApiKey("AIzaSyD3iyCKwQGF0wXBZKOuKhdMIZivUEtMe4s");
 
@@ -19,7 +24,8 @@ class Map extends Component {
       coords: {
         lat: -3.745,
         lng: -38.523
-      }
+      },
+      directions_active: false
     };
 
     this.mapDirection(this.props.location);
@@ -90,8 +96,9 @@ class Map extends Component {
   }
 
   render() {
-    const GoogleMapExample = withGoogleMap(props => (
-
+    console.log(this.state.directions_active, 'directions_active')
+    const GoogleMapExample = this.state.directions_active ? 
+    withGoogleMap(props => (
       <GoogleMap
         defaultCenter={{ lat: -3.745, lng: -38.523 }}
         defaultZoom={13}
@@ -101,11 +108,26 @@ class Map extends Component {
         <DirectionsRenderer
           directions={this.state.directions}
         />
-      </GoogleMap>
-    ));
+      </GoogleMap>)) 
+      : withGoogleMap(props => (
+        <GoogleMap
+          defaultCenter={{ lat: -3.745, lng: -38.523 }}
+          defaultZoom={13}
+          center={this.state.coords}
+          zoom={19}
+        >
+          
+        </GoogleMap>));
 
     return (
       <div>
+        <OverlayTrigger overlay={<Tooltip id="tooltip-506045838">Si has permitido el acceso a tu ubicación se mostrará la ruta al establecimiento</Tooltip>}>
+          <Button color="default" color="primary" type="button" onClick={() => { this.setState({ directions_active: !this.state.directions_active }) }}
+          >
+            Mostrar ruta
+        </Button>
+        </OverlayTrigger>
+
 
         <GoogleMapExample
           containerElement={<div style={{ height: `400px`, width: "100%" }} />}

@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React from "react";
 
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom"
@@ -117,19 +117,13 @@ class ModalSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // this.handleTermChange(event);
+   
   }
-  // handleNameChange(e) {
-
-  //   var x = document.getElementById("name").value;
-  //   this.setState({'name': x },
-  //   );
-
-  // }
+  
   handleDiscountChange(e) {
 
     var x = document.getElementById("discounts").value;
-    this.setState({ 'discounts': x == 'on' ? true : false },
+    this.setState({ 'discounts': x === 'on' ? true : false },
     );
 
   }
@@ -159,7 +153,7 @@ class ModalSearch extends React.Component {
       <>
         <Button
           color="primary"
-          className="mr-1"
+          className="mx-5"
           onClick={this.toggle}
           id="filters"
         >

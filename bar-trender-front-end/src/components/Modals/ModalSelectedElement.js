@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, ModalHeader, Card, CardBody, CardHeader } from "reactstrap";
 
 // reactstrap components
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalBody } from "reactstrap";
 
 // core components
 import image_left from "../../assets/img/bar-interior.jpg";
@@ -25,10 +25,6 @@ function ModalSelectedElement(prop) {
     discounts: {},
   });
   
-  const ubicacion = {
-    lat: 36.92043226009566,
-    lng: -6.080399144405965,
-  };
 
   const location = element.street_text + ", " + element.number_text + ", " + element.zone_enum + ", " + element.locality_text;
   
@@ -45,6 +41,7 @@ function ModalSelectedElement(prop) {
   //   });
 
   // }, [setUserLocation]);
+
 
   async function loadDiscounts() {
     const apiUrl =
@@ -186,7 +183,11 @@ function ModalSelectedElement(prop) {
           <ListDiscount discounts={appState.discounts} />
 
           <h3>Ubicacion</h3>
-          <Map location={location} />
+          <MapLoader
+            location={location}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3iyCKwQGF0wXBZKOuKhdMIZivUEtMe4s"
+            loadingElement={<div style={{ height: `100%` }} />}
+          />
         </ModalBody>
         <div className="modal-footer">
           <Button color="danger" type="button" onClick={() => setModal1(false)}>

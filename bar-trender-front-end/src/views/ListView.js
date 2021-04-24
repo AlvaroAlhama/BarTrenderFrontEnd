@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 //css
 import {
-
   useLocation
 } from "react-router-dom";
 
@@ -39,16 +37,15 @@ function ListView() {
     console.log("Construyendo view")
     setAppState({ loading: true });
 
-    if (location.state != undefined) {
+    if (location.state !== undefined) {
       var data = location.state[0];
     
       for (const key in data) {
         if (!(key === 'modal' || key === 'fade' ||  key ==='pills')){
           filter["filters"][key] = data[key];
 
+        }
       }
-    }
-
     }
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get";
@@ -66,11 +63,16 @@ function ListView() {
         .then(establishments => {
           setAppState({ loading: false, establishments: establishments });
       
-          filter = {
-            "filters": {}}
+         
         });
     }
     loadResults()
+
+    
+    filter = {
+      "filters": {  
+      }
+    }
 
     navigator.geolocation.getCurrentPosition(function (position) {
       // console.log("Latitude is :", position.coords.latitude);
@@ -82,8 +84,6 @@ function ListView() {
       
 
     });
-
-    
 
   }, [setAppState, location]);
 

@@ -12,7 +12,7 @@ const List = (props) => {
   
  
 
-  if (!establishments || establishments.length == undefined) return <p>No establishments, sorry</p>;
+  if (!establishments || establishments.length === undefined) return <p>No establishments, sorry</p>;
   return (
 
     <ul className="ul-flex">

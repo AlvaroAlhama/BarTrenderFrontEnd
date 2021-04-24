@@ -1,4 +1,3 @@
-import EstablishmentByOwner from "../components/EstablishmentsByOwner";
 import MainNavbar from "components/Navbars/MainNavbar";
 import React, { useEffect, useState } from "react";
 import withListLoading from "../components//withListLoading";

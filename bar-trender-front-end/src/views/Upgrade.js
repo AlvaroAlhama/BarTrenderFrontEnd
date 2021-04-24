@@ -17,9 +17,9 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function Upgrade() {
 
-  const [appState, setAppState] = useState({
+  const [appState] = useState({
     create_time: null,
-    id: null
+    order_id: null
   });
 
   var token = sessionStorage.getItem("token");
@@ -38,27 +38,28 @@ function Upgrade() {
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function(details){
- 
-      setAppState({create_time: details.create_time, order_id: details.id })
+      appState.create_time = details.create_time;
+      appState.order_id = details.id;
+      payment();
     });
   } 
 
-
-
   const url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/setpremium";
 
-  if(appState != null){
-  const setpremium =  
-    fetch(url, {
-    method: "POST",
-    headers: {
-      token: token,
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(appState),
-  }).then(response => {
-    sessionStorage.setItem("premium", "true")
-  });
+  const payment = () => {
+    if(appState.create_time != null && appState.order_id != null){
+      fetch(url, {
+      method: "POST",
+      headers: {
+        token: token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(appState),
+    }).then(response => {
+      sessionStorage.setItem("premium", "true")
+    });
+  }
+ 
 }
 
   return (

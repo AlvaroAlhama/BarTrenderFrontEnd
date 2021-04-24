@@ -28,13 +28,11 @@ class Map extends Component {
       directions_active: false
     };
 
-
     this.mapDirection(this.props.location);
   }
 
   async mapDirection(location) {
     // Get latitude & longitude from address.
-
     Geocode.fromAddress(location).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
@@ -44,7 +42,6 @@ class Map extends Component {
             lng: lng
           }
         });
-
         const directionsService = new google.maps.DirectionsService();
 
         const destination = this.state.coords;
@@ -84,13 +81,13 @@ class Map extends Component {
             }
           }
         );
-
       },
       (error) => {
         console.error(error);
       }
     );
- 
+    //   this.setState({ error: data.error, modalFail: true, loading: false });
+    // }
   }
 
   render() {
@@ -134,13 +131,14 @@ class Map extends Component {
               )
             }}
           >
-            Mostrar ruta
+            {(this.state.directions_active)?
+            "Ocultar ruta" :"Mostrar ruta"}
         </Button>
         </OverlayTrigger>
         {(this.state.directions_active) ? 
         <p>
-          Distancia: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].distance.text + " - " : 'None' + " - "}
-          Duración: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].duration.text + " - " : 'None' + " - "}
+          Distancia: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].distance.text + " - " : 'No hay ruta' + " - "}
+          Duración: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].duration.text + " - " : 'Ninguna' + " - "}
           {/* Modo de transporte: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].steps[0].travel_mode + " - " : 'None'} */}
         </p>
           : ""}

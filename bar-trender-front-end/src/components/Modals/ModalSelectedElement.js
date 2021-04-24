@@ -183,7 +183,11 @@ function ModalSelectedElement(prop) {
           <ListDiscount discounts={appState.discounts} />
 
           <h3>Ubicacion</h3>
-          <Map location={location} />
+          <MapLoader
+            location={location}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3iyCKwQGF0wXBZKOuKhdMIZivUEtMe4s"
+            loadingElement={<div style={{ height: `100%` }} />}
+          />
         </ModalBody>
         <div className="modal-footer">
           <Button color="danger" type="button" onClick={() => setModal1(false)}>

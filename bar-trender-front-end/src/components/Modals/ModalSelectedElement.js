@@ -41,6 +41,21 @@ function ModalSelectedElement(prop) {
   //   });
 
   // }, [setUserLocation]);
+  var divStyle = {}
+  if (element.photo_url == undefined){
+    var divStyle = {
+      backgroundImage: 'url(' + image_left + ')',
+      backgroundSize: "cover",
+      height:"10rem"
+    };
+  }
+  else{
+    var divStyle = {
+      backgroundImage: 'url(' + element.photo_url + ')',
+      backgroundSize: "cover",
+      height:"10rem"
+    };
+  }
 
 
   async function loadDiscounts() {
@@ -78,19 +93,9 @@ function ModalSelectedElement(prop) {
 
   return (
     <>
-    <Card className="bg-primary">
-      <CardHeader>
-      <img
-            className=""
-
-            src={element.photo_url != null ? element.photo_url : image_left}
-            onClick={() => {
-              setModal1(true);
-              loadDiscounts();
-            }}
-
-            alt=""
-          />
+    <Card className="bg-primary" style={{height:"25rem"}}>
+      <CardHeader style={divStyle}>
+      
       </CardHeader>
       <CardBody>
             <h3 class="text-center text-white">{element.name_text}</h3>

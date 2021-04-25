@@ -1,14 +1,10 @@
-import React, { useEffect, useState, Component } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import React, { useEffect, useState } from 'react';
+import { Pie } from 'react-chartjs-2';
 
 
 
 function BeerPieChart(props) {
 
-  const [modal1, setModal1] = React.useState(false);
-  const [modal2, setModal2] = React.useState(false);
-  const { element } = props;
-  
   const [ocioState, setOcioState] = useState({
     statsOcio: {},
   });
@@ -34,20 +30,19 @@ function BeerPieChart(props) {
         body: JSON.stringify( {filter: send.filter} )
       }).then(response => response.json())
         .then(stats => {
-          if(props.filter == 'Bebida'){
+          if(props.filter === 'Bebida'){
             setBebidaState({ statsBebida: stats });
-          }else if(props.filter == 'Ocio')
+          }else if(props.filter === 'Ocio')
           setOcioState({ statsOcio: stats });
         });
     }
     loadStats()
   }, [setBebidaState, setOcioState]);
 
-  console.log(bebidaState, "Bebidas")
-  console.log(ocioState, "Ocio")
-
-  if (bebidaState.statsBebida.first != undefined) {
-    var graph2 = {
+  
+  var graph2
+  if (bebidaState.statsBebida.first !== undefined) {
+    graph2 = {
       chartData: {
         labels: [bebidaState.statsBebida.first.name, bebidaState.statsBebida.second.name, bebidaState.statsBebida.third.name, 'Otros'],
         datasets: [
@@ -72,7 +67,7 @@ function BeerPieChart(props) {
       }
     };
   } else {
-    var graph2 = {
+    graph2 = {
       chartData: {
         labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
         datasets: [
@@ -97,10 +92,10 @@ function BeerPieChart(props) {
       }
     };
   }
-  console.log(props.filter, "elemento qu ese envia")
-  if(props.filter == 'Bebida'){
-    if (bebidaState.statsBebida.first != undefined) {
-      var graph2 = {
+ 
+  if(props.filter === 'Bebida'){
+    if (bebidaState.statsBebida.first !== undefined) {
+      graph2 = {
         chartData: {
           labels: [bebidaState.statsBebida.first.name, bebidaState.statsBebida.second.name, bebidaState.statsBebida.third.name, 'Otros'],
           datasets: [
@@ -125,7 +120,7 @@ function BeerPieChart(props) {
         }
       };
     } else {
-      var graph2 = {
+      graph2 = {
         chartData: {
           labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
           datasets: [
@@ -150,9 +145,9 @@ function BeerPieChart(props) {
         }
       };
     }
-  }else if(props.filter == 'Ocio') {
-    if (ocioState.statsOcio.first != undefined) {
-      var graph2 = {
+  }else if(props.filter === 'Ocio') {
+    if (ocioState.statsOcio.first !== undefined) {
+      graph2 = {
         chartData: {
           labels: [ocioState.statsOcio.first.name, ocioState.statsOcio.second.name, ocioState.statsOcio.third.name, 'Otros'],
           datasets: [
@@ -177,7 +172,7 @@ function BeerPieChart(props) {
         }
       };
     } else {
-      var graph2 = {
+      graph2 = {
         chartData: {
           labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
           datasets: [
@@ -207,7 +202,7 @@ function BeerPieChart(props) {
 
   return (
     <>
-    {bebidaState.statsBebida == {} || ocioState.statsOcio == {} ? "" : 
+    {bebidaState.statsBebida === {} || ocioState.statsOcio === {} ? "" : 
     <div className="chart">
       <br/>
       <h3>¿Qué se busca más?</h3>

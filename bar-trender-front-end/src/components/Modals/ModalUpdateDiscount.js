@@ -86,8 +86,7 @@ function ModalUpdateDiscount(props) {
 
   async function handleUpdate() {
     const discount = props.discount;
-    // console.log(discount, 'discount')
-    console.log(appState, "appState update");
+ 
 
     var idDiscount = discount.id;
     var token = sessionStorage.getItem("token");
@@ -103,7 +102,6 @@ function ModalUpdateDiscount(props) {
       "/update";
 
     var input = appState.input;
-    console.log(input, "pre input");
     var costFloat = parseFloat(input["cost"]);
     var totalCodesInt = parseInt(input["totalCodes"]);
     var endDate = input["endDate"];
@@ -115,9 +113,8 @@ function ModalUpdateDiscount(props) {
     input["scannedCodes"] = props.discount.scannedCodes;
     input["initialDate"] = props.discount.initialDate;
 
-    console.log(input, "postpush input");
-    // input.push('scannedCodes: 0')
-    // console.log(input, "postpush input");
+
+
 
     const request = await fetch(url, {
       method: "PUT",
@@ -148,7 +145,6 @@ function ModalUpdateDiscount(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(appState, "appState submit");
     if (validate()) {
       let errors = {};
 
@@ -220,12 +216,6 @@ function ModalUpdateDiscount(props) {
       errors["endDate"] = "Introduzca una fecha para el fin del desucento.";
     }
 
-    // if(input["initialDate"] && input["initialTime"]) {
-    //   var initialDate = new Date(input["initialDate"])
-    //   var initialTime = new Date(input["initialTime"])
-    //   if (initialDate)
-
-    // }
 
     if (input["endDate"]) {
       var endDate = new Date(input["endDate"]);

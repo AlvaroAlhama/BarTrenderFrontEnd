@@ -1,30 +1,15 @@
-import Select from "react-select";
-import { Modal, ModalBody } from "reactstrap";
-import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
 
-import React, { useEffect, useState, Component } from "react";
-import ChartistGraph from "react-chartist";
+import React from "react";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 // react-bootstrap components
 import {
-  Badge,
-  Button,
   Card,
-  Navbar,
-  Nav,
-  Table,
   Container,
   Row,
   Col,
-  Form,
-  OverlayTrigger,
-  Tooltip,
 } from "react-bootstrap";
 
-import DashboardTopImage from "../components/DashboardTopImage";
-import FreePieChart from "../components/FreePieChart.js";
-import PremiumBarChart from "../components/PremiumBarChart.js";
 import ShowPremiumStats from "../components/ShowPremiumStats.js";
 
 export default class PremiumDashboard extends React.Component {
@@ -70,24 +55,20 @@ export default class PremiumDashboard extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.map((tag) => {
-      if (tag.type != "Zona") {
+    var otherTags = data.tags.filter(tag => tag.type !=="Zona").map((tag) => {
         return { value: tag.name, label: tag.name };
-      }
     });
 
     var arrayOther = otherTags.filter(function (dato) {
-      return dato != undefined;
+      return dato !== undefined;
     });
 
-    const tagZone = data.tags.map((tag) => {
-      if (tag.type == "Zona") {
+    const tagZone = data.tags.filter(tag => tag.type ==="Zona").map((tag) => {
         return tag.name;
-      }
     });
 
     var array = tagZone.filter(function (dato) {
-      return dato != undefined;
+      return dato !== undefined;
     });
 
     this.setState({
@@ -100,9 +81,8 @@ export default class PremiumDashboard extends React.Component {
   }
 
   render() {
-    console.log("AQUI PREMIUM");
-    console.log(sessionStorage.getItem("premium"));
-    if (sessionStorage.getItem("premium") == "true") {
+    console.log("Check de que el usuario es premium",sessionStorage.getItem("premium"));
+    if (sessionStorage.getItem("premium") === "true") {
       return (
         <>
           <Container fluid>

@@ -1,35 +1,22 @@
-import React, { useEffect, useState, Component } from 'react';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import React, { useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
 import moment from "moment";
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 function PremiumBarChart(props) {
-
-  const [modal1, setModal1] = React.useState(false);
-  const [modal2, setModal2] = React.useState(false);
-  const { element } = props;
 
       const tsInitialDate = moment.utc(`${props.initialDate}`).unix();
       const tsEndDate = moment.utc(`${props.endDate}`).unix();
       const tsEndDateplus1 = tsEndDate+86400;
       
-  
   const [appState, setAppState] = useState({
     stats: {},
   });
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-    console.log(token, 'token');
-   
-     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";
+  
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/getPremium";
     async function loadStats() {
       await fetch(apiUrl, {
         method: 'POST',
@@ -44,16 +31,12 @@ function PremiumBarChart(props) {
           setAppState({ stats: stats });
         });
     }
-
-    {
-    
-    }
     loadStats()
   }, [setAppState]);
 
-  console.log(appState.stats, 'appState.stats');
-  if (appState.stats.first != undefined) {
-    var graph2 = {
+  var graph2
+  if (appState.stats.first !== undefined) {
+    graph2 = {
       chartData: {
         labels: [appState.stats.first.name, appState.stats.second.name, appState.stats.third.name,appState.stats.fourth.name,appState.stats.fifth.name,appState.stats.sixth.name,appState.stats.seventh.name,appState.stats.eighth.name,appState.stats.ninth.name,'Otros'],
         datasets: [
@@ -91,7 +74,7 @@ function PremiumBarChart(props) {
     };
   } 
   else {
-    var graph2 = {
+    graph2 = {
       chartData: {
         labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
         datasets: [
@@ -116,22 +99,22 @@ function PremiumBarChart(props) {
       }
     };
   }
-      if (props.filter != "Bebida" && props.filter != "Ocio" && props.filter != "Instalacion"){
+      if (props.filter !== "Bebida" && props.filter !== "Ocio" && props.filter !== "Instalacion"){
         return(
        <h3>Para comenzar introduzca algún filtro</h3>
         )
       }
-      else if (props.initialDate == "" || props.endDate == ""){
+      else if (props.initialDate === "" || props.endDate === ""){
         return(
        <h3 class="text-danger">Para mostrar el contenido se debe introducir una fecha inicial y una fecha final </h3>
         )
       }
-      else if (props.zone == ""){
+      else if (props.zone === ""){
         return(
        <h3 class="text-danger">Para mostrar el contenido se debe introducir una zona</h3>
         )
       }
-      else if(appState.stats.error== "A017: El usuario que está logeado no es premium"){
+      else if(appState.stats.error === "A017: El usuario que está logeado no es premium"){
         return(
         <div>
           <h3>Para acceder a esta funcionalidad debe ser un usuario premium</h3> 

@@ -12,7 +12,7 @@ const List = (props) => {
   
  
 
-  if (!establishments || establishments.length === undefined) return <p>No establishments, sorry</p>;
+  if (!establishments || establishments.length === 0 ) return <h3 className="text-center text-danger">No existe ningún establecimiento con los filtros introducidos.</h3>;
   return (
 
     <ul className="ul-flex">

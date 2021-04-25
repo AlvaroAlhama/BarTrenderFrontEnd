@@ -70,7 +70,7 @@ class FormQRValidatorAlreadyLogged extends React.Component {
           <div className="modal-header justify-content-center">
             <div class="container mt-5 pt-5">
               <div class="row justify-content-center">
-                <img src={barTrender60} class="img-fluid" />
+                <img src={barTrender60} alt ="bg img" class="img-fluid" />
                 <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
               </div> 
             </div>      
@@ -87,6 +87,7 @@ class FormQRValidatorAlreadyLogged extends React.Component {
                 </h2>
                 <img
                   src={fail_boy}
+                  alt = "fail img"
                   className="img-fluid"
                   style={{
                     width: "100%",
@@ -110,7 +111,7 @@ class FormQRValidatorAlreadyLogged extends React.Component {
           <div className="modal-header justify-content-center">
             <div class="container mt-5 pt-5">
               <div class="row justify-content-center">
-                <img src={barTrender60} class="img-fluid" />
+                <img src={barTrender60} alt = "bg img" class="img-fluid" />
                 <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
               </div> 
             </div>      
@@ -124,6 +125,7 @@ class FormQRValidatorAlreadyLogged extends React.Component {
               <div class="row justify-content-center   mt-3">
                 <img
                   src={success_boy}
+                  alt ="success img"
                   className="img-fluid"
                   style={{
                     width: "100%",

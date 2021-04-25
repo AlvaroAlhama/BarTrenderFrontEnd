@@ -67,9 +67,6 @@ function DashboardQRList(props) {
     loadDiscounts();
   }, [setAppState]);
 
-  
-
- 
   var count = 0;
 
   if (!appState.discounts.results || appState.discounts.count === 0) {
@@ -268,7 +265,7 @@ function DashboardQRList(props) {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {discountPaymentInfoState.discountPaymentInfo.payments != undefined?
+                                  {discountPaymentInfoState.discountPaymentInfo.payments !== undefined?
                                   discountPaymentInfoState.discountPaymentInfo.payments.map(
                                     (payments) => {
                                       return (

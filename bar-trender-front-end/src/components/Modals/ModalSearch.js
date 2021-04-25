@@ -92,14 +92,14 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-    if (e.target.name == 'name') {
+    if (e.target.name === 'name') {
       this.setState({ 'name': e.target.value },);
     } else {
-      if (e.target.checked == true) {
+      if (e.target.checked === true) {
         // this.setState({ [type] : [name] },
         //   () => console.log(this.state, "checked"),
         // );
-        if (this.state[type] == undefined) {
+        if (this.state[type] === undefined) {
           this.setState({ [type]: [name] },
             () => console.log(this.state),
           );

@@ -154,12 +154,12 @@ export default class EditClientProfile extends React.Component {
 
         let isValid = true;
 
-        if (!inputs['name']) {
+        if (!inputs['name'].trim()) {
             isValid = false;
             errors['name'] = 'El nombre no puede estar vacío';
         }
 
-        if (!inputs['surname']) {
+        if (!inputs['surname'].trim()) {
             isValid = false;
             errors['surname'] = 'El apellido no puede estar vacío';
         }

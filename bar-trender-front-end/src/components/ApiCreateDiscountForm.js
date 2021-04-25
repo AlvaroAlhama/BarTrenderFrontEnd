@@ -7,7 +7,16 @@ class POSTCreateDiscount extends React.Component {
     super();
 
     this.state = {
-      input: {},
+      input: {
+        name: '',
+        descripcion: '',
+        cost: null,
+        totalCodes: null,
+        initialDate: '',
+        initialTime: '',
+        endDate: '',
+        endTime: ''
+      }, 
       send: {
         name: null,
         description: null,
@@ -158,13 +167,13 @@ class POSTCreateDiscount extends React.Component {
 
     let isValid = true;
 
-    if (!input["name"]) {
+    if (!input["name"].trim()) {
       isValid = false;
 
       errors["name"] = "Escriba un nombre del descuento.";
     }
 
-    if (!input["descripcion"]) {
+    if (!input["descripcion"].trim()) {
       isValid = false;
 
       errors["descripcion"] = "Escriba una descripción para el descuento";

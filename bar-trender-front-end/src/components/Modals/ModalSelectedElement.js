@@ -92,7 +92,10 @@ function ModalSelectedElement(prop) {
             alt=""
           />
       </CardHeader>
-      <CardBody>
+      <CardBody onClick={() => {
+              setModal1(true);
+              loadDiscounts();
+            }} role = "button">
             <h3 class="text-center text-white">{element.name_text}</h3>
             <h5 class="text-center text-white"><i class="fal fa-map-marker-alt mr-2"></i>{element.street_text} / {element.locality_text}</h5>
       </CardBody>

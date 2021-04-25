@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, Table } from 'reactstrap';
 import moment from "moment";
 import {
     Button,
@@ -206,7 +206,6 @@ export default class EditDeleteDiscounts extends React.Component{
                 errorApiUpdate: {},
                 errorApiDelete: {}
             });
-            console.log(this.state, "DEBE DE TENER EL DESCUENTO UN ENDDATE")
         }else{
 
             this.setState({
@@ -241,7 +240,6 @@ export default class EditDeleteDiscounts extends React.Component{
                 errorApiUpdate: {},
                 errorApiDelete: {}
             });
-            console.log(this.state, "NO DEBE DE TENER EL DESCUENTO UN ENDDATE")
         };
     };
 
@@ -250,12 +248,8 @@ export default class EditDeleteDiscounts extends React.Component{
         let send = {}
         var today = new Date()
         var todayTS = moment.utc(today).unix()
-        console.log(inputs)
-        console.log(todayTS)
-
         if(this.validate()){
             const initialDateTS = moment.utc(`${inputs.initialDate} ${inputs.initialHour}`).unix()
-            console.log(initialDateTS)
             if(inputs.endDate != '' && inputs.endHour != ''){
                 const endDateTs = moment.utc(`${inputs.endDate} ${inputs.endHour}`).unix()
                 if(todayTS > initialDateTS){
@@ -269,7 +263,6 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['endDate'] = endDateTs;
 
                     this.state.sendFinal = send;
-                    console.log(this.state.sendFinal, "Envio con Hora de back y endDate")
 
                     this.handleUpdate()
                 }else{
@@ -282,7 +275,6 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['endDate'] = endDateTs;
                     
                     this.state.sendFinal = send;
-                    console.log(this.state.sendFinal, "Envio con hora nueva y endate")
                     this.handleUpdate()
 
                 }
@@ -297,8 +289,6 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['initialDate'] = this.state.initialDate;
 
                     this.state.sendFinal = send;
-                    console.log(this.state.sendFinal, "Envio con hora back y sin eD")
-
                     this.handleUpdate()
                 }else{
                     send['name'] = inputs.name;
@@ -309,7 +299,6 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['initialDate'] = initialDateTS;
                     
                     this.state.sendFinal = send;
-                    console.log(this.state.sendFinal, "Envio con hora nueva y sin eD")
                     this.handleUpdate()
                 }
             }
@@ -366,7 +355,7 @@ export default class EditDeleteDiscounts extends React.Component{
             var endDateFull = new Date(inputs['endDate'].concat(" ", inputs['endHour']))
         }
 
-        if (!inputs['name']) {  
+        if (!inputs['name'].trim()) {  
             isValid = false;
       
             errors['name'] = 'Escriba un nombre del descuento.';
@@ -378,7 +367,7 @@ export default class EditDeleteDiscounts extends React.Component{
             errors['cost'] = 'Escriba un precio para el descuento.';
         }
 
-        if (!inputs['description']) {
+        if (!inputs['description'].trim()) {
             isValid = false;
         
             errors['description'] = 'Escriba una descripción para el descuento';
@@ -463,9 +452,9 @@ export default class EditDeleteDiscounts extends React.Component{
     render(){
         return(
             <>
-                <div class='table w-100'>
+                <Table responsive>
                     <thead>
-                        <tr>
+                        <tr class='text-center'>
                             <th>Nombre</th>
                             <th>Códigos totales</th>
                             <th>Códigos escaneados</th>
@@ -507,7 +496,7 @@ export default class EditDeleteDiscounts extends React.Component{
                             )
                         })}
                     </tbody>
-                </div>
+                </Table>
                 {this.state.input == '' ? '' :
                 <>
                 <Modal isOpen={this.state.modalUpdate} toggle={() => this.setState({modalUpdate: false})}>

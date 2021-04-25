@@ -46,14 +46,14 @@ function ModalSelectedElement(prop) {
     var divStyle = {
       backgroundImage: 'url(' + image_left + ')',
       backgroundSize: "cover",
-      height:"10rem"
+      height:"15rem"
     };
   }
   else{
     var divStyle = {
       backgroundImage: 'url(' + element.photo_url + ')',
       backgroundSize: "cover",
-      height:"10rem"
+      height:"15rem"
     };
   }
 

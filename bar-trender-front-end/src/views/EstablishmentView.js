@@ -29,7 +29,6 @@ function EstablishmentView() {
   const id_establishment = idEstablishment();
 
   useEffect(() => {
-    console.log('EstablishmentView loaded');
 
     setAppState({ loading: true });
     var token = sessionStorage.getItem("token");
@@ -48,7 +47,6 @@ function EstablishmentView() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, 'establishments');
         if (data['error'] === undefined) {
           setAppState({
 
@@ -82,7 +80,7 @@ function EstablishmentView() {
 
       <>
         <Container fluid>
-          <EditEstablishment key={appState.establishment == undefined ? '' : appState.establishment.id}/>
+          <EditEstablishment key={uuid.v4()}/>
         </Container>
         <Container fluid>
         <Row>

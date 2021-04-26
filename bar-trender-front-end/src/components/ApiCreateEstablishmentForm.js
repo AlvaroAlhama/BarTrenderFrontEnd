@@ -1,15 +1,16 @@
 import React from "react";
 import moment from "moment";
 import Select from 'react-select'
-import { Label, Modal, ModalBody } from "reactstrap";
+import { Label, Modal, ModalBody, FormGroup } from "reactstrap";
+import { Input } from "reactstrap";
 
 class ApiCreateEstablishmentForm extends React.Component {
   constructor() {
     super();
 
     this.state = {
-        input: {
-        tags: [], 
+      input: {
+        tags: [],
       },
 
       send: {
@@ -17,10 +18,10 @@ class ApiCreateEstablishmentForm extends React.Component {
         cif_text: null,
         phone_number: null,
         street_text: null,
-        number_text:null,
+        number_text: null,
         zone_enum: "",
-        image_url:"",
-        desc_text:"",
+        image_url: "",
+        desc_text: "",
         tags: [],
       },
       zone_emum: [],
@@ -61,15 +62,15 @@ class ApiCreateEstablishmentForm extends React.Component {
 
   async handleCreate() {
     let errors = {};
-      this.state.send.name_text = this.state.input.name_text;
-      this.state.send.desc_text = this.state.input.desc_text;
-      this.state.send.cif_text = this.state.input.cif_text;
-      this.state.send.phone_number = Number.parseInt(this.state.input.phone_number, 10);
-      this.state.send.zone_enum = this.state.input.zone_enum;
-      this.state.send.tags = this.state.input.tags;
-      this.state.send.number_text = Number.parseInt(this.state.input.number_text,10);
-      this.state.send.street_text = this.state.input.street_text;
-      this.state.send.locality_text = this.state.input.locality_text;
+    this.state.send.name_text = this.state.input.name_text;
+    this.state.send.desc_text = this.state.input.desc_text;
+    this.state.send.cif_text = this.state.input.cif_text;
+    this.state.send.phone_number = Number.parseInt(this.state.input.phone_number, 10);
+    this.state.send.zone_enum = this.state.input.zone_enum;
+    this.state.send.tags = this.state.input.tags;
+    this.state.send.number_text = Number.parseInt(this.state.input.number_text, 10);
+    this.state.send.street_text = this.state.input.street_text;
+    this.state.send.locality_text = this.state.input.locality_text;
     var token = sessionStorage.getItem("token");
     const url =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/create";
@@ -93,17 +94,18 @@ class ApiCreateEstablishmentForm extends React.Component {
   }
 
   handleChange(event) {
-    
-    if(event.target == undefined){
+
+    if (event.target == undefined) {
       this.state.input["zone_enum"] = event.value;
     }
-    else{
-    
-    let input = this.state.input;
-    input[event.target.name] = event.target.value;
-    this.setState({
-      input,
-    })};
+    else {
+
+      let input = this.state.input;
+      input[event.target.name] = event.target.value;
+      this.setState({
+        input,
+      })
+    };
   }
 
   handleSubmit(event) {
@@ -120,16 +122,16 @@ class ApiCreateEstablishmentForm extends React.Component {
 
       input["phone_number"] = "";
 
-      
+
       this.state.tags.map((tag) => {
-        if(this.state.input[tag.name]=="true" && tag.type!="Zona"){
-          if(!this.state.input.tags.some(t => (t.name === tag.name ))){
+        if (this.state.input[tag.name] == "true" && tag.type != "Zona") {
+          if (!this.state.input.tags.some(t => (t.name === tag.name))) {
             this.state.input.tags = this.state.input.tags.concat(tag.name);
           }
         }
       }
       );
-      
+
       input["zone_enum"] = "";
 
       input["tags"] = "";
@@ -161,7 +163,7 @@ class ApiCreateEstablishmentForm extends React.Component {
 
       errors["locality_text"] = "Introduzca una localidad para el establecimiento.";
     }
-    
+
     if (!input["number_text"]) {
       isValid = false;
 
@@ -215,8 +217,8 @@ class ApiCreateEstablishmentForm extends React.Component {
         }
       }
       if (tag.type == "Zona") {
-        options = options.concat({value:tag.name, label: tag.name })
-        
+        options = options.concat({ value: tag.name, label: tag.name })
+
       }
       if (tag.type == "Instalacion") {
         if (
@@ -412,14 +414,19 @@ class ApiCreateEstablishmentForm extends React.Component {
                   {this.state.tags_group.ocio.map((tag) => {
                     return (
                       <>
+
                         <div class="row">
-                          <input
-                            type="checkbox"
-                            name={tag.name}
-                            value="true"
-                            onChange={this.handleChange}
-                          ></input>
-                          {tag.name}
+
+                          <Label id={"label-" + tag.name} check>
+                            <Input type="checkbox"
+                              onChange={this.handleChange}
+                              name={tag.name}
+                              value="true"
+
+                            />
+                            <span className="form-check-sign"></span>
+                            {tag.name}
+                          </Label>
                         </div>
                       </>
                     );
@@ -433,12 +440,16 @@ class ApiCreateEstablishmentForm extends React.Component {
                     return (
                       <>
                         <div class="row">
-                          <input type="checkbox"
-                           name={tag.name}
-                           value="true"
-                           onChange={this.handleChange}
-                          ></input>
-                          {tag.name}
+                        <Label id={"label-" + tag.name} check>
+                            <Input type="checkbox"
+                              onChange={this.handleChange}
+                              name={tag.name}
+                              value="true"
+
+                            />
+                            <span className="form-check-sign"></span>
+                            {tag.name}
+                          </Label>
                         </div>
                       </>
                     );
@@ -446,14 +457,14 @@ class ApiCreateEstablishmentForm extends React.Component {
                 </ul>
               </div>
               <div id="content-zona" class="card-body d-none">
-                <h4>Zona</h4>  
+                <h4>Zona</h4>
                 <Select options={options}
-                        name="zone_enum" 
-                        onChange={this.handleChange}
-                        value={this.state.input.zone_enum} />
-      
-                          
-                        
+                  name="zone_enum"
+                  onChange={this.handleChange}
+                  value={this.state.input.zone_enum} />
+
+
+
               </div>
 
               <div class="text-center">

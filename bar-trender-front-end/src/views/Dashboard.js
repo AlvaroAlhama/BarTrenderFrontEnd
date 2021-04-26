@@ -25,6 +25,7 @@ import {
 import FreeDashboardQRList from "../components/FreeDashboardQRlist";
 import DashboardTopImage from "../components/DashboardTopImage";
 import FreePieChart from "../components/FreePieChart.js";
+import './css/Dashboard.css';
 
 function Dashboard() {
   const [modal1, setModal1] = React.useState(false);
@@ -61,53 +62,47 @@ function Dashboard() {
         <Container fluid>
           <Row>
             <Card>
-              <h2>No ha añadido ningun establecimiento a nuestra aplicación. Puede acceder a las estadisticas gratuitas, pero no podrá acceder a la creacion de descuentos hasta que añada uno </h2>
+
+            </Card>
+            <Card>
+
+              <Card.Body>
+                <Container fluid>
+                  <Row classname="justify-content-center">
+                    <div className="numbers text-center">
+                      <p className="card-category">
+                        Tus establecimientos
+                        </p>
+                    </div>
+                  </Row>
+                  <Row className="justify-content-center">
+                    <div className="icon-big icon-warning">
+                      <h3>No ha añadido ningun establecimiento a nuestra aplicación. Puede acceder a las estadisticas gratuitas,
+                pero no podrá acceder a la creacion de descuentos hasta que añada uno </h3>
+                    </div>
+                  </Row>
+                </Container>
+              </Card.Body>
+
             </Card>
           </Row>
           <Row>
-            <Col md="4">
-              <h3>La cerveza favorita de los Usuarios</h3>
+            <Col lg="6" md="6" xs="12">
               <Card>
-                <Card.Body>
-                  <DashboardTopImage filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos obtenidos de la api de Bartrender
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-            <Col md="4">
-              <h3>Ranking de las 3 mejores cervezas</h3>
-              <Card>
-                <Card.Header>
-                </Card.Header>
-                <Card.Body>
-                  <FreePieChart filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-          </Row>
 
-          <Row>
-            <Col md="4">
-              <h3>¿Que prefiere la gente para divertirse?</h3>
-              <Card>
-                <Card.Header>
-                  
-                </Card.Header>
                 <Card.Body>
-                  <DashboardTopImage filter={"Ocio"} />
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          La cerveza favorita de los Usuarios
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                        <DashboardTopImage filter={"Bebida"} />
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
@@ -118,17 +113,94 @@ function Dashboard() {
                 </Card.Footer>
               </Card>
             </Col>
-            <Col md="4">
-              <h3>Los elementos de ocio más buscados</h3>
+            <Col lg="6" md="6" xs="12">
               <Card>
-                <Card.Header></Card.Header>
+                <Card.Header>
+
+                </Card.Header>
                 <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Ranking de las 3 mejores cervezas
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className='h-100'>
+
+                      <FreePieChart filter={"Bebida"} />
+
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
                   <div className="stats">
                     <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
+                    Datos actualizados a diario
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header>
+
+                </Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          ¿Que prefiere la gente para divertirse?
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                      <div className="icon-big icon-warning">
+                        {/* <i className="nc-icon nc-favourite-28 text-primary"></i> */}
+                        <DashboardTopImage filter={"Ocio"} />
+                      </div>
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="fas fa-check"></i>
+                    Datos obtenidos de la api de Bartrender
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Los elementos de ocio más buscados
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className='h-100'>
+
+                      <FreePieChart filter={"Ocio"} />
+
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="now-ui-icons loader_refresh spin"></i>
+                    Datos actualizados a diario
                   </div>
                 </Card.Footer>
               </Card>
@@ -151,6 +223,7 @@ function Dashboard() {
     return (
       <>
         <Container fluid>
+
           <h3>Tus Descuentos en uso</h3>
           {listQREstablishments
           }
@@ -158,49 +231,24 @@ function Dashboard() {
 
           <Row>
             <Col lg="6" md="6" xs="12">
-              <h3>La cerveza favorita de los Usuarios</h3>
               <Card>
-                <Card.Body>
-                  <DashboardTopImage filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos obtenidos de la api de Bartrender
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-            <Col lg="6" md="6" xs="12">
-              <h3>Ranking de las 3 mejores cervezas</h3>
-              <Card>
-                <Card.Header>
-                 
-                </Card.Header>
-                <Card.Body>
-                  <FreePieChart filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-          </Row>
 
-          <Row>
-            <Col lg="6" md="6" xs="12">
-              <h3>¿Que prefiere la gente para divertirse?</h3>
-              <Card>
-                <Card.Header>
-                 
-                </Card.Header>
                 <Card.Body>
-                  <DashboardTopImage filter={"Ocio"} />
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          La cerveza favorita de los Usuarios
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                      <div className="icon-big icon-warning">
+                        {/* <i className="nc-icon nc-favourite-28 text-primary"></i> */}
+                        <DashboardTopImage filter={"Bebida"} />
+                      </div>
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
@@ -212,17 +260,92 @@ function Dashboard() {
               </Card>
             </Col>
             <Col lg="6" md="6" xs="12">
-              <h3>Los elementos de ocio más buscados</h3>
               <Card>
-                <Card.Header></Card.Header>
+                <Card.Header>
+
+                </Card.Header>
                 <Card.Body>
-                  <FreePieChart filter={"Ocio"} />
+                  <Container fluid className='h-100'>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Ranking de las 3 mejores cervezas
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center h-100">
+                      <FreePieChart filter={"Bebida"} />
+
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
                   <div className="stats">
                     <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
+                    Datos actualizados a diario
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header>
+
+                </Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          ¿Que prefiere la gente para divertirse?
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                      <div className="icon-big icon-warning">
+                        {/* <i className="nc-icon nc-favourite-28 text-primary"></i> */}
+                        <DashboardTopImage filter={"Ocio"} />
+                      </div>
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="fas fa-check"></i>
+                    Datos obtenidos de la api de Bartrender
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Los elementos de ocio más buscados
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className='h-100'>
+
+                      <FreePieChart filter={"Ocio"} />
+
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="now-ui-icons loader_refresh spin"></i>
+                    Datos actualizados a diario
                   </div>
                 </Card.Footer>
               </Card>
@@ -237,668 +360,4 @@ function Dashboard() {
 
 
 export default Dashboard;
-{
-  /*  <Row>
-         <Col lg="3" sm="6">
-            <Card className="card-stats">
-              <Card.Body>
-                <Row>
-                  <Col xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-chart text-warning"></i>
-                    </div>
-                  </Col>
-                  <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">Number</p>
-                      <Card.Title as="h4">150GB</Card.Title>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
-                  Update Now
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col lg="3" sm="6">
-            <Card className="card-stats">
-              <Card.Body>
-                <Row>
-                  <Col xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-light-3 text-success"></i>
-                    </div>
-                  </Col>
-                  <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">Revenue</p>
-                      <Card.Title as="h4">$ 1,345</Card.Title>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="far fa-calendar-alt mr-1"></i>
-                  Last day
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col lg="3" sm="6">
-            <Card className="card-stats">
-              <Card.Body>
-                <Row>
-                  <Col xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-vector text-danger"></i>
-                    </div>
-                  </Col>
-                  <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">Errors</p>
-                      <Card.Title as="h4">23</Card.Title>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="far fa-clock-o mr-1"></i>
-                  In the last hour
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col lg="3" sm="6">
-            <Card className="card-stats">
-              <Card.Body>
-                <Row>
-                  <Col xs="5">
-                    <div className="icon-big text-center icon-warning">
-                      <i className="nc-icon nc-favourite-28 text-primary"></i>
-                    </div>
-                  </Col>
-                  <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">Followers</p>
-                      <Card.Title as="h4">+45K</Card.Title>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
-                  Update now
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-           </Row>
-          */
-}
 
-{
-  /*<Row>
-          <Col md="4">
-          <h3>El tipo de establecimiento más famoso</h3>
-            <Card>
-              <Card.Header>
-               {<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>}
-              </Card.Header>
-              <Card.Body>
-              <DashboardTopImage filter = {"Establecimiento"}/>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                <i className="fas fa-check"></i>
-                  Datos obtenidos de la api de Bartrender
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col md="4">
-            <h3>Los establecimientos que más interesan</h3>
-            <Card>
-              <Card.Header>
-                {/*Por si hace falta un header
-                <Card.Title as="h4">2017 Sales</Card.Title>
-                <p className="card-category">All products including Taxes</p>}
-              </Card.Header>
-              <Card.Body>
-              <FreePieChart filter = {"Establecimiento"}/>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="now-ui-icons loader_refresh spin"></i>
-                  Datos actualizados mensualmente
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-        </Row>*/
-}
-
-{
-  /*
-        <Row>
-          <Col md="8">
-            <Card>
-              <Card.Header>
-                <Card.Title as="h4">Users Behavior</Card.Title>
-                <p className="card-category">24 Hours performance</p>
-              </Card.Header>
-              <Card.Body>
-                <div className="ct-chart" id="chartHours">
-                  <ChartistGraph
-                    data={{
-                      labels: [
-                        "9:00AM",
-                        "12:00AM",
-                        "3:00PM",
-                        "6:00PM",
-                        "9:00PM",
-                        "12:00PM",
-                        "3:00AM",
-                        "6:00AM",
-                      ],
-                      series: [
-                        [287, 385, 490, 492, 554, 586, 698, 695],
-                        [67, 152, 143, 240, 287, 335, 435, 437],
-                        [23, 113, 67, 108, 190, 239, 307, 308],
-                      ],
-                    }}
-                    type="Line"
-                    options={{
-                      low: 0,
-                      high: 800,
-                      showArea: false,
-                      height: "245px",
-                      axisX: {
-                        showGrid: false,
-                      },
-                      lineSmooth: true,
-                      showLine: true,
-                      showPoint: true,
-                      fullWidth: true,
-                      chartPadding: {
-                        right: 50,
-                      },
-                    }}
-                    responsiveOptions={[
-                      [
-                        "screen and (max-width: 640px)",
-                        {
-                          axisX: {
-                            labelInterpolationFnc: function (value) {
-                              return value[0];
-                            },
-                          },
-                        },
-                      ],
-                    ]}
-                  />
-                </div>
-              </Card.Body>
-              <Card.Footer>
-                <div className="legend">
-                  <i className="fas fa-circle text-info"></i>
-                  Open <i className="fas fa-circle text-danger"></i>
-                  Click <i className="fas fa-circle text-warning"></i>
-                  Click Second Time
-                </div>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-history"></i>
-                  Updated 3 minutes ago
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col md="4">
-            <Card>
-              <Card.Header>
-                <Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>
-              </Card.Header>
-              <Card.Body>
-                <div
-                  className="ct-chart ct-perfect-fourth"
-                  id="chartPreferences"
-                >
-                  <ChartistGraph
-                    data={{
-                      labels: ["40%", "20%", "40%"],
-                      series: [40, 20, 40],
-                    }}
-                    type="Pie"
-                  />
-                </div>
-                <div className="legend">
-                  <i className="fas fa-circle text-info"></i>
-                  Open <i className="fas fa-circle text-danger"></i>
-                  Bounce <i className="fas fa-circle text-warning"></i>
-                  Unsubscribe
-                </div>
-                <hr></hr>
-                <div className="stats">
-                  <i className="far fa-clock"></i>
-                  Campaign sent 2 days ago
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-                 
-        <Row>
-          <Col md="6">
-            <Card>
-              <Card.Header>
-                <Card.Title as="h4">2017 Sales</Card.Title>
-                <p className="card-category">All products including Taxes</p>
-              </Card.Header>
-              <Card.Body>
-                <div className="ct-chart" id="chartActivity">
-                  <ChartistGraph
-                    data={{
-                      labels: [
-                        "Jan",
-                        "Feb",
-                        "Mar",
-                        "Apr",
-                        "Mai",
-                        "Jun",
-                        "Jul",
-                        "Aug",
-                        "Sep",
-                        "Oct",
-                        "Nov",
-                        "Dec",
-                      ],
-                      series: [
-                        [
-                          542,
-                          443,
-                          320,
-                          780,
-                          553,
-                          453,
-                          326,
-                          434,
-                          568,
-                          610,
-                          756,
-                          895,
-                        ],
-                        [
-                          412,
-                          243,
-                          280,
-                          580,
-                          453,
-                          353,
-                          300,
-                          364,
-                          368,
-                          410,
-                          636,
-                          695,
-                        ],
-                      ],
-                    }}
-                    type="Bar"
-                    options={{
-                      seriesBarDistance: 10,
-                      axisX: {
-                        showGrid: false,
-                      },
-                      height: "245px",
-                    }}
-                    responsiveOptions={[
-                      [
-                        "screen and (max-width: 640px)",
-                        {
-                          seriesBarDistance: 5,
-                          axisX: {
-                            labelInterpolationFnc: function (value) {
-                              return value[0];
-                            },
-                          },
-                        },
-                      ],
-                    ]}
-                  />
-                </div>
-              </Card.Body>
-              <Card.Footer>
-                <div className="legend">
-                  <i className="fas fa-circle text-info"></i>
-                  Tesla Model S <i className="fas fa-circle text-danger"></i>
-                  BMW 5 Series
-                </div>
-                <hr></hr>
-                <div className="stats">
-                  <i className="fas fa-check"></i>
-                  Data information certified
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-          <Col md="6">
-            <Card className="card-tasks">
-              <Card.Header>
-                <Card.Title as="h4">Tasks</Card.Title>
-                <p className="card-category">Backend development</p>
-              </Card.Header>
-              <Card.Body>
-                <div className="table-full-width">
-                  <Table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <Form.Check className="mb-1 pl-0">
-                            <Form.Check.Label>
-                              <Form.Check.Input
-                                defaultValue=""
-                                type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </td>
-                        <td>
-                          Sign contract for "What are conference organizers
-                          afraid of?"
-                        </td>
-                        <td className="td-actions text-right">
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-488980961">
-                                Edit Task..
-                              </Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="info"
-                            >
-                              <i className="fas fa-edit"></i>
-                            </Button>
-                          </OverlayTrigger>
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-506045838">Remove..</Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="danger"
-                            >
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </OverlayTrigger>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Form.Check className="mb-1 pl-0">
-                            <Form.Check.Label>
-                              <Form.Check.Input
-                                defaultChecked
-                                defaultValue=""
-                                type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </td>
-                        <td>
-                          Lines From Great Russian Literature? Or E-mails From
-                          My Boss?
-                        </td>
-                        <td className="td-actions text-right">
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-537440761">
-                                Edit Task..
-                              </Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="info"
-                            >
-                              <i className="fas fa-edit"></i>
-                            </Button>
-                          </OverlayTrigger>
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-21130535">Remove..</Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="danger"
-                            >
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </OverlayTrigger>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Form.Check className="mb-1 pl-0">
-                            <Form.Check.Label>
-                              <Form.Check.Input
-                                defaultChecked
-                                defaultValue=""
-                                type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </td>
-                        <td>
-                          Flooded: One year later, assessing what was lost and
-                          what was found when a ravaging rain swept through
-                          metro Detroit
-                        </td>
-                        <td className="td-actions text-right">
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-577232198">
-                                Edit Task..
-                              </Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="info"
-                            >
-                              <i className="fas fa-edit"></i>
-                            </Button>
-                          </OverlayTrigger>
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-773861645">Remove..</Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="danger"
-                            >
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </OverlayTrigger>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Form.Check className="mb-1 pl-0">
-                            <Form.Check.Label>
-                              <Form.Check.Input
-                                defaultChecked
-                                type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </td>
-                        <td>
-                          Create 4 Invisible User Experiences you Never Knew
-                          About
-                        </td>
-                        <td className="td-actions text-right">
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-422471719">
-                                Edit Task..
-                              </Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="info"
-                            >
-                              <i className="fas fa-edit"></i>
-                            </Button>
-                          </OverlayTrigger>
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-829164576">Remove..</Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="danger"
-                            >
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </OverlayTrigger>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Form.Check className="mb-1 pl-0">
-                            <Form.Check.Label>
-                              <Form.Check.Input
-                                defaultValue=""
-                                type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </td>
-                        <td>Read "Following makes Medium better"</td>
-                        <td className="td-actions text-right">
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-160575228">
-                                Edit Task..
-                              </Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="info"
-                            >
-                              <i className="fas fa-edit"></i>
-                            </Button>
-                          </OverlayTrigger>
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-922981635">Remove..</Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="danger"
-                            >
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </OverlayTrigger>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <Form.Check className="mb-1 pl-0">
-                            <Form.Check.Label>
-                              <Form.Check.Input
-                                defaultValue=""
-                                disabled
-                                type="checkbox"
-                              ></Form.Check.Input>
-                              <span className="form-check-sign"></span>
-                            </Form.Check.Label>
-                          </Form.Check>
-                        </td>
-                        <td>Unfollow 5 enemies from twitter</td>
-                        <td className="td-actions text-right">
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-938342127">
-                                Edit Task..
-                              </Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="info"
-                            >
-                              <i className="fas fa-edit"></i>
-                            </Button>
-                          </OverlayTrigger>
-                          <OverlayTrigger
-                            overlay={
-                              <Tooltip id="tooltip-119603706">Remove..</Tooltip>
-                            }
-                          >
-                            <Button
-                              className="btn-simple btn-link p-1"
-                              type="button"
-                              variant="danger"
-                            >
-                              <i className="fas fa-times"></i>
-                            </Button>
-                          </OverlayTrigger>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </div>
-              </Card.Body>
-              <Card.Footer>
-                <hr></hr>
-                <div className="stats">
-                  <i className="now-ui-icons loader_refresh spin"></i>
-                  Updated 3 minutes ago
-                </div>
-              </Card.Footer>
-            </Card>
-          </Col>
-        </Row>
-        */
-}

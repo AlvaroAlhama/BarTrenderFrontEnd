@@ -165,11 +165,14 @@ function Upgrade() {
 
                         <>
                           {isPremium.remainingDays <= 1 || isPremium.premium === false ?
+                            <>
+                            {isPremium.premium === false ? '' : <p className="text-danger">Te queda menos de un día de BarTrenderPremium</p>}
                             <PayPalButton
                               id="paypal-button"
                               createOrder={(data, actions) => createOrder(data, actions)}
                               onApprove={(data, actions) => onApprove(data, actions)}
                             />
+                            </>
                             :
                             <>
                               <p>Te quedan <b>{isPremium.remainingDays} día/s de BarTrender Premium</b></p>

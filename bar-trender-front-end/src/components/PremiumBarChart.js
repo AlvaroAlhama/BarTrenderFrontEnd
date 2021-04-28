@@ -41,7 +41,7 @@ function PremiumBarChart(props) {
         labels: [appState.stats.first.name, appState.stats.second.name, appState.stats.third.name,appState.stats.fourth.name,appState.stats.fifth.name,appState.stats.sixth.name,appState.stats.seventh.name,appState.stats.eighth.name,appState.stats.ninth.name,'Otros'],
         datasets: [
           {
-            label: 'Busquedas',
+            label: 'Porcentajes',
             data: [
               appState.stats.first.percentage,
               appState.stats.second.percentage,
@@ -131,22 +131,25 @@ function PremiumBarChart(props) {
       <br/>
       
       <h3> {props.filter}  con mayor preferencia de los Usuarios en tu zona</h3>
-     
+      <div  style={{
+                      height: "300px",
+                    }} >
       <Pie
         data={graph2.chartData}
         options={{
+          maintainAspectRatio: false,
           title: {
-            display: false,
-            text: '¿Qué se busca más?',
+            display: true,
+            text: 'Busquedas(%)',
             fontSize: 25
           },
-          
           legend: {
             display: false,
             position: 'bottom'
           }
         }}
       />
+      </div>
 
       <hr></hr>
         <p>Datos obtenidos de la api de Bartrender</p>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import moment from "moment";
 import { Link } from "react-router-dom";
 
@@ -86,6 +86,9 @@ function PremiumBarChart(props) {
               30,
               40,
             ],
+           
+            
+            
             backgroundColor: [
               'rgba(255, 99, 132, 0.6)',
               'rgba(54, 162, 235, 0.6)',
@@ -129,7 +132,7 @@ function PremiumBarChart(props) {
       
       <h3> {props.filter}  con mayor preferencia de los Usuarios en tu zona</h3>
      
-      <Bar
+      <Pie
         data={graph2.chartData}
         options={{
           title: {
@@ -137,9 +140,10 @@ function PremiumBarChart(props) {
             text: '¿Qué se busca más?',
             fontSize: 25
           },
+          
           legend: {
             display: false,
-            position: 'right'
+            position: 'bottom'
           }
         }}
       />

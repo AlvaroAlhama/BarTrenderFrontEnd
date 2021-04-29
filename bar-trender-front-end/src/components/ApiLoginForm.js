@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Redirect } from "react-router-dom";
 
 class POSTLoginForm extends React.Component {
 
@@ -43,7 +42,6 @@ class POSTLoginForm extends React.Component {
 
       window.location.href = "/index";
     } else {
-      const data = await response.blob();
       this.setState({ loading: false });
       errors["email"] = "Email o contraseña incorrecta.";
     }
@@ -66,7 +64,6 @@ class POSTLoginForm extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
 

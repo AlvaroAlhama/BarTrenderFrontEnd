@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Component } from 'react';
+import React, { useEffect, useState} from 'react';
 
 import bartrenderBlack from "./Images/bartrenderBlack.png";
 import cruzcampo from "./Images/cruzcampo.png";
@@ -11,12 +11,6 @@ import futbolin from "./Images/futbolin.png";
 
 
 function DashboardTopImage(props) {
-
-  const [modal1, setModal1] = React.useState(false);
-  const [modal2, setModal2] = React.useState(false);
-  const { element } = props;
-
-
 
   const [appState, setAppState] = useState({
     stats: {},
@@ -49,19 +43,19 @@ function DashboardTopImage(props) {
 
   var imgBest = bartrenderBlack
   var nameBest = "No hemos encontrado el elemento más buscado"
-  if (appState.stats.first != undefined) {
+  if (appState.stats.first !== undefined) {
      nameBest = appState.stats.first.name
-    if (nameBest == "Cruzcampo"){
+    if (nameBest === "Cruzcampo"){
      imgBest = cruzcampo
-    }else if(nameBest == "Heineken"){
+    }else if(nameBest === "Heineken"){
      imgBest = heineken
     }
-    else if(nameBest == "Paulaner"){
+    else if(nameBest === "Paulaner"){
       imgBest = paulaner
      }
-    else if(nameBest == "Dardos"){
+    else if(nameBest === "Dardos"){
       imgBest = dardos
-    }else if(nameBest == "Futbolin"){
+    }else if(nameBest === "Futbolin"){
         imgBest = futbolin
     }
   

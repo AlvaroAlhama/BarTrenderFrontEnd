@@ -46,7 +46,7 @@ export default class App extends React.Component {
   render(){
     return (
       <div className="App">
-          <img src={this.state.loading || this.state.qr != null ? this.state.qr : null} />
+          <img src={this.state.loading || this.state.qr != null ? this.state.qr : null} alt="" />
           <p>{this.state.error != null ? this.state.error: null}</p>
       </div>
     );

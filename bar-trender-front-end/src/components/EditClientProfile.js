@@ -119,7 +119,7 @@ export default class EditClientProfile extends React.Component {
 
        
         if (this.validate()) {
-            if (inputs['password'] == undefined) {
+            if (inputs['password'] === undefined) {
                 send['name'] = inputs.name;
                 send['surname'] = inputs.surname;
                 send['email'] = inputs.email;
@@ -197,14 +197,14 @@ export default class EditClientProfile extends React.Component {
                 errors['birthday'] =
                     'Para registrarte tus datos al menos tienes que tener 18 años.';
             }
-            if (today.getFullYear() - birthday.getFullYear() == 18) {
+            if (today.getFullYear() - birthday.getFullYear() === 18) {
                 if (today.getMonth() < birthday.getMonth()) {
                     isValid = false;
 
                     errors['birthday'] =
                         'Para actualizar tus datos al menos tienes que tener 18 años.';
                 }
-                if (today.getMonth() == birthday.getMonth()) {
+                if (today.getMonth() === birthday.getMonth()) {
                     if (today.getDate() < birthday.getDate()) {
                         isValid = false;
                         errors['birthday'] =
@@ -222,7 +222,7 @@ export default class EditClientProfile extends React.Component {
 
 
         if (inputs['password']) {
-            var pattern = new RegExp(
+            pattern = new RegExp(
                 /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
             );
             if (!pattern.test(inputs['password'])) {
@@ -348,10 +348,10 @@ export default class EditClientProfile extends React.Component {
                         </div>
                     </form>
                     <div class='container-fluid bg-danger'>
-                        <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
+                        <div class="text-white fw-bold text-center">{this.state.errorsApiPut === undefined ? "" : this.state.errorsApiPut.error}</div>
                     </div>
                     <div class='container-fluid bg-success'>
-                        <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
+                        <div class="text-white fw-bold text-center">{this.state.msg === undefined ? "" : this.state.msg}</div>
                     </div>
                 </div>
 

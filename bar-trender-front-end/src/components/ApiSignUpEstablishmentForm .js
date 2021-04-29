@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 
 class ApiSignUpEstablishmentForm extends React.Component {
   constructor() {
@@ -19,7 +18,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
   }
   // TODO CALL THE API
   async handleSignUp() {
-    let errors = {};
+
     var url =
       "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
@@ -53,11 +52,8 @@ class ApiSignUpEstablishmentForm extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
       
       let input = {};
-
-    
 
       this.state.input.phone=parseInt(this.state.input.phone, 10);
 
@@ -77,7 +73,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     let input = this.state.input;
 
     let errors = {};
-
+    var pattern
     let isValid = true;
 
     if (!input["email"]) {
@@ -87,7 +83,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     }
 
     if (typeof input["email"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
       );
 
@@ -100,7 +96,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     }
 
     if (typeof input["password"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
       );
       if (!pattern.test(input["password"])) {

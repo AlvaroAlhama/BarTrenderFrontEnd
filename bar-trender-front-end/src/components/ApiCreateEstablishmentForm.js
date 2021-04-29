@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import Select from 'react-select'
 import { CustomInput, FormGroup, Label, Modal, ModalBody } from "reactstrap";
 
@@ -105,14 +104,14 @@ class ApiCreateEstablishmentForm extends React.Component {
       var response = await create.json();
       this.setState({ msg: response.msg, modalSuccess: true });
     } else {
-      var response = await create.json();
+      response = await create.json();
       this.setState({ errors: response.error, modalFail: true });
     }
   }
 
   handleChange(event) {
     
-    if(event.target == undefined){
+    if(event.target === undefined){
       this.state.input["zone_enum"] = event.value;
     }
     else{
@@ -128,7 +127,6 @@ class ApiCreateEstablishmentForm extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
 
@@ -140,7 +138,7 @@ class ApiCreateEstablishmentForm extends React.Component {
 
       
       this.state.tags.map((tag) => {
-        if(this.state.input[tag.name]=="true" && tag.type!="Zona"){
+        if(this.state.input[tag.name]==="true" && tag.type!=="Zona"){
           if(!this.state.input.tags.some(t => (t.name === tag.name ))){
             this.state.input.tags = this.state.input.tags.concat(tag.name);
           }
@@ -158,10 +156,8 @@ class ApiCreateEstablishmentForm extends React.Component {
   validate() {
     let input = this.state.input;
 
-    var today = new Date();
-
     let errors = {};
-
+    var pattern;
     let isValid = true;
 
     if (!input["name_text"].trim()) {
@@ -187,7 +183,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     }
 
     if (input['number_text']) {
-      var pattern = new RegExp(/^\D*\d{1,3}([A-Z]{1,2})?$/);
+      pattern = new RegExp(/^\D*\d{1,3}([A-Z]{1,2})?$/);
       if (!pattern.test(input['number_text'])) {
           isValid = false;
           errors['number_text'] = 'El número de la dirección debe contener de 1 a 3 números con posibilidad de 2 letras'
@@ -201,7 +197,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     }
 
     if (input["cif_text"]) {
-      var pattern = new RegExp(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/);
+      pattern = new RegExp(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/);
       if (!pattern.test(input["cif_text"])) {
         isValid = false;
         errors["cif_text"] = "Introduzca un CIF correcto.";
@@ -229,23 +225,23 @@ class ApiCreateEstablishmentForm extends React.Component {
   render() {
     var options = []
     this.state.tags.map((tag) => {
-      if (tag.type == "Ocio") {
+      if (tag.type === "Ocio") {
         if (!this.state.tags_group.ocio.some((t) => t.name === tag.name)) {
           this.state.tags_group.ocio = this.state.tags_group.ocio.concat(tag);
         }
       }
-      if (tag.type == "Bebida") {
+      if (tag.type === "Bebida") {
         if (!this.state.tags_group.bebida.some((t) => t.name === tag.name)) {
           this.state.tags_group.bebida = this.state.tags_group.bebida.concat(
             tag
           );
         }
       }
-      if (tag.type == "Zona") {
+      if (tag.type === "Zona") {
         options = options.concat({value:tag.name, label: tag.name })
         
       }
-      if (tag.type == "Instalacion") {
+      if (tag.type === "Instalacion") {
         if (
           !this.state.tags_group.instalacion.some((t) => t.name === tag.name)
         ) {
@@ -360,10 +356,9 @@ class ApiCreateEstablishmentForm extends React.Component {
               <div class="card-header">
                 <ul class="nav nav-tabs nav-pills-info nav-pills-just-icons row justify-content-between">
                   <li class="nav-item">
-                    <a id="link-ocio"
+                    <i id="link-ocio"
                       class="nav-link text-danger"
                       aria-current="page"
-                      href="#"
                       onClick={() => {
                         document.getElementsByClassName("text-danger")[0].classList.remove("text-danger");
                         document.getElementById("link-ocio").classList.add("text-danger");
@@ -383,13 +378,12 @@ class ApiCreateEstablishmentForm extends React.Component {
                       }}
                     >
                       <i class="fal fa-bowling-ball fa-2x w-100"></i>{" "}
-                    </a>
+                    </i>
                   </li>
                   <li class="nav-item">
-                    <a
+                    <i
                       class="nav-link"
                       id="link-bebida"
-                      href="#"
                       onClick={() => {
                         document.getElementsByClassName("text-danger")[0].classList.remove("text-danger");
                         document.getElementById("link-bebida").classList.add("text-danger");
@@ -408,13 +402,12 @@ class ApiCreateEstablishmentForm extends React.Component {
                       }}
                     >
                       <i class="fal fa-beer fa-2x w-100"></i>
-                    </a>
+                    </i>
                   </li>
                   <li class="nav-item">
-                    <a
+                    <i
                       class="nav-link"
                       id="link-zona"
-                      href="#"
                       onClick={() => {
                         document.getElementsByClassName("text-danger")[0].classList.remove("text-danger");
                         document.getElementById("link-zona").classList.add("text-danger");
@@ -433,7 +426,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                       }}
                     >
                       <i class="fal fa-globe-europe fa-2x w-100"></i>
-                    </a>
+                    </i>
                   </li>
                 </ul>
               </div>

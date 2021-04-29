@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import GoogleLogin from 'react-google-login';
 
 class ApiSignUpClientForm extends React.Component {
   constructor() {
@@ -21,7 +20,7 @@ class ApiSignUpClientForm extends React.Component {
 
   // call the api
   async handleSignUp() {
-    let errors = {};
+
     var url =
       "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
@@ -55,7 +54,6 @@ class ApiSignUpClientForm extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
       const birthday = moment.utc(`${this.state.input.birthday}`).unix();
@@ -105,7 +103,7 @@ class ApiSignUpClientForm extends React.Component {
     }
 
     if (typeof input["password"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
       );
       if (!pattern.test(input["password"])) {
@@ -137,14 +135,14 @@ class ApiSignUpClientForm extends React.Component {
         errors["birthday"] =
           "Para registrarte como usuario al menos tienes que tener 18 años.";
       }
-      if (today.getFullYear() - birthday.getFullYear() == 18) {
+      if (today.getFullYear() - birthday.getFullYear() === 18) {
         if (today.getMonth() < birthday.getMonth()) {
           isValid = false;
 
           errors["birthday"] =
             "Para registrarte como usuario al menos tienes que tener 18 años.";
         }
-        if (today.getMonth() == birthday.getMonth()) {
+        if (today.getMonth() === birthday.getMonth()) {
           if (today.getDate() < birthday.getDate()) {
             isValid = false;
             errors["birthday"] =

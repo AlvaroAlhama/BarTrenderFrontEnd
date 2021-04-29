@@ -50,7 +50,7 @@ class POSTLoginFormQRValidator extends React.Component {
       sessionStorage.setItem("token", token);
       this.getDiscountResult();
     } else {
-      const data = await response.blob();
+      
       this.setState({ loading: false });
       errors["email"] = "Email o contraseña incorrecta.";
     }
@@ -104,7 +104,6 @@ class POSTLoginFormQRValidator extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
 
@@ -215,7 +214,7 @@ class POSTLoginFormQRValidator extends React.Component {
             <div className="modal-header justify-content-center">
               <div class="container mt-5 pt-5">
                 <div class="row justify-content-center">
-                  <img src={barTrender60} class="img-fluid" />
+                  <img src={barTrender60} class="img-fluid" alt="bg" />
                   <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
                 </div> 
               </div>      
@@ -233,6 +232,7 @@ class POSTLoginFormQRValidator extends React.Component {
                   <img
                     src={fail_boy}
                     className="img-fluid"
+                    alt="fail"
                     style={{
                       width: "100%",
                       maxWidth: "18.75em",
@@ -256,7 +256,7 @@ class POSTLoginFormQRValidator extends React.Component {
             <div className="modal-header justify-content-center">
               <div class="container mt-5 pt-5">
                 <div class="row justify-content-center">
-                  <img src={barTrender60} class="img-fluid" />
+                  <img src={barTrender60} class="img-fluid" alt="bg" />
                   <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
                 </div> 
               </div>      
@@ -271,6 +271,7 @@ class POSTLoginFormQRValidator extends React.Component {
                   <img
                     src={success_boy}
                     className="img-fluid"
+                    alt = "success"
                     style={{
                       width: "100%",
                       maxWidth: "18.75em",

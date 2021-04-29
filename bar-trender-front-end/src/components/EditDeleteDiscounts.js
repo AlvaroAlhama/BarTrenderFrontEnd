@@ -250,7 +250,7 @@ export default class EditDeleteDiscounts extends React.Component{
         var todayTS = moment.utc(today).unix()
         if(this.validate()){
             const initialDateTS = moment.utc(`${inputs.initialDate} ${inputs.initialHour}`).unix()
-            if(inputs.endDate != '' && inputs.endHour != ''){
+            if(inputs.endDate !== '' && inputs.endHour !== ''){
                 const endDateTs = moment.utc(`${inputs.endDate} ${inputs.endHour}`).unix()
                 if(todayTS > initialDateTS){
                 
@@ -318,7 +318,7 @@ export default class EditDeleteDiscounts extends React.Component{
             errors['errorCodes'] = 'No se puede eliminar porque hay descuentos escaneados'
         }
 
-        if(endDate != ''){
+        if(endDate !== ''){
             if(today > endDate){
                 isValid = false;
                 errors['errorDate'] = 'No se puede eliminar porque el descuento ya ha finalizado'
@@ -385,31 +385,31 @@ export default class EditDeleteDiscounts extends React.Component{
         }
         
         if(today > initialDateFull){
-            if(inputs['name'] != discount.name){
+            if(inputs['name'] !== discount.name){
                 isValid = false;
                 errors['name'] = 'Una vez empezado el descuento no se puede modificar el nombre';
             }
-            if(inputs['description'] != discount.description){
+            if(inputs['description'] !== discount.description){
                 isValid = false;
                 errors['description'] = 'Una vez empezado el descuento no se puede modificar la descripción';
             }
 
-            if(inputs['cost'] != discount.cost){
+            if(inputs['cost'] !== discount.cost){
                 isValid = false;
                 errors['cost'] = 'Una vez empezado el descuento no se puede modificar la descripción';
             }
 
-            if(inputs['initialDate'].concat(" ", inputs['initialHour']) != discount.initialDate.concat(" ", discount.initialHour)){
+            if(inputs['initialDate'].concat(" ", inputs['initialHour']) !== discount.initialDate.concat(" ", discount.initialHour)){
                 isValid = false;
                 errors['initialDate'] = 'Una vez empezado el descuento no se puede modificar la fecha inicial';
             }
 
-            if(inputs['scannedCodes'] != discount.scannedCodes){
+            if(inputs['scannedCodes'] !== discount.scannedCodes){
                 isValid = false;
                 errors['scannedCodes'] = 'Una vez empezado el descuento no se puede modificar el número de descuentos escaneados';
             }
 
-            if(endDateFull != undefined){
+            if(endDateFull !== undefined){
                 if(endDateFull < initialDateFull){
                     isValid = false;
                     errors['endDate'] = 'La fecha final no puede ser menor que la fecha inicial'
@@ -423,7 +423,7 @@ export default class EditDeleteDiscounts extends React.Component{
         }
 
         if(initialDateFull > today){
-            if(endDateFull != undefined){
+            if(endDateFull !== undefined){
                 if(endDateFull < initialDateFull){
                     isValid = false;
                     errors['endDate'] = 'La fecha final no puede ser menor que la fecha incial'
@@ -462,7 +462,7 @@ export default class EditDeleteDiscounts extends React.Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.data == [] ? "" : this.state.data.map(discount => {
+                        {this.state.data === [] ? "" : this.state.data.map(discount => {
                             return (
                                 <tr class='text-center'>
                                     <td>{discount.name}</td>
@@ -497,7 +497,7 @@ export default class EditDeleteDiscounts extends React.Component{
                         })}
                     </tbody>
                 </Table>
-                {this.state.input == '' ? '' :
+                {this.state.input === '' ? '' :
                 <>
                 <Modal isOpen={this.state.modalUpdate} toggle={() => this.setState({modalUpdate: false})}>
                     <div className="modal-header justify-content-center">
@@ -624,10 +624,10 @@ export default class EditDeleteDiscounts extends React.Component{
                         <button className='btn btn-primary' onClick={() => this.handleSubmit()}>Guardar cambios</button>
                         <button className='btn btn-danger' onClick={() => this.setState({modalUpdate:false})}>Cancelar</button>
                         <div class='container-fluid bg-danger'>
-                            <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
+                            <div class="text-white fw-bold text-center">{this.state.errorsApiPut === undefined ? "" : this.state.errorsApiPut.error}</div>
                         </div>
                         <div class='container-fluid bg-success'>
-                            <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
+                            <div class="text-white fw-bold text-center">{this.state.msg === undefined ? "" : this.state.msg}</div>
                         </div>
                     </ModalFooter>
 
@@ -662,10 +662,10 @@ export default class EditDeleteDiscounts extends React.Component{
                             <p class='text-danger'>{this.state.errors.errorDate}</p>
                         </div>
                         <div class='container-fluid bg-danger'>
-                            <div class="text-white fw-bold text-center">{this.state.errorsApiDelete== undefined ? "" : this.state.errorsApiDelete.error}</div>
+                            <div class="text-white fw-bold text-center">{this.state.errorsApiDelete=== undefined ? "" : this.state.errorsApiDelete.error}</div>
                         </div>
                         <div class='container-fluid bg-success'>
-                            <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
+                            <div class="text-white fw-bold text-center">{this.state.msg === undefined ? "" : this.state.msg}</div>
                         </div>
                     </ModalFooter>
                 </Modal>

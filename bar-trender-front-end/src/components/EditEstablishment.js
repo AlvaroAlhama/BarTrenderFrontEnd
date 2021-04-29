@@ -1,4 +1,4 @@
-import React, { createRef, useRef } from 'react';
+import React, { createRef } from 'react';
 import Select from 'react-select';
 import { CustomInput, FormGroup, Label, Modal, ModalBody } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
@@ -68,23 +68,23 @@ export default class EditEstablishment extends React.Component {
         const data = await response.json();
 
         var otherTags = data.tags.map((tag) => {
-            if (tag.type != 'Zona') {
+            if (tag.type !== 'Zona') {
                 return { value: tag.name, label: tag.name }
             }
         });
 
         var arrayOther = otherTags.filter(function (dato) {
-            return dato != undefined;
+            return dato !== undefined;
         })
 
         const tagZone = data.tags.map((tag) => {
-            if (tag.type == 'Zona') {
+            if (tag.type === 'Zona') {
                 return tag.name
             }
         });
 
         var array = tagZone.filter(function (dato) {
-            return dato != undefined
+            return dato !== undefined
         })
 
         this.setState({
@@ -218,12 +218,12 @@ export default class EditEstablishment extends React.Component {
     }
 
     async handleChange(event) {
-        if (event.target == undefined) {
+        if (event.target === undefined) {
             this.state.selected = event
         } else {
             await this.setState({
                 input: {
-                    ... this.state.input,
+                    ...this.state.input,
                     [event.target.name]: event.target.value,
                 }
             })
@@ -245,6 +245,7 @@ export default class EditEstablishment extends React.Component {
         let selecteds = this.state.selected;
         let errors = {};
         let isValid = true;
+        var pattern;
 
         if (!inputs['name_text'].trim()) {
             isValid = false;
@@ -257,7 +258,7 @@ export default class EditEstablishment extends React.Component {
         }
 
         if (inputs['phone_number']) {
-            var pattern = new RegExp(/^\d{9}$/);
+            pattern = new RegExp(/^\d{9}$/);
             if (!pattern.test(inputs['phone_number'])) {
                 isValid = false;
                 errors['phone_number'] = 'El télefono introducido no es válido'
@@ -275,7 +276,7 @@ export default class EditEstablishment extends React.Component {
         }
 
         if (inputs['number_text']) {
-            var pattern = new RegExp(/^\D*\d{1,3}([A-Z]{1,2})?$/);
+            pattern = new RegExp(/^\D*\d{1,3}([A-Z]{1,2})?$/);
             if (!pattern.test(inputs['number_text'])) {
                 isValid = false;
                 errors['number_text'] = 'El número de la dirección debe contener de 1 a 3 números con posibilidad de 2 letras'
@@ -315,7 +316,7 @@ export default class EditEstablishment extends React.Component {
         return (
             <>
                 <div>
-                    <img src={this.state.image_url == null ? '' : this.state.image_url} />
+                    <img src={this.state.image_url == null ? '' : this.state.image_url} alt=""/>
                 </div>
                 <div class='row'>
                     <div class='col md-8'>
@@ -442,16 +443,16 @@ export default class EditEstablishment extends React.Component {
                                         <div class='col'>
                                             <div class='form-group my-1'>
                                                 <label>Tags</label>
-                                                {this.state.input.tags.length != 0 ? <Select name='tags-selected' defaultValue={this.state.input.tags} isMulti options={this.state.otherTags} onChange={this.handleChange}></Select> : ""}
+                                                {this.state.input.tags.length !== 0 ? <Select name='tags-selected' defaultValue={this.state.input.tags} isMulti options={this.state.otherTags} onChange={this.handleChange}></Select> : ""}
                                                 <div class="text-danger">{this.state.errors.tags_selected}</div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class='container-fluid bg-danger'>
-                                        <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
+                                        <div class="text-white fw-bold text-center">{this.state.errorsApiPut === undefined ? "" : this.state.errorsApiPut.error}</div>
                                     </div>
                                     <div class='container-fluid bg-success'>
-                                        <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
+                                        <div class="text-white fw-bold text-center">{this.state.msg === undefined ? "" : this.state.msg}</div>
                                     </div>
                                     <div class='pull-right'>
                                         <input

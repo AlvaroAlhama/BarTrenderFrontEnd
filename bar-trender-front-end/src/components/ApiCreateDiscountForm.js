@@ -64,7 +64,7 @@ class POSTCreateDiscount extends React.Component {
       var response = await create.json();
       this.setState({ msg: response.msg, modalSuccess: true });
     } else {
-      var response = await create.json();
+      response = await create.json();
       this.setState({ errorApiCreate: response, modalFail: true });
     }
   }
@@ -78,7 +78,7 @@ class POSTCreateDiscount extends React.Component {
 
     const endTime = this.state.input.endTime;
 
-    if (endDate != undefined && endDate !== '') {
+    if (endDate !== undefined && endDate !== '') {
       const timeStampEnd = moment.utc(`${endDate} ${endTime}`).unix();
   
       let send2 = {
@@ -134,7 +134,6 @@ class POSTCreateDiscount extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
 

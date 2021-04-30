@@ -8,15 +8,15 @@ class POSTCreateDiscount extends React.Component {
 
     this.state = {
       input: {
-        name: '',
-        descripcion: '',
+        name: "",
+        descripcion: "",
         cost: null,
         totalCodes: null,
-        initialDate: '',
-        initialTime: '',
-        endDate: '',
-        endTime: ''
-      }, 
+        initialDate: "",
+        initialTime: "",
+        endDate: "",
+        endTime: "",
+      },
       send: {
         name: null,
         description: null,
@@ -46,16 +46,14 @@ class POSTCreateDiscount extends React.Component {
     var idEstablishment = splited[3];
 
     const url =
-
-    "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
-
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/create";
     const create = await fetch(url, {
       method: "POST",
       headers: {
         token: token,
-        'Content-type': 'application/json'
+        "Content-type": "application/json",
       },
       body: JSON.stringify(this.state.send),
     });
@@ -72,15 +70,21 @@ class POSTCreateDiscount extends React.Component {
   handleSend() {
     const initialDate = this.state.input.initialDate;
     const initialTime = this.state.input.initialTime;
-    const timeStampInitial = moment.utc(`${initialDate} ${initialTime}`).unix();
+    const timeStampInitial = moment
+      .utc(`${initialDate} ${initialTime}`)
+      .subtract(2, "hours")
+      .unix();
 
     const endDate = this.state.input.endDate;
 
     const endTime = this.state.input.endTime;
 
-    if (endDate != undefined && endDate !== '') {
-      const timeStampEnd = moment.utc(`${endDate} ${endTime}`).unix();
-  
+    if (endDate != undefined && endDate !== "") {
+      const timeStampEnd = moment
+        .utc(`${endDate} ${endTime}`)
+        .subtract(2, "hours")
+        .unix();
+
       let send2 = {
         name: this.state.input.name,
         description: this.state.input.descripcion,
@@ -100,8 +104,6 @@ class POSTCreateDiscount extends React.Component {
         }
       );
     } else {
-
-
       let send2 = {
         name: this.state.input.name,
         description: this.state.input.descripcion,
@@ -191,32 +193,37 @@ class POSTCreateDiscount extends React.Component {
       errors["totalCodes"] = "Escriba un número total de códigos.";
     }
 
-    if (!input["initialDate"] || !input['initialTime']) {
+    if (!input["initialDate"] || !input["initialTime"]) {
       isValid = false;
 
       errors["initialDate"] =
         "Introduzca una fecha y hora para el inicio del desucento.";
     }
 
-    if(input['initialDate'] && input['initialTime']){
-      var initialDateFull = new Date(input['initialDate'].concat(" ", input['initialTime']));
+    if (input["initialDate"] && input["initialTime"]) {
+      var initialDateFull = new Date(
+        input["initialDate"].concat(" ", input["initialTime"])
+      );
 
-      if(today > initialDateFull){
+      if (today > initialDateFull) {
         isValid = false;
 
-        errors['initialDate'] = 'La fecha de inicio debe ser en futuro';
+        errors["initialDate"] = "La fecha de inicio debe ser en futuro";
       }
     }
 
-    if(input['endDate'] && !input['endTime']){
+    if (input["endDate"] && !input["endTime"]) {
       isValid = false;
 
-      errors['endDate'] = 'Si quiere una fecha final debe proporcionar la hora final'
+      errors["endDate"] =
+        "Si quiere una fecha final debe proporcionar la hora final";
     }
 
     if (input["initialDate"] && input["endDate"]) {
-      var initialDate = new Date(input["initialDate"].concat(' ', input['initialTime']));
-      var endDate = new Date(input["endDate"].concat(' ', input['endTime']));
+      var initialDate = new Date(
+        input["initialDate"].concat(" ", input["initialTime"])
+      );
+      var endDate = new Date(input["endDate"].concat(" ", input["endTime"]));
       if (initialDate <= today) {
         isValid = false;
         errors["initialDate"] =
@@ -245,6 +252,7 @@ class POSTCreateDiscount extends React.Component {
               <input
                 type="text"
                 name="name"
+                maxLength="50"
                 value={this.state.input.name}
                 onChange={this.handleChange}
                 class="form-control"
@@ -258,6 +266,7 @@ class POSTCreateDiscount extends React.Component {
               <input
                 type="text"
                 name="descripcion"
+                maxLength="140"
                 value={this.state.input.descripcion}
                 onChange={this.handleChange}
                 class="form-control"
@@ -324,7 +333,9 @@ class POSTCreateDiscount extends React.Component {
               <div className="text-danger">{this.state.errors.initialDate}</div>
             </div>
             <div class="form-group my-1 row justify-content-center">
-              <label for="endDate" className="w-100 text-center">Fecha y hora de fin del descuento</label>
+              <label for="endDate" className="w-100 text-center">
+                Fecha y hora de fin del descuento
+              </label>
               <div className="col-6">
                 <input
                   type="date"
@@ -378,11 +389,11 @@ class POSTCreateDiscount extends React.Component {
         </Modal>
 
         <Modal isOpen={this.state.modalFail}>
-        <div className="modal-header justify-content-center">
+          <div className="modal-header justify-content-center">
             <button
               className="close"
               type="button"
-              onClick={() => this.setState({modalFail: false})}
+              onClick={() => this.setState({ modalFail: false })}
             >
               <i className="now-ui-icons ui-1_simple-remove"></i>
             </button>
@@ -390,7 +401,7 @@ class POSTCreateDiscount extends React.Component {
           </div>
           <ModalBody>
             <div className="mt-2 mb-4 text-center">
-              <p className='text-danger'>{this.state.errorApiCreate.error}</p>
+              <p className="text-danger">{this.state.errorApiCreate.error}</p>
             </div>
           </ModalBody>
         </Modal>

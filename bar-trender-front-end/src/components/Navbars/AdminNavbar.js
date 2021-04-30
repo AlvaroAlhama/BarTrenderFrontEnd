@@ -20,7 +20,7 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
-import MobileNavbarPopup from "../../components/Navbars/MobileNavbarPopup";
+import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
 
 function Header() {
 
@@ -55,7 +55,7 @@ function Header() {
           <Button
             variant="dark"
             className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
-            onClick={mobileSidebarToggle}
+            onClick={MobileNavbarModal}
           >
             <i className="fas fa-ellipsis-v"></i>
           </Button>

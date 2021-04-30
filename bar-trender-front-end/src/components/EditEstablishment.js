@@ -314,13 +314,14 @@ export default class EditEstablishment extends React.Component {
 
         return (
             <>
-                <div>
-                    <img src={this.state.image_url == null ? '' : this.state.image_url} />
-                </div>
+                
                 <div class='row'>
                     <div class='col md-8'>
                         <div class='card'>
                             <div class='card-header'>
+                                <div>
+                                    <img src={this.state.image_url == null ? '' : this.state.image_url} />
+                                </div>
                                 <div class='card-title ml-3 mt-3'>
                                     <h2>Detalles del Establecimiento</h2>
                                 </div>

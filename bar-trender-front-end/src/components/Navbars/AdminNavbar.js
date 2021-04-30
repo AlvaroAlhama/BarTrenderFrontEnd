@@ -16,6 +16,7 @@
 
 */
 import React from "react";
+import {Modal, ModalBody} from "react-bootstrap";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
@@ -23,7 +24,7 @@ import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstabli
 import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
 
 function Header() {
-
+ 
   const mobileSidebarToggle = (e) => {
     e.preventDefault();
     document.documentElement.classList.toggle("nav-open");
@@ -52,13 +53,7 @@ function Header() {
     <Navbar bg="dark" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
-          <Button
-            variant="dark"
-            className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
-            onClick={MobileNavbarModal}
-          >
-            <i className="fas fa-ellipsis-v"></i>
-          </Button>
+          <MobileNavbarModal/>
           <h4 class="text-white my-auto">BarTrender</h4>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">

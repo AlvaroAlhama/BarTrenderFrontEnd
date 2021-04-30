@@ -35,7 +35,7 @@ import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
             >
                 <i className="now-ui-icons ui-1_simple-remove"></i>
             </button>
-            <h4 className="title title-up">Nuevo descuento</h4>
+            <h4 className="title title-up">Bartrender</h4>
         </div>
         <div class="container">
             <hr />

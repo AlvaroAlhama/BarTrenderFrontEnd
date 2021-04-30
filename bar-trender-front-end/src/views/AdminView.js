@@ -17,7 +17,12 @@
 */
 import React from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
-
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile
+} from "react-device-detect";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin.js";
@@ -59,61 +64,10 @@ function AdminView() {
   };
   React.useEffect(() => {
   }, [location]);
-
-  if (!token) {
-    return (
-
-      <>
-        <div className="wrapper">
-          <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
-          <div className="main-panel" ref={mainPanel}>
-            <AdminNavbar />
-            <div className="content">
-              <Container fluid>
-                <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
-              </Container>
-            </div>
-            {/* <Footer /> */}
-          </div>
-        </div>
-        <FixedPlugin
-          hasImage={hasImage}
-          setHasImage={() => setHasImage(!hasImage)}
-          color={color}
-          setColor={(color) => setColor(color)}
-          image={image}
-          setImage={(image) => setImage(image)}
-        />
-      </>
-    );
-  } else {
-    if (sessionStorage.getItem("rol") === "owner") {
-
+  if(isBrowser){
+    if (!token) {
       return (
-        <>
-          <div className="wrapper">
-            <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
-            <div className="main-panel" ref={mainPanel}>
-              <AdminNavbar />
-              <div className="content">
-                <Switch>{getRoutes(routes)}</Switch>
-              </div>
-              
-            </div>
-          </div>
-          <FixedPlugin
-            hasImage={hasImage}
-            setHasImage={() => setHasImage(!hasImage)}
-            color={color}
-            setColor={(color) => setColor(color)}
-            image={image}
-            setImage={(image) => setImage(image)}
-          />
-        </>
-      );
-    }
-    else {
-      return (
+
         <>
           <div className="wrapper">
             <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
@@ -121,11 +75,10 @@ function AdminView() {
               <AdminNavbar />
               <div className="content">
                 <Container fluid>
-                  <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
-                  <Link to="/main" className="btn btn-primary">Volver</Link>
+                  <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
                 </Container>
               </div>
-              
+              {/* <Footer /> */}
             </div>
           </div>
           <FixedPlugin
@@ -137,10 +90,121 @@ function AdminView() {
             setImage={(image) => setImage(image)}
           />
         </>
-
       );
+    } else {
+      if (sessionStorage.getItem("rol") === "owner") {
+
+        return (
+          <>
+            <div className="wrapper">
+              <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Switch>{getRoutes(routes)}</Switch>
+                </div>
+                
+              </div>
+            </div>
+            <FixedPlugin
+              hasImage={hasImage}
+              setHasImage={() => setHasImage(!hasImage)}
+              color={color}
+              setColor={(color) => setColor(color)}
+              image={image}
+              setImage={(image) => setImage(image)}
+            />
+          </>
+        );
+      }
+      else {
+        return (
+          <>
+            <div className="wrapper">
+              <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Container fluid>
+                    <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
+                    <Link to="/main" className="btn btn-primary">Volver</Link>
+                  </Container>
+                </div>
+                
+              </div>
+            </div>
+            <FixedPlugin
+              hasImage={hasImage}
+              setHasImage={() => setHasImage(!hasImage)}
+              color={color}
+              setColor={(color) => setColor(color)}
+              image={image}
+              setImage={(image) => setImage(image)}
+            />
+          </>
+
+        );
+      }
     }
   }
+  else{
+    if (!token) {
+      return (
+
+        <>
+          <div className="wrapper">
+            
+            <div className="main-panel" ref={mainPanel}>
+              <AdminNavbar />
+              <div className="content">
+                <Container fluid>
+                  <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
+                </Container>
+              </div>
+              {/* <Footer /> */}
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      if (sessionStorage.getItem("rol") === "owner") {
+
+        return (
+          <>
+            <div className="wrapper">
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Switch>{getRoutes(routes)}</Switch>
+                </div>
+                
+              </div>
+            </div>
+          </>
+        );
+      }
+      else {
+        return (
+          <>
+            <div className="wrapper">
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Container fluid>
+                    <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
+                    <Link to="/main" className="btn btn-primary">Volver</Link>
+                  </Container>
+                </div>
+                
+              </div>
+            </div>
+          </>
+
+        );
+      }
+    }
+  }
+  
 }
 
 export default AdminView;

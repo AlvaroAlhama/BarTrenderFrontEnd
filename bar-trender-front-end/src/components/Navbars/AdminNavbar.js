@@ -20,6 +20,7 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
+import MobileNavbarPopup from "../../components/Navbars/MobileNavbarPopup";
 
 function Header() {
 

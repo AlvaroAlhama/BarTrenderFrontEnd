@@ -8,13 +8,13 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
-  var idEstablishment = props.idEstablishment;
   var nameEstablishment = props.nameEstablishment;
+  var idEstablishment = props.idEstablishment;
   var token = sessionStorage.getItem("token");
   const [appState, setAppState] = useState({
     discounts: {},
   });
-  const [paymentState, setPaymentState] = useState({
+  const [paymentState] = useState({
     create_time: null,
     order_id: null
   });
@@ -22,8 +22,8 @@ function DashboardQRList(props) {
     discountPaymentInfo: {},
   });
 
-  useEffect(() => {
-      const apiUrl =
+  useEffect(() => {    
+    const apiUrl =
         "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
         idEstablishment +
         "/calculate";
@@ -42,7 +42,7 @@ function DashboardQRList(props) {
           });
       }
       loadDiscountPaymentInfo();
-    }, [setDiscountPaymentInfoState]);
+    },);
 
   useEffect(() => {
     const apiUrl =
@@ -65,7 +65,7 @@ function DashboardQRList(props) {
         });
     }
     loadDiscounts();
-  }, [setAppState]);
+  }, );
 
   var count = 0;
 
@@ -270,15 +270,15 @@ function DashboardQRList(props) {
                                     (payments) => {
                                       return (
                                         <>
-                                          <tr>
-                                            <td scope="row" className="text-left">
+                                          <th>
+                                            <th scope="row" className="text-left">
                                               {payments.discount_name}
-                                            </td>
-                                            <td></td>
-                                            <td>{payments.payment_scanned_codes}</td>
-                                            <td></td>
-                                            <td>{payments.value}€</td>
-                                          </tr>
+                                            </th>
+                                            <tr></tr>
+                                            <tr>{payments.payment_scanned_codes}</tr>
+                                            <tr></tr>
+                                            <tr>{payments.value}€</tr>
+                                          </th>
                                         </>
                                       );
                                     }

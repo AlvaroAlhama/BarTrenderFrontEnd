@@ -287,7 +287,7 @@ class POSTLoginFormQRValidator extends React.Component {
                   <div className="modal-header justify-content-center">
                     <div class="container mt-5 pt-5">
                       <div class="row justify-content-center">
-                        <img src={barTrender60} class="img-fluid" />
+                        <img src={barTrender60} alt="bg" class="img-fluid" />
                         <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
                       </div>
                     </div>
@@ -304,6 +304,7 @@ class POSTLoginFormQRValidator extends React.Component {
                       </h2>
                       <img
                         src={fail_boy}
+                        alt ="fail"
                         className="img-fluid"
                         style={{
                           width: "100%",
@@ -334,7 +335,7 @@ class POSTLoginFormQRValidator extends React.Component {
                   <div className="modal-header justify-content-center">
                     <div class="container mt-5 pt-5">
                       <div class="row justify-content-center">
-                        <img src={barTrender60} class="img-fluid" />
+                        <img src={barTrender60} class="img-fluid" alt="bg" />
                         <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
                       </div>
                     </div>
@@ -348,6 +349,7 @@ class POSTLoginFormQRValidator extends React.Component {
                     <div class="row justify-content-center   mt-3">
                       <img
                         src={success_boy}
+                        alt="success"
                         className="img-fluid"
                         style={{
                           width: "100%",
@@ -383,20 +385,20 @@ class POSTLoginFormQRValidator extends React.Component {
               </div>
 
               <p style={{ color: "red", textAlign: "center" }}>
-                {this.state.errorLoginGoogle == undefined
+                {this.state.errorLoginGoogle === undefined
                   ? ""
                   : this.state.errorLoginGoogle}{" "}
                 <a
                   style={{ color: "blue" }}
                   href={
-                    this.state.errorLoginGoogle == undefined ? "" : errorLink
+                    this.state.errorLoginGoogle === undefined ? "" : errorLink
                   }
                 >
-                  {this.state.errorLoginGoogle == undefined ? "" : errorLink}
+                  {this.state.errorLoginGoogle === undefined ? "" : errorLink}
                 </a>
               </p>
               <p style={{ color: "red", textAlign: "center" }}>
-                {this.state.errorBackend == undefined
+                {this.state.errorBackend === undefined
                   ? ""
                   : this.state.errorBackend}
               </p>

@@ -26,10 +26,10 @@ function EstablishmentView() {
 
     return idEstablishment;
   };
-  const id_establishment = idEstablishment();
-
+ 
   useEffect(() => {
-    console.log('EstablishmentView loaded');
+
+    const id_establishment = idEstablishment();
 
     setAppState({ loading: true });
     var token = sessionStorage.getItem("token");

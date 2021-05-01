@@ -18,8 +18,7 @@ function DashboardTopImage(props) {
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-   
-
+  
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
 
     async function loadStats() {
@@ -37,7 +36,7 @@ function DashboardTopImage(props) {
         });
     }
     loadStats()
-  }, [setAppState]);
+  });
 
   //Añadir todas las cervezas posibles junto a las imagenes en la carpeta. Esto no es definitivo
 
@@ -58,15 +57,12 @@ function DashboardTopImage(props) {
     }else if(nameBest === "Futbolin"){
         imgBest = futbolin
     }
-  
 }
-
   return (
     <div>
       <h4>{nameBest} </h4>
       <img src= {imgBest} alt="Bartrender Best"></img>
-    </div>
-      
+    </div>     
   )
 }
 

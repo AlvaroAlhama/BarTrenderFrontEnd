@@ -72,10 +72,8 @@ export default class EditEstablishment extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.map((tag) => {
-      if (tag.type !== "Zona") {
-        return { value: tag.name, label: tag.name };
-      }
+    var otherTags = data.tags.filter(tag => tag.type!=="Zona").map((tag) => {
+      return { value: tag.name, label: tag.name };
     });
 
     var arrayOther = otherTags.filter(function (dato) {

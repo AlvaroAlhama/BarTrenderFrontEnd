@@ -155,7 +155,7 @@ export default class EditOwnerProfile extends React.Component {
         sendWithNewpass["old_password"] = inputs.old_password;
         sendWithNewpass["password"] = inputs.password;
 
-        this.state.sendFinal = sendWithNewpass;
+        this.statesendFinal = sendWithNewpass;
         this.handleUpdate();
       }
     }

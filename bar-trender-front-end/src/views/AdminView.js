@@ -18,10 +18,7 @@
 import React from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
 import {
-  BrowserView,
-  MobileView,
   isBrowser,
-  isMobile
 } from "react-device-detect";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Sidebar from "components/Sidebar/Sidebar.js";

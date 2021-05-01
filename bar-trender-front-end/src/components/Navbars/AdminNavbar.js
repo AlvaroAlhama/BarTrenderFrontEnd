@@ -16,26 +16,14 @@
 
 */
 import React from "react";
-import {Modal, ModalBody} from "react-bootstrap";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
 import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
 
 function Header() {
- 
-  const mobileSidebarToggle = (e) => {
-    e.preventDefault();
-    document.documentElement.classList.toggle("nav-open");
-    var node = document.createElement("div");
-    node.id = "bodyClick";
-    node.onclick = function () {
-      this.parentElement.removeChild(this);
-      document.documentElement.classList.toggle("nav-open");
-    };
-    document.body.appendChild(node);
-  };
+
   function reportWindowSize() {
     const { innerWidth: width } = window;
     if(width < 800 && document.getElementById("logout-tooltip")!=null ){

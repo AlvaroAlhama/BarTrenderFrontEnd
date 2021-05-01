@@ -1,7 +1,6 @@
-import React, { useEffect, useState, Component } from 'react';
+import React, { useState } from 'react';
 import {Modal, ModalBody} from "react-bootstrap";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
+import { Button } from "react-bootstrap";
 import MobileModalRoutes from "./MobileModalRoutes";
 import barTrender60 from "../../assets/img/barTrender60.png";
 function Example() {
@@ -16,7 +15,7 @@ function Example() {
             variant="dark"
             className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
             onClick={ handleShow }>
-              <img src={barTrender60} class="img-fluid" />
+              <img src={barTrender60} class="img-fluid" alt="" />
             </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -42,32 +41,3 @@ function Example() {
 }
 
 export default Example
-    
-    
-
-    
-    
-    {/*<Button
-            variant="dark"
-            className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
-            onClick={() => this.setState({ modal1: true })}
-          >
-        </Button>
-          <Modal isOpen={this.state.modal1} toggle={() => this.setState({ modal1: false })}>
-              <div className="modal-header justify-content-center">
-                  <button
-                      className="close"
-                      type="button"
-                      onClick={() => this.setState({ modal1: false })}
-                  >
-                      <i className="now-ui-icons ui-1_simple-remove"></i>
-                  </button>
-                  <h4 className="title title-up">BarTrender</h4>
-              </div>
-              <div class="container">
-                  <hr />
-              </div>
-              <ModalBody>
-                 
-              </ModalBody>
-    </Modal>*/}

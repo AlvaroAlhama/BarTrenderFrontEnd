@@ -8,9 +8,6 @@ import EditOwnerProfile from "components/EditOwnerProfile.js"
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
-
-import { Nav } from "react-bootstrap";
-
 import { useEffect, useState } from "react";
 
 

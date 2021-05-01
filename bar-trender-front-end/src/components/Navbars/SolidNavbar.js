@@ -29,7 +29,7 @@ function SolidNavbar() {
         document.getElementById("filters").classList.remove("btn-primary");
         document.getElementById("filters").classList.add("btn-outline-light");
      
-  });
+  },[]);
   function reportWindowSize() {
     const { innerWidth: width } = window;
 

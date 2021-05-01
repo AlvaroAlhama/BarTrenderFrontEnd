@@ -32,7 +32,7 @@ function PremiumBarChart(props) {
         });
     }
     loadStats()
-  }, [setAppState]);
+  },);
 
   var graph2
   if (appState.stats.first !== undefined) {

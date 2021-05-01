@@ -32,7 +32,7 @@ function SolidNavbar() {
   });
   function reportWindowSize() {
     const { innerWidth: width } = window;
-    
+
     if (width < 750 && document.getElementById("bartrender-title") != null) {
       if (document.getElementById("bartrender-title") != null) {
         document.getElementById("bartrender-title").classList.add("d-none");
@@ -45,6 +45,9 @@ function SolidNavbar() {
       }
       if (document.getElementById("logout-tooltip") != null) {
         document.getElementById("logout-tooltip").classList.add("my-auto");
+      }
+      if (document.getElementById("nav") != null) {
+        document.getElementById("nav").style.backgroundColor="#E8A579";
       }
     }
     if (width > 750 && document.getElementById("bartrender-title") != null) {
@@ -62,6 +65,9 @@ function SolidNavbar() {
       if (document.getElementById("logout-tooltip") != null) {
         document.getElementById("logout-tooltip").classList.remove("my-auto");
       }
+      if (document.getElementById("nav") != null) {
+        document.getElementById("nav").style.backgroundColor=null;
+      }
     }
   }
   
@@ -72,21 +78,10 @@ function SolidNavbar() {
   const isLoggedClient = logged && sessionStorage.getItem("rol") === "client";
   return (
     <>
-      {collapseOpen ? (
-        <div
-          id="bodyClick"
-          onClick={() => {
-            document.documentElement.classList.toggle("nav-open");
-            setCollapseOpen(false);
-          }}
-        />
-      ) : null}
-
       <Navbar
         className={"fixed-top " + navbarColor}
         color="primary"
         expand="lg"
-        
       >
         <a class="navbar-brand" href="/main">
           <img className="img-fluid" alt="" src={barTrender} />
@@ -96,7 +91,7 @@ function SolidNavbar() {
         </a>
         <ModalSearch key={uuid.v4()} />
         <button
-          className="navbar-toggler navbar-toggler mr-5 "
+          className="navbar-toggler navbar-toggler mr-5"
           onClick={() => {
             document.documentElement.classList.toggle("nav-open");
             setCollapseOpen(!collapseOpen);
@@ -108,7 +103,7 @@ function SolidNavbar() {
         </button>
 
         <Collapse className="justify-content-end" isOpen={collapseOpen} navbar>
-          <Nav navbar>
+          <Nav id="nav" navbar style={{float:"right"}}>
             <NavItem>
               <NavLink
                 href="https://twitter.com/TrenderBar"
@@ -117,7 +112,7 @@ function SolidNavbar() {
                 cursor="pointer"
               >
                 <i class="fab fa-twitter fa-lg w-100 text-white my-auto"></i>
-                <p className="d-lg-none text-white d-xl-none mt-2 ml-2">
+                <p className="d-lg-none  d-xl-none mt-2 ml-2">
                   Twitter
                 </p>
               </NavLink>
@@ -158,16 +153,17 @@ function SolidNavbar() {
               </NavItem>
             )}
             <NavItem>
-              <NavLink id="account-tooltip">
+              <NavLink id="account-tooltip" role='button'>
+                
                 <ModalLogin />
                 <UncontrolledTooltip target="#account-tooltip">
-                  Iniciar sesión / Cerrar Sesión
+                  {logged ? 'Cerrar Sesión' : 'Iniciar Sesión'}
                 </UncontrolledTooltip>
               </NavLink>
             </NavItem>
             {!logged && (
               <NavItem>
-                <NavLink id="signup-tooltip">
+                <NavLink id="signup-tooltip" role='button'>
                   <ModalSignUp />
                   <UncontrolledTooltip target="#signup-tooltip">
                     Registro
@@ -177,7 +173,7 @@ function SolidNavbar() {
             )}
             {isLoggedClient && (
               <NavItem>
-                <NavLink id="edit-profile-tooltip">
+                <NavLink id="edit-profile-tooltip" role='button'>
                   <ModalEditClient />
                   <UncontrolledTooltip target="#edit-profile-tooltip">
                     Mi perfil

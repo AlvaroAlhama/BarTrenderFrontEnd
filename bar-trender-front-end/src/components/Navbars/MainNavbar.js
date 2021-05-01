@@ -59,6 +59,9 @@ function MainNavbar() {
       if (document.getElementById("logout-tooltip") != null) {
         document.getElementById("logout-tooltip").classList.add("my-auto");
       }
+      if (document.getElementById("nav") != null) {
+        document.getElementById("nav").style.backgroundColor="#E8A579";
+      }
     }
     if (width > 750 && document.getElementById("bartrender-title") != null) {
       if (document.getElementById("bartrender-title") != null) {
@@ -75,6 +78,9 @@ function MainNavbar() {
       if (document.getElementById("logout-tooltip") != null) {
         document.getElementById("logout-tooltip").classList.remove("my-auto");
       }
+      if (document.getElementById("nav") != null) {
+        document.getElementById("nav").style.backgroundColor=null;
+      }
     }
   }
   
@@ -85,16 +91,6 @@ function MainNavbar() {
   const isLoggedClient = logged && sessionStorage.getItem("rol") === "client";
   return (
     <>
-      {collapseOpen ? (
-        <div
-          id="bodyClick"
-          onClick={() => {
-            document.documentElement.classList.toggle("nav-open");
-            setCollapseOpen(false);
-          }}
-        />
-      ) : null}
-
       <Navbar
         className={"fixed-top " + navbarColor}
         color="primary"
@@ -120,7 +116,7 @@ function MainNavbar() {
         </button>
 
         <Collapse className="justify-content-end" isOpen={collapseOpen} navbar>
-          <Nav navbar>
+          <Nav id="nav" navbar style={{float:"right"}}>
             <NavItem>
               <NavLink
                 href="https://twitter.com/TrenderBar"

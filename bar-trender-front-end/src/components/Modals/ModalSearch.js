@@ -153,7 +153,7 @@ class ModalSearch extends React.Component {
       <>
         <Button
           color="primary"
-          className="mx-5"
+          className="ml-3"
           onClick={this.toggle}
           id="filters"
         >

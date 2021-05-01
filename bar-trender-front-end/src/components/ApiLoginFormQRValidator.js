@@ -282,18 +282,18 @@ class POSTLoginFormQRValidator extends React.Component {
         </div>
 
         <p style={{ color: "red", textAlign: "center" }}>
-          {this.state.errorLoginGoogle == undefined
+          {this.state.errorLoginGoogle === undefined
             ? ""
             : this.state.errorLoginGoogle}{" "}
           <a
             style={{ color: "blue" }}
-            href={this.state.errorLoginGoogle == undefined ? "" : errorLink}
+            href={this.state.errorLoginGoogle === undefined ? "" : errorLink}
           >
-            {this.state.errorLoginGoogle == undefined ? "" : errorLink}
+            {this.state.errorLoginGoogle === undefined ? "" : errorLink}
           </a>
         </p>
         <p style={{ color: "red", textAlign: "center" }}>
-          {this.state.errorBackend == undefined ? "" : this.state.errorBackend}
+          {this.state.errorBackend === undefined ? "" : this.state.errorBackend}
         </p>
 
         <div>
@@ -323,6 +323,7 @@ class POSTLoginFormQRValidator extends React.Component {
                 <img
                   src={fail_boy}
                   className="img-fluid"
+                  alt = "fail"
                   style={{
                     width: "100%",
                     maxWidth: "18.75em",
@@ -369,6 +370,7 @@ class POSTLoginFormQRValidator extends React.Component {
                 <img
                   src={success_boy}
                   className="img-fluid"
+                  alt = "success"
                   style={{
                     width: "100%",
                     maxWidth: "18.75em",

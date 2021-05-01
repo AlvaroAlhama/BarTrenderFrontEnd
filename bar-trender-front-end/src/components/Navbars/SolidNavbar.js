@@ -6,12 +6,10 @@ import * as uuid from "uuid";
 // reactstrap components
 import {
   Collapse,
-  NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
   Nav,
-  Container,
   UncontrolledTooltip,
 } from "reactstrap";
 import ModalSearch from "../../components/Modals/ModalSearch";
@@ -22,7 +20,7 @@ import ModalEditClient from "../../components/Modals/ModalEditClient.js";
 import "./MainNavbar.css";
 
 function SolidNavbar() {
-    const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
+  const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -33,7 +31,7 @@ function SolidNavbar() {
      
   });
   function reportWindowSize() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const { innerWidth: width } = window;
     
     if (width < 750 && document.getElementById("bartrender-title") != null) {
       if (document.getElementById("bartrender-title") != null) {
@@ -70,8 +68,8 @@ function SolidNavbar() {
   reportWindowSize()
   window.addEventListener("resize", reportWindowSize);
   const logged = sessionStorage.getItem("token");
-  const isLoggedOwner = logged && sessionStorage.getItem("rol") == "owner";
-  const isLoggedClient = logged && sessionStorage.getItem("rol") == "client";
+  const isLoggedOwner = logged && sessionStorage.getItem("rol") === "owner";
+  const isLoggedClient = logged && sessionStorage.getItem("rol") === "client";
   return (
     <>
       {collapseOpen ? (

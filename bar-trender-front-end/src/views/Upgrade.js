@@ -85,7 +85,7 @@ function Upgrade() {
 
   return (
     <>
-      {isPremium == undefined ? (
+      {isPremium === undefined ? (
         <Spinner />
       ) : (
         <Container fluid>

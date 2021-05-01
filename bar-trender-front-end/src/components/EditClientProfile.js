@@ -142,7 +142,7 @@ export default class EditClientProfile extends React.Component {
     let send = {};
 
     if (this.validate()) {
-      if (inputs["password"] == undefined) {
+      if (inputs["password"] === undefined) {
         send["name"] = inputs.name;
         send["surname"] = inputs.surname;
         send["email"] = inputs.email;
@@ -166,34 +166,11 @@ export default class EditClientProfile extends React.Component {
     }
   }
 
-<<<<<<< HEAD
-    handleSubmit(event) {
-        event.preventDefault();
-        let inputs = this.state.input;
-
-        const birthdayToTS = moment.utc(`${inputs.birthday}`).unix()
-        let sendWithNewpass = {};
-        let send = {};
-
-       
-        if (this.validate()) {
-            if (inputs['password'] === undefined) {
-                send['name'] = inputs.name;
-                send['surname'] = inputs.surname;
-                send['email'] = inputs.email;
-                send['birthday'] = birthdayToTS;
-                send['old_password'] = inputs.old_password;
-
-                this.state.sendFinal = send;
-
-                this.handleUpdate()
-=======
   validate() {
     let inputs = this.state.input;
->>>>>>> develop
 
     let errors = {};
-
+    var pattern
     let isValid = true;
 
     if (!inputs["name"].trim()) {
@@ -212,7 +189,7 @@ export default class EditClientProfile extends React.Component {
     }
 
     if (typeof inputs["email"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
       );
 
@@ -239,42 +216,14 @@ export default class EditClientProfile extends React.Component {
         errors["birthday"] =
           "Para registrarte tus datos al menos tienes que tener 18 años.";
       }
-      if (today.getFullYear() - birthday.getFullYear() == 18) {
+      if (today.getFullYear() - birthday.getFullYear() === 18) {
         if (today.getMonth() < birthday.getMonth()) {
           isValid = false;
 
-<<<<<<< HEAD
-        if (typeof inputs['birthday'] !== 'undefined') {
-            var today = new Date();
-            var birthday = new Date(inputs['birthday']);
-
-            if (today.getFullYear() - birthday.getFullYear() < 18) {
-                isValid = false;
-
-                errors['birthday'] =
-                    'Para registrarte tus datos al menos tienes que tener 18 años.';
-            }
-            if (today.getFullYear() - birthday.getFullYear() === 18) {
-                if (today.getMonth() < birthday.getMonth()) {
-                    isValid = false;
-
-                    errors['birthday'] =
-                        'Para actualizar tus datos al menos tienes que tener 18 años.';
-                }
-                if (today.getMonth() === birthday.getMonth()) {
-                    if (today.getDate() < birthday.getDate()) {
-                        isValid = false;
-                        errors['birthday'] =
-                            'Para actualizar tus datos al menos tienes que tener 18 años.';
-                    }
-                }
-            }
-=======
           errors["birthday"] =
             "Para actualizar tus datos al menos tienes que tener 18 años.";
->>>>>>> develop
         }
-        if (today.getMonth() == birthday.getMonth()) {
+        if (today.getMonth() === birthday.getMonth()) {
           if (today.getDate() < birthday.getDate()) {
             isValid = false;
             errors["birthday"] =
@@ -290,21 +239,12 @@ export default class EditClientProfile extends React.Component {
         "Tiene que poner su contraseña para poder verificar su identidad";
     }
 
-<<<<<<< HEAD
-        if (inputs['password']) {
-            pattern = new RegExp(
-                /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
-            );
-            if (!pattern.test(inputs['password'])) {
-                isValid = false;
-=======
     if (inputs["password"]) {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
       );
       if (!pattern.test(inputs["password"])) {
         isValid = false;
->>>>>>> develop
 
         errors["password"] =
           "La nueva contraseña debe tener al menos 8 carácteres, un dígito, una mayúscula y un carácter especial.";
@@ -322,117 +262,6 @@ export default class EditClientProfile extends React.Component {
     if (this.state.method !== "") {
       if (this.state.method === "password") {
         return (
-<<<<<<< HEAD
-            <>
-                <div class='container-fluid bg-white'>
-                    <form onSubmit={this.handleSubmit}>
-                        <div class='row'>
-                            <div class='col pr-1 md-6'>
-                                <div class='form-group my-1'>
-                                    <label>Nombre</label>
-                                    <input
-                                        type='text'
-                                        name='name'
-                                        value={this.state.input.name}
-                                        onChange={this.handleChange}
-                                        class='form-control'
-                                        id='name-owner'
-                                    />
-                                    <div class="text-danger">{this.state.errors.name}</div>
-                                </div>
-                            </div>
-                            <div class='col pl-1 md-6'>
-                                <div class='form-group my-1'>
-                                    <label>Apellido</label>
-                                    <input
-                                        type='text'
-                                        name='surname'
-                                        value={this.state.input.surname}
-                                        onChange={this.handleChange}
-                                        class='form-control'
-                                        id='surname-owner'
-                                    />
-                                    <div class="text-danger">{this.state.errors.surname}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class='row'>
-                            <div class='col pr-1 md-6'>
-                                <div class='form-group my-1'>
-                                    <label>Email</label>
-                                    <input
-                                        type='email'
-                                        name='email'
-                                        value={this.state.input.email}
-                                        onChange={this.handleChange}
-                                        class='form-control'
-                                        id='email-owner'
-                                    />
-                                    <div class="text-danger">{this.state.errors.email}</div>
-                                </div>
-                            </div>
-                            <div class='col pl-1 md-6'>
-                                <div class='form-group my-1'>
-                                    <label>Fecha de nacimiento</label>
-                                    <input
-                                        type='Date'
-                                        name='birthday'
-                                        value={this.state.input.birthday}
-                                        onChange={this.handleChange}
-                                        class='form-control'
-                                        id='phone-owner'
-                                    />
-                                    <div class="text-danger">{this.state.errors.birthday}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class='row'>
-                            <div class='col pr-1 md-6'>
-                                <div class='form-group my-1'>
-                                    <label>Tu contraseña</label>
-                                    <input
-                                        type='password'
-                                        name='old_password'
-                                        value={this.state.input.old_password}
-                                        placeholder='Ponga su contraseña para verificar los datos'
-                                        onChange={this.handleChange}
-                                        class='form-control'
-                                        id='old-password-owner'
-                                    />
-                                    <div class="text-danger">{this.state.errors.old_password}</div>
-                                </div>
-                            </div>
-                            <div class='col pl-1 md-6'>
-                                <div class='form-group my-1'>
-                                    <label>Nueva Contraseña</label>
-                                    <input
-                                        type='password'
-                                        name='password'
-                                        defaultValue={this.state.input.password}
-                                        placeholder='Rellene este campo sólo si quiere cambiar la contraseña'
-                                        onChange={this.handleChange}
-                                        class='form-control'
-                                        id='old-password-owner'
-                                    />
-                                    <div class="text-danger">{this.state.errors.password}</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="text-center pb-5">
-                            <input
-                                type="submit"
-                                value="Guardar cambios"
-                                class="btn btn-primary"
-                            />
-                        </div>
-                    </form>
-                    <div class='container-fluid bg-danger'>
-                        <div class="text-white fw-bold text-center">{this.state.errorsApiPut === undefined ? "" : this.state.errorsApiPut.error}</div>
-                    </div>
-                    <div class='container-fluid bg-success'>
-                        <div class="text-white fw-bold text-center">{this.state.msg === undefined ? "" : this.state.msg}</div>
-=======
           <>
             <div class="container-fluid bg-white">
               <form onSubmit={this.handleSubmit}>
@@ -463,7 +292,6 @@ export default class EditClientProfile extends React.Component {
                         id="surname-owner"
                       />
                       <div class="text-danger">{this.state.errors.surname}</div>
->>>>>>> develop
                     </div>
                   </div>
                 </div>
@@ -546,14 +374,14 @@ export default class EditClientProfile extends React.Component {
               </form>
               <div class="container-fluid bg-danger">
                 <div class="text-white fw-bold text-center">
-                  {this.state.errorsApiPut == undefined
+                  {this.state.errorsApiPut === undefined
                     ? ""
                     : this.state.errorsApiPut.error}
                 </div>
               </div>
               <div class="container-fluid bg-success">
                 <div class="text-white fw-bold text-center">
-                  {this.state.msg == undefined ? "" : this.state.msg}
+                  {this.state.msg === undefined ? "" : this.state.msg}
                 </div>
               </div>
             </div>

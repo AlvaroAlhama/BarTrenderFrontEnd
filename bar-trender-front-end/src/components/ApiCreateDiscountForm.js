@@ -80,7 +80,7 @@ class POSTCreateDiscount extends React.Component {
     const endTime = this.state.input.endTime;
 
 
-    if (endDate != undefined && endDate !== "") {
+    if (endDate !== undefined && endDate !== "") {
       const timeStampEnd = moment
         .utc(`${endDate} ${endTime}`)
         .subtract(2, "hours")

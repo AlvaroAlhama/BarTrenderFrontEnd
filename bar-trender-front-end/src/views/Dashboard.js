@@ -13,9 +13,10 @@ import FreePieChart from "../components/FreePieChart.js";
 function Dashboard() {
   const [appState, setAppState] = useState({
     bar: {},
+
   });
-  var token = sessionStorage.getItem("token");
   useEffect(() => {
+    var token = sessionStorage.getItem("token");
     const apiUrl =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner";
     async function loadBar() {

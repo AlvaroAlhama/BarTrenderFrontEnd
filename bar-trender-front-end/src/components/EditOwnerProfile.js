@@ -137,7 +137,7 @@ export default class EditOwnerProfile extends React.Component {
     let send = {};
 
     if (this.validate()) {
-      if (inputs["password"] == undefined) {
+      if (inputs["password"] === undefined) {
         send["name"] = inputs.name;
         send["surname"] = inputs.surname;
         send["email"] = inputs.email;
@@ -165,7 +165,7 @@ export default class EditOwnerProfile extends React.Component {
     let inputs = this.state.input;
 
     let errors = {};
-
+    var pattern
     let isValid = true;
 
     if (!inputs["name"].trim()) {
@@ -184,7 +184,7 @@ export default class EditOwnerProfile extends React.Component {
     }
 
     if (typeof inputs["email"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
       );
 
@@ -207,7 +207,7 @@ export default class EditOwnerProfile extends React.Component {
     }
 
     if (inputs["password"]) {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
       );
       if (!pattern.test(inputs["password"])) {
@@ -345,14 +345,14 @@ export default class EditOwnerProfile extends React.Component {
               </form>
               <div class="container-fluid bg-danger">
                 <div class="text-white fw-bold text-center">
-                  {this.state.errorsApiPut == undefined
+                  {this.state.errorsApiPut === undefined
                     ? ""
                     : this.state.errorsApiPut.error}
                 </div>
               </div>
               <div class="container-fluid bg-success">
                 <div class="text-white fw-bold text-center">
-                  {this.state.msg == undefined ? "" : this.state.msg}
+                  {this.state.msg === undefined ? "" : this.state.msg}
                 </div>
               </div>
             </div>

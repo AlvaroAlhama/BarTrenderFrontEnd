@@ -25,32 +25,18 @@ function ModalSelectedElement(prop) {
     discounts: {},
   });
   
-
   const location = element.street_text + ", " + element.number_text + ", " + element.zone_enum + ", " + element.locality_text;
   
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(function (position) {
-  //     console.log("Latitude is :", position.coords.latitude);
-  //     console.log("Longitude is :", position.coords.longitude);
-  //     setUserLocation({
-  //       user_location: {
-  //         lat: position.coords.latitude,
-  //         lng: position.coords.longitude
-  //       }
-  //     });
-  //   });
-
-  // }, [setUserLocation]);
   var divStyle = {}
-  if (element.photo_url == undefined){
-    var divStyle = {
+  if (element.photo_url === undefined){
+    divStyle = {
       backgroundImage: 'url(' + image_left + ')',
       backgroundSize: "cover",
       height:"15rem"
     };
   }
   else{
-    var divStyle = {
+    divStyle = {
       backgroundImage: 'url(' + element.photo_url + ')',
       backgroundSize: "cover",
       height:"15rem"

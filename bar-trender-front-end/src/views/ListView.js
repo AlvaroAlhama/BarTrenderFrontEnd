@@ -21,19 +21,19 @@ function ListView() {
 
   // Consuming REST GET
   const ListLoading = withListLoading(List);
-  const [appState, setAppState] = useState({
+  const [appState, setAppState] = useState({ 
     loading: false,
     establishments: {},
   });
 
-  var filter = {
-    "filters": {
-    }
-  };
+  
   //CONSUMING FORM DATA
   const location = useLocation();
 
   useEffect(() => {
+    var filter = {
+      "filters": {}
+    }
     console.log("Construyendo view")
     setAppState({ loading: true });
 
@@ -91,8 +91,6 @@ function ListView() {
 
   React.useEffect(() => {
 
-    
-  
   }, []);
   return (
     <>

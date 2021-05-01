@@ -1,5 +1,13 @@
 import React from "react";
-import { Modal, ModalBody, ModalFooter, Table } from "reactstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Table,
+} from "reactstrap";
 import moment from "moment";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
@@ -9,6 +17,8 @@ export default class EditDeleteDiscounts extends React.Component {
 
     this.state = {
       data: [],
+      count: null,
+      first: false,
       establishments: {},
       input: {
         name: "",
@@ -45,9 +55,10 @@ export default class EditDeleteDiscounts extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.counterPag = this.counterPag.bind(this);
   }
 
-  async getDiscount() {
+  async getDiscount(number) {
     var token = sessionStorage.getItem("token");
     var query = window.location.pathname;
     var splited = query.split("/");
@@ -55,7 +66,8 @@ export default class EditDeleteDiscounts extends React.Component {
     const urlGet =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       id_establishment +
-      "/discounts/get?all=True";
+      "/discounts/get?all=True&page=" +
+      number;
 
     const get = await fetch(urlGet, {
       method: "GET",
@@ -68,6 +80,25 @@ export default class EditDeleteDiscounts extends React.Component {
     const data = await get.json();
     this.setState({
       data: data.results,
+    });
+    if (this.state.first === false) {
+      this.counterPag(data.count);
+      this.setState({
+        first: true,
+      });
+    }
+  }
+
+  counterPag(number) {
+    var countAux = 0;
+    var array = [];
+    countAux = Math.ceil(number / 7);
+    for (var i = 1; i <= countAux; i++) {
+      array.push(i);
+    }
+    console.log(array);
+    this.setState({
+      count: array,
     });
   }
 
@@ -462,7 +493,7 @@ export default class EditDeleteDiscounts extends React.Component {
   }
 
   componentDidMount() {
-    this.getDiscount();
+    this.getDiscount(1);
   }
 
   render() {
@@ -532,6 +563,21 @@ export default class EditDeleteDiscounts extends React.Component {
                 })}
           </tbody>
         </Table>
+        {this.state.count === null ? (
+          ""
+        ) : (
+          <Pagination aria-label="Page navigation example">
+            {this.state.count.map((number) => {
+              return (
+                <PaginationItem>
+                  <PaginationLink onClick={() => this.getDiscount(number)}>
+                    {number}
+                  </PaginationLink>
+                </PaginationItem>
+              );
+            })}
+          </Pagination>
+        )}
         {this.state.input == "" ? (
           ""
         ) : (

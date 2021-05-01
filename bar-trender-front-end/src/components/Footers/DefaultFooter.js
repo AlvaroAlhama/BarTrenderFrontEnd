@@ -9,7 +9,7 @@ import { Container, Row, Col } from "reactstrap";
 function DefaultFooter() {
   return (
     <>
-      <footer className="bg-primary py-3">
+      <footer className="w-100 bg-primary py-3">
         <Container>
           <Row>
             <Col lg="4" className="my-auto justify-content-center text-center">

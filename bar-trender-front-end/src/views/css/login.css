@@ -1,14 +1,5 @@
-#validation{
-    background-image: URL("./images/login-image-min.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100%;
-}
 #container-validation{
-    height: 100%;
     align-content: center;
-    padding-top: 10%;
 }
 
 #card-validation{
@@ -17,9 +8,39 @@
     margin-bottom: auto;
     width: 400px;
     background-color: rgb(255, 255, 255);
+    box-shadow: 4rem;
 }
 
 #card-header-validation {
     color: rgb(0, 0, 0);
     text-transform: uppercase;
 } 
+/* 
+footer{
+    bottom: 0;
+    position: fixed;
+    width: 100vw;
+} */
+#wrapper-validation{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+  }
+  
+#wrapper-validation .row.header {
+    flex: 0 1 auto;
+    /* The above is shorthand for:
+    flex-grow: 0,
+    flex-shrink: 1,
+    flex-basis: auto
+    */
+  }
+  
+#wrapper-validation .row.content {
+flex: 1 1 auto;
+}
+
+#wrapper-validation .row.footer-validation {
+flex: 0 1 40px;
+width: auto;
+}

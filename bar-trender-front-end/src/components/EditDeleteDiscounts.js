@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, ModalBody, ModalFooter, Table } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter } from 'reactstrap';
 import moment from "moment";
 import {
     Button,
@@ -58,7 +58,7 @@ export default class EditDeleteDiscounts extends React.Component{
         var query = window.location.pathname;
         var splited = query.split("/");
         var id_establishment = splited[3];
-        const urlGet = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' + id_establishment +'/get'
+        const urlGet = 'https://main-backend-sprint-02.herokuapp.com/v1/establishments/' + id_establishment +'/get'
     
         const get = await fetch(urlGet, {
             method: 'GET',
@@ -68,7 +68,7 @@ export default class EditDeleteDiscounts extends React.Component{
         });
         
         const data = await get.json();
-        
+        console.log(data)
         this.setState({
             data: data.discounts,
             establishments: data.establishment
@@ -81,9 +81,9 @@ export default class EditDeleteDiscounts extends React.Component{
         var splited = query.split("/");
         var id_establishment = splited[3];
         var id_discount = this.state.discount.id;
-       
+        console.log(id_discount);
 
-        const urlUpdate = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' +id_establishment +'/discounts/' +id_discount +'/update';
+        const urlUpdate = 'https://main-backend-sprint-02.herokuapp.com/v1/establishments/' +id_establishment +'/discounts/' +id_discount +'/update';
     
         const response = await fetch(urlUpdate, {
             method: 'PUT',
@@ -124,7 +124,7 @@ export default class EditDeleteDiscounts extends React.Component{
             var id_establishment = splited[3];
             var id_discount = this.state.discount.id;
         
-            const urlDelete = 'https://develop-backend-sprint-01.herokuapp.com/v1/establishments/' + id_establishment + '/discounts/' + id_discount + '/delete';
+            const urlDelete = 'https://main-backend-sprint-02.herokuapp.com/v1/establishments/' + id_establishment + '/discounts/' + id_discount + '/delete';
             
             const deleteRequest = await fetch(urlDelete, {
                 method: 'DELETE',
@@ -163,7 +163,7 @@ export default class EditDeleteDiscounts extends React.Component{
 
             }
         })
-        
+        console.log(this.state.input)
     }
     
     selectDiscount(discount){
@@ -206,6 +206,7 @@ export default class EditDeleteDiscounts extends React.Component{
                 errorApiUpdate: {},
                 errorApiDelete: {}
             });
+            console.log(this.state, "DEBE DE TENER EL DESCUENTO UN ENDDATE")
         }else{
 
             this.setState({
@@ -240,6 +241,7 @@ export default class EditDeleteDiscounts extends React.Component{
                 errorApiUpdate: {},
                 errorApiDelete: {}
             });
+            console.log(this.state, "NO DEBE DE TENER EL DESCUENTO UN ENDDATE")
         };
     };
 
@@ -248,9 +250,13 @@ export default class EditDeleteDiscounts extends React.Component{
         let send = {}
         var today = new Date()
         var todayTS = moment.utc(today).unix()
+        console.log(inputs)
+        console.log(todayTS)
+
         if(this.validate()){
             const initialDateTS = moment.utc(`${inputs.initialDate} ${inputs.initialHour}`).unix()
-            if(inputs.endDate !== '' && inputs.endHour !== ''){
+            console.log(initialDateTS)
+            if(inputs.endDate != '' && inputs.endHour != ''){
                 const endDateTs = moment.utc(`${inputs.endDate} ${inputs.endHour}`).unix()
                 if(todayTS > initialDateTS){
                 
@@ -263,6 +269,7 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['endDate'] = endDateTs;
 
                     this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con Hora de back y endDate")
 
                     this.handleUpdate()
                 }else{
@@ -275,6 +282,7 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['endDate'] = endDateTs;
                     
                     this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con hora nueva y endate")
                     this.handleUpdate()
 
                 }
@@ -289,6 +297,8 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['initialDate'] = this.state.initialDate;
 
                     this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con hora back y sin eD")
+
                     this.handleUpdate()
                 }else{
                     send['name'] = inputs.name;
@@ -299,6 +309,7 @@ export default class EditDeleteDiscounts extends React.Component{
                     send['initialDate'] = initialDateTS;
                     
                     this.state.sendFinal = send;
+                    console.log(this.state.sendFinal, "Envio con hora nueva y sin eD")
                     this.handleUpdate()
                 }
             }
@@ -318,7 +329,7 @@ export default class EditDeleteDiscounts extends React.Component{
             errors['errorCodes'] = 'No se puede eliminar porque hay descuentos escaneados'
         }
 
-        if(endDate !== ''){
+        if(endDate != ''){
             if(today > endDate){
                 isValid = false;
                 errors['errorDate'] = 'No se puede eliminar porque el descuento ya ha finalizado'
@@ -355,7 +366,7 @@ export default class EditDeleteDiscounts extends React.Component{
             var endDateFull = new Date(inputs['endDate'].concat(" ", inputs['endHour']))
         }
 
-        if (!inputs['name'].trim()) {  
+        if (!inputs['name']) {  
             isValid = false;
       
             errors['name'] = 'Escriba un nombre del descuento.';
@@ -367,7 +378,7 @@ export default class EditDeleteDiscounts extends React.Component{
             errors['cost'] = 'Escriba un precio para el descuento.';
         }
 
-        if (!inputs['description'].trim()) {
+        if (!inputs['description']) {
             isValid = false;
         
             errors['description'] = 'Escriba una descripción para el descuento';
@@ -385,31 +396,31 @@ export default class EditDeleteDiscounts extends React.Component{
         }
         
         if(today > initialDateFull){
-            if(inputs['name'] !== discount.name){
+            if(inputs['name'] != discount.name){
                 isValid = false;
                 errors['name'] = 'Una vez empezado el descuento no se puede modificar el nombre';
             }
-            if(inputs['description'] !== discount.description){
+            if(inputs['description'] != discount.description){
                 isValid = false;
                 errors['description'] = 'Una vez empezado el descuento no se puede modificar la descripción';
             }
 
-            if(inputs['cost'] !== discount.cost){
+            if(inputs['cost'] != discount.cost){
                 isValid = false;
                 errors['cost'] = 'Una vez empezado el descuento no se puede modificar la descripción';
             }
 
-            if(inputs['initialDate'].concat(" ", inputs['initialHour']) !== discount.initialDate.concat(" ", discount.initialHour)){
+            if(inputs['initialDate'].concat(" ", inputs['initialHour']) != discount.initialDate.concat(" ", discount.initialHour)){
                 isValid = false;
                 errors['initialDate'] = 'Una vez empezado el descuento no se puede modificar la fecha inicial';
             }
 
-            if(inputs['scannedCodes'] !== discount.scannedCodes){
+            if(inputs['scannedCodes'] != discount.scannedCodes){
                 isValid = false;
                 errors['scannedCodes'] = 'Una vez empezado el descuento no se puede modificar el número de descuentos escaneados';
             }
 
-            if(endDateFull !== undefined){
+            if(endDateFull != undefined){
                 if(endDateFull < initialDateFull){
                     isValid = false;
                     errors['endDate'] = 'La fecha final no puede ser menor que la fecha inicial'
@@ -423,7 +434,7 @@ export default class EditDeleteDiscounts extends React.Component{
         }
 
         if(initialDateFull > today){
-            if(endDateFull !== undefined){
+            if(endDateFull != undefined){
                 if(endDateFull < initialDateFull){
                     isValid = false;
                     errors['endDate'] = 'La fecha final no puede ser menor que la fecha incial'
@@ -452,9 +463,9 @@ export default class EditDeleteDiscounts extends React.Component{
     render(){
         return(
             <>
-                <Table responsive>
+                <div class='table w-100'>
                     <thead>
-                        <tr class='text-center'>
+                        <tr>
                             <th>Nombre</th>
                             <th>Códigos totales</th>
                             <th>Códigos escaneados</th>
@@ -462,7 +473,7 @@ export default class EditDeleteDiscounts extends React.Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.data === [] ? "" : this.state.data.map(discount => {
+                        {this.state.data == [] ? "" : this.state.data.map(discount => {
                             return (
                                 <tr class='text-center'>
                                     <td>{discount.name}</td>
@@ -496,8 +507,8 @@ export default class EditDeleteDiscounts extends React.Component{
                             )
                         })}
                     </tbody>
-                </Table>
-                {this.state.input === '' ? '' :
+                </div>
+                {this.state.input == '' ? '' :
                 <>
                 <Modal isOpen={this.state.modalUpdate} toggle={() => this.setState({modalUpdate: false})}>
                     <div className="modal-header justify-content-center">
@@ -624,10 +635,10 @@ export default class EditDeleteDiscounts extends React.Component{
                         <button className='btn btn-primary' onClick={() => this.handleSubmit()}>Guardar cambios</button>
                         <button className='btn btn-danger' onClick={() => this.setState({modalUpdate:false})}>Cancelar</button>
                         <div class='container-fluid bg-danger'>
-                            <div class="text-white fw-bold text-center">{this.state.errorsApiPut === undefined ? "" : this.state.errorsApiPut.error}</div>
+                            <div class="text-white fw-bold text-center">{this.state.errorsApiPut == undefined ? "" : this.state.errorsApiPut.error}</div>
                         </div>
                         <div class='container-fluid bg-success'>
-                            <div class="text-white fw-bold text-center">{this.state.msg === undefined ? "" : this.state.msg}</div>
+                            <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
                         </div>
                     </ModalFooter>
 
@@ -662,10 +673,10 @@ export default class EditDeleteDiscounts extends React.Component{
                             <p class='text-danger'>{this.state.errors.errorDate}</p>
                         </div>
                         <div class='container-fluid bg-danger'>
-                            <div class="text-white fw-bold text-center">{this.state.errorsApiDelete=== undefined ? "" : this.state.errorsApiDelete.error}</div>
+                            <div class="text-white fw-bold text-center">{this.state.errorsApiDelete== undefined ? "" : this.state.errorsApiDelete.error}</div>
                         </div>
                         <div class='container-fluid bg-success'>
-                            <div class="text-white fw-bold text-center">{this.state.msg === undefined ? "" : this.state.msg}</div>
+                            <div class="text-white fw-bold text-center">{this.state.msg == undefined ? "" : this.state.msg}</div>
                         </div>
                     </ModalFooter>
                 </Modal>

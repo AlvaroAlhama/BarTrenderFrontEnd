@@ -309,6 +309,7 @@ export default class EditEstablishment extends React.Component {
         "Debe asignar una zona próxima a su establecimiento";
     }
 
+
     this.setState({
       errors: errors,
     });
@@ -360,6 +361,7 @@ export default class EditEstablishment extends React.Component {
                             class="form-control"
                             id="name-establishment"
                           />
+
                         </div>
                         <div class="text-danger">
                           {this.state.errors.name_text}

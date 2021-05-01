@@ -93,6 +93,7 @@ export default class PremiumDashboard extends React.Component {
                     Bienvenido a la version premium de nuestro dashboard,
                     ¿Quiere revisar su suscripción?
                   </h3>
+                 
                   <Link to="/admin/upgrade" className="btn btn-primary">
                     Revisar Suscripción
                   </Link>

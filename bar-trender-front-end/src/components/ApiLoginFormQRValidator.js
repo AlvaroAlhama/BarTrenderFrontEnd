@@ -1,6 +1,5 @@
-
 import React from "react";
-import { Modal, ModalBody } from "reactstrap";
+import { Modal, ModalBody, Spinner } from "reactstrap";
 import GoogleLogin from "react-google-login";
 
 import "../assets/css/EstablishmentQrScan.css";
@@ -22,6 +21,8 @@ class POSTLoginFormQRValidator extends React.Component {
 
       emailOwner: "",
 
+      method: "",
+
       errorLoginGoogle: undefined,
 
       errorBackend: undefined,
@@ -30,7 +31,7 @@ class POSTLoginFormQRValidator extends React.Component {
 
       modalSuccess: false,
 
-      errorGetOwner: {},
+      errorGetOwner: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -55,10 +56,11 @@ class POSTLoginFormQRValidator extends React.Component {
 
     if (response.ok) {
       const data = await response.json();
-      this.setState({ emailOwner: data.ownerEmail });
+      console.log(data);
+      this.setState({ emailOwner: data.ownerEmail, method: data.method });
     } else {
       const data = await response.json();
-      this.setState({ errorGetOwner: data.errors });
+      this.setState({ errorGetOwner: data.error });
     }
   }
 
@@ -247,150 +249,170 @@ class POSTLoginFormQRValidator extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div class="form-group my-4">
-              <input
-                name="password"
-                type="password"
-                value={this.state.input.password}
-                onChange={this.handleChange}
-                placeholder="Contraseña"
-                class="form-control"
-              />
-              <div className="text-danger align-center">
-                {this.state.errors.password}
+    if (this.state.errorGetOwner === undefined) {
+      if (this.state.method !== "") {
+        if (this.state.method === "password") {
+          return (
+            <>
+              <div>
+                <form onSubmit={this.handleSubmit}>
+                  <div class="form-group my-4">
+                    <input
+                      name="password"
+                      type="password"
+                      value={this.state.input.password}
+                      onChange={this.handleChange}
+                      placeholder="Contraseña"
+                      class="form-control"
+                    />
+                    <div className="text-danger align-center">
+                      {this.state.errors.password}
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <input
+                      type="submit"
+                      value="Validar descuento"
+                      class="btn btn-primary"
+                    />
+                  </div>
+                </form>
               </div>
-            </div>
-            <div class="text-center">
-              <input
-                type="submit"
-                value="Validar descuento"
-                class="btn btn-primary"
-              />
-            </div>
-          </form>
-        </div>
-
-        <div className="App">
-          <GoogleLogin
-            clientId="660796874273-0tb6t8b3tbd63rfii5amcgo4mc45jejr.apps.googleusercontent.com"
-            buttonText="Validar usando Google"
-            onSuccess={this.loginConOwnerExito}
-          />
-        </div>
-
-        <p style={{ color: "red", textAlign: "center" }}>
-          {this.state.errorLoginGoogle == undefined
-            ? ""
-            : this.state.errorLoginGoogle}{" "}
-          <a
-            style={{ color: "blue" }}
-            href={this.state.errorLoginGoogle == undefined ? "" : errorLink}
-          >
-            {this.state.errorLoginGoogle == undefined ? "" : errorLink}
-          </a>
-        </p>
-        <p style={{ color: "red", textAlign: "center" }}>
-          {this.state.errorBackend == undefined ? "" : this.state.errorBackend}
-        </p>
-
-        <div>
-          <Modal
-            className="modal-fail"
-            centered="true"
-            isOpen={this.state.modalFail}
-          >
-            <div className="modal-header justify-content-center">
-              <div class="container mt-5 pt-5">
-                <div class="row justify-content-center">
-                  <img src={barTrender60} class="img-fluid" />
-                  <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
-                </div>
+              <div>
+                <Modal
+                  className="modal-fail"
+                  centered="true"
+                  isOpen={this.state.modalFail}
+                >
+                  <div className="modal-header justify-content-center">
+                    <div class="container mt-5 pt-5">
+                      <div class="row justify-content-center">
+                        <img src={barTrender60} class="img-fluid" />
+                        <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
+                      </div>
+                    </div>
+                  </div>
+                  <ModalBody>
+                    <div class="row justify-content-center mt-5">
+                      <h1 className="text-white text-center font-weight-bold">
+                        ¡OOPS! HA OCURRIDO EL SIGUIENTE PROBLEMA
+                      </h1>
+                    </div>
+                    <div class="row justify-content-center   mt-3">
+                      <h2 class="my-auto text-white justify-content-center">
+                        {this.state.error}
+                      </h2>
+                      <img
+                        src={fail_boy}
+                        className="img-fluid"
+                        style={{
+                          width: "100%",
+                          maxWidth: "18.75em",
+                        }}
+                      />
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                      <h3 id="index-button-fail">
+                        <a
+                          href="/index"
+                          className="text-decoration-none text-white m-4"
+                        >
+                          Volver a inicio
+                        </a>
+                      </h3>
+                    </div>
+                  </ModalBody>
+                </Modal>
               </div>
-            </div>
-            <ModalBody>
-              <div class="row justify-content-center mt-5">
-                <h1 className="text-white text-center font-weight-bold">
-                  ¡OOPS! HA OCURRIDO EL SIGUIENTE PROBLEMA
-                </h1>
+
+              <div>
+                <Modal
+                  className="modal-success"
+                  centered="true"
+                  isOpen={this.state.modalSuccess}
+                >
+                  <div className="modal-header justify-content-center">
+                    <div class="container mt-5 pt-5">
+                      <div class="row justify-content-center">
+                        <img src={barTrender60} class="img-fluid" />
+                        <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
+                      </div>
+                    </div>
+                  </div>
+                  <ModalBody>
+                    <div class="row justify-content-center mt-5">
+                      <h1 className="text-white text-center font-weight-bold">
+                        ¡DESCUENTO APLICADO CON ÉXITO!
+                      </h1>
+                    </div>
+                    <div class="row justify-content-center   mt-3">
+                      <img
+                        src={success_boy}
+                        className="img-fluid"
+                        style={{
+                          width: "100%",
+                          maxWidth: "18.75em",
+                        }}
+                      />
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                      <h3 id="index-button-success">
+                        <a
+                          href="/index"
+                          className="text-decoration-none text-white m-4"
+                        >
+                          Volver a inicio
+                        </a>
+                      </h3>
+                    </div>
+                  </ModalBody>
+                </Modal>
               </div>
-              <div class="row justify-content-center   mt-3">
-                <h2 class="my-auto text-white justify-content-center">
-                  {this.state.error}
-                </h2>
-                <img
-                  src={fail_boy}
-                  className="img-fluid"
-                  style={{
-                    width: "100%",
-                    maxWidth: "18.75em",
-                  }}
+            </>
+          );
+        } else if (this.state.method === "google") {
+          return (
+            <>
+              <div className="App">
+                <GoogleLogin
+                  clientId="660796874273-0tb6t8b3tbd63rfii5amcgo4mc45jejr.apps.googleusercontent.com"
+                  buttonText="Validar usando Google"
+                  onSuccess={this.loginConOwnerExito}
                 />
               </div>
-              <div class="row justify-content-center mt-5">
-                <h3 id="index-button-fail">
-                  <a
-                    href="/index"
-                    className="text-decoration-none text-white m-4"
-                  >
-                    Volver a inicio
-                  </a>
-                </h3>
-              </div>
-            </ModalBody>
-          </Modal>
-        </div>
 
-        <div>
-          <Modal
-            className="modal-success"
-            centered="true"
-            isOpen={this.state.modalSuccess}
-          >
-            <div className="modal-header justify-content-center">
-              <div class="container mt-5 pt-5">
-                <div class="row justify-content-center">
-                  <img src={barTrender60} class="img-fluid" />
-                  <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
-                </div>
-              </div>
-            </div>
-            <ModalBody>
-              <div class="row justify-content-center mt-5">
-                <h1 className="text-white text-center font-weight-bold">
-                  ¡DESCUENTO APLICADO CON ÉXITO!
-                </h1>
-              </div>
-              <div class="row justify-content-center   mt-3">
-                <img
-                  src={success_boy}
-                  className="img-fluid"
-                  style={{
-                    width: "100%",
-                    maxWidth: "18.75em",
-                  }}
-                />
-              </div>
-              <div class="row justify-content-center mt-5">
-                <h3 id="index-button-success">
-                  <a
-                    href="/index"
-                    className="text-decoration-none text-white m-4"
-                  >
-                    Volver a inicio
-                  </a>
-                </h3>
-              </div>
-            </ModalBody>
-          </Modal>
-        </div>
-      </>
-    );
+              <p style={{ color: "red", textAlign: "center" }}>
+                {this.state.errorLoginGoogle == undefined
+                  ? ""
+                  : this.state.errorLoginGoogle}{" "}
+                <a
+                  style={{ color: "blue" }}
+                  href={
+                    this.state.errorLoginGoogle == undefined ? "" : errorLink
+                  }
+                >
+                  {this.state.errorLoginGoogle == undefined ? "" : errorLink}
+                </a>
+              </p>
+              <p style={{ color: "red", textAlign: "center" }}>
+                {this.state.errorBackend == undefined
+                  ? ""
+                  : this.state.errorBackend}
+              </p>
+            </>
+          );
+        }
+      } else {
+        return <Spinner />;
+      }
+    } else {
+      return (
+        <p className="text-danger text-center">
+          <strong>{this.state.errorGetOwner}</strong>
+        </p>
+      );
+    }
   }
 }
 
 export default POSTLoginFormQRValidator;
-

@@ -1,30 +1,40 @@
 /*eslint-disable*/
 import React from "react";
-
+import barTrender from "../../assets/img/barTrender60.png";
 // reactstrap components
-import { Container } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 // core components
 
 function DefaultFooter() {
   return (
     <>
-      <footer className="footer footer-default">
+      <footer className="bg-primary py-3">
         <Container>
-          <div className="copyright" id="copyright" >
-            © {new Date().getFullYear()}, Designed by BarTrender Team.
-          </div>
-        </Container>
-        <Container>
-          <div  className="footer-menu" id="legal-notice" style={{padding:"10px"}}>
-           <a href="/legal">Aviso Legal</a>
-          </div>
-          <div  className="footer-menu" id="terms-of-use" style={{padding:"10px"}}>
-           <a href="/condicione-uso">Condiciones de uso</a>
-          </div>
-          <div  className="footer-menu" id="privacy-policy" style={{padding:"10px"}}>
-           <a href="/politica-privacidad">Política de privacidad</a>
-          </div>
+          <Row>
+            <Col lg="4" className="my-auto justify-content-center text-center">
+              <Row>
+                <a class="text-white text-decoration-none my-2 mx-auto" href="/legal">
+                  Acuerdo de términos
+                </a>
+              </Row>
+              <Row>
+                <a class="text-white my-2 text-decoration-none mx-auto" href="/condiciones-uso">
+                  Condiciones de uso
+                </a>
+              </Row>
+            </Col>
+            <Col className="justify-content-center my-auto text-center" lg="4">
+              <img src={barTrender} className="img-fluid"></img>
+            </Col>
+            <Col lg="4" className="my-auto">
+              <Row className="justify-content-center">
+                <div className="copyright text-white" id="copyright">
+                  © {new Date().getFullYear()}, Diseñado por el equipo de BarTrender.
+                </div>
+              </Row>
+            </Col>
+          </Row>
         </Container>
       </footer>
     </>

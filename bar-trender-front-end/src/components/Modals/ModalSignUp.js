@@ -7,12 +7,8 @@ import ApiSignUpEstablishmentForm from "../ApiSignUpEstablishmentForm ";
 
 function ModalSignUp() {
   const [modal1, setModal1] = React.useState(false);
-  const [establishmentUserForm, setEstablishmentUserForm] = React.useState(
-    false
-  );
-  const [clientUserForm, setClientUserForm] = React.useState(false);
   function reportWindowSize() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const { innerWidth: width } = window;
     if(width < 800 && document.getElementById("login-tooltip")!=null ){
       document.getElementById("register-tooltip").classList.remove("mt-1");
       document.getElementById("register-tooltip").classList.add("my-auto");
@@ -24,14 +20,10 @@ function ModalSignUp() {
   }
   window.addEventListener('resize', reportWindowSize);
 
-
-  var token = sessionStorage.getItem("token");
-  var headerTitle = "Nuevo usuario"
   return (
     <>
       <i
         color="primary"
-        className="mr-1"
         onClick={() => setModal1(true)}
         id="register-tooltip"
         className="fal fa-key text-white w-100 fa-lg mt-1"

@@ -15,18 +15,17 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { Component } from "react";
-import { useLocation } from "react-router-dom";
-import { Navbar, Container, Nav, Dropdown, Button } from "react-bootstrap";
+import React from "react";
+import {Modal, ModalBody} from "react-bootstrap";
+import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
-
-
+import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
 import routes from "routes.js";
 
 function Header() {
-  const location = useLocation();
+ 
   const mobileSidebarToggle = (e) => {
     e.preventDefault();
     document.documentElement.classList.toggle("nav-open");
@@ -39,8 +38,10 @@ function Header() {
     document.body.appendChild(node);
   };
   function reportWindowSize() {
-    const { innerWidth: width, innerHeight: height } = window;
-    if (width < 800 && document.getElementById("logout-tooltip") != null) {
+
+    const { innerWidth: width } = window;
+    if(width < 800 && document.getElementById("logout-tooltip")!=null ){
+
       document.getElementById("logout-tooltip").classList.add("my-auto");
 
     }
@@ -51,35 +52,15 @@ function Header() {
   }
   window.addEventListener('resize', reportWindowSize);
 
-  const getBrandText = () => {
-    for (let i = 0; i < routes.length; i++) {
-      if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
-        return routes[i].name;
-      }
-    }
-    return "Brand";
-  };
   const isLoggedIn =
     sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
+
 
   return (
     <Navbar bg="dark" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
-          <Button
-            variant="dark"
-            className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
-            onClick={mobileSidebarToggle}
-          >
-            <i className="fas fa-ellipsis-v"></i>
-          </Button>
-          {/* <Navbar.Brand
-            href="#home"
-            onClick={(e) => e.preventDefault()}
-            className="mr-2"
-          >
-            {getBrandText()}
-          </Navbar.Brand> */}
+          <MobileNavbarModal/>
           <h4 class="text-white my-auto">BarTrender</h4>
 
 

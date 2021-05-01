@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React from "react";
 
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom"
@@ -54,7 +54,6 @@ class ModalSearch extends React.Component {
       //   type: "Estilo"
       // },
     ];
-
     this.tags_grouped = [];
     function groupBy(xs, f) {
       return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
@@ -73,7 +72,7 @@ class ModalSearch extends React.Component {
       .then(tags => {
         this.tags = tags.tags;
         this.tags_grouped = groupBy(this.tags, (t) => t.type);
-        
+     
       })
 
     this.handleTermChange = this.handleTermChange.bind(this);
@@ -93,24 +92,24 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-
     if (e.target.name == 'name') {
       this.setState({ 'name': e.target.value },);
     } else {
       if (e.target.checked == true) {
+        // this.setState({ [type] : [name] },
+        //   () => console.log(this.state, "checked"),
+        // );
         if (this.state[type] == undefined) {
           this.setState({ [type]: [name] },
             () => console.log(this.state),
           );
         } else {
           this.state[type].push(name);
-          console.log(this.state );
         }
       }
       else {
         var nameIndex = this.state[type].indexOf("name");
         this.state[type].splice(nameIndex, 1);
-        console.log(this.state);
       }
     }
 
@@ -118,19 +117,13 @@ class ModalSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // this.handleTermChange(event);
+   
   }
-  // handleNameChange(e) {
-
-  //   var x = document.getElementById("name").value;
-  //   this.setState({'name': x },
-  //   );
-
-  // }
+  
   handleDiscountChange(e) {
 
     var x = document.getElementById("discounts").value;
-    this.setState({ 'discounts': x == 'on' ? true : false },
+    this.setState({ 'discounts': x === 'on' ? true : false },
     );
 
   }
@@ -160,7 +153,7 @@ class ModalSearch extends React.Component {
       <>
         <Button
           color="primary"
-          className="mr-1"
+          className="mx-5"
           onClick={this.toggle}
           id="filters"
         >
@@ -229,6 +222,7 @@ class ModalSearch extends React.Component {
                               })
                             }}
                           >
+
                             <i className="now-ui-icons shopping_tag-content"></i>
                           </NavLink>
                           <h6 class="align-center ">Descuentos</h6>
@@ -283,23 +277,27 @@ class ModalSearch extends React.Component {
                         </>
                       );
                     })}
-                    <TabPane tabId="pillsDescuentos">
-                      <h3 className="text-center mt-2"> Descuentos</h3>
-                      <FormGroup check>
+                    <TabContent className="gallery" activeTab={"pills" + this.state['pills']}>
 
-                        <Label id="discount-label" check>
-                          <Input type="checkbox"
-                            placeholder="discounts"
-                            onChange={this.handleDiscountChange}
-                            onKeyDown={this.handleEnter}
-                            name="discounts"
-                            id="discounts"
-                          />
-                          <span className="form-check-sign"></span>
+                      <TabPane tabId="pillsDescuentos">
+                        <h3 className="text-center mt-2"> Descuentos</h3>
+                        <FormGroup check>
+
+                          <Label id="discount-label" check>
+                            <Input type="checkbox"
+                              placeholder="discounts"
+                              onChange={this.handleDiscountChange}
+                              onKeyDown={this.handleEnter}
+                              name="discounts"
+                              id="discounts"
+                            />
+                            <span className="form-check-sign"></span>
                         Cualquier descuento
                         </Label>
-                      </FormGroup>
-                    </TabPane>
+                        </FormGroup>
+                      </TabPane>
+                    </TabContent>
+
                   </Form>
                 </Col>
 

@@ -1,25 +1,9 @@
-import React, { useEffect, useState, Component } from "react";
-import ChartistGraph from "react-chartist";
+import React, { useEffect, useState} from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-// react-bootstrap components
-import {
-  Badge,
-  Button,
   Card,
-  Navbar,
-  Nav,
-  Table,
   Container,
   Row,
   Col,
-  Form,
-  OverlayTrigger,
-  Tooltip,
 } from "react-bootstrap";
 
 import FreeDashboardQRList from "../components/FreeDashboardQRlist";
@@ -28,8 +12,6 @@ import FreePieChart from "../components/FreePieChart.js";
 import './css/Dashboard.css';
 
 function Dashboard() {
-  const [modal1, setModal1] = React.useState(false);
-  const [modal2, setModal2] = React.useState(false);
   const [appState, setAppState] = useState({
     bar: {},
   });
@@ -55,7 +37,7 @@ function Dashboard() {
   }, [setAppState]);
 
 
-  if (appState.bar[0] == undefined) {
+  if (appState.bar[0] === undefined) {
 
     return (
       <>
@@ -360,4 +342,3 @@ function Dashboard() {
 
 
 export default Dashboard;
-

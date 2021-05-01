@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, ModalHeader, Card, CardBody, CardHeader } from "reactstrap";
 
 // reactstrap components
-import { Button, Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Button, Modal, ModalBody } from "reactstrap";
 
 // core components
 import image_left from "../../assets/img/bar-interior.jpg";
@@ -11,9 +11,9 @@ import Qr from "../../App.js";
 //css components
 import "../../views/css/ModalQR.css";
 import ListDiscount from "../ListDiscount";
-import "./ModalSelectedElement.css";
-
-import Map from "components/Map.js";
+import './ModalSelectedElement.css';
+import { withScriptjs } from "react-google-maps";
+import Map from "components/Map.js"
 
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
@@ -24,18 +24,39 @@ function ModalSelectedElement(prop) {
   const [appState, setAppState] = useState({
     discounts: {},
   });
-  const ubicacion = {
-    lat: 36.92043226009566,
-    lng: -6.080399144405965,
-  };
-  const location =
-    element.street +
-    ", " +
-    element.number +
-    ", " +
-    element.zone +
-    ", " +
-    element.locality;
+  
+
+  const location = element.street_text + ", " + element.number_text + ", " + element.zone_enum + ", " + element.locality_text;
+  
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     console.log("Latitude is :", position.coords.latitude);
+  //     console.log("Longitude is :", position.coords.longitude);
+  //     setUserLocation({
+  //       user_location: {
+  //         lat: position.coords.latitude,
+  //         lng: position.coords.longitude
+  //       }
+  //     });
+  //   });
+
+  // }, [setUserLocation]);
+  var divStyle = {}
+  if (element.photo_url == undefined){
+    var divStyle = {
+      backgroundImage: 'url(' + image_left + ')',
+      backgroundSize: "cover",
+      height:"15rem"
+    };
+  }
+  else{
+    var divStyle = {
+      backgroundImage: 'url(' + element.photo_url + ')',
+      backgroundSize: "cover",
+      height:"15rem"
+    };
+  }
+
 
   async function loadDiscounts() {
     const apiUrl =
@@ -56,19 +77,27 @@ function ModalSelectedElement(prop) {
       });
   }
 
+  // function loadInfo(){
+  //   setModal1(true);
+  //   const [] = useState({discounts:{}});
+
+  //   fetch("http://localhost:8000/v1/establishments/1/discounts/get", {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //      }
+  //   }).then(response => response.json())
+  //   .then(discounts => setAppState({discounts:discounts}))
+  // };
+  const MapLoader = withScriptjs(Map);
+
   return (
     <>
-    <Card className="bg-primary">
-      <CardHeader>
-      <img
-            className=""
-            src={element.photo_url != null ? element.photo_url : image_left}
-            onClick={() => {
-              setModal1(true);
-              loadDiscounts();
-            }}
-            alt=""
-          />
+    <Card className="bg-primary" style={{height:"25rem"}} onClick={() => {
+                                                          setModal1(true);
+                                                          loadDiscounts();
+                                                        }} role = "button">
+      <CardHeader style={divStyle}>
       </CardHeader>
       <CardBody>
             <h3 class="text-center text-white">{element.name_text}</h3>
@@ -99,6 +128,7 @@ function ModalSelectedElement(prop) {
           </ModalHeader>
         </div>
         <ModalBody className="text-white">
+          
           <Row className="justify-content-center">
             <img
               className="image-container img-fluid mb-0 w-75"
@@ -160,7 +190,11 @@ function ModalSelectedElement(prop) {
           <ListDiscount discounts={appState.discounts} />
 
           <h3>Ubicacion</h3>
-          <Map location={location} />
+          <MapLoader
+            location={location}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3iyCKwQGF0wXBZKOuKhdMIZivUEtMe4s"
+            loadingElement={<div style={{ height: `100%` }} />}
+          />
         </ModalBody>
         <div className="modal-footer">
           <Button color="danger" type="button" onClick={() => setModal1(false)}>

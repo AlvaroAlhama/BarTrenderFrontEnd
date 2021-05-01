@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import GoogleLogin from 'react-google-login';
 
 class ApiSignUpClientForm extends React.Component {
   constructor() {
@@ -17,6 +18,7 @@ class ApiSignUpClientForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
+
   // call the api
   async handleSignUp() {
     let errors = {};
@@ -57,7 +59,9 @@ class ApiSignUpClientForm extends React.Component {
 
       let input = {};
       const birthday = moment.utc(`${this.state.input.birthday}`).unix();
-    
+      
+      console.log(birthday)
+
       this.state.input.birthday = birthday;
       input["rol"] ="client"
       this.setState({
@@ -218,6 +222,7 @@ class ApiSignUpClientForm extends React.Component {
             />
           </div>
         </form>
+
       </div>
     );
   }

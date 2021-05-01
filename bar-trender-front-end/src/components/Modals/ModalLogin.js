@@ -168,7 +168,7 @@ function ModalLogin() {
             </button>
             <h4 className="title title-up">Inicio de Sesión</h4>
           </div>
-          <div class="container">
+          <div className="container">
             <hr />
           </div>
           <ModalBody>

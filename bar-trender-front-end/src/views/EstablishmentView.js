@@ -48,7 +48,6 @@ function EstablishmentView() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, 'establishments');
         if (data['error'] === undefined) {
           setAppState({
 

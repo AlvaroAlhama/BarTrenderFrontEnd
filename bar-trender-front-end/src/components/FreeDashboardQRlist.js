@@ -234,7 +234,7 @@ function DashboardQRList(props) {
                               Total de descuentos
                             </h4>
                           </div>
-                          <div class="container">
+                          <div className="container">
                             <hr />
                           </div>
                           <ModalBody>

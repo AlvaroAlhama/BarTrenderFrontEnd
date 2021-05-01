@@ -40,7 +40,6 @@ import PrivacyPolicy from './views/PrivacyPolicy';
 
 const app = (
   
-  <React.StrictMode>
     <BrowserRouter>
     <Switch>
       <Switch>
@@ -106,7 +105,7 @@ const app = (
       </Switch>
     </Switch>
   </BrowserRouter>
-  </React.StrictMode>
+ 
 );
 
 ReactDOM.render(app, document.getElementById('root'));

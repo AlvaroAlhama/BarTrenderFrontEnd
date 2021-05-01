@@ -34,7 +34,6 @@ function ListView() {
     var filter = {
       "filters": {}
     }
-    console.log("Construyendo view")
     setAppState({ loading: true });
 
     if (location.state !== undefined) {
@@ -75,8 +74,7 @@ function ListView() {
     }
 
     navigator.geolocation.getCurrentPosition(function (position) {
-      // console.log("Latitude is :", position.coords.latitude);
-      // console.log("Longitude is :", position.coords.longitude);
+
       
       sessionStorage.setItem("user_location_lat",position.coords.latitude);
       sessionStorage.setItem("user_location_lng",position.coords.longitude);
@@ -99,7 +97,7 @@ function ListView() {
         <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
-          <section class="container mt-5" id = "list-results" > 
+          <section className="container mt-5" id = "list-results" > 
             <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
           </section>
           <DefaultFooter />

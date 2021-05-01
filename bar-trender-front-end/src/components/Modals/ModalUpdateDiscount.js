@@ -230,7 +230,6 @@ function ModalUpdateDiscount(props) {
       errors: errors,
       input: appState.input,
     });
-    console.log(appState, "appState post validate");
 
     return isValid;
   }
@@ -263,13 +262,13 @@ function ModalUpdateDiscount(props) {
         <div className="text-danger">
           {appState.errors == undefined ? "" : appState.errors.error}
         </div>
-        <div class="container">
+        <div className="container">
           <hr />
         </div>
         <ModalBody>
           <div>
             <form onSubmit={handleSubmit} id = "form-update">
-              <div class="form-group my-1">
+              <div className="form-group my-1">
                 <label for="name" className="w-100">
                   Nombre del descuento
                 </label>
@@ -277,7 +276,7 @@ function ModalUpdateDiscount(props) {
                   type="text"
                   name="name"
                   onChange={handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder={props.discount.name}
                   id="name"
                 />
@@ -286,7 +285,7 @@ function ModalUpdateDiscount(props) {
                   {appState.errors == undefined ? "" : appState.errors.name}
                 </div>
               </div>
-              <div class="form-group my-1">
+              <div className="form-group my-1">
                 <label for="description" className="w-100">
                   Descripción del descuento
                 </label>
@@ -294,7 +293,7 @@ function ModalUpdateDiscount(props) {
                   type="text"
                   name="description"
                   onChange={handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder={props.discount.description}
                   id="description"
                 />
@@ -305,7 +304,7 @@ function ModalUpdateDiscount(props) {
                     : appState.errors.description}
                 </div>
               </div>
-              <div class="form-group my-1">
+              <div className="form-group my-1">
                 <label for="name" className="w-100">
                   Precio del descuento
                 </label>
@@ -314,7 +313,7 @@ function ModalUpdateDiscount(props) {
                   step="0.01"
                   name="cost"
                   onChange={handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder={props.discount.cost}
                   id="cost"
                 />
@@ -323,7 +322,7 @@ function ModalUpdateDiscount(props) {
                   {appState.errors == undefined ? "" : appState.errors.cost}
                 </div>
               </div>
-              <div class="form-group my-1">
+              <div className="form-group my-1">
                 <label for="totalCodes" className="w-100">
                   Número total de descuentos
                 </label>
@@ -331,7 +330,7 @@ function ModalUpdateDiscount(props) {
                   type="number"
                   name="totalCodes"
                   onChange={handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder={props.discount.totalCodes}
                   id="totalCodes"
                 />
@@ -342,12 +341,12 @@ function ModalUpdateDiscount(props) {
                     : appState.errors.totalCodes}
                 </div>
               </div>
-              <div class="form-group my-1">
+              <div className="form-group my-1">
                 <p>
                   Número de descuentos escaneados:{props.discount.scannedCodes}{" "}
                 </p>
               </div>
-              <div class="form-group my-1 row justify-content-center">
+              <div className="form-group my-1 row justify-content-center">
                 <label for="endDate" className="w-100">
                   Fecha y hora de fin del descuento
                 </label>
@@ -356,7 +355,7 @@ function ModalUpdateDiscount(props) {
                     type="date"
                     name="endDate"
                     onChange={handleChange}
-                    class="form-control"
+                    className="form-control"
                     placeholder="Fecha de fin del descuento"
                     id="endDate"
                   />
@@ -367,7 +366,7 @@ function ModalUpdateDiscount(props) {
                     type="time"
                     name="endTime"
                     onChange={handleChange}
-                    class="form-control"
+                    className="form-control"
                     placeholder="Hora de fin del descuento"
                     id="endDate"
                   />
@@ -382,11 +381,11 @@ function ModalUpdateDiscount(props) {
                   {appState.errors == undefined ? "" : appState.errors.endDate}
                 </div>
               </div>
-              <div class="text-center">
+              <div className="text-center">
                 <input
                   type="submit"
                   value="Editar descuento"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                 />
               </div>
             </form>

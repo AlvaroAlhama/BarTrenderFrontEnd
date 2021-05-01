@@ -15,7 +15,7 @@ function Example() {
             variant="dark"
             className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
             onClick={ handleShow }>
-              <img src={barTrender60} class="img-fluid" alt="" />
+              <img src={barTrender60} className="img-fluid" alt="" />
             </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -29,7 +29,7 @@ function Example() {
                   </button>
                   <h3 className="title title-up">BarTrender</h3>
               </div>
-              <div class="container">
+              <div className="container">
                   <hr />
               </div>
               <ModalBody>

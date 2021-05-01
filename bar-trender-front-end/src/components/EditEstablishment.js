@@ -333,24 +333,24 @@ export default class EditEstablishment extends React.Component {
               src={this.state.image_url == null ? "" : this.state.image_url}
             />
           </div>
-          <div class="row">
-            <div class="col md-8">
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-title ml-3 mt-3">
+          <div className="row">
+            <div className="col md-8">
+              <div className="card">
+                <div className="card-header">
+                  <div className="card-title ml-3 mt-3">
                     <h2>Detalles del Establecimiento</h2>
                   </div>
                 </div>
-                <div class="card-body">
+                <div className="card-body">
                   <form
                     enctype="multipart/form-data"
                     ref={this.state.form}
                     id="establishment-form"
                     onSubmit={(e) => this.handleSubmit(e)}
                   >
-                    <div class="row">
-                      <div class="col pr-1 md-6">
-                        <div class="form-group my-1">
+                    <div className="row">
+                      <div className="col pr-1 md-6">
+                        <div className="form-group my-1">
                           <label>Nombre del Establecimiento</label>
                           <input
                             type="text"
@@ -358,35 +358,35 @@ export default class EditEstablishment extends React.Component {
                             maxLength="100"
                             value={this.state.input.name_text}
                             onChange={this.handleChange}
-                            class="form-control"
+                            className="form-control"
                             id="name-establishment"
                           />
 
                         </div>
-                        <div class="text-danger">
+                        <div className="text-danger">
                           {this.state.errors.name_text}
                         </div>
                       </div>
-                      <div class="col pl-1 md-6">
-                        <div class="form-group my-1">
+                      <div className="col pl-1 md-6">
+                        <div className="form-group my-1">
                           <label>Teléfono</label>
                           <input
                             type="tel"
                             name="phone_number"
                             value={this.state.input.phone_number}
                             onChange={this.handleChange}
-                            class="form-control"
+                            className="form-control"
                             id="phone-number"
                           />
                         </div>
-                        <div class="text-danger">
+                        <div className="text-danger">
                           {this.state.errors.phone_number}
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col md-12">
-                        <div class="form-group my-1">
+                    <div className="row">
+                      <div className="col md-12">
+                        <div className="form-group my-1">
                           <label>Dirección</label>
                           <input
                             type="text"
@@ -394,34 +394,34 @@ export default class EditEstablishment extends React.Component {
                             maxLength="50"
                             value={this.state.input.street_text}
                             onChange={this.handleChange}
-                            class="form-control"
+                            className="form-control"
                             id="street"
                           />
-                          <div class="text-danger">
+                          <div className="text-danger">
                             {this.state.errors.street_text}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col pr-1 md-6">
-                        <div class="form-group my-1">
+                    <div className="row">
+                      <div className="col pr-1 md-6">
+                        <div className="form-group my-1">
                           <label>Número</label>
                           <input
                             type="text"
                             name="number_text"
                             value={this.state.input.number_text}
                             onChange={this.handleChange}
-                            class="form-control"
+                            className="form-control"
                             id="number-street"
                           />
-                          <div class="text-danger">
+                          <div className="text-danger">
                             {this.state.errors.number_text}
                           </div>
                         </div>
                       </div>
-                      <div class="col pl-1 md-6">
-                        <div class="form-group my-1">
+                      <div className="col pl-1 md-6">
+                        <div className="form-group my-1">
                           <label>Localidad</label>
                           <input
                             type="text"
@@ -429,49 +429,49 @@ export default class EditEstablishment extends React.Component {
                             maxLength="50"
                             value={this.state.input.locality_text}
                             onChange={this.handleChange}
-                            class="form-control"
+                            className="form-control"
                             id="locality-establishment"
                           />
-                          <div class="text-danger">
+                          <div className="text-danger">
                             {this.state.errors.locality_text}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col md-12">
-                        <div class="form-group my-1">
+                    <div className="row">
+                      <div className="col md-12">
+                        <div className="form-group my-1">
                           <label>Descripción</label>
                           <textarea
                             name="desc_text"
                             maxLength="200"
                             value={this.state.input.desc_text}
                             onChange={this.handleChange}
-                            class="form-control"
+                            className="form-control"
                           />
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col">
-                        <div class="form-group my-1">
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group my-1">
                           <label>Zona</label>
                           <select
                             name="zone_enum"
                             value={this.state.input.zone_enum}
                             onChange={this.handleChange}
-                            class="form-control"
+                            className="form-control"
                           >
                             {this.state.zone.zona.map((zona) => {
                               return <option value={zona}>{zona}</option>;
                             })}
                           </select>
-                          <div class="text-danger">
+                          <div className="text-danger">
                             {this.state.errors.zone_enum}
                           </div>
                         </div>
                       </div>
-                      <div class="col">
+                      <div className="col">
                         <FormGroup className="pt-2">
                           <Label for="establishmentImage">Imagen</Label>
                           <CustomInput
@@ -486,9 +486,9 @@ export default class EditEstablishment extends React.Component {
                         </FormGroup>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col">
-                        <div class="form-group my-1">
+                    <div className="row">
+                      <div className="col">
+                        <div className="form-group my-1">
                           <label>Tags</label>
                           {this.state.input.tags.length !== 0 ? (
                             <Select
@@ -501,29 +501,29 @@ export default class EditEstablishment extends React.Component {
                           ) : (
                             ""
                           )}
-                          <div class="text-danger">
+                          <div className="text-danger">
                             {this.state.errors.tags_selected}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="container-fluid bg-danger">
-                      <div class="text-white fw-bold text-center">
+                    <div className="container-fluid bg-danger">
+                      <div className="text-white fw-bold text-center">
                         {this.state.errorsApiPut === undefined
                           ? ""
                           : this.state.errorsApiPut.error}
                       </div>
                     </div>
-                    <div class="container-fluid bg-success">
-                      <div class="text-white fw-bold text-center">
+                    <div className="container-fluid bg-success">
+                      <div className="text-white fw-bold text-center">
                         {this.state.msg === undefined ? "" : this.state.msg}
                       </div>
                     </div>
-                    <div class="pull-right">
+                    <div className="pull-right">
                       <input
                         type="submit"
                         value="Guardar cambios"
-                        class="btn btn-info"
+                        className="btn btn-info"
                       />
                     </div>
                   </form>
@@ -548,7 +548,7 @@ export default class EditEstablishment extends React.Component {
                       </button>
                       <h4 className="title title-up">Nuevo descuento</h4>
                     </div>
-                    <div class="container">
+                    <div className="container">
                       <hr />
                     </div>
                     <ModalBody>

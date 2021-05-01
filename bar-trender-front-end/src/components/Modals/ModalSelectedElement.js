@@ -86,8 +86,8 @@ function ModalSelectedElement(prop) {
       <CardHeader style={divStyle}>
       </CardHeader>
       <CardBody>
-            <h3 class="text-center text-white">{element.name_text}</h3>
-            <h5 class="text-center text-white"><i class="fal fa-map-marker-alt mr-2"></i>{element.street_text} / {element.locality_text}</h5>
+            <h3 className="text-center text-white">{element.name_text}</h3>
+            <h5 className="text-center text-white"><i className="fal fa-map-marker-alt mr-2"></i>{element.street_text} / {element.locality_text}</h5>
       </CardBody>
     </Card>
       
@@ -128,22 +128,22 @@ function ModalSelectedElement(prop) {
               <Col className="my-3" lg="6" md="6" xs="12">
                 <Container className="mx-auto">
                   <p>
-                    <i class="fal fa-phone-alt text-primary"></i>{" "}
+                    <i className="fal fa-phone-alt text-primary"></i>{" "}
                     {element.phone_number}
                   </p>
                   <p>
-                    <i class="fal fa-university text-primary"></i>{" "}
+                    <i className="fal fa-university text-primary"></i>{" "}
                     {element.locality_text}
                   </p>
                   <p>
-                    <i class="fal fa-map-signs text-primary"></i>{" "}
+                    <i className="fal fa-map-signs text-primary"></i>{" "}
                     {element.street_text}
                   </p>
                 </Container>
               </Col>
               <Col className="my-3" lg="6" md="6" xs="12">
                 <Row className="justify-content-center mb-2">
-                  <i class="my-auto fal fa-tags mr-2 text-primary"></i>
+                  <i className="my-auto fal fa-tags mr-2 text-primary"></i>
                   <p className=" my-auto text-primary">Etiquetas</p>
                 </Row>
                 <Row>
@@ -161,7 +161,7 @@ function ModalSelectedElement(prop) {
             </Row>
             <Container>
               <Row className="justify-content-center">
-                <i class="fal fa-quote-right my-auto mr-2 text-primary"></i>
+                <i className="fal fa-quote-right my-auto mr-2 text-primary"></i>
                 <p className="my-auto text-primary">
                   Descripción del establecimiento
                 </p>

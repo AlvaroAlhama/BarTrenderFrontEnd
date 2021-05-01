@@ -109,12 +109,12 @@ function PremiumBarChart(props) {
       }
       else if (props.initialDate === "" || props.endDate === ""){
         return(
-       <h3 class="text-danger">Para mostrar el contenido se debe introducir una fecha inicial y una fecha final </h3>
+       <h3 className="text-danger">Para mostrar el contenido se debe introducir una fecha inicial y una fecha final </h3>
         )
       }
       else if (props.zone === ""){
         return(
-       <h3 class="text-danger">Para mostrar el contenido se debe introducir una zona</h3>
+       <h3 className="text-danger">Para mostrar el contenido se debe introducir una zona</h3>
         )
       }
       else if(appState.stats.error === "A017: El usuario que está logeado no es premium"){

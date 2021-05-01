@@ -161,19 +161,19 @@ class ApiSignUpClientForm extends React.Component {
     return (
       <div>
         <div className="text-danger">
-          <h6 class="my-3 text-center">{this.state.error}</h6>
+          <h6 className="my-3 text-center">{this.state.error}</h6>
         </div>
         <div className="row">
           <i className="fal fa-glass-cheers fa-5x w-100 mb-4"></i>
         </div>
         <form onSubmit={this.handleSubmit}>
-          <div class="form-group my-1">
+          <div className="form-group my-1">
             <input
               type="text"
               name="email"
               value={this.state.input.email}
               onChange={this.handleChange}
-              class="form-control"
+              className="form-control"
               placeholder="Correo electrónico"
               id="email"
             />
@@ -181,28 +181,28 @@ class ApiSignUpClientForm extends React.Component {
             <div className="text-danger">{this.state.errors.email}</div>
           </div>
 
-          <div class="form-group my-4">
+          <div className="form-group my-4">
             <input
               name="password"
               type="password"
               value={this.state.input.password}
               onChange={this.handleChange}
               placeholder="Contraseña"
-              class="form-control"
+              className="form-control"
             />
           </div>
           <div className="text-danger align-center">
             {this.state.errors.password}
           </div>
 
-          <div class="form-group my-4">
+          <div className="form-group my-4">
             <input
               name="birthday"
               type="date"
               value={this.state.input.birthday}
               onChange={this.handleChange}
               placeholder="Fecha de Nacimiento"
-              class="form-control"
+              className="form-control"
             />
 
             <div className="text-danger align-center">
@@ -210,11 +210,11 @@ class ApiSignUpClientForm extends React.Component {
             </div>
           </div>
 
-          <div class="text-center">
+          <div className="text-center">
             <input
               type="submit"
               value="Finalizar registro"
-              class="btn btn-primary"
+              className="btn btn-primary"
             />
           </div>
         </form>

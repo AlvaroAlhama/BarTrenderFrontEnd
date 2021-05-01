@@ -249,62 +249,62 @@ class POSTCreateDiscount extends React.Component {
       <>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="text"
                 name="name"
                 maxLength="50"
                 value={this.state.input.name}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Nombre del descuento"
                 id="name"
               />
 
               <div className="text-danger">{this.state.errors.name}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="text"
                 name="descripcion"
                 maxLength="140"
                 value={this.state.input.descripcion}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Descripción del descuento"
                 id="name"
               />
 
               <div className="text-danger">{this.state.errors.descripcion}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="number"
                 step="0.01"
                 name="cost"
                 value={this.state.input.cost}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Precio del descuento"
                 id="cost"
               />
 
               <div className="text-danger">{this.state.errors.cost}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="number"
                 name="totalCodes"
                 value={this.state.input.totalCodes}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Número total de códigos"
                 id="totalCodes"
               />
 
               <div className="text-danger">{this.state.errors.totalCodes}</div>
             </div>
-            <div class="form-group my-1 row justify-content-center">
+            <div className="form-group my-1 row justify-content-center">
               <label for="initialDate">
                 Fecha y hora de inicio del descuento
               </label>
@@ -314,7 +314,7 @@ class POSTCreateDiscount extends React.Component {
                   name="initialDate"
                   value={this.state.input.initialDate}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Fecha de inicio del descuento"
                   id="initialDate"
                 />
@@ -325,7 +325,7 @@ class POSTCreateDiscount extends React.Component {
                   name="initialTime"
                   value={this.state.input.initialTime}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Hora de inicio del descuento"
                   id="initialDate"
                 />
@@ -333,7 +333,7 @@ class POSTCreateDiscount extends React.Component {
 
               <div className="text-danger">{this.state.errors.initialDate}</div>
             </div>
-            <div class="form-group my-1 row justify-content-center">
+            <div className="form-group my-1 row justify-content-center">
               <label for="endDate" className="w-100 text-center">
                 Fecha y hora de fin del descuento
               </label>
@@ -343,7 +343,7 @@ class POSTCreateDiscount extends React.Component {
                   name="endDate"
                   value={this.state.input.endDate}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Fecha de fin del descuento"
                   id="endDate"
                 />
@@ -354,18 +354,18 @@ class POSTCreateDiscount extends React.Component {
                   name="endTime"
                   value={this.state.input.endTime}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Hora de fin del descuento"
                   id="endDate"
                 />
               </div>
               <div className="text-danger">{this.state.errors.endDate}</div>
             </div>
-            <div class="text-center">
+            <div className="text-center">
               <input
                 type="submit"
                 value="Crear descuento"
-                class="btn btn-primary"
+                className="btn btn-primary"
               />
             </div>
           </form>

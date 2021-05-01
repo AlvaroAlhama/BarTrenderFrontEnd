@@ -38,7 +38,7 @@ class DirectionRenderComponent extends Component {
         travelMode: window.google.maps.TravelMode.DRIVING
       },
       (result, status) => {
-        // console.log("status", status);
+  
         if (status === window.google.maps.DirectionsStatus.OK) {
           this.setState({
             directions: result,

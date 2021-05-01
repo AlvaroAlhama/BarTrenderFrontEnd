@@ -263,73 +263,73 @@ export default class EditClientProfile extends React.Component {
       if (this.state.method === "password") {
         return (
           <>
-            <div class="container-fluid bg-white">
+            <div className="container-fluid bg-white">
               <form onSubmit={this.handleSubmit}>
-                <div class="row">
-                  <div class="col pr-1 md-6">
-                    <div class="form-group my-1">
+                <div className="row">
+                  <div className="col pr-1 md-6">
+                    <div className="form-group my-1">
                       <label>Nombre</label>
                       <input
                         type="text"
                         name="name"
                         value={this.state.input.name}
                         onChange={this.handleChange}
-                        class="form-control"
+                        className="form-control"
                         id="name-owner"
                       />
-                      <div class="text-danger">{this.state.errors.name}</div>
+                      <div className="text-danger">{this.state.errors.name}</div>
                     </div>
                   </div>
-                  <div class="col pl-1 md-6">
-                    <div class="form-group my-1">
+                  <div className="col pl-1 md-6">
+                    <div className="form-group my-1">
                       <label>Apellido</label>
                       <input
                         type="text"
                         name="surname"
                         value={this.state.input.surname}
                         onChange={this.handleChange}
-                        class="form-control"
+                        className="form-control"
                         id="surname-owner"
                       />
-                      <div class="text-danger">{this.state.errors.surname}</div>
+                      <div className="text-danger">{this.state.errors.surname}</div>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col pr-1 md-6">
-                    <div class="form-group my-1">
+                <div className="row">
+                  <div className="col pr-1 md-6">
+                    <div className="form-group my-1">
                       <label>Email</label>
                       <input
                         type="email"
                         name="email"
                         value={this.state.input.email}
                         onChange={this.handleChange}
-                        class="form-control"
+                        className="form-control"
                         id="email-owner"
                       />
-                      <div class="text-danger">{this.state.errors.email}</div>
+                      <div className="text-danger">{this.state.errors.email}</div>
                     </div>
                   </div>
-                  <div class="col pl-1 md-6">
-                    <div class="form-group my-1">
+                  <div className="col pl-1 md-6">
+                    <div className="form-group my-1">
                       <label>Fecha de nacimiento</label>
                       <input
                         type="Date"
                         name="birthday"
                         value={this.state.input.birthday}
                         onChange={this.handleChange}
-                        class="form-control"
+                        className="form-control"
                         id="phone-owner"
                       />
-                      <div class="text-danger">
+                      <div className="text-danger">
                         {this.state.errors.birthday}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col pr-1 md-6">
-                    <div class="form-group my-1">
+                <div className="row">
+                  <div className="col pr-1 md-6">
+                    <div className="form-group my-1">
                       <label>Tu contraseña</label>
                       <input
                         type="password"
@@ -337,16 +337,16 @@ export default class EditClientProfile extends React.Component {
                         value={this.state.input.old_password}
                         placeholder="Ponga su contraseña para verificar los datos"
                         onChange={this.handleChange}
-                        class="form-control"
+                        className="form-control"
                         id="old-password-owner"
                       />
-                      <div class="text-danger">
+                      <div className="text-danger">
                         {this.state.errors.old_password}
                       </div>
                     </div>
                   </div>
-                  <div class="col pl-1 md-6">
-                    <div class="form-group my-1">
+                  <div className="col pl-1 md-6">
+                    <div className="form-group my-1">
                       <label>Nueva Contraseña</label>
                       <input
                         type="password"
@@ -354,33 +354,33 @@ export default class EditClientProfile extends React.Component {
                         defaultValue={this.state.input.password}
                         placeholder="Rellene este campo sólo si quiere cambiar la contraseña"
                         onChange={this.handleChange}
-                        class="form-control"
+                        className="form-control"
                         id="old-password-owner"
                       />
-                      <div class="text-danger">
+                      <div className="text-danger">
                         {this.state.errors.password}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="text-center pb-5">
+                <div className="text-center pb-5">
                   <input
                     type="submit"
                     value="Guardar cambios"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                   />
                 </div>
               </form>
-              <div class="container-fluid bg-danger">
-                <div class="text-white fw-bold text-center">
+              <div className="container-fluid bg-danger">
+                <div className="text-white fw-bold text-center">
                   {this.state.errorsApiPut === undefined
                     ? ""
                     : this.state.errorsApiPut.error}
                 </div>
               </div>
-              <div class="container-fluid bg-success">
-                <div class="text-white fw-bold text-center">
+              <div className="container-fluid bg-success">
+                <div className="text-white fw-bold text-center">
                   {this.state.msg === undefined ? "" : this.state.msg}
                 </div>
               </div>
@@ -390,38 +390,38 @@ export default class EditClientProfile extends React.Component {
       } else if (this.state.method === "google") {
         return (
           <>
-            <div class="container-fluid bg-white">
+            <div className="container-fluid bg-white">
               <form>
-                <div class="row">
-                  <div class="col pr-1 md-6">
-                    <div class="form-group my-1">
+                <div className="row">
+                  <div className="col pr-1 md-6">
+                    <div className="form-group my-1">
                       <label>Email</label>
                       <input
                         type="email"
                         name="email"
                         value={this.state.input.email}
                         readOnly
-                        class="form-control"
+                        className="form-control"
                         id="email-owner"
                       />
                     </div>
                   </div>
-                  <div class="col pl-1 md-6">
-                    <div class="form-group my-1">
+                  <div className="col pl-1 md-6">
+                    <div className="form-group my-1">
                       <label>Fecha de nacimiento</label>
                       <input
                         type="Date"
                         name="birthday"
                         value={this.state.input.birthday}
                         readOnly
-                        class="form-control"
+                        className="form-control"
                         id="phone-owner"
                       />
                     </div>
                   </div>
                 </div>
               </form>
-              <div class="row justify-content-center">
+              <div className="row justify-content-center">
                 <h4>
                   Si te has logueado con Google no puedes modificar tu perfil,
                   debes hacerlo mediante Google

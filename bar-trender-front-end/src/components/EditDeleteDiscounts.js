@@ -79,7 +79,6 @@ export default class EditDeleteDiscounts extends React.Component {
     var id_establishment = splited[3];
     var id_discount = this.state.discount.id;
 
-    console.log(this.state.sendFinal, "esto es lo que se envia");
     const urlUpdate =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       id_establishment +
@@ -480,7 +479,7 @@ export default class EditDeleteDiscounts extends React.Component {
       <>
         <Table responsive>
           <thead>
-            <tr class="text-center">
+            <tr className="text-center">
               <th>Nombre</th>
               <th>Códigos totales</th>
               <th>Códigos escaneados</th>
@@ -492,7 +491,7 @@ export default class EditDeleteDiscounts extends React.Component {
               ? ""
               : this.state.data.map((discount) => {
                   return (
-                    <tr class="text-center">
+                    <tr className="text-center">
                       <td>{discount.name}</td>
                       <td>{discount.totalCodes}</td>
                       <td>{discount.scannedCodes}</td>
@@ -564,10 +563,10 @@ export default class EditDeleteDiscounts extends React.Component {
                 </h4>
               </div>
               <ModalBody>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Nombre</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     name="name"
                     maxLength="50"
@@ -579,7 +578,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Descripción</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     name="description"
                     maxLength="140"
@@ -591,7 +590,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Códigos Totales</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     name="totalCodes"
                     value={this.state.input.totalCodes}
@@ -602,7 +601,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Códigos Escaneados</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     name="scannedCodes"
                     readOnly
@@ -614,7 +613,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Coste</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     name="cost"
                     value={this.state.input.cost}
@@ -623,21 +622,21 @@ export default class EditDeleteDiscounts extends React.Component {
                   <div className="text-danger pl-3">
                     {this.state.errors.cost}
                   </div>
-                  <div class="row">
-                    <div class="col">
+                  <div className="row">
+                    <div className="col">
                       <label>Fecha de Inicio</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="date"
                         name="initialDate"
                         value={this.state.input.initialDate}
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div class="col">
+                    <div className="col">
                       <label>Hora de Inicio</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="time"
                         name="initialHour"
                         value={this.state.input.initialHour}
@@ -648,21 +647,21 @@ export default class EditDeleteDiscounts extends React.Component {
                       {this.state.errors.initialDate}
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col">
+                  <div className="row">
+                    <div className="col">
                       <label>Fecha de Fin</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="date"
                         name="endDate"
                         value={this.state.input.endDate}
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div class="col">
+                    <div className="col">
                       <label>Hora de Fin</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="time"
                         name="endHour"
                         value={this.state.input.endHour}
@@ -688,15 +687,15 @@ export default class EditDeleteDiscounts extends React.Component {
                 >
                   Cancelar
                 </button>
-                <div class="container-fluid bg-danger">
-                  <div class="text-white fw-bold text-center">
+                <div className="container-fluid bg-danger">
+                  <div className="text-white fw-bold text-center">
                     {this.state.errorApiUpdate === undefined
                       ? ""
                       : this.state.errorApiUpdate.error}
                   </div>
                 </div>
-                <div class="container-fluid bg-success">
-                  <div class="text-white fw-bold text-center">
+                <div className="container-fluid bg-success">
+                  <div className="text-white fw-bold text-center">
                     {this.state.msg === undefined ? "" : this.state.msg}
                   </div>
                 </div>
@@ -725,8 +724,8 @@ export default class EditDeleteDiscounts extends React.Component {
                 <b>{this.state.input && this.state.input.name}</b> ?
               </ModalBody>
               <ModalFooter>
-                <div class="row w-100 justify-content-center">
-                  <div class="text-center">
+                <div className="row w-100 justify-content-center">
+                  <div className="text-center">
                     <button
                       className="btn btn-danger"
                       onClick={() => this.handleDelete()}
@@ -742,19 +741,19 @@ export default class EditDeleteDiscounts extends React.Component {
                     </button>
                   </div>
                 </div>
-                <div class="mt-2 mb-4 text-center">
-                  <p class="text-danger">{this.state.errors.errorCodes}</p>
-                  <p class="text-danger">{this.state.errors.errorDate}</p>
+                <div className="mt-2 mb-4 text-center">
+                  <p className="text-danger">{this.state.errors.errorCodes}</p>
+                  <p className="text-danger">{this.state.errors.errorDate}</p>
                 </div>
-                <div class="container-fluid bg-danger">
-                  <div class="text-white fw-bold text-center">
+                <div className="container-fluid bg-danger">
+                  <div className="text-white fw-bold text-center">
                     {this.state.errorApiDelete === undefined
                       ? ""
                       : this.state.errorApiDelete.error}
                   </div>
                 </div>
-                <div class="container-fluid bg-success">
-                  <div class="text-white fw-bold text-center">
+                <div className="container-fluid bg-success">
+                  <div className="text-white fw-bold text-center">
                     {this.state.msg === undefined ? "" : this.state.msg}
                   </div>
                 </div>

@@ -184,7 +184,6 @@ class ApiCreateEstablishmentForm extends React.Component {
         },
       });
     }
-    console.log(this.state.input)
   }
 
   handleSubmit(event) {

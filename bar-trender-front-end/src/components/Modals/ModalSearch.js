@@ -96,9 +96,6 @@ class ModalSearch extends React.Component {
       this.setState({ 'name': e.target.value },);
     } else {
       if (e.target.checked === true) {
-        // this.setState({ [type] : [name] },
-        //   () => console.log(this.state, "checked"),
-        // );
         if (this.state[type] === undefined) {
           this.setState({ [type]: [name] },
             () => console.log(this.state),
@@ -202,9 +199,9 @@ class ModalSearch extends React.Component {
 
                                   }}
                                 >
-                                  <i class={this.renderSwitch(key)}></i>
+                                  <i className={this.renderSwitch(key)}></i>
                                 </NavLink>
-                                <h6 class="align-center ">{key}</h6>
+                                <h6 className="align-center ">{key}</h6>
                               </Container>
                             </NavItem>
                           </>
@@ -225,7 +222,7 @@ class ModalSearch extends React.Component {
 
                             <i className="now-ui-icons shopping_tag-content"></i>
                           </NavLink>
-                          <h6 class="align-center ">Descuentos</h6>
+                          <h6 className="align-center ">Descuentos</h6>
                         </Container>
                       </NavItem>
                     </Nav>

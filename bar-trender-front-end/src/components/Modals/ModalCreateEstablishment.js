@@ -37,7 +37,7 @@ function ModelCreateEstablishment() {
             </button>
             <h4 className="title title-up">Nuevo establecimiento</h4>
           </div>
-          <div class="container">
+          <div className="container">
             <hr />
           </div>
           <ModalBody>

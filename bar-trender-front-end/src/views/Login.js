@@ -21,8 +21,8 @@ function loginOwner() {
       <>
         <div className="wrapper" id="wrapper-validation">
           <Row className="header bg-primary justify-content-center shadow pt-3 pb-3">
-            <img src={barTrender60} alt="bg validation" class="img-fluid" />
-            <h1 class="my-auto text-white ml-3">BarTrender</h1>
+            <img src={barTrender60} alt="bg validation" className="img-fluid" />
+            <h1 className="my-auto text-white ml-3">BarTrender</h1>
           </Row>
 
           <Row className="content align-items-center">
@@ -50,8 +50,8 @@ function loginOwner() {
       <>
         <div className="wrapper" id="wrapper-validation">
           <Row className="header bg-primary justify-content-center shadow pt-3 pb-3">
-            <img src={barTrender60} alt="bg validation" class="img-fluid" />
-            <h1 class="my-auto text-white ml-3">BarTrender</h1>
+            <img src={barTrender60} alt="bg validation" className="img-fluid" />
+            <h1 className="my-auto text-white ml-3">BarTrender</h1>
           </Row>
 
           <Row className="content align-items-center">

@@ -56,7 +56,6 @@ class POSTLoginFormQRValidator extends React.Component {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       this.setState({ emailOwner: data.ownerEmail, method: data.method });
     } else {
       const data = await response.json();
@@ -256,24 +255,24 @@ class POSTLoginFormQRValidator extends React.Component {
             <>
               <div>
                 <form onSubmit={this.handleSubmit}>
-                  <div class="form-group my-4">
+                  <div className="form-group my-4">
                     <input
                       name="password"
                       type="password"
                       value={this.state.input.password}
                       onChange={this.handleChange}
                       placeholder="Contraseña"
-                      class="form-control"
+                      className="form-control"
                     />
                     <div className="text-danger align-center">
                       {this.state.errors.password}
                     </div>
                   </div>
-                  <div class="text-center">
+                  <div className="text-center">
                     <input
                       type="submit"
                       value="Validar descuento"
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                     />
                   </div>
                 </form>
@@ -285,21 +284,21 @@ class POSTLoginFormQRValidator extends React.Component {
                   isOpen={this.state.modalFail}
                 >
                   <div className="modal-header justify-content-center">
-                    <div class="container mt-5 pt-5">
-                      <div class="row justify-content-center">
-                        <img src={barTrender60} alt="bg" class="img-fluid" />
-                        <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
+                    <div className="container mt-5 pt-5">
+                      <div className="row justify-content-center">
+                        <img src={barTrender60} alt="bg" className="img-fluid" />
+                        <h1 className="my-auto text-white ml-3">BARTRENDER</h1>
                       </div>
                     </div>
                   </div>
                   <ModalBody>
-                    <div class="row justify-content-center mt-5">
+                    <div className="row justify-content-center mt-5">
                       <h1 className="text-white text-center font-weight-bold">
                         ¡OOPS! HA OCURRIDO EL SIGUIENTE PROBLEMA
                       </h1>
                     </div>
-                    <div class="row justify-content-center   mt-3">
-                      <h2 class="my-auto text-white justify-content-center">
+                    <div className="row justify-content-center   mt-3">
+                      <h2 className="my-auto text-white justify-content-center">
                         {this.state.error}
                       </h2>
                       <img
@@ -312,7 +311,7 @@ class POSTLoginFormQRValidator extends React.Component {
                         }}
                       />
                     </div>
-                    <div class="row justify-content-center mt-5">
+                    <div className="row justify-content-center mt-5">
                       <h3 id="index-button-fail">
                         <a
                           href="/index"
@@ -333,20 +332,20 @@ class POSTLoginFormQRValidator extends React.Component {
                   isOpen={this.state.modalSuccess}
                 >
                   <div className="modal-header justify-content-center">
-                    <div class="container mt-5 pt-5">
-                      <div class="row justify-content-center">
-                        <img src={barTrender60} class="img-fluid" alt="bg" />
-                        <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
+                    <div className="container mt-5 pt-5">
+                      <div className="row justify-content-center">
+                        <img src={barTrender60} className="img-fluid" alt="bg" />
+                        <h1 className="my-auto text-white ml-3">BARTRENDER</h1>
                       </div>
                     </div>
                   </div>
                   <ModalBody>
-                    <div class="row justify-content-center mt-5">
+                    <div className="row justify-content-center mt-5">
                       <h1 className="text-white text-center font-weight-bold">
                         ¡DESCUENTO APLICADO CON ÉXITO!
                       </h1>
                     </div>
-                    <div class="row justify-content-center   mt-3">
+                    <div className="row justify-content-center   mt-3">
                       <img
                         src={success_boy}
                         alt="success"
@@ -357,7 +356,7 @@ class POSTLoginFormQRValidator extends React.Component {
                         }}
                       />
                     </div>
-                    <div class="row justify-content-center mt-5">
+                    <div className="row justify-content-center mt-5">
                       <h3 id="index-button-success">
                         <a
                           href="/index"

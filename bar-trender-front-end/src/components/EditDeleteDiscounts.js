@@ -55,20 +55,19 @@ export default class EditDeleteDiscounts extends React.Component {
     const urlGet =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       id_establishment +
-      "/get";
+      "/discounts/get?all=True";
 
     const get = await fetch(urlGet, {
       method: "GET",
       headers: {
         token: token,
+        apiKey: "8dDc431125634ef43cD13c388e6eCf11",
       },
     });
 
     const data = await get.json();
-
     this.setState({
-      data: data.discounts,
-      establishments: data.establishment,
+      data: data.results,
     });
   }
 
@@ -79,7 +78,6 @@ export default class EditDeleteDiscounts extends React.Component {
     var id_establishment = splited[3];
     var id_discount = this.state.discount.id;
 
-    console.log(this.state.sendFinal, "esto es lo que se envia");
     const urlUpdate =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       id_establishment +
@@ -170,29 +168,21 @@ export default class EditDeleteDiscounts extends React.Component {
   }
 
   selectDiscount(discount) {
-    const initDate = new Date((discount.initialDate + 7200) * 1000)
-      .toISOString()
-      .slice(0, 10);
-    const initHour = new Date((discount.initialDate + 7200) * 1000)
-      .toISOString()
-      .slice(11, 16);
+    const initDate = discount.initial_date.slice(0, 10);
+    const initHour = discount.initial_date.slice(11, 16);
 
-    if (discount.endDate != null) {
-      const endDate = new Date((discount.endDate + 7200) * 1000)
-        .toISOString()
-        .slice(0, 10);
-      const endHour = new Date((discount.endDate + 7200) * 1000)
-        .toISOString()
-        .slice(11, 16);
+    if (discount.end_date != null) {
+      const endDate = discount.end_date.slice(0, 10);
+      const endHour = discount.end_date.slice(11, 16);
 
       this.setState({
         discount: {
           id: discount.id,
-          name: discount.name,
-          description: discount.description,
-          totalCodes: discount.totalCodes,
-          scannedCodes: discount.scannedCodes,
-          cost: discount.cost,
+          name: discount.name_text,
+          description: discount.description_text,
+          totalCodes: discount.totalCodes_number,
+          scannedCodes: discount.scannedCodes_number,
+          cost: discount.cost_number,
           initialDate: initDate,
           initialHour: initHour,
           endDate: endDate,
@@ -200,17 +190,17 @@ export default class EditDeleteDiscounts extends React.Component {
         },
 
         input: {
-          name: discount.name,
-          description: discount.description,
-          totalCodes: discount.totalCodes,
-          scannedCodes: discount.scannedCodes,
-          cost: discount.cost,
+          name: discount.name_text,
+          description: discount.description_text,
+          totalCodes: discount.totalCodes_number,
+          scannedCodes: discount.scannedCodes_number,
+          cost: discount.cost_number,
           initialDate: initDate,
           initialHour: initHour,
           endDate: endDate,
           endHour: endHour,
         },
-        initialDate: discount.initialDate,
+        initialDate: moment.utc(discount.initial_date).unix(),
         errors: {},
         msg: "",
         errorApiGet: {},
@@ -221,11 +211,11 @@ export default class EditDeleteDiscounts extends React.Component {
       this.setState({
         discount: {
           id: discount.id,
-          name: discount.name,
-          description: discount.description,
-          totalCodes: discount.totalCodes,
-          scannedCodes: discount.scannedCodes,
-          cost: discount.cost,
+          name: discount.name_text,
+          description: discount.description_text,
+          totalCodes: discount.totalCodes_number,
+          scannedCodes: discount.scannedCodes_number,
+          cost: discount.cost_number,
           initialDate: initDate,
           initialHour: initHour,
           endDate: "",
@@ -233,17 +223,17 @@ export default class EditDeleteDiscounts extends React.Component {
         },
 
         input: {
-          name: discount.name,
-          description: discount.description,
-          totalCodes: discount.totalCodes,
-          scannedCodes: discount.scannedCodes,
-          cost: discount.cost,
+          name: discount.name_text,
+          description: discount.description_text,
+          totalCodes: discount.totalCodes_number,
+          scannedCodes: discount.scannedCodes_number,
+          cost: discount.cost_number,
           initialDate: initDate,
           initialHour: initHour,
           endDate: "",
           endHour: "",
         },
-        initialDate: discount.initialDate,
+        initialDate: moment.utc(discount.initial_date).unix(),
         errors: {},
         msg: "",
         errorApiGet: {},
@@ -493,11 +483,10 @@ export default class EditDeleteDiscounts extends React.Component {
               : this.state.data.map((discount) => {
                   return (
                     <tr class="text-center">
-                      <td>{discount.name}</td>
-                      <td>{discount.totalCodes}</td>
-                      <td>{discount.scannedCodes}</td>
+                      <td>{discount.name_text}</td>
+                      <td>{discount.totalCodes_number}</td>
+                      <td>{discount.scannedCodes_number}</td>
                       <td>
-                        {/* <button className='btn btn-primary' onClick={()=>{this.selectDiscount(discount); this.setState({modalUpdate:true})}}>Editar</button> */}
                         <OverlayTrigger
                           overlay={
                             <Tooltip id="tooltip-506045838">

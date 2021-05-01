@@ -69,7 +69,7 @@ function DashboardTopImage(props) {
 
   return (
     <div>
-      <h4>{nameBest} </h4>
+      <h4 style={{marginTop:"10px"}}>{nameBest} </h4>
       <img src= {imgBest} alt="Bartrender Best"></img>
     </div>
       

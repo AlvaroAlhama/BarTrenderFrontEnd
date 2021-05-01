@@ -64,6 +64,7 @@ function AdminView() {
   const [image, setImage] = React.useState(sidebarImage);
   const [color, setColor] = React.useState("black");
   const [hasImage, setHasImage] = React.useState(true);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const location = useLocation();
   const mainPanel = React.useRef(null);
   var token = sessionStorage.getItem("token");
@@ -74,6 +75,14 @@ function AdminView() {
     bar: {},
   });
   var token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+  })
+
   useEffect(() => {
     const apiUrl =
       "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner";
@@ -94,7 +103,7 @@ function AdminView() {
     loadBar();
   }, [setAppState]);
 
-  if(isBrowser){
+  if(windowWidth > 990){
     if (!token) {
       return (
 

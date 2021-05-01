@@ -16,8 +16,9 @@ function Example() {
             variant="dark"
             className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
             onClick={ handleShow }>
-              <img src={barTrender60} class="img-fluid" />
-            </Button>
+              {/*<img src={barTrender60} class="img-fluid" />*/}
+              <span>|||</span>
+      </Button>
 
       <Modal show={show} onHide={handleClose}>
       <div className="modal-header justify-content-center">

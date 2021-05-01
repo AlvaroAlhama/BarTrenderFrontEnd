@@ -519,7 +519,7 @@ export default class EditEstablishment extends React.Component {
                         {this.state.msg == undefined ? "" : this.state.msg}
                       </div>
                     </div>
-                    <div class="pull-right">
+                    <div class="">
                       <input
                         type="submit"
                         value="Guardar cambios"

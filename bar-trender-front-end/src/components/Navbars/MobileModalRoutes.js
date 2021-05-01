@@ -130,8 +130,7 @@ function MobileModalRoutes({ color, image }) {
                 className="nav-link"
                 activeClassName="active"
               >
-                <i className={prop.icon} />
-                <p>{prop.name}</p>
+                <h3>{prop.name}</h3>
               </NavLink>
             </li>
           );

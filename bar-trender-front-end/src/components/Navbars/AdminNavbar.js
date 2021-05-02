@@ -21,30 +21,57 @@ import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
 import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
+import routes from "routes.js";
 
 function Header() {
 
   function reportWindowSize() {
+
     const { innerWidth: width } = window;
     if(width < 800 && document.getElementById("logout-tooltip")!=null ){
+
       document.getElementById("logout-tooltip").classList.add("my-auto");
-      
+
     }
-    if(width > 800 && document.getElementById("logout-tooltip")!=null ){
+    if (width > 800 && document.getElementById("logout-tooltip") != null) {
       document.getElementById("logout-tooltip").classList.remove("my-auto");
-      
+
     }
   }
   window.addEventListener('resize', reportWindowSize);
-  
+
+  const isLoggedIn =
+    sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
+
+
   return (
     <Navbar bg="dark" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
           <MobileNavbarModal/>
           <h4 className="text-white my-auto">BarTrender</h4>
+
         </div>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
+        <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
+
+          <NavLink id="createEstablishment-tooltip" className="ml-2">
+            <ModalCreateEstablishment />
+            <UncontrolledTooltip target="#createEstablishment-tooltip">
+              Nuevo establecimiento
+                </UncontrolledTooltip>
+          </NavLink>
+
+          <NavLink id="account-tooltip" className="mr-2" z>
+            <ModalLogin />
+            <UncontrolledTooltip target="#account-tooltip">
+              Iniciar sesión / Cerrar Sesión
+                </UncontrolledTooltip>
+          </NavLink>
+
+
+        </div>
+
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
           <span className="navbar-toggler-bar burger-lines"></span>
           <span className="navbar-toggler-bar burger-lines"></span>
           <span className="navbar-toggler-bar burger-lines"></span>
@@ -70,10 +97,10 @@ function Header() {
             </NavItem>
             
           </Nav>
-        </Navbar.Collapse>
+        </Navbar.Collapse> */}
       </Container>
     </Navbar>
-    
+
   );
 }
 

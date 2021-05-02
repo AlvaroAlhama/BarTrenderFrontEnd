@@ -72,7 +72,7 @@ function EstablishmentView() {
       <Container fluid>
         <h1>Error</h1>
 
-        <h2> {appState.erorr_info}</h2>
+        <h2> {appState.error_info}</h2>
 
       </Container>
     );

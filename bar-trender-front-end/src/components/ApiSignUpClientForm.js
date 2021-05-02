@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import GoogleLogin from "react-google-login";
 
 class ApiSignUpClientForm extends React.Component {
   constructor() {
@@ -8,6 +9,7 @@ class ApiSignUpClientForm extends React.Component {
     this.state = {
       input: {
         rol: "client",
+        legal:false,
       },
 
       errors: {},
@@ -44,7 +46,17 @@ class ApiSignUpClientForm extends React.Component {
 
   handleChange(event) {
     let input = this.state.input;
-    input[event.target.name] = event.target.value;
+    if(event.target.type=="checkbox"){
+      if (input[event.target.name] == true ){
+        input[event.target.name] = false;
+      }
+      else{
+        input[event.target.name] = true;
+      }
+    }
+    else{
+      input[event.target.name] = event.target.value;
+    }
     this.setState({
       input,
     });
@@ -60,6 +72,7 @@ class ApiSignUpClientForm extends React.Component {
   
       this.state.input.birthday = birthday
       input["rol"] ="client"
+
       this.setState({
         input: input,
       });
@@ -116,6 +129,13 @@ class ApiSignUpClientForm extends React.Component {
       isValid = false;
 
       errors["password"] = "Escriba una contraseña.";
+    }
+
+    if (input["legal"]!=true) {
+      isValid = false;
+
+      errors["legal"] =
+      "Para darse de alta en el sistema debe aceptar los acuerdos de términos y las condiciones de uso.";
     }
 
     if (!input["birthday"]) {
@@ -210,7 +230,31 @@ class ApiSignUpClientForm extends React.Component {
             </div>
           </div>
 
+          <div className="form-group my-4">
+            <input
+              name="legal"
+              type="checkbox"
+              value={this.state.input.legal}
+              onChange={this.handleChange}
+              className="mr-2"
+            />
+            <label className="text-dark" for="legal">
+              Acepta los
+              <a target='_blank' className="text-decoration-none" href="/legal">
+                {" "}
+                Acuerdos de Términos{" "}
+              </a>
+              y las{" "}
+              <a target='_blank' className="text-decoration-none" href="/condiciones-uso">
+                Condiciones de Uso.
+              </a>
+            </label>
+            <div className="text-danger align-center">
+              {this.state.errors.legal}
+            </div>
+          </div>
           <div className="text-center">
+
             <input
               type="submit"
               value="Finalizar registro"
@@ -218,7 +262,6 @@ class ApiSignUpClientForm extends React.Component {
             />
           </div>
         </form>
-
       </div>
     );
   }

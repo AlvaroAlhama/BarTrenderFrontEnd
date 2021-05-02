@@ -7,6 +7,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     this.state = {
       input: {
         rol: "owner",
+        legal: false,
       },
 
       errors: {},
@@ -42,7 +43,17 @@ class ApiSignUpEstablishmentForm extends React.Component {
 
   handleChange(event) {
     let input = this.state.input;
-    input[event.target.name] = event.target.value;
+    if(event.target.type=="checkbox"){
+      if (input[event.target.name] == true ){
+        input[event.target.name] = false;
+      }
+      else{
+        input[event.target.name] = true;
+      }
+    }
+    else{
+      input[event.target.name] = event.target.value;
+    }
     this.setState({
       input,
     });
@@ -95,6 +106,12 @@ class ApiSignUpEstablishmentForm extends React.Component {
       }
     }
 
+    if (input["legal"] != true) {
+      isValid = false;
+      errors["legal"] =
+        "Para darse de alta en el sistema debe aceptar los acuerdos de términos y las condiciones de uso.";
+    }
+
     if (typeof input["password"] !== "undefined") {
       pattern = new RegExp(
         /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
@@ -137,9 +154,9 @@ class ApiSignUpEstablishmentForm extends React.Component {
     return (
       <div>
         <div className="text-danger">
-          <h6 className="my-3 text-center">
-            {this.state.error}
-          </h6>
+
+          <h6 className="my-3 text-center">{this.state.error}</h6>
+
         </div>
         <div className="row">
           <i className="fal fa-store fa-5x w-100 mb-4"></i>
@@ -190,7 +207,38 @@ class ApiSignUpEstablishmentForm extends React.Component {
               {this.state.errors.phone}
             </div>
           </div>
+
+          <div className="form-group my-4">
+            <input
+              name="legal"
+              type="checkbox"
+              value={this.state.input.legal}
+              onChange={this.handleChange}
+              checked={this.state.input.legal}
+              className="mr-2"
+            />
+            <label className="text-dark" for="legal">
+              Acepta los
+              <a target="_blank" className="text-decoration-none" href="/legal">
+                {" "}
+                Acuerdos de Términos{" "}
+              </a>
+              y las{" "}
+              <a
+                target="_blank"
+                className="text-decoration-none"
+                href="/condiciones-uso"
+              >
+                Condiciones de Uso.
+              </a>
+            </label>
+            <div className="text-danger align-center">
+              {this.state.errors.legal}
+            </div>
+          </div>
+
           <div className="text-center">
+
             <input
               type="submit"
               value="Finalizar registro"

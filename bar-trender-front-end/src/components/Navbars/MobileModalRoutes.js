@@ -5,6 +5,7 @@ import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
 import EstablishmentView from "views/EstablishmentView";
 import EditOwnerProfile from "components/EditOwnerProfile.js"
+import MainView from "views/MainView.js";
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
@@ -99,6 +100,16 @@ function MobileModalRoutes({ color, image }) {
             );      
       
           }
+
+          routes.push(
+            {
+              path: "/main",
+              name: "Página Principal",
+              icon: "nc-icon nc-circle-09",
+              component: MainView,
+              layout: "",
+            }
+          )
  
           setAppState({ loading: false, establishments: establishments, 
             routes: routes
@@ -124,6 +135,7 @@ function MobileModalRoutes({ color, image }) {
                   : activeRoute(prop.layout + prop.path)
               }
               key={key}
+              style={{listStyleType:"none"}}
             >
               <NavLink
                 to={prop.layout + prop.path}

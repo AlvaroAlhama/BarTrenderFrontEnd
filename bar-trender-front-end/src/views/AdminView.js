@@ -15,14 +15,8 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, Route, Switch } from "react-router-dom";
-import {
-  BrowserView,
-  MobileView,
-  isBrowser,
-  isMobile
-} from "react-device-detect";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin.js";
@@ -43,9 +37,17 @@ function AdminView() {
   const [image, setImage] = React.useState(sidebarImage);
   const [color, setColor] = React.useState("black");
   const [hasImage, setHasImage] = React.useState(true);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const location = useLocation();
   const mainPanel = React.useRef(null);
   var token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+  })
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
@@ -64,7 +66,7 @@ function AdminView() {
   };
   React.useEffect(() => {
   }, [location]);
-  if(isBrowser){
+  if(windowWidth > 990){
     if (!token) {
       return (
 
@@ -93,7 +95,6 @@ function AdminView() {
       );
     } else {
       if (sessionStorage.getItem("rol") === "owner") {
-
         return (
           <>
             <div className="wrapper">

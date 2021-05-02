@@ -17,10 +17,13 @@ import ModalSignUp from "../../components/Modals/ModalSignUp";
 import ModalEditClient from "../../components/Modals/ModalEditClient.js";
 
 import "./MainNavbar.css";
+import { useEffect } from "react";
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
@@ -46,10 +49,7 @@ function MainNavbar() {
   });
   function reportWindowSize() {
     const { innerWidth: width } = window;
-    if (width < 750 && document.getElementById("bartrender-title") != null) {
-      if (document.getElementById("bartrender-title") != null) {
-        document.getElementById("bartrender-title").classList.add("d-none");
-      }
+    if (width < 992) {
       if (document.getElementById("filters") != null) {
         document.getElementById("filters").classList.add("mx-auto");
       }
@@ -63,10 +63,7 @@ function MainNavbar() {
         document.getElementById("nav").style.backgroundColor="#E8A579";
       }
     }
-    if (width > 750 && document.getElementById("bartrender-title") != null) {
-      if (document.getElementById("bartrender-title") != null) {
-        document.getElementById("bartrender-title").classList.remove("d-none");
-      }
+    if (width >= 992) {
       if (document.getElementById("filters") != null) {
         document.getElementById("filters").classList.remove("mx-auto");
       }
@@ -83,6 +80,13 @@ function MainNavbar() {
       }
     }
   }
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+  })
   
   reportWindowSize()
   window.addEventListener("resize", reportWindowSize);
@@ -99,10 +103,12 @@ function MainNavbar() {
         <a class="navbar-brand" href="/main">
           <img className="img-fluid" alt="" src={barTrender} />
         </a>
-        <a id="bartrender-title" class="text-decoration-none" href="/main">
-          <h1 class="my-auto ml-4">BarTrender</h1>
-        </a>
-        <ModalSearch key={uuid.v4()} />
+        {(windowWidth > 990) &&
+          <a id="bartrender-title" class="text-decoration-none" href="/main">
+            <h1 class="my-auto ml-4">BarTrender</h1>
+          </a>}
+        
+        <ModalSearch key={uuid.v4()}/>
         <button
           className="navbar-toggler navbar-toggler mr-5"
           onClick={() => {

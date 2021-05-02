@@ -16,15 +16,12 @@ function DashboardTopImage(props) {
   const [modal2, setModal2] = React.useState(false);
   const { element } = props;
 
-
-
   const [appState, setAppState] = useState({
     stats: {},
   });
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-   
 
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
 
@@ -45,27 +42,16 @@ function DashboardTopImage(props) {
     loadStats()
   }, [setAppState]);
 
-  //Añadir todas las cervezas posibles junto a las imagenes en la carpeta. Esto no es definitivo
 
   var imgBest = bartrenderBlack
   var nameBest = "No hemos encontrado el elemento más buscado"
   if (appState.stats.first != undefined) {
-     nameBest = appState.stats.first.name
-    if (nameBest == "Cruzcampo"){
-     imgBest = cruzcampo
-    }else if(nameBest == "Heineken"){
-     imgBest = heineken
+    if (appState.stats.first.name != "None"){
+      nameBest = appState.stats.first.name
+      imgBest = appState.stats.first.photo_url
     }
-    else if(nameBest == "Paulaner"){
-      imgBest = paulaner
-     }
-    else if(nameBest == "Dardos"){
-      imgBest = dardos
-    }else if(nameBest == "Futbolin"){
-        imgBest = futbolin
-    }
+  }
   
-}
 
   return (
     <div>

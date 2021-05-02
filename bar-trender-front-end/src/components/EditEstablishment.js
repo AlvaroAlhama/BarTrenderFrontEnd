@@ -348,6 +348,50 @@ export default class EditEstablishment extends React.Component {
                     id="establishment-form"
                     onSubmit={(e) => this.handleSubmit(e)}
                   >
+                  {window.innerWidth < 525 && (
+                    <>
+                    <div class="row">
+                      <div class="col pr-1 md-6">
+                        <div class="form-group my-1">
+                          <label>Nombre del Establecimiento</label>
+                          <input
+                            type="text"
+                            name="name_text"
+                            maxLength="100"
+                            value={this.state.input.name_text}
+                            onChange={this.handleChange}
+                            class="form-control"
+                            id="name-establishment"
+                          />
+
+                        </div>
+                        <div class="text-danger">
+                          {this.state.errors.name_text}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col pr-1 md-6">
+                        <div class="form-group my-1">
+                          <label>Teléfono</label>
+                          <input
+                            type="tel"
+                            name="phone_number"
+                            value={this.state.input.phone_number}
+                            onChange={this.handleChange}
+                            class="form-control"
+                            id="phone-number"
+                          />
+                        </div>
+                        <div class="text-danger">
+                          {this.state.errors.phone_number}
+                        </div>
+                      </div>
+                    </div>
+                    </>
+                  )}
+                  {window.innerWidth >= 525 && (
+                    <>
                     <div class="row">
                       <div class="col pr-1 md-6">
                         <div class="form-group my-1">
@@ -384,6 +428,8 @@ export default class EditEstablishment extends React.Component {
                         </div>
                       </div>
                     </div>
+                    </>
+                  )}
                     <div class="row">
                       <div class="col md-12">
                         <div class="form-group my-1">
@@ -485,7 +531,7 @@ export default class EditEstablishment extends React.Component {
                           />
                         </FormGroup>
                       </div>
-                    </div>
+                    </div>                
                     <div class="row">
                       <div class="col">
                         <div class="form-group my-1">
@@ -519,7 +565,7 @@ export default class EditEstablishment extends React.Component {
                         {this.state.msg == undefined ? "" : this.state.msg}
                       </div>
                     </div>
-                    <div class="pull-right">
+                    <div class="">
                       <input
                         type="submit"
                         value="Guardar cambios"

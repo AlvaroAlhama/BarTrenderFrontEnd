@@ -155,6 +155,7 @@ function ModalLogin() {
           className="fal fa-user text-white fa-lg mt-1"
         >
           
+
         </i>
         <p onClick={() => setModal1(true)} className="d-lg-none d-xl-none my-auto text-white ml-2">Inicio de Sesión</p>
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
@@ -215,7 +216,7 @@ function ModalLogin() {
           className="fal fa-power-off text-white fa-lg mt-1"
           
         />
-        <p className="d-lg-none d-xl-none my-auto text-white ml-2">Cerrar sesión</p>
+        {/* <p className="d-lg-none d-xl-none my-auto text-white ml-2">Cerrar sesión</p> */}
         
       </>
     );

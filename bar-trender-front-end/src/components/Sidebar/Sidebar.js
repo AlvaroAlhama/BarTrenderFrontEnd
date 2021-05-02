@@ -142,8 +142,10 @@ function Sidebar({ color, image }) {
         <Nav>
           
           {appState.routes.map((prop, key) => {
-            if (!prop.redirect)
+            
+            if (!prop.redirect && !(sessionStorage.getItem("premium") == "false" && prop.path == '/PremiumDashboard'))
               return (
+
                 <li
                   className={
                     prop.upgrade

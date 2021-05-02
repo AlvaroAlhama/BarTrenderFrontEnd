@@ -8,8 +8,8 @@ export default class App extends React.Component {
   
   state = {
     loading: true,
-    qr: null,
-    error: null,
+    qr: undefined,
+    error: undefined,
   };
   
 
@@ -46,8 +46,8 @@ export default class App extends React.Component {
   render(){
     return (
       <div className="App">
-          <img src={this.state.loading || this.state.qr != null ? this.state.qr : null} alt="" />
-          <p>{this.state.error != null ? this.state.error: null}</p>
+          <img src={this.state.loading || this.state.qr !== undefined ? this.state.qr : undefined} alt="" />
+          <p>{this.state.error !== undefined ? this.state.error: undefined}</p>
       </div>
     );
   }

@@ -4,9 +4,9 @@ const { Marker, DirectionsRenderer } = require("react-google-maps");
 
 class DirectionRenderComponent extends Component {
   state = {
-    directions: null,
-    wayPoints: null,
-    currentLocation: null
+    directions: undefined,
+    wayPoints: undefined,
+    currentLocation: undefined
   };
   delayFactor = 0;
 
@@ -87,13 +87,13 @@ class DirectionRenderComponent extends Component {
     }, 1000);
   };
   render() {
-    let originMarker = null;
-    let destinationMarker = null;
+    let originMarker = undefined;
+    let destinationMarker = undefined;
     if (this.state.directions && this.props.index) {
       originMarker = (
         <Marker
           defaultLabel={this.props.index.toString()}
-          defaultIcon={null}
+          defaultIcon={undefined}
           position={{
             lat: parseFloat(this.props.from.lat),
             lng: parseFloat(this.props.from.lng)
@@ -103,7 +103,7 @@ class DirectionRenderComponent extends Component {
       destinationMarker = (
         <Marker
           label={this.props.index.toString()}
-          defaultIcon={null}
+          defaultIcon={undefined}
           position={{
             lat: parseFloat(this.props.to.lat),
             lng: parseFloat(this.props.to.lng)

@@ -4,7 +4,7 @@ export default class EstablishmentByOwner extends React.Component{
         
     state = {
         establishments: {},
-        error: null,
+        error: undefined,
     };
 
     

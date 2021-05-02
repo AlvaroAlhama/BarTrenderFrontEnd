@@ -11,8 +11,8 @@ export default class EditOwnerProfile extends React.Component {
         surname: "",
         email: "",
         phone: "",
-        old_password: null,
-        password: null,
+        old_password: undefined,
+        password: undefined,
       },
       method: "",
       sendFinal: {},
@@ -21,7 +21,7 @@ export default class EditOwnerProfile extends React.Component {
       errorsApiGetMethod: {},
       errorsApiPut: {},
       errors: {},
-      msg: null,
+      msg: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -50,8 +50,8 @@ export default class EditOwnerProfile extends React.Component {
           surname: data.surname,
           email: data.email,
           phone: data.phone,
-          old_password: null,
-          password: null,
+          old_password: undefined,
+          password: undefined,
         },
       });
     } else {

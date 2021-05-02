@@ -33,39 +33,39 @@ function SolidNavbar() {
   function reportWindowSize() {
     const { innerWidth: width } = window;
 
-    if (width < 750 && document.getElementById("bartrender-title") != null) {
-      if (document.getElementById("bartrender-title") != null) {
+    if (width < 750 && document.getElementById("bartrender-title") !== undefined) {
+      if (document.getElementById("bartrender-title") !== undefined) {
         document.getElementById("bartrender-title").classList.add("d-none");
       }
-      if (document.getElementById("filters") != null) {
+      if (document.getElementById("filters") !== undefined) {
         document.getElementById("filters").classList.add("mx-auto");
       }
-      if (document.getElementById("panel-control-icon") != null) {
+      if (document.getElementById("panel-control-icon") !== undefined) {
         document.getElementById("panel-control-icon").classList.add("my-auto");
       }
-      if (document.getElementById("logout-tooltip") != null) {
+      if (document.getElementById("logout-tooltip") !== undefined) {
         document.getElementById("logout-tooltip").classList.add("my-auto");
       }
-      if (document.getElementById("nav") != null) {
+      if (document.getElementById("nav") !== undefined) {
         document.getElementById("nav").style.backgroundColor="#E8A579";
       }
     }
-    if (width > 750 && document.getElementById("bartrender-title") != null) {
-      if (document.getElementById("bartrender-title") != null) {
+    if (width > 750 && document.getElementById("bartrender-title") !== undefined) {
+      if (document.getElementById("bartrender-title") !== undefined) {
         document.getElementById("bartrender-title").classList.remove("d-none");
       }
-      if (document.getElementById("filters") != null) {
+      if (document.getElementById("filters") !== undefined) {
         document.getElementById("filters").classList.remove("mx-auto");
       }
-      if (document.getElementById("panel-control-icon") != null) {
+      if (document.getElementById("panel-control-icon") !== undefined) {
         document
           .getElementById("panel-control-icon")
           .classList.remove("my-auto");
       }
-      if (document.getElementById("logout-tooltip") != null) {
+      if (document.getElementById("logout-tooltip") !== undefined) {
         document.getElementById("logout-tooltip").classList.remove("my-auto");
       }
-      if (document.getElementById("nav") != null) {
+      if (document.getElementById("nav") !== undefined) {
         document.getElementById("nav").style.backgroundColor=null;
       }
     }

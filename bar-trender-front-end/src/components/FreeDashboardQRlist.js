@@ -15,8 +15,8 @@ function DashboardQRList(props) {
     discounts: {},
   });
   const [paymentState] = useState({
-    create_time: null,
-    order_id: null
+    create_time: undefined,
+    order_id: undefined
   });
   const [discountPaymentInfoState, setDiscountPaymentInfoState] = useState({
     discountPaymentInfo: {},
@@ -102,7 +102,7 @@ function DashboardQRList(props) {
     const paymentUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
 
     const payment = () => {
-      if(paymentState.create_time !== null && paymentState.order_id !== null){
+      if(paymentState.create_time !== undefined && paymentState.order_id !== undefined){
           fetch(paymentUrl, {
             method: "POST",
             headers: {
@@ -173,7 +173,7 @@ function DashboardQRList(props) {
                         <i className="nc-icon nc-favourite-28 text-primary"></i>
                       </div>
                     </Row>
-                    <Row classname="justify-content-center">
+                    <Row className="justify-content-center">
                       <div className="numbers text-center">
                         <p className="card-category">
                           Número de usuarios que han canjeado los descuentos que

@@ -14,7 +14,7 @@ import {
 
 function Notifications() {
   const [showModal, setShowModal] = React.useState(false);
-  const notificationAlertRef = React.useRef(null);
+  const notificationAlertRef = React.useRef(undefined);
   const notify = (place) => {
     var color = Math.floor(Math.random() * 5 + 1);
     var type;

@@ -27,9 +27,9 @@ export default class EditEstablishment extends React.Component {
         tags: [],
       },
 
-      image_url: null,
+      image_url: undefined,
 
-      image: null,
+      image: undefined,
 
       selected: [],
 
@@ -47,7 +47,7 @@ export default class EditEstablishment extends React.Component {
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
-      msg: null,
+      msg: undefined,
       form: createRef(),
     };
 
@@ -330,7 +330,7 @@ export default class EditEstablishment extends React.Component {
             <img
               className="img-fluid w-100"
               alt = ""
-              src={this.state.image_url == null ? "" : this.state.image_url}
+              src={this.state.image_url === undefined ? "" : this.state.image_url}
             />
           </div>
           <div className="row">

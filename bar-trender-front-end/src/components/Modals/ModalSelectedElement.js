@@ -19,7 +19,7 @@ function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
-  const description = element.desc_text != null;
+  const description = element.desc_text !== undefined;
 
   const [appState, setAppState] = useState({
     discounts: {},
@@ -118,7 +118,7 @@ function ModalSelectedElement(prop) {
           <Row className="justify-content-center">
             <img
               className="image-container img-fluid mb-0 w-75"
-              src={element.photo_url != null ? element.photo_url : image_left}
+              src={element.photo_url !== undefined ? element.photo_url : image_left}
               onClick={() => setModal1(true)}
               alt=""
             />

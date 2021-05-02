@@ -30,7 +30,7 @@ export default class PremiumDashboard extends React.Component {
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
-      msg: null,
+      msg: undefined,
     };
     var query = window.location.search;
     let params = new URLSearchParams(query);

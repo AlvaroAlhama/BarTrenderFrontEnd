@@ -12,8 +12,8 @@ export default class EditClientProfile extends React.Component {
         surname: "",
         email: "",
         birthday: "",
-        old_password: null,
-        password: null,
+        old_password: undefined,
+        password: undefined,
       },
 
       method: "",
@@ -23,7 +23,7 @@ export default class EditClientProfile extends React.Component {
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
-      msg: null,
+      msg: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,8 +52,8 @@ export default class EditClientProfile extends React.Component {
           surname: data.surname,
           email: data.email,
           birthday: new Date(data.birthday * 1000).toISOString().slice(0, 10),
-          old_password: null,
-          password: null,
+          old_password: undefined,
+          password: undefined,
         },
       });
     } else {
@@ -140,7 +140,7 @@ export default class EditClientProfile extends React.Component {
     const birthdayToTS = moment.utc(`${inputs.birthday}`).unix();
     let sendWithNewpass = {};
     let send = {};
-
+    
     if (this.validate()) {
       if (inputs["password"] === undefined) {
         send["name"] = inputs.name;
@@ -148,7 +148,7 @@ export default class EditClientProfile extends React.Component {
         send["email"] = inputs.email;
         send["birthday"] = birthdayToTS;
         send["old_password"] = inputs.old_password;
-
+       
         this.state.sendFinal = send;
 
         this.handleUpdate();
@@ -355,7 +355,7 @@ export default class EditClientProfile extends React.Component {
                         placeholder="Rellene este campo sólo si quiere cambiar la contraseña"
                         onChange={this.handleChange}
                         className="form-control"
-                        id="old-password-owner"
+                        id="new-password-owner"
                       />
                       <div className="text-danger">
                         {this.state.errors.password}

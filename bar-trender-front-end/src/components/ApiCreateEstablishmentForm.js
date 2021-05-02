@@ -19,7 +19,7 @@ class ApiCreateEstablishmentForm extends React.Component {
         tags: [],
       },
 
-      image: null,
+      image: undefined,
 
       selected: [],
 

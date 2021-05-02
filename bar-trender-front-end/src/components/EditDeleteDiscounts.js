@@ -176,7 +176,7 @@ export default class EditDeleteDiscounts extends React.Component {
       .toISOString()
       .slice(11, 16);
 
-    if (discount.endDate != null) {
+    if (discount.endDate !== undefined) {
       const endDate = new Date((discount.endDate + 7200) * 1000)
         .toISOString()
         .slice(0, 10);

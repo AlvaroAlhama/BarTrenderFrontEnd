@@ -16,12 +16,11 @@
 
 */
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
+import { Navbar, Container } from "react-bootstrap";
+import { NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
 import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
-import routes from "routes.js";
 
 function Header() {
 
@@ -39,10 +38,6 @@ function Header() {
     }
   }
   window.addEventListener('resize', reportWindowSize);
-
-  const isLoggedIn =
-    sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
-
 
   return (
     <Navbar bg="dark" expand="lg">

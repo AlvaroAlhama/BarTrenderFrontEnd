@@ -581,7 +581,7 @@ export default class EditDeleteDiscounts extends React.Component {
             })}
           </Pagination>
         )}
-        {this.state.input == "" ? (
+        {this.state.input === "" ? (
           ""
         ) : (
           <>

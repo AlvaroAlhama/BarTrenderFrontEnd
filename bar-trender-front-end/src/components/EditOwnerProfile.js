@@ -326,7 +326,7 @@ export default class EditOwnerProfile extends React.Component {
                         placeholder="Rellene este campo sólo si quiere cambiar la contraseña"
                         onChange={this.handleChange}
                         className="form-control"
-                        id="old-password-owner"
+                        id="new-password-owner"
                       />
                       <div className="text-danger">
                         {this.state.errors.password}

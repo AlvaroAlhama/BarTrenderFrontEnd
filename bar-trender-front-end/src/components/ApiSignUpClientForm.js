@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import GoogleLogin from "react-google-login";
 
 class ApiSignUpClientForm extends React.Component {
   constructor() {
@@ -46,8 +45,8 @@ class ApiSignUpClientForm extends React.Component {
 
   handleChange(event) {
     let input = this.state.input;
-    if(event.target.type=="checkbox"){
-      if (input[event.target.name] == true ){
+    if(event.target.type ==="checkbox"){
+      if (input[event.target.name] === true ){
         input[event.target.name] = false;
       }
       else{
@@ -131,7 +130,7 @@ class ApiSignUpClientForm extends React.Component {
       errors["password"] = "Escriba una contraseña.";
     }
 
-    if (input["legal"]!=true) {
+    if (input["legal"]!==true) {
       isValid = false;
 
       errors["legal"] =

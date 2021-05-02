@@ -43,8 +43,8 @@ class ApiSignUpEstablishmentForm extends React.Component {
 
   handleChange(event) {
     let input = this.state.input;
-    if(event.target.type=="checkbox"){
-      if (input[event.target.name] == true ){
+    if(event.target.type ==="checkbox"){
+      if (input[event.target.name] === true ){
         input[event.target.name] = false;
       }
       else{
@@ -106,7 +106,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
       }
     }
 
-    if (input["legal"] != true) {
+    if (input["legal"] !== true) {
       isValid = false;
       errors["legal"] =
         "Para darse de alta en el sistema debe aceptar los acuerdos de términos y las condiciones de uso.";

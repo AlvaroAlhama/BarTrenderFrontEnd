@@ -1,7 +1,6 @@
 
 import React from "react";
 
-import { BrowserRouter as Link } from "react-router-dom";
 // react-bootstrap components
 import {
   Card,
@@ -9,10 +8,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-
 import ShowPremiumStats from "../components/ShowPremiumStats.js";
-import ApiSignUpEstablishmentForm from "components/ApiSignUpEstablishmentForm .js";
 
 export default class PremiumDashboard extends React.Component {
   constructor() {
@@ -118,11 +114,7 @@ export default class PremiumDashboard extends React.Component {
   }
 
   render() {
-<<<<<<< HEAD
-=======
-    
 
->>>>>>> develop
     if (sessionStorage.getItem("premium") === "true") {
       return (
         <>
@@ -148,19 +140,13 @@ export default class PremiumDashboard extends React.Component {
                       <div className="col-lg-4 col-md-6 col-xs-12">
                         <label className="container">Zona en la que buscar</label>
                       </div>
-<<<<<<< HEAD
+
                       <div className='col-lg-8 col-md-6 col-xs-12'>
                         <select 
                           name='zone_enum' 
                           onChange={this.handleChange} 
                            className='form-control'>
-=======
-                      <div class='col-lg-8 col-md-6 col-xs-12'>
-                        <select
-                          name='zone_enum'
-                          onChange={this.handleChange}
-                          class='form-control'>
->>>>>>> develop
+
                           {this.state.zone.zona.map((zona) => {
                             return <option value={zona}>{zona}</option>;
                           })}

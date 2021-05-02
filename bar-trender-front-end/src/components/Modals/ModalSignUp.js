@@ -19,7 +19,7 @@ function ModalSignUp() {
     }
   }
   window.addEventListener('resize', reportWindowSize);
-
+console.log(modal1)
   return (
     <>
       <i

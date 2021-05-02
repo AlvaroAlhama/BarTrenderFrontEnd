@@ -29,6 +29,7 @@ class ModalSearch extends React.Component {
       modal: props.initialModalState,
       fade: true,
       pills: "",
+      WindowWidth: window.innerWidth,
     };
 
 
@@ -147,6 +148,13 @@ class ModalSearch extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.state.WindowWidth = window.innerWidth;
+    console.log(this.state)
+  }
+
+  
+
   render() {
     return (
 
@@ -186,48 +194,97 @@ class ModalSearch extends React.Component {
                     >
 
                       {Object.entries(this.tags_grouped).map(([key, index]) => {
-                        return (
-                          <>
-
-                            <NavItem className="col-4">
-                              <Container className="mt-3 mb-3">
-                                <NavLink
-                                  className={this.state['pills'] === key ? "active" : ""}
-                                  href=""
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    this.setState({
-                                      pills: key,
-                                    })
-
-                                  }}
-                                >
-                                  <i class={this.renderSwitch(key)}></i>
-                                </NavLink>
-                                <h6 class="align-center ">{key}</h6>
-                              </Container>
-                            </NavItem>
-                          </>
-                        );
+                        if(this.state.WindowWidth < 450) {
+                          return (
+                            <>
+                              <NavItem className="col-4" >
+                                <Container className="mt-3 mb-3" style={{padding:"0", backgroundColor:"red"}}>
+                                  <NavLink
+                                    className={this.state['pills'] === key ? "active" : ""}
+                                    href=""
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      this.setState({
+                                        pills: key,
+                                      })
+  
+                                    }}
+                                  >
+                                    <i class={this.renderSwitch(key)}></i>
+                                  </NavLink>
+                                  <h6 class="align-center">{key}</h6>
+                                </Container>
+                              </NavItem>
+                            </>
+                          );
+                        }
+                        else{
+                          return (
+                            <>
+                              <NavItem className="col-4">
+                                <Container className="mt-3 mb-3">
+                                  <NavLink
+                                    className={this.state['pills'] === key ? "active" : ""}
+                                    href=""
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      this.setState({
+                                        pills: key,
+                                      })
+  
+                                    }}
+                                  >
+                                    <i class={this.renderSwitch(key)}></i>
+                                  </NavLink>
+                                  <h6 class="align-center">{key}</h6>
+                                </Container>
+                              </NavItem>
+                            </>
+                          );
+                        }
+                        
                       })}
-                      <NavItem className="col-4">
-                        <Container className="mt-3 mb-3">
-                          <NavLink
-                            className={this.state['pills'] === "Descuentos" ? "active" : ""}
-                            href=""
-                            onClick={(e) => {
-                              e.preventDefault();
-                              this.setState({
-                                pills: "Descuentos",
-                              })
-                            }}
-                          >
+                      {(this.state.WindowWidth < 450) && 
+                        <NavItem className="col-4">
+                          <Container className="mt-3 mb-3">
+                            <NavLink
+                              className={this.state['pills'] === "Descuentos" ? "active" : ""}
+                              href=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                this.setState({
+                                  pills: "Descuentos",
+                                })
+                              }}
+                            >
 
-                            <i className="now-ui-icons shopping_tag-content"></i>
-                          </NavLink>
-                          <h6 class="align-center ">Descuentos</h6>
-                        </Container>
-                      </NavItem>
+                              <i className="now-ui-icons shopping_tag-content"></i>
+                            </NavLink>
+                            <h6 class="align-center ">Descuentos</h6>
+                          </Container>
+                        </NavItem>
+                      }
+                      {(this.state.WindowWidth >= 450) && 
+                        <NavItem className="col-4">
+                          <Container className="mt-3 mb-3">
+                            <NavLink
+                              className={this.state['pills'] === "Descuentos" ? "active" : ""}
+                              href=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                this.setState({
+                                  pills: "Descuentos",
+                                })
+                              }}
+                            >
+
+                              <i className="now-ui-icons shopping_tag-content"></i>
+                            </NavLink>
+                            <h6 class="align-center ">Descuentos</h6>
+                          </Container>
+                        </NavItem>
+                      }
+                      
                     </Nav>
 
 

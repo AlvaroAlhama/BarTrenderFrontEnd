@@ -41,7 +41,7 @@ function ListView() {
       var data = location.state[0];
     
       for (const key in data) {
-        if (!(key === 'modal' || key === 'fade' ||  key ==='pills')){
+        if (!(key === 'modal' || key === 'fade' ||  key ==='pills' || key ==='WindowWidth')){
           filter["filters"][key] = data[key];
 
         }

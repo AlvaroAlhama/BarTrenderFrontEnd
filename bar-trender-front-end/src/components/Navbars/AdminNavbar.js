@@ -16,51 +16,59 @@
 
 */
 import React from "react";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
+import { Navbar, Container } from "react-bootstrap";
+import { NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
+import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
 
 function Header() {
 
-  const mobileSidebarToggle = (e) => {
-    e.preventDefault();
-    document.documentElement.classList.toggle("nav-open");
-    var node = document.createElement("div");
-    node.id = "bodyClick";
-    node.onclick = function () {
-      this.parentElement.removeChild(this);
-      document.documentElement.classList.toggle("nav-open");
-    };
-    document.body.appendChild(node);
-  };
   function reportWindowSize() {
+
     const { innerWidth: width } = window;
     if(width < 800 && document.getElementById("logout-tooltip")!=null ){
+
       document.getElementById("logout-tooltip").classList.add("my-auto");
-      
+
     }
-    if(width > 800 && document.getElementById("logout-tooltip")!=null ){
+    if (width > 800 && document.getElementById("logout-tooltip") != null) {
       document.getElementById("logout-tooltip").classList.remove("my-auto");
-      
+
     }
   }
   window.addEventListener('resize', reportWindowSize);
-  
+
   return (
     <Navbar bg="dark" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
-          <Button
-            variant="dark"
-            className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
-            onClick={mobileSidebarToggle}
-          >
-            <i className="fas fa-ellipsis-v"></i>
-          </Button>
-          <h4 class="text-white my-auto">BarTrender</h4>
+          <MobileNavbarModal/>
+
+          <a href="/main"><h4 className="text-white my-auto">BarTrender</h4></a>
+
+
         </div>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
+        <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
+
+          <NavLink id="createEstablishment-tooltip" className="ml-2">
+            <ModalCreateEstablishment />
+            <UncontrolledTooltip target="#createEstablishment-tooltip">
+              Nuevo establecimiento
+                </UncontrolledTooltip>
+          </NavLink>
+
+          <NavLink id="account-tooltip" className="mr-2" z>
+            <ModalLogin />
+            <UncontrolledTooltip target="#account-tooltip">
+              Iniciar sesión / Cerrar Sesión
+                </UncontrolledTooltip>
+          </NavLink>
+
+
+        </div>
+
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
           <span className="navbar-toggler-bar burger-lines"></span>
           <span className="navbar-toggler-bar burger-lines"></span>
           <span className="navbar-toggler-bar burger-lines"></span>
@@ -86,10 +94,10 @@ function Header() {
             </NavItem>
             
           </Nav>
-        </Navbar.Collapse>
+        </Navbar.Collapse> */}
       </Container>
     </Navbar>
-    
+
   );
 }
 

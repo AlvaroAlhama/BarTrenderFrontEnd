@@ -6,7 +6,7 @@ const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 class Directions extends Component {
   state = {
     defaultZoom: 5,
-    map: null,
+    map: sfined,
     center: {
       lat: 23.217724,
       lng: 72.667216

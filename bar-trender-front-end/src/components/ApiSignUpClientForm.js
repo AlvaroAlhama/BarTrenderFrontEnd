@@ -8,6 +8,7 @@ class ApiSignUpClientForm extends React.Component {
     this.state = {
       input: {
         rol: "client",
+        legal:false,
       },
 
       errors: {},
@@ -17,9 +18,10 @@ class ApiSignUpClientForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
+
   // call the api
   async handleSignUp() {
-    let errors = {};
+
     var url =
       "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
@@ -43,7 +45,17 @@ class ApiSignUpClientForm extends React.Component {
 
   handleChange(event) {
     let input = this.state.input;
-    input[event.target.name] = event.target.value;
+    if(event.target.type ==="checkbox"){
+      if (input[event.target.name] === true ){
+        input[event.target.name] = false;
+      }
+      else{
+        input[event.target.name] = true;
+      }
+    }
+    else{
+      input[event.target.name] = event.target.value;
+    }
     this.setState({
       input,
     });
@@ -53,13 +65,13 @@ class ApiSignUpClientForm extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
       const birthday = moment.utc(`${this.state.input.birthday}`).unix();
-    
-      this.state.input.birthday = birthday;
+  
+      this.state.input.birthday = birthday
       input["rol"] ="client"
+
       this.setState({
         input: input,
       });
@@ -101,7 +113,7 @@ class ApiSignUpClientForm extends React.Component {
     }
 
     if (typeof input["password"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
       );
       if (!pattern.test(input["password"])) {
@@ -116,6 +128,13 @@ class ApiSignUpClientForm extends React.Component {
       isValid = false;
 
       errors["password"] = "Escriba una contraseña.";
+    }
+
+    if (input["legal"]!==true) {
+      isValid = false;
+
+      errors["legal"] =
+      "Para darse de alta en el sistema debe aceptar los acuerdos de términos y las condiciones de uso.";
     }
 
     if (!input["birthday"]) {
@@ -133,14 +152,14 @@ class ApiSignUpClientForm extends React.Component {
         errors["birthday"] =
           "Para registrarte como usuario al menos tienes que tener 18 años.";
       }
-      if (today.getFullYear() - birthday.getFullYear() == 18) {
+      if (today.getFullYear() - birthday.getFullYear() === 18) {
         if (today.getMonth() < birthday.getMonth()) {
           isValid = false;
 
           errors["birthday"] =
             "Para registrarte como usuario al menos tienes que tener 18 años.";
         }
-        if (today.getMonth() == birthday.getMonth()) {
+        if (today.getMonth() === birthday.getMonth()) {
           if (today.getDate() < birthday.getDate()) {
             isValid = false;
             errors["birthday"] =
@@ -161,19 +180,19 @@ class ApiSignUpClientForm extends React.Component {
     return (
       <div>
         <div className="text-danger">
-          <h6 class="my-3 text-center">{this.state.error}</h6>
+          <h6 className="my-3 text-center">{this.state.error}</h6>
         </div>
         <div className="row">
           <i className="fal fa-glass-cheers fa-5x w-100 mb-4"></i>
         </div>
         <form onSubmit={this.handleSubmit}>
-          <div class="form-group my-1">
+          <div className="form-group my-1">
             <input
               type="text"
               name="email"
               value={this.state.input.email}
               onChange={this.handleChange}
-              class="form-control"
+              className="form-control"
               placeholder="Correo electrónico"
               id="email"
             />
@@ -181,28 +200,28 @@ class ApiSignUpClientForm extends React.Component {
             <div className="text-danger">{this.state.errors.email}</div>
           </div>
 
-          <div class="form-group my-4">
+          <div className="form-group my-4">
             <input
               name="password"
               type="password"
               value={this.state.input.password}
               onChange={this.handleChange}
               placeholder="Contraseña"
-              class="form-control"
+              className="form-control"
             />
           </div>
           <div className="text-danger align-center">
             {this.state.errors.password}
           </div>
 
-          <div class="form-group my-4">
+          <div className="form-group my-4">
             <input
               name="birthday"
               type="date"
               value={this.state.input.birthday}
               onChange={this.handleChange}
               placeholder="Fecha de Nacimiento"
-              class="form-control"
+              className="form-control"
             />
 
             <div className="text-danger align-center">
@@ -210,11 +229,35 @@ class ApiSignUpClientForm extends React.Component {
             </div>
           </div>
 
-          <div class="text-center">
+          <div className="form-group my-4">
+            <input
+              name="legal"
+              type="checkbox"
+              value={this.state.input.legal}
+              onChange={this.handleChange}
+              className="mr-2"
+            />
+            <label className="text-dark" for="legal">
+              Acepta los
+              <a target='_blank' className="text-decoration-none" href="/legal">
+                {" "}
+                Acuerdos de Términos{" "}
+              </a>
+              y las{" "}
+              <a target='_blank' className="text-decoration-none" href="/condiciones-uso">
+                Condiciones de Uso.
+              </a>
+            </label>
+            <div className="text-danger align-center">
+              {this.state.errors.legal}
+            </div>
+          </div>
+          <div className="text-center">
+
             <input
               type="submit"
               value="Finalizar registro"
-              class="btn btn-primary"
+              className="btn btn-primary"
             />
           </div>
         </form>

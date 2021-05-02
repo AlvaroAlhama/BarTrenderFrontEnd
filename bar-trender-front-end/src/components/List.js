@@ -3,7 +3,6 @@ import React from 'react';
 import ModalSelectedElement from "./Modals/ModalSelectedElement.js";
 
 import {
-  Row,
   Col,
 } from "reactstrap";
 
@@ -12,13 +11,13 @@ const List = (props) => {
   
  
 
-  if (!establishments || establishments.length === undefined) return <p>No establishments, sorry</p>;
+  if (!establishments || establishments.length === 0 ) return <h3 className="text-center text-danger">No existe ningún establecimiento con los filtros introducidos.</h3>;
   return (
 
     <ul className="ul-flex">
       <h2 className='list-head text-center'>Establecimientos</h2>
       
-      <Row className='list'>
+      <div className='list'>
         {establishments.map((establishment) => {
          
           return (
@@ -29,7 +28,7 @@ const List = (props) => {
             </>
           );
         })}
-      </Row>
+      </div>
     </ul>
   );
 };

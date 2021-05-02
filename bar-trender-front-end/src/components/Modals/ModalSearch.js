@@ -12,7 +12,6 @@ import {
   TabPane,
   NavItem,
   NavLink,
-  Nav,
   Container,
   Row,
 } from "reactstrap";
@@ -29,6 +28,7 @@ class ModalSearch extends React.Component {
       modal: props.initialModalState,
       fade: true,
       pills: "",
+      WindowWidth: window.innerWidth,
     };
 
 
@@ -92,16 +92,12 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-    if (e.target.name == 'name') {
+    if (e.target.name === 'name') {
       this.setState({ 'name': e.target.value },);
     } else {
-      if (e.target.checked == true) {
-        // this.setState({ [type] : [name] },
-        //   () => console.log(this.state, "checked"),
-        // );
-        if (this.state[type] == undefined) {
-          this.setState({ [type]: [name] },
-            () => console.log(this.state),
+      if (e.target.checked === true) {
+        if (this.state[type] === undefined) {
+          this.setState({ [type]: [name] }
           );
         } else {
           this.state[type].push(name);
@@ -147,19 +143,25 @@ class ModalSearch extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    this.state.WindowWidth = window.innerWidth;
+  }
+
+  
+
   render() {
     return (
 
       <>
         <Button
           color="primary"
-          className="mx-5"
+          className="ml-3"
           onClick={this.toggle}
           id="filters"
         >
           Filtros
         </Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} style={{width:"100%", margin:"auto"}}>
           <div className="modal-header justify-content-center">
             <button
               className="close"
@@ -178,60 +180,102 @@ class ModalSearch extends React.Component {
 
                   <div className="nav-align-center">
 
-
-                    <Nav
-                      className="nav-pills-info nav-pills-just-icons justify-content-center w-100"
-                      pills
-                      role="tablist"
-                    >
+                    <div style={{display:"flex", flexFlow:"row wrap", listStyle:"none"}}>
 
                       {Object.entries(this.tags_grouped).map(([key, index]) => {
-                        return (
-                          <>
 
-                            <NavItem className="col-4">
-                              <Container className="mt-3 mb-3">
-                                <NavLink
-                                  className={this.state['pills'] === key ? "active" : ""}
-                                  href=""
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    this.setState({
-                                      pills: key,
-                                    })
-
-                                  }}
-                                >
-                                  <i class={this.renderSwitch(key)}></i>
-                                </NavLink>
-                                <h6 class="align-center ">{key}</h6>
-                              </Container>
-                            </NavItem>
-                          </>
-                        );
+                        if(this.state.WindowWidth < 450) {
+                          return (
+                            <>
+                              <NavItem className="col-4 p-0">
+                                <Container className="mt-3 mb-3">
+                                  <NavLink
+                                    className={this.state['pills'] === key ? "active" : ""}
+                                    href=""
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      this.setState({
+                                        pills: key,
+                                      })
+  
+                                    }}
+                                  >
+                                    <i className={this.renderSwitch(key)}></i>
+                                  </NavLink>
+                                  <h6 className="align-center">{key}</h6>
+                                </Container>
+                              </NavItem>
+                            </>
+                          );
+                        }
+                        else{
+                          return (
+                            <>
+                              <NavItem className="col-4">
+                                <Container className="mt-3 mb-3">
+                                  <NavLink
+                                    className={this.state['pills'] === key ? "active" : ""}
+                                    href=""
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      this.setState({
+                                        pills: key,
+                                      })
+  
+                                    }}
+                                  >
+                                    <i className={this.renderSwitch(key)}></i>
+                                  </NavLink>
+                                  <h6 className="align-center">{key}</h6>
+                                </Container>
+                              </NavItem>
+                            </>
+                          );
+                        }
+                        
                       })}
-                      <NavItem className="col-4">
-                        <Container className="mt-3 mb-3">
-                          <NavLink
-                            className={this.state['pills'] === "Descuentos" ? "active" : ""}
-                            href=""
-                            onClick={(e) => {
-                              e.preventDefault();
-                              this.setState({
-                                pills: "Descuentos",
-                              })
-                            }}
-                          >
+                      {(this.state.WindowWidth < 450) && 
+                        <NavItem className="col-4 p-0">
+                          <Container className="mt-3 mb-3">
+                            <NavLink
+                              className={this.state['pills'] === "Descuentos" ? "active" : ""}
+                              href=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                this.setState({
+                                  pills: "Descuentos",
+                                })
+                              }}
+                            >
 
-                            <i className="now-ui-icons shopping_tag-content"></i>
-                          </NavLink>
-                          <h6 class="align-center ">Descuentos</h6>
-                        </Container>
-                      </NavItem>
-                    </Nav>
+                              <i className="now-ui-icons shopping_tag-content"></i>
+                            </NavLink>
+                            <h6 className="align-center ">Descuentos</h6>
+                          </Container>
+                        </NavItem>
+                      }
+                      {(this.state.WindowWidth >= 450) && 
+                        <NavItem className="col-4">
+                          <Container className="mt-3 mb-3">
+                            <NavLink
+                              className={this.state['pills'] === "Descuentos" ? "active" : ""}
+                              href=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                this.setState({
+                                  pills: "Descuentos",
+                                })
+                              }}
+                            >
 
-
-
+                              <i className="now-ui-icons shopping_tag-content"></i>
+                            </NavLink>
+                            <h6 className="align-center ">Descuentos</h6>
+                          </Container>
+                        </NavItem>
+                      }
+                    </div>
+                    
                   </div>
                 </Col>
               </Row>

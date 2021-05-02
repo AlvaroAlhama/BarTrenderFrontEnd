@@ -1,4 +1,5 @@
-import React from "react";
+import {React, useEffect } from "react";
+
 import barTrender from "../../assets/img/barTrender60.png";
 import * as uuid from "uuid";
 
@@ -17,69 +18,20 @@ import ModalSignUp from "../../components/Modals/ModalSignUp";
 import ModalEditClient from "../../components/Modals/ModalEditClient.js";
 
 import "./MainNavbar.css";
-import { useEffect } from "react";
 
-function MainNavbar() {
+function SolidNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
   React.useEffect(() => {
-    const updateNavbarColor = () => {
-      if (
-        document.documentElement.scrollTop > 200 ||
-        document.body.scrollTop > 200
-      ) {
+      
         setNavbarColor("bg-primary");
         document.getElementById("filters").classList.remove("btn-primary");
-        document.getElementById("filters").classList.add("bg-dark"); 
-        
-      } else if (
-        document.documentElement.scrollTop < 201 ||
-        document.body.scrollTop < 201
-      ) {
-        
-        setNavbarColor("navbar-transparent");
-      }
-    };
-    window.addEventListener("scroll", updateNavbarColor);
-    return function cleanup() {
-      window.removeEventListener("scroll", updateNavbarColor);
-    };
-  });
-  function reportWindowSize() {
-    const { innerWidth: width } = window;
-    if (width < 992) {
-      if (document.getElementById("filters") != null) {
-        document.getElementById("filters").classList.add("mx-auto");
-      }
-      if (document.getElementById("panel-control-icon") != null) {
-        document.getElementById("panel-control-icon").classList.add("my-auto");
-      }
-      if (document.getElementById("logout-tooltip") != null) {
-        document.getElementById("logout-tooltip").classList.add("my-auto");
-      }
-      if (document.getElementById("nav") != null) {
-        document.getElementById("nav").style.backgroundColor="#E8A579";
-      }
-    }
-    if (width >= 992) {
-      if (document.getElementById("filters") != null) {
-        document.getElementById("filters").classList.remove("mx-auto");
-      }
-      if (document.getElementById("panel-control-icon") != null) {
-        document
-          .getElementById("panel-control-icon")
-          .classList.remove("my-auto");
-      }
-      if (document.getElementById("logout-tooltip") != null) {
-        document.getElementById("logout-tooltip").classList.remove("my-auto");
-      }
-      if (document.getElementById("nav") != null) {
-        document.getElementById("nav").style.backgroundColor=null;
-      }
-    }
-  }
+        document.getElementById("filters").classList.add("btn-outline-light");
+     
+
+  },[]);
 
   useEffect(() => {
     function handleResize() {
@@ -87,6 +39,47 @@ function MainNavbar() {
     }
     window.addEventListener('resize', handleResize)
   })
+
+  function reportWindowSize() {
+    const { innerWidth: width } = window;
+
+    if (width < 750 && document.getElementById("bartrender-title") !=null) {
+      if (document.getElementById("bartrender-title") !=null) {
+        document.getElementById("bartrender-title").classList.add("d-none");
+      }
+      if (document.getElementById("filters") !=null) {
+        document.getElementById("filters").classList.add("mx-auto");
+      }
+      if (document.getElementById("panel-control-icon") !=null) {
+        document.getElementById("panel-control-icon").classList.add("my-auto");
+      }
+      if (document.getElementById("logout-tooltip") !=null) {
+        document.getElementById("logout-tooltip").classList.add("my-auto");
+      }
+      if (document.getElementById("nav") !=null) {
+        document.getElementById("nav").style.backgroundColor="#E8A579";
+      }
+    }
+    if (width > 750 && document.getElementById("bartrender-title") !=null) {
+      if (document.getElementById("bartrender-title") !=null) {
+        document.getElementById("bartrender-title").classList.remove("d-none");
+      }
+      if (document.getElementById("filters") !=null) {
+        document.getElementById("filters").classList.remove("mx-auto");
+      }
+      if (document.getElementById("panel-control-icon") !=null) {
+        document
+          .getElementById("panel-control-icon")
+          .classList.remove("my-auto");
+      }
+      if (document.getElementById("logout-tooltip") !=null) {
+        document.getElementById("logout-tooltip").classList.remove("my-auto");
+      }
+      if (document.getElementById("nav") !=null) {
+        document.getElementById("nav").style.backgroundColor=null;
+      }
+    }
+  }
   
   reportWindowSize()
   window.addEventListener("resize", reportWindowSize);
@@ -103,12 +96,13 @@ function MainNavbar() {
         <a className="navbar-brand" href="/main">
           <img className="img-fluid" alt="" src={barTrender} />
         </a>
+
         {(windowWidth > 990) &&
           <a id="bartrender-title" className="text-decoration-none" href="/main">
             <h1 className="my-auto ml-4">BarTrender</h1>
           </a>}
-        
-        <ModalSearch key={uuid.v4()}/>
+
+        <ModalSearch key={uuid.v4()} />
         <button
           className="navbar-toggler navbar-toggler mr-5"
           onClick={() => {
@@ -131,7 +125,7 @@ function MainNavbar() {
                 cursor="pointer"
               >
                 <i className="fab fa-twitter fa-lg w-100 text-white my-auto"></i>
-                <p className="d-lg-none text-white d-xl-none mt-2 ml-2">
+                <p className="d-lg-none  d-xl-none mt-2 ml-2">
                   Twitter
                 </p>
               </NavLink>
@@ -207,4 +201,4 @@ function MainNavbar() {
   );
 }
 
-export default MainNavbar;
+export default SolidNavbar;

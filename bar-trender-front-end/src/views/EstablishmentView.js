@@ -26,10 +26,10 @@ function EstablishmentView() {
 
     return idEstablishment;
   };
-  const id_establishment = idEstablishment();
-
+ 
   useEffect(() => {
-    console.log('EstablishmentView loaded');
+
+    const id_establishment = idEstablishment();
 
     setAppState({ loading: true });
     var token = sessionStorage.getItem("token");
@@ -48,7 +48,6 @@ function EstablishmentView() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, 'establishments');
         if (data['error'] === undefined) {
           setAppState({
 
@@ -73,7 +72,7 @@ function EstablishmentView() {
       <Container fluid>
         <h1>Error</h1>
 
-        <h2> {appState.erorr_info}</h2>
+        <h2> {appState.error_info}</h2>
 
       </Container>
     );

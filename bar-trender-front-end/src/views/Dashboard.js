@@ -9,13 +9,15 @@ import {
 import FreeDashboardQRList from "../components/FreeDashboardQRlist";
 import DashboardTopImage from "../components/DashboardTopImage";
 import FreePieChart from "../components/FreePieChart.js";
+import './css/Dashboard.css';
 
 function Dashboard() {
   const [appState, setAppState] = useState({
     bar: {},
+
   });
-  var token = sessionStorage.getItem("token");
   useEffect(() => {
+    var token = sessionStorage.getItem("token");
     const apiUrl =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner";
     async function loadBar() {
@@ -43,53 +45,47 @@ function Dashboard() {
         <Container fluid>
           <Row>
             <Card>
-              <h2>No ha añadido ningun establecimiento a nuestra aplicación. Puede acceder a las estadisticas gratuitas, pero no podrá acceder a la creacion de descuentos hasta que añada uno </h2>
+
+            </Card>
+            <Card>
+
+              <Card.Body>
+                <Container fluid>
+                  <Row classname="justify-content-center">
+                    <div className="numbers text-center">
+                      <p className="card-category">
+                        Tus establecimientos
+                        </p>
+                    </div>
+                  </Row>
+                  <Row className="justify-content-center">
+                    <div className="icon-big icon-warning">
+                      <h3>No ha añadido ningun establecimiento a nuestra aplicación. Puede acceder a las estadisticas gratuitas,
+                pero no podrá acceder a la creacion de descuentos hasta que añada uno </h3>
+                    </div>
+                  </Row>
+                </Container>
+              </Card.Body>
+
             </Card>
           </Row>
           <Row>
-            <Col md="4">
-              <h3>La cerveza favorita de los Usuarios</h3>
+            <Col lg="6" md="6" xs="12">
               <Card>
-                <Card.Body>
-                  <DashboardTopImage filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos obtenidos de la api de Bartrender
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-            <Col md="4">
-              <h3>Ranking de las 3 mejores cervezas</h3>
-              <Card>
-                <Card.Header>
-                </Card.Header>
-                <Card.Body>
-                  <FreePieChart filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-          </Row>
 
-          <Row>
-            <Col md="4">
-              <h3>¿Que prefiere la gente para divertirse?</h3>
-              <Card>
-                <Card.Header>
-                  
-                </Card.Header>
                 <Card.Body>
-                  <DashboardTopImage filter={"Ocio"} />
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          La cerveza favorita de los Usuarios
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                        <DashboardTopImage filter={"Bebida"} />
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
@@ -100,17 +96,94 @@ function Dashboard() {
                 </Card.Footer>
               </Card>
             </Col>
-            <Col md="4">
-              <h3>Los elementos de ocio más buscados</h3>
+            <Col lg="6" md="6" xs="12">
               <Card>
-                <Card.Header></Card.Header>
+                <Card.Header>
+
+                </Card.Header>
                 <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Ranking de las 3 mejores cervezas
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className='h-100'>
+
+                      <FreePieChart filter={"Bebida"} />
+
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
                   <div className="stats">
                     <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
+                    Datos actualizados a diario
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header>
+
+                </Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          ¿Que prefiere la gente para divertirse?
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                      <div className="icon-big icon-warning">
+                        {/* <i className="nc-icon nc-favourite-28 text-primary"></i> */}
+                        <DashboardTopImage filter={"Ocio"} />
+                      </div>
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="fas fa-check"></i>
+                    Datos obtenidos de la api de Bartrender
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Los elementos de ocio más buscados
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className='h-100'>
+
+                      <FreePieChart filter={"Ocio"} />
+
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="now-ui-icons loader_refresh spin"></i>
+                    Datos actualizados a diario
                   </div>
                 </Card.Footer>
               </Card>
@@ -133,6 +206,7 @@ function Dashboard() {
     return (
       <>
         <Container fluid>
+
           <h3>Tus Descuentos en uso</h3>
           {listQREstablishments
           }
@@ -140,49 +214,24 @@ function Dashboard() {
 
           <Row>
             <Col lg="6" md="6" xs="12">
-              <h3>La cerveza favorita de los Usuarios</h3>
               <Card>
-                <Card.Body>
-                  <DashboardTopImage filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos obtenidos de la api de Bartrender
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-            <Col lg="6" md="6" xs="12">
-              <h3>Ranking de las 3 mejores cervezas</h3>
-              <Card>
-                <Card.Header>
-                 
-                </Card.Header>
-                <Card.Body>
-                  <FreePieChart filter={"Bebida"} />
-                </Card.Body>
-                <Card.Footer>
-                  <hr></hr>
-                  <div className="stats">
-                    <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
-                  </div>
-                </Card.Footer>
-              </Card>
-            </Col>
-          </Row>
 
-          <Row>
-            <Col lg="6" md="6" xs="12">
-              <h3>¿Que prefiere la gente para divertirse?</h3>
-              <Card>
-                <Card.Header>
-                 
-                </Card.Header>
                 <Card.Body>
-                  <DashboardTopImage filter={"Ocio"} />
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          La cerveza favorita de los Usuarios
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                      <div className="icon-big icon-warning">
+                        {/* <i className="nc-icon nc-favourite-28 text-primary"></i> */}
+                        <DashboardTopImage filter={"Bebida"} />
+                      </div>
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
@@ -194,17 +243,92 @@ function Dashboard() {
               </Card>
             </Col>
             <Col lg="6" md="6" xs="12">
-              <h3>Los elementos de ocio más buscados</h3>
               <Card>
-                <Card.Header></Card.Header>
+                <Card.Header>
+
+                </Card.Header>
                 <Card.Body>
-                  <FreePieChart filter={"Ocio"} />
+                  <Container fluid className='h-100'>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Ranking de las 3 mejores cervezas
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center h-100">
+                      <FreePieChart filter={"Bebida"} />
+
+                    </Row>
+                  </Container>
                 </Card.Body>
                 <Card.Footer>
                   <hr></hr>
                   <div className="stats">
                     <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
+                    Datos actualizados a diario
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header>
+
+                </Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          ¿Que prefiere la gente para divertirse?
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className="justify-content-center">
+                      <div className="icon-big icon-warning">
+                        {/* <i className="nc-icon nc-favourite-28 text-primary"></i> */}
+                        <DashboardTopImage filter={"Ocio"} />
+                      </div>
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="fas fa-check"></i>
+                    Datos obtenidos de la api de Bartrender
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Col>
+            <Col lg="6" md="6" xs="12">
+              <Card>
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <Container fluid>
+                    <Row classname="justify-content-center">
+                      <div className="numbers text-center">
+                        <p className="card-category">
+                          Los elementos de ocio más buscados
+                        </p>
+                      </div>
+                    </Row>
+                    <Row className='h-100'>
+
+                      <FreePieChart filter={"Ocio"} />
+
+                    </Row>
+                  </Container>
+                </Card.Body>
+                <Card.Footer>
+                  <hr></hr>
+                  <div className="stats">
+                    <i className="now-ui-icons loader_refresh spin"></i>
+                    Datos actualizados a diario
                   </div>
                 </Card.Footer>
               </Card>

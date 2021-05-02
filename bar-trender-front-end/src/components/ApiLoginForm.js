@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Redirect } from "react-router-dom";
 
 class POSTLoginForm extends React.Component {
 
@@ -43,7 +42,6 @@ class POSTLoginForm extends React.Component {
 
       window.location.href = "/index";
     } else {
-      const data = await response.blob();
       this.setState({ loading: false });
       errors["email"] = "Email o contraseña incorrecta.";
     }
@@ -66,7 +64,6 @@ class POSTLoginForm extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
 
@@ -124,7 +121,7 @@ class POSTLoginForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div class="form-group my-1">
+          <div className="form-group my-1">
 
             <input
               type="text"
@@ -132,7 +129,7 @@ class POSTLoginForm extends React.Component {
 
               value={this.state.input.email}
               onChange={this.handleChange}
-              class="form-control"
+              className="form-control"
               placeholder="Correo electrónico"
               id="email"
             />
@@ -141,7 +138,7 @@ class POSTLoginForm extends React.Component {
             <div className="text-danger">{this.state.errors.email}</div>
           </div>
 
-          <div class="form-group my-4">
+          <div className="form-group my-4">
             <input
 
               name="password"
@@ -151,7 +148,7 @@ class POSTLoginForm extends React.Component {
 
               onChange={this.handleChange}
               placeholder="Contraseña"
-              class="form-control"
+              className="form-control"
             />
 
 
@@ -160,11 +157,11 @@ class POSTLoginForm extends React.Component {
             </div>
           </div>
 
-          <div class="text-center">
+          <div className="text-center">
             <input
               type="submit"
               value="Iniciar sesión"
-              class="btn btn-primary"
+              className="btn btn-primary"
             />
           </div>
 

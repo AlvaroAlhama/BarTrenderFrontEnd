@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import {
   withGoogleMap,
-  withScriptjs,
   GoogleMap,
   DirectionsRenderer
 } from "react-google-maps";
@@ -20,7 +19,7 @@ class Map extends Component {
     super(props);
 
     this.state = {
-      directions: null,
+      directions: undefined,
       coords: {
         lat: -3.745,
         lng: -38.523
@@ -72,7 +71,6 @@ class Map extends Component {
           },
           (result, status) => {
             if (status === google.maps.DirectionsStatus.OK) {
-              console.log(result)
               this.setState({
                 directions: result
               });
@@ -91,7 +89,7 @@ class Map extends Component {
   }
 
   render() {
-    if (this.state.directions != null) {
+    if (this.state.directions !== undefined) {
       
 
     }
@@ -121,7 +119,7 @@ class Map extends Component {
     return (
       <div>
         <OverlayTrigger overlay={<Tooltip id="tooltip-506045838">Si has permitido el acceso a tu ubicación se mostrará la ruta al establecimiento</Tooltip>}>
-          <Button color="default" color="primary" type="button"
+          <Button color="primary" type="button"
             onClick={() => {
               this.setState(
                 {
@@ -137,9 +135,9 @@ class Map extends Component {
         </OverlayTrigger>
         {(this.state.directions_active) ? 
         <p>
-          Distancia: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].distance.text + " - " : 'No hay ruta' + " - "}
-          Duración: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].duration.text + " - " : 'Ninguna' + " - "}
-          {/* Modo de transporte: {(this.state.directions != null) ? this.state.directions.routes[0].legs[0].steps[0].travel_mode + " - " : 'None'} */}
+          Distancia: {(this.state.directions !== undefined) ? this.state.directions.routes[0].legs[0].distance.text + " - " : 'No hay ruta - '}
+          Duración: {(this.state.directions !== undefined) ? this.state.directions.routes[0].legs[0].duration.text + " - " : 'Ninguna - '}
+
         </p>
           : ""}
 

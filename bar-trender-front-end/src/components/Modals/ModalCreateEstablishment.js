@@ -25,7 +25,7 @@ function ModelCreateEstablishment() {
           id="create-tooltip"
           className="fal fa-plus-square mt-1 text-white fa-lg"
         ></i>
-        <p className="d-lg-none text-white d-xl-none ml-2">Crear establecimiento</p>
+        {/* <p className="d-lg-none text-white d-xl-none ml-2">Crear establecimiento</p> */}
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
           <div className="modal-header justify-content-center">
             <button
@@ -37,7 +37,7 @@ function ModelCreateEstablishment() {
             </button>
             <h4 className="title title-up">Nuevo establecimiento</h4>
           </div>
-          <div class="container">
+          <div className="container">
             <hr />
           </div>
           <ModalBody>

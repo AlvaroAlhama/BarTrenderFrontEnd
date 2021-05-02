@@ -21,27 +21,26 @@ function ListView() {
 
   // Consuming REST GET
   const ListLoading = withListLoading(List);
-  const [appState, setAppState] = useState({
+  const [appState, setAppState] = useState({ 
     loading: false,
     establishments: {},
   });
 
-  var filter = {
-    "filters": {
-    }
-  };
+  
   //CONSUMING FORM DATA
   const location = useLocation();
 
   useEffect(() => {
-    console.log("Construyendo view")
+    var filter = {
+      "filters": {}
+    }
     setAppState({ loading: true });
 
     if (location.state !== undefined) {
       var data = location.state[0];
     
       for (const key in data) {
-        if (!(key === 'modal' || key === 'fade' ||  key ==='pills')){
+        if (!(key === 'modal' || key === 'fade' ||  key ==='pills' || key ==='WindowWidth')){
           filter["filters"][key] = data[key];
 
         }
@@ -75,8 +74,7 @@ function ListView() {
     }
 
     navigator.geolocation.getCurrentPosition(function (position) {
-      // console.log("Latitude is :", position.coords.latitude);
-      // console.log("Longitude is :", position.coords.longitude);
+
       
       sessionStorage.setItem("user_location_lat",position.coords.latitude);
       sessionStorage.setItem("user_location_lng",position.coords.longitude);
@@ -91,8 +89,6 @@ function ListView() {
 
   React.useEffect(() => {
 
-    
-  
   }, []);
   return (
     <>
@@ -101,7 +97,7 @@ function ListView() {
         <MainNavbar />
         <div className="wrapper">
           <LandingPageHeader />
-          <section class="container mt-5" id = "list-results" > 
+          <section className="container mt-5" id = "list-results" > 
             <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
           </section>
           <DefaultFooter />

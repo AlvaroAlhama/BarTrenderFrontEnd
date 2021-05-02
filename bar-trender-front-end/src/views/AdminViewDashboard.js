@@ -16,7 +16,12 @@
 
 */
 import { useLocation, Route, Switch } from "react-router-dom";
-
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile
+} from "react-device-detect";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer";
 import Sidebar from "components/Sidebar/Sidebar.js";
@@ -59,8 +64,9 @@ function AdminView() {
   const [image, setImage] = React.useState(sidebarImage);
   const [color, setColor] = React.useState("black");
   const [hasImage, setHasImage] = React.useState(true);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const location = useLocation();
-  const mainPanel = React.useRef(null);
+  const mainPanel = React.useRef(undefined);
   var token = sessionStorage.getItem("token");
 
   const [modal1, setModal1] = React.useState(false);
@@ -69,9 +75,17 @@ function AdminView() {
     bar: {},
   });
   var token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+  })
+
   useEffect(() => {
     const apiUrl =
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner";
     async function loadBar() {
       await fetch(apiUrl, {
         method: "GET",
@@ -89,37 +103,10 @@ function AdminView() {
     loadBar();
   }, [setAppState]);
 
-
-  if (!token) {
-    return (
-
-      <>
-        <div className="wrapper">
-          <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
-          <div className="main-panel" ref={mainPanel}>
-            <AdminNavbar />
-            <div className="content">
-              <Container fluid>
-                <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
-              </Container>
-            </div>
-            {/* <Footer /> */}
-          </div>
-        </div>
-        <FixedPlugin
-          hasImage={hasImage}
-          setHasImage={() => setHasImage(!hasImage)}
-          color={color}
-          setColor={(color) => setColor(color)}
-          image={image}
-          setImage={(image) => setImage(image)}
-        />
-      </>
-    );
-  } else {
-    if (sessionStorage.getItem("rol") == "owner") {
-      
+  if(windowWidth > 990){
+    if (!token) {
       return (
+
         <>
           <div className="wrapper">
             <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
@@ -127,85 +114,7 @@ function AdminView() {
               <AdminNavbar />
               <div className="content">
                 <Container fluid>
-                  <h3>Tus Descuentos en uso</h3>
-                  {listQREstablishments
-                  }
-
-
-                  <Row>
-                    <Col lg="6" md="6" xs="12">
-                      <h3>La cerveza favorita de los Usuarios</h3>
-                      <Card>
-                        <Card.Body>
-                          <DashboardTopImage filter={"Bebida"} />
-                        </Card.Body>
-                        <Card.Footer>
-                          <hr></hr>
-                          <div className="stats">
-                            <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos obtenidos de la api de Bartrender
-                  </div>
-                        </Card.Footer>
-                      </Card>
-                    </Col>
-                    <Col lg="6" md="6" xs="12">
-                      <h3>Ranking de las 3 mejores cervezas</h3>
-                      <Card>
-                        <Card.Header>
-                          {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
-                        </Card.Header>
-                        <Card.Body>
-                          <FreePieChart filter={"Bebida"} />
-                        </Card.Body>
-                        <Card.Footer>
-                          <hr></hr>
-                          <div className="stats">
-                            <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
-                  </div>
-                        </Card.Footer>
-                      </Card>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col lg="6" md="6" xs="12">
-                      <h3>¿Que prefiere la gente para divertirse?</h3>
-                      <Card>
-                        <Card.Header>
-                          {/*<Card.Title as="h4">Email Statistics</Card.Title>
-                <p className="card-category">Last Campaign Performance</p>*/}
-                        </Card.Header>
-                        <Card.Body>
-                          <DashboardTopImage filter={"Ocio"} />
-                        </Card.Body>
-                        <Card.Footer>
-                          <hr></hr>
-                          <div className="stats">
-                            <i className="fas fa-check"></i>
-                    Datos obtenidos de la api de Bartrender
-                  </div>
-                        </Card.Footer>
-                      </Card>
-                    </Col>
-                    <Col lg="6" md="6" xs="12">
-                      <h3>Los elementos de ocio más buscados</h3>
-                      <Card>
-                        <Card.Header></Card.Header>
-                        <Card.Body>
-                          <FreePieChart filter={"Ocio"} />
-                        </Card.Body>
-                        <Card.Footer>
-                          <hr></hr>
-                          <div className="stats">
-                            <i className="now-ui-icons loader_refresh spin"></i>
-                    Datos actualizados mensualmente
-                  </div>
-                        </Card.Footer>
-                      </Card>
-                    </Col>
-                  </Row>
+                  <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
                 </Container>
               </div>
               {/* <Footer /> */}
@@ -221,34 +130,276 @@ function AdminView() {
           />
         </>
       );
+    } else {
+      if (sessionStorage.getItem("rol") == "owner") {
+        
+        return (
+          <>
+            <div className="wrapper">
+              <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Container fluid>
+                    <h3>Tus Descuentos en uso</h3>
+                    {listQREstablishments
+                    }
+
+
+                    <Row>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>La cerveza favorita de los Usuarios</h3>
+                        <Card>
+                          <Card.Body>
+                            <DashboardTopImage filter={"Bebida"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="now-ui-icons loader_refresh spin"></i>
+                      Datos obtenidos de la api de Bartrender
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>Ranking de las 3 mejores cervezas</h3>
+                        <Card>
+                          <Card.Header>
+                            {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                  <p className="card-category">Last Campaign Performance</p>*/}
+                          </Card.Header>
+                          <Card.Body>
+                            <FreePieChart filter={"Bebida"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="now-ui-icons loader_refresh spin"></i>
+                      Datos actualizados mensualmente
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>¿Que prefiere la gente para divertirse?</h3>
+                        <Card>
+                          <Card.Header>
+                            {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                  <p className="card-category">Last Campaign Performance</p>*/}
+                          </Card.Header>
+                          <Card.Body>
+                            <DashboardTopImage filter={"Ocio"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="fas fa-check"></i>
+                      Datos obtenidos de la api de Bartrender
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>Los elementos de ocio más buscados</h3>
+                        <Card>
+                          <Card.Header></Card.Header>
+                          <Card.Body>
+                            <FreePieChart filter={"Ocio"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="now-ui-icons loader_refresh spin"></i>
+                      Datos actualizados mensualmente
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+                {/* <Footer /> */}
+              </div>
+            </div>
+            <FixedPlugin
+              hasImage={hasImage}
+              setHasImage={() => setHasImage(!hasImage)}
+              color={color}
+              setColor={(color) => setColor(color)}
+              image={image}
+              setImage={(image) => setImage(image)}
+            />
+          </>
+        );
+      }
+      else {
+        return (
+          <>
+            <div className="wrapper">
+              <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Container fluid>
+                    <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
+                    <Link to="/main" className="btn btn-primary">Volver</Link>
+                  </Container>
+                </div>
+                {/* <Footer /> */}
+              </div>
+            </div>
+            <FixedPlugin
+              hasImage={hasImage}
+              setHasImage={() => setHasImage(!hasImage)}
+              color={color}
+              setColor={(color) => setColor(color)}
+              image={image}
+              setImage={(image) => setImage(image)}
+            />
+          </>
+
+        );
+      }
     }
-    else {
+  }
+  else{
+    if (!token) {
       return (
+  
         <>
           <div className="wrapper">
-            <Sidebar color={color} image={hasImage ? image : ""} routes={routes} />
             <div className="main-panel" ref={mainPanel}>
               <AdminNavbar />
               <div className="content">
                 <Container fluid>
-                  <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
-                  <Link to="/main" className="btn btn-primary">Volver</Link>
+                  <h1> Necesitas estar Logueado para poder acceder a la vista</h1>
                 </Container>
               </div>
               {/* <Footer /> */}
             </div>
           </div>
-          <FixedPlugin
-            hasImage={hasImage}
-            setHasImage={() => setHasImage(!hasImage)}
-            color={color}
-            setColor={(color) => setColor(color)}
-            image={image}
-            setImage={(image) => setImage(image)}
-          />
         </>
-
       );
+    } else {
+      if (sessionStorage.getItem("rol") == "owner") {
+        
+        return (
+          <>
+            <div className="wrapper">
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Container fluid>
+                    <h3>Tus Descuentos en uso</h3>
+                    {listQREstablishments
+                    }
+  
+  
+                    <Row>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>La cerveza favorita de los Usuarios</h3>
+                        <Card>
+                          <Card.Body>
+                            <DashboardTopImage filter={"Bebida"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="now-ui-icons loader_refresh spin"></i>
+                      Datos obtenidos de la api de Bartrender
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>Ranking de las 3 mejores cervezas</h3>
+                        <Card>
+                          <Card.Header>
+                            {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                  <p className="card-category">Last Campaign Performance</p>*/}
+                          </Card.Header>
+                          <Card.Body>
+                            <FreePieChart filter={"Bebida"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="now-ui-icons loader_refresh spin"></i>
+                      Datos actualizados mensualmente
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                    </Row>
+  
+                    <Row>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>¿Que prefiere la gente para divertirse?</h3>
+                        <Card>
+                          <Card.Header>
+                            {/*<Card.Title as="h4">Email Statistics</Card.Title>
+                  <p className="card-category">Last Campaign Performance</p>*/}
+                          </Card.Header>
+                          <Card.Body>
+                            <DashboardTopImage filter={"Ocio"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="fas fa-check"></i>
+                      Datos obtenidos de la api de Bartrender
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                      <Col lg="6" md="6" xs="12">
+                        <h3>Los elementos de ocio más buscados</h3>
+                        <Card>
+                          <Card.Header></Card.Header>
+                          <Card.Body>
+                            <FreePieChart filter={"Ocio"} />
+                          </Card.Body>
+                          <Card.Footer>
+                            <hr></hr>
+                            <div className="stats">
+                              <i className="now-ui-icons loader_refresh spin"></i>
+                      Datos actualizados mensualmente
+                    </div>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
+                {/* <Footer /> */}
+              </div>
+            </div>
+          </>
+        );
+      }
+      else {
+        return (
+          <>
+            <div className="wrapper">
+              <div className="main-panel" ref={mainPanel}>
+                <AdminNavbar />
+                <div className="content">
+                  <Container fluid>
+                    <h1> Necesitas estar logueado como owner para poder acceder a la vista</h1>
+                    <Link to="/main" className="btn btn-primary">Volver</Link>
+                  </Container>
+                </div>
+                {/* <Footer /> */}
+              </div>
+            </div>
+          </>
+  
+        );
+      }
     }
   }
 }

@@ -18,9 +18,9 @@ const ListDiscount = (props) => {
         {discounts.results.map((discount) => {
           return (
             <>
-                <div class="card h-100">
-                  <div class="card-body card-img-top">
-                    <p class="card-title text-dark  ">
+                <div className="card h-100">
+                  <div className="card-body card-img-top">
+                    <p className="card-title text-dark  ">
                       {discount.name_text}
                       
                     </p>

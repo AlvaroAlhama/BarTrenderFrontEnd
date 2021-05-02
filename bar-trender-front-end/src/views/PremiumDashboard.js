@@ -1,7 +1,6 @@
 
 import React from "react";
 
-import { BrowserRouter as Link } from "react-router-dom";
 // react-bootstrap components
 import {
   Card,
@@ -9,7 +8,6 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-
 import ShowPremiumStats from "../components/ShowPremiumStats.js";
 
 export default class PremiumDashboard extends React.Component {
@@ -30,7 +28,7 @@ export default class PremiumDashboard extends React.Component {
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
-      msg: null,
+      msg: undefined,
     };
     var query = window.location.search;
     let params = new URLSearchParams(query);
@@ -38,8 +36,12 @@ export default class PremiumDashboard extends React.Component {
     this.filter = params.get("filter");
     this.initialDate = params.get("initial-date");
     this.endDate = params.get("end-date");
+    this.premium = null;
+    this.getIsPremium();
 
     this.getTags();
+    this.getZones();
+
   }
 
   async getTags() {
@@ -55,33 +57,64 @@ export default class PremiumDashboard extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.filter(tag => tag.type !=="Zona").map((tag) => {
-        return { value: tag.name, label: tag.name };
+    var otherTags = data.tags.filter(tag => tag.type !== "Zona").map((tag) => {
+      return { value: tag.name, label: tag.name };
     });
 
     var arrayOther = otherTags.filter(function (dato) {
       return dato !== undefined;
     });
 
-    const tagZone = data.tags.filter(tag => tag.type ==="Zona").map((tag) => {
-        return tag.name;
-    });
 
-    var array = tagZone.filter(function (dato) {
-      return dato !== undefined;
-    });
 
     this.setState({
-      otherTags: arrayOther,
+      zona: this.state.zone.zona,
 
-      zone: {
-        zona: array,
-      },
+      otherTags: arrayOther,
     });
   }
 
+  async getZones() {
+
+    const url =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_zones?all=true";
+    const response = await fetch(url, {
+      method: "GET",
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      this.setState({
+        zone: {
+          otherTags: this.state.otherTags,
+          zona: data.zones,
+        },
+      });
+    }
+  }
+  async getIsPremium() {
+    await fetch(
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/ispremium",
+      {
+        method: "GET",
+        headers: {
+          token: sessionStorage.getItem("token"),
+          "Content-type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) =>
+        this.premium = {
+          premium: data.isPremium,
+          premiumUntil: data.premiumUntil,
+          remainingDays: data.premiumRemainingDays,
+        }
+      );
+  }
+
   render() {
-    console.log("Check de que el usuario es premium",sessionStorage.getItem("premium"));
+
     if (sessionStorage.getItem("premium") === "true") {
       return (
         <>
@@ -89,41 +122,44 @@ export default class PremiumDashboard extends React.Component {
             <Row>
               <Col lg="6" md="6" xs="12">
                 <Card className="p-4">
-                  <h3 class="text-justify">
+                  <h3 className="text-justify">
                     Bienvenido a la version premium de nuestro dashboard,
-                    ¿Quiere revisar su suscripción?
+                    {this.premium == null ?
+                    '' :
+                    ' le quedan ' + this.premium.remainingDays + ' días de suscripción. '}
                   </h3>
-                  <Link to="/admin/upgrade" className="btn btn-primary">
-                    Revisar Suscripción
-                  </Link>
+                  
+
                 </Card>
               </Col>
 
               <Col lg="6" md="6" xs="12">
                 <Card className="p-4">
                   <form>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="container">Zona en la que buscar</label>
+                    <div className="row">
+                      <div className="col-lg-4 col-md-6 col-xs-12">
+                        <label className="container">Zona en la que buscar</label>
                       </div>
-                      <div class='col-lg-8 col-md-6 col-xs-12'>
+
+                      <div className='col-lg-8 col-md-6 col-xs-12'>
                         <select 
                           name='zone_enum' 
                           onChange={this.handleChange} 
-                           class='form-control'>
+                           className='form-control'>
+
                           {this.state.zone.zona.map((zona) => {
                             return <option value={zona}>{zona}</option>;
                           })}
                         </select>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="container">Filtros</label>
+                    <div className="row">
+                      <div className="col-lg-4 col-md-6 col-xs-12">
+                        <label className="container">Filtros</label>
                       </div>
-                      <div class="col-lg-8 col-md-6 col-xs-12">
+                      <div className="col-lg-8 col-md-6 col-xs-12">
                         <select
-                          class="form-control"
+                          className="form-control"
                           id="filterImput"
                           name="filter"
                         >
@@ -133,20 +169,20 @@ export default class PremiumDashboard extends React.Component {
                         </select>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-xs-12">
-                        <label class="container">Fecha inicial</label>
+                    <div className="row">
+                      <div className="col-lg-6 col-md-6 col-xs-12">
+                        <label className="container">Fecha inicial</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           id="initialDate"
                           type="date"
                           name="initial-date"
                         ></input>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-xs-12">
-                        <label class="container">Fecha final</label>
+                      <div className="col-lg-6 col-md-6 col-xs-12">
+                        <label className="container">Fecha final</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           id="endDate"
                           type="date"
                           name="end-date"

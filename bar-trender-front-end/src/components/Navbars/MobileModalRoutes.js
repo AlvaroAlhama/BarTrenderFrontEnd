@@ -1,4 +1,3 @@
-
 // Routing
 import Dashboard from "views/Dashboard.js";
 import PremiumDashboard from "views/PremiumDashboard.js";
@@ -6,16 +5,14 @@ import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
 import EstablishmentView from "views/EstablishmentView";
 import EditOwnerProfile from "components/EditOwnerProfile.js"
+import MainView from "views/MainView.js";
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
-
-
-import { Nav } from "react-bootstrap";
 
 import { useEffect, useState } from "react";
 
 
-function Sidebar({ color, image }) {
+function MobileModalRoutes({ color, image }) {
   
   const location = useLocation();
   const activeRoute = (routeName) => {
@@ -100,6 +97,16 @@ function Sidebar({ color, image }) {
             );      
       
           }
+
+          routes.push(
+            {
+              path: "/main",
+              name: "Página Principal",
+              icon: "nc-icon nc-circle-09",
+              component: MainView,
+              layout: "",
+            }
+          )
  
           setAppState({ loading: false, establishments: establishments, 
             routes: routes
@@ -113,63 +120,31 @@ function Sidebar({ color, image }) {
   }, [setAppState]);
 
   if (appState.routes === undefined) { return null }
-
-  return (
-    <div className="sidebar" data-image={image} data-color={color}>
-      <div
-        className="sidebar-background"
-        style={{
-          backgroundImage: "url(" + image + ")",
-        }}
-      />
-      <div className="sidebar-wrapper">
-        <div className="logo d-flex align-items-center justify-content-start">
-          <a
-            href="/main"
-            className="simple-text logo-mini mx-1"
-          >
-            <div className="logo-img">
-              <img
-                src={require("../Images/barTrender61.png").default}
-                alt="..."
-              />
-            </div>
-          </a>
-          <a className="simple-text" href="/main">
-            BARTRENDER
-          </a>
-        </div>
-        <Nav>
-          
-          {appState.routes.map((prop, key) => {
-            
-            if (!prop.redirect && !(sessionStorage.getItem("premium") === "false" && prop.path === '/PremiumDashboard'))
-              return (
-
-                <li
-                  className={
-                    prop.upgrade
-                      ? "active active-pro"
-                      : activeRoute(prop.layout + prop.path)
-                  }
-                  key={key}
-                >
-                  <NavLink
-                    to={prop.layout + prop.path}
-                    className="nav-link"
-                    activeClassName="active"
-                  >
-                    <i className={prop.icon} />
-                    <p>{prop.name}</p>
-                  </NavLink>
-                </li>
-              );
-            return null;
-          })}
-        </Nav>
-      </div>
-    </div>
-  );
-}
-
-export default Sidebar;
+  return(
+      <>
+    {appState.routes.map((prop, key) => {
+        if (!prop.redirect)
+          return (
+            <li
+              className={
+                prop.upgrade
+                  ? "active active-pro"
+                  : activeRoute(prop.layout + prop.path)
+              }
+              key={key}
+              style={{listStyleType:"none"}}
+            >
+              <NavLink
+                to={prop.layout + prop.path}
+                className="nav-link"
+                activeClassName="active"
+              >
+                <h3>{prop.name}</h3>
+              </NavLink>
+            </li>
+          );
+        return null;
+      })}
+      </>
+  )
+} export default MobileModalRoutes

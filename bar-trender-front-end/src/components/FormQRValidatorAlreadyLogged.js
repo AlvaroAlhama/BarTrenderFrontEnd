@@ -68,25 +68,26 @@ class FormQRValidatorAlreadyLogged extends React.Component {
         <div>
         <Modal className = "modal-fail" centered="true" isOpen={this.state.modalFail} >
           <div className="modal-header justify-content-center">
-            <div class="container mt-5 pt-5">
-              <div class="row justify-content-center">
-                <img src={barTrender60} class="img-fluid" />
-                <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
+            <div className="container mt-5 pt-5">
+              <div className="row justify-content-center">
+                <img src={barTrender60} alt ="bg img" className="img-fluid" />
+                <h1 className="my-auto text-white ml-3">BARTRENDER</h1>
               </div> 
             </div>      
           </div>
           <ModalBody>
-              <div class="row justify-content-center mt-5">
+              <div className="row justify-content-center mt-5">
                 <h1 className="text-white text-center font-weight-bold">
                   ¡OOPS! HA OCURRIDO EL SIGUIENTE PROBLEMA
                 </h1>
               </div>
-              <div class="row justify-content-center   mt-3">
-                <h2 class="my-auto text-white justify-content-center">
+              <div className="row justify-content-center   mt-3">
+                <h2 className="my-auto text-white justify-content-center">
                   {this.state.error}
                 </h2>
                 <img
                   src={fail_boy}
+                  alt = "fail img"
                   className="img-fluid"
                   style={{
                     width: "100%",
@@ -94,7 +95,7 @@ class FormQRValidatorAlreadyLogged extends React.Component {
                   }}
                 />
               </div>
-              <div class="row justify-content-center mt-5">
+              <div className="row justify-content-center mt-5">
                 <h3 id="index-button-fail">
                   <a href="/index" className="text-decoration-none text-white m-4">
                     Volver a inicio
@@ -108,22 +109,23 @@ class FormQRValidatorAlreadyLogged extends React.Component {
       <div>
       <Modal className = "modal-success" centered="true" isOpen={this.state.modalSuccess} >
           <div className="modal-header justify-content-center">
-            <div class="container mt-5 pt-5">
-              <div class="row justify-content-center">
-                <img src={barTrender60} class="img-fluid" />
-                <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
+            <div className="container mt-5 pt-5">
+              <div className="row justify-content-center">
+                <img src={barTrender60} alt = "bg img" className="img-fluid" />
+                <h1 className="my-auto text-white ml-3">BARTRENDER</h1>
               </div> 
             </div>      
           </div>
           <ModalBody>
-            <div class="row justify-content-center mt-5">
+            <div className="row justify-content-center mt-5">
                 <h1 className="text-white text-center font-weight-bold">
                   ¡DESCUENTO APLICADO CON ÉXITO!
                 </h1>
               </div>
-              <div class="row justify-content-center   mt-3">
+              <div className="row justify-content-center   mt-3">
                 <img
                   src={success_boy}
+                  alt ="success img"
                   className="img-fluid"
                   style={{
                     width: "100%",
@@ -131,7 +133,7 @@ class FormQRValidatorAlreadyLogged extends React.Component {
                   }}
                 />
               </div>
-              <div class="row justify-content-center mt-5">
+              <div className="row justify-content-center mt-5">
                 <h3 id="index-button-success">
                   <a href="/index" className="text-decoration-none text-white m-4">
                     Volver a inicio

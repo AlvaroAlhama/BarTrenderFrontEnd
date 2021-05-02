@@ -37,7 +37,7 @@ function BeerPieChart(props) {
         });
     }
     loadStats()
-  }, [setBebidaState, setOcioState]);
+  });
 
   
   var graph2
@@ -204,13 +204,7 @@ function BeerPieChart(props) {
     <>
     {bebidaState.statsBebida === {} || ocioState.statsOcio === {} ? "" : 
     <div className="chart">
-      <br/>
       <h3>¿Qué se busca más?</h3>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <Pie
         data={graph2.chartData}
         options={{

@@ -33,11 +33,13 @@ import ErrorView from "./views/ErrorView.js";
 import AdminView from "./views/AdminView.js";
 import EstablismentByOwnerView from "./views/EstablishmentByOwnerView.js"
 import EstablishmentView from "./views/EstablishmentView.js"
+import LegalNotice from './views/LegalNotice';
+import TermsUse from './views/TermsUse';
+import PrivacyPolicy from './views/PrivacyPolicy';
 
 
 const app = (
   
-  <React.StrictMode>
     <BrowserRouter>
     <Switch>
       <Switch>
@@ -79,6 +81,22 @@ const app = (
           render = {(props) =>  <EstablishmentView {...props}/>}
         />
 
+        <Route
+          path = "/legal"
+          render = {(props) =>  <LegalNotice {...props}/>}
+        />
+
+         <Route
+          path = "/condiciones-uso"
+          render = {(props) =>  <TermsUse {...props}/>}
+        />
+
+         <Route
+          path = "/politica-privacidad"
+          render = {(props) =>  <PrivacyPolicy {...props}/>}
+        />
+
+        {/* <Redirect from="/admin" to="/admin/dashboard" /> */}
         
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
@@ -87,7 +105,7 @@ const app = (
       </Switch>
     </Switch>
   </BrowserRouter>
-  </React.StrictMode>
+ 
 );
 
 ReactDOM.render(app, document.getElementById('root'));

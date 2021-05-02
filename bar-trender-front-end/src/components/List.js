@@ -3,7 +3,6 @@ import React from 'react';
 import ModalSelectedElement from "./Modals/ModalSelectedElement.js";
 
 import {
-  Row,
   Col,
 } from "reactstrap";
 
@@ -18,7 +17,7 @@ const List = (props) => {
     <ul className="ul-flex">
       <h2 className='list-head text-center'>Establecimientos</h2>
       
-      <Row className='list'>
+      <div className='list'>
         {establishments.map((establishment) => {
          
           return (
@@ -29,7 +28,7 @@ const List = (props) => {
             </>
           );
         })}
-      </Row>
+      </div>
     </ul>
   );
 };

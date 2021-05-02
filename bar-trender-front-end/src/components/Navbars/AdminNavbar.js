@@ -44,7 +44,9 @@ function Header() {
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
           <MobileNavbarModal/>
-          <h4 className="text-white my-auto">BarTrender</h4>
+
+          <a href="/main"><h4 className="text-white my-auto">BarTrender</h4></a>
+
 
         </div>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">

@@ -33,7 +33,7 @@ function PremiumBarChart(props) {
         });
     }
     loadStats()
-  },);
+  }, [setAppState]);
 
   var graph2
   if (appState.stats.first !== undefined) {
@@ -103,7 +103,6 @@ function PremiumBarChart(props) {
       }
     };
   }
-
   if (props.filter !== "Bebida" && props.filter !== "Ocio" && props.filter !== "Instalacion") {
     return (
       <h3>Para comenzar introduzca algún filtro</h3>
@@ -111,12 +110,12 @@ function PremiumBarChart(props) {
   }
   else if (props.initialDate === "" || props.endDate === "") {
     return (
-      <h3 className="text-danger">Para mostrar el contenido se debe introducir una fecha inicial y una fecha final </h3>
+      <h3 class="text-danger">Para mostrar el contenido se debe introducir una fecha inicial y una fecha final </h3>
     )
   }
   else if (props.zone === "") {
     return (
-      <h3 className="text-danger">Para mostrar el contenido se debe introducir una zona</h3>
+      <h3 class="text-danger">Para mostrar el contenido se debe introducir una zona</h3>
     )
   }
   else if (appState.stats.error === "A017: El usuario que está logeado no es premium") {
@@ -124,7 +123,6 @@ function PremiumBarChart(props) {
       <div>
         <h3>Para acceder a esta funcionalidad debe ser un usuario premium</h3>
         <Link to="/admin/upgrade" className="btn btn-primary">Comprar Suscripción Premium</Link>
-
       </div>
     )
   }

@@ -17,10 +17,13 @@ import ModalSignUp from "../../components/Modals/ModalSignUp";
 import ModalEditClient from "../../components/Modals/ModalEditClient.js";
 
 import "./MainNavbar.css";
+import { useEffect } from "react";
 
 function MainNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
@@ -46,43 +49,44 @@ function MainNavbar() {
   });
   function reportWindowSize() {
     const { innerWidth: width } = window;
-    if (width < 750 && document.getElementById("bartrender-title") !=null) {
-      if (document.getElementById("bartrender-title") !=null) {
-        document.getElementById("bartrender-title").classList.add("d-none");
-      }
-      if (document.getElementById("filters") !=null) {
+    if (width < 992) {
+      if (document.getElementById("filters") != null) {
         document.getElementById("filters").classList.add("mx-auto");
       }
-      if (document.getElementById("panel-control-icon") !=null) {
+      if (document.getElementById("panel-control-icon") != null) {
         document.getElementById("panel-control-icon").classList.add("my-auto");
       }
-      if (document.getElementById("logout-tooltip") !=null) {
+      if (document.getElementById("logout-tooltip") != null) {
         document.getElementById("logout-tooltip").classList.add("my-auto");
       }
-      if (document.getElementById("nav") !=null) {
+      if (document.getElementById("nav") != null) {
         document.getElementById("nav").style.backgroundColor="#E8A579";
       }
     }
-    if (width > 750 && document.getElementById("bartrender-title") !=null) {
-      if (document.getElementById("bartrender-title") !=null) {
-        document.getElementById("bartrender-title").classList.remove("d-none");
-      }
-      if (document.getElementById("filters") !=null) {
+    if (width >= 992) {
+      if (document.getElementById("filters") != null) {
         document.getElementById("filters").classList.remove("mx-auto");
       }
-      if (document.getElementById("panel-control-icon") !=null) {
+      if (document.getElementById("panel-control-icon") != null) {
         document
           .getElementById("panel-control-icon")
           .classList.remove("my-auto");
       }
-      if (document.getElementById("logout-tooltip") !=null) {
+      if (document.getElementById("logout-tooltip") != null) {
         document.getElementById("logout-tooltip").classList.remove("my-auto");
       }
-      if (document.getElementById("nav") !=null) {
+      if (document.getElementById("nav") != null) {
         document.getElementById("nav").style.backgroundColor=null;
       }
     }
   }
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth)
+    }
+    window.addEventListener('resize', handleResize)
+  })
   
   reportWindowSize()
   window.addEventListener("resize", reportWindowSize);
@@ -99,10 +103,12 @@ function MainNavbar() {
         <a className="navbar-brand" href="/main">
           <img className="img-fluid" alt="" src={barTrender} />
         </a>
-        <a id="bartrender-title" className="text-decoration-none" href="/main">
-          <h1 className="my-auto ml-4">BarTrender</h1>
-        </a>
-        <ModalSearch key={uuid.v4()} />
+        {(windowWidth > 990) &&
+          <a id="bartrender-title" className="text-decoration-none" href="/main">
+            <h1 className="my-auto ml-4">BarTrender</h1>
+          </a>}
+        
+        <ModalSearch key={uuid.v4()}/>
         <button
           className="navbar-toggler navbar-toggler mr-5"
           onClick={() => {

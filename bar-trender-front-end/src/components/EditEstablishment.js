@@ -27,9 +27,9 @@ export default class EditEstablishment extends React.Component {
         tags: [],
       },
 
-      image_url: undefined,
+      image_url: null,
 
-      image: undefined,
+      image: null,
 
       selected: [],
 
@@ -47,7 +47,7 @@ export default class EditEstablishment extends React.Component {
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
-      msg: undefined,
+      msg: null,
       form: createRef(),
     };
 
@@ -72,8 +72,8 @@ export default class EditEstablishment extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.filter(tag => tag.type!=="Zona").map((tag) => {
-      return { value: tag.name, label: tag.name };
+    var otherTags = data.tags.filter(tag => tag.type !== "Zona").map((tag) => {
+        return { value: tag.name, label: tag.name };
     });
 
     var arrayOther = otherTags.filter(function (dato) {
@@ -330,7 +330,7 @@ export default class EditEstablishment extends React.Component {
             <img
               className="img-fluid w-100"
               alt = ""
-              src={this.state.image_url === undefined ? "" : this.state.image_url}
+              src={this.state.image_url == null ? "" : this.state.image_url}
             />
           </div>
           <div className="row">
@@ -348,6 +348,50 @@ export default class EditEstablishment extends React.Component {
                     id="establishment-form"
                     onSubmit={(e) => this.handleSubmit(e)}
                   >
+                  {window.innerWidth < 525 && (
+                    <>
+                    <div className="row">
+                      <div className="col pr-1 md-6">
+                        <div className="form-group my-1">
+                          <label>Nombre del Establecimiento</label>
+                          <input
+                            type="text"
+                            name="name_text"
+                            maxLength="100"
+                            value={this.state.input.name_text}
+                            onChange={this.handleChange}
+                            className="form-control"
+                            id="name-establishment"
+                          />
+
+                        </div>
+                        <div className="text-danger">
+                          {this.state.errors.name_text}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col pr-1 md-6">
+                        <div className="form-group my-1">
+                          <label>Teléfono</label>
+                          <input
+                            type="tel"
+                            name="phone_number"
+                            value={this.state.input.phone_number}
+                            onChange={this.handleChange}
+                            className="form-control"
+                            id="phone-number"
+                          />
+                        </div>
+                        <div className="text-danger">
+                          {this.state.errors.phone_number}
+                        </div>
+                      </div>
+                    </div>
+                    </>
+                  )}
+                  {window.innerWidth >= 525 && (
+                    <>
                     <div className="row">
                       <div className="col pr-1 md-6">
                         <div className="form-group my-1">
@@ -384,6 +428,8 @@ export default class EditEstablishment extends React.Component {
                         </div>
                       </div>
                     </div>
+                    </>
+                  )}
                     <div className="row">
                       <div className="col md-12">
                         <div className="form-group my-1">
@@ -485,7 +531,7 @@ export default class EditEstablishment extends React.Component {
                           />
                         </FormGroup>
                       </div>
-                    </div>
+                    </div>                
                     <div className="row">
                       <div className="col">
                         <div className="form-group my-1">
@@ -519,7 +565,7 @@ export default class EditEstablishment extends React.Component {
                         {this.state.msg === undefined ? "" : this.state.msg}
                       </div>
                     </div>
-                    <div className="pull-right">
+                    <div className="">
                       <input
                         type="submit"
                         value="Guardar cambios"

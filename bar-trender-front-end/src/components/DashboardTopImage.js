@@ -1,13 +1,6 @@
 import React, { useEffect, useState} from 'react';
 
 import bartrenderBlack from "./Images/bartrenderBlack.png";
-import cruzcampo from "./Images/cruzcampo.png";
-import heineken from "./Images/heineken.png";
-import paulaner from "./Images/paulaner.jpg";
-
-import dardos from "./Images/dardos.jpg";
-import futbolin from "./Images/futbolin.png";
-
 
 
 function DashboardTopImage(props) {
@@ -18,7 +11,7 @@ function DashboardTopImage(props) {
 
   useEffect(() => {
     var token = sessionStorage.getItem("token");
-  
+
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
 
     async function loadStats() {
@@ -38,26 +31,17 @@ function DashboardTopImage(props) {
     loadStats()
   });
 
-  //Añadir todas las cervezas posibles junto a las imagenes en la carpeta. Esto no es definitivo
 
   var imgBest = bartrenderBlack
   var nameBest = "No hemos encontrado el elemento más buscado"
+
   if (appState.stats.first !== undefined) {
-     nameBest = appState.stats.first.name
-    if (nameBest === "Cruzcampo"){
-     imgBest = cruzcampo
-    }else if(nameBest === "Heineken"){
-     imgBest = heineken
+    if (appState.stats.first.name !== "None"){
+      nameBest = appState.stats.first.name
+      imgBest = appState.stats.first.photo_url
     }
-    else if(nameBest === "Paulaner"){
-      imgBest = paulaner
-     }
-    else if(nameBest === "Dardos"){
-      imgBest = dardos
-    }else if(nameBest === "Futbolin"){
-        imgBest = futbolin
-    }
-}
+  }
+  
   return (
     <div>
 

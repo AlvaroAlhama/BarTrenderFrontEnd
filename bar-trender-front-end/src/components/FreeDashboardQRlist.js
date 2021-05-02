@@ -10,22 +10,22 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function DashboardQRList(props) {
   const [modal1, setModal1] = React.useState(false);
-  var nameEstablishment = props.nameEstablishment;
   var idEstablishment = props.idEstablishment;
+  var nameEstablishment = props.nameEstablishment;
   var token = sessionStorage.getItem("token");
   const [appState, setAppState] = useState({
     discounts: {},
   });
   const [paymentState] = useState({
-    create_time: undefined,
-    order_id: undefined
+    create_time: null,
+    order_id: null
   });
   const [discountPaymentInfoState, setDiscountPaymentInfoState] = useState({
     discountPaymentInfo: {},
   });
 
-  useEffect(() => {    
-    const apiUrl =
+  useEffect(() => {
+      const apiUrl =
         "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/" +
         idEstablishment +
         "/calculate";
@@ -44,7 +44,7 @@ function DashboardQRList(props) {
           });
       }
       loadDiscountPaymentInfo();
-    },);
+    }, [setDiscountPaymentInfoState]);
 
   useEffect(() => {
     const apiUrl =
@@ -67,8 +67,11 @@ function DashboardQRList(props) {
         });
     }
     loadDiscounts();
-  }, );
+  }, [setAppState]);
 
+  
+
+ 
   var count = 0;
 
   if (!appState.discounts.results || appState.discounts.count === 0) {
@@ -104,7 +107,7 @@ function DashboardQRList(props) {
     const paymentUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
 
     const payment = () => {
-      if(paymentState.create_time !== undefined && paymentState.order_id !== undefined){
+      if(paymentState.create_time !== null && paymentState.order_id !== null){
           fetch(paymentUrl, {
             method: "POST",
             headers: {
@@ -176,7 +179,7 @@ function DashboardQRList(props) {
                         <i className="nc-icon nc-favourite-28 text-primary"></i>
                       </div>
                     </Row>
-                    <Row className="justify-content-center">
+                    <Row classname="justify-content-center">
                       <div className="numbers text-center">
                         <p className="card-category">
                           Número de usuarios que han canjeado los descuentos que
@@ -237,7 +240,7 @@ function DashboardQRList(props) {
                               Total de descuentos
                             </h4>
                           </div>
-                          <div className="container">
+                          <div class="container">
                             <hr />
                           </div>
                           <ModalBody>
@@ -273,15 +276,15 @@ function DashboardQRList(props) {
                                     (payments) => {
                                       return (
                                         <>
-                                          <th>
-                                            <th scope="row" className="text-left">
+                                          <tr>
+                                            <td className="text-left">
                                               {payments.discount_name}
-                                            </th>
-                                            <tr></tr>
-                                            <tr>{payments.payment_scanned_codes}</tr>
-                                            <tr></tr>
-                                            <tr>{payments.value}€</tr>
-                                          </th>
+                                            </td>
+                                            <td></td>
+                                            <td>{payments.payment_scanned_codes}</td>
+                                            <td></td>
+                                            <td>{payments.value}€</td>
+                                          </tr>
                                         </>
                                       );
                                     }
@@ -324,24 +327,3 @@ function DashboardQRList(props) {
 }
 
 export default DashboardQRList;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-

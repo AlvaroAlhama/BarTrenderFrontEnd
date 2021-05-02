@@ -55,7 +55,7 @@ function loginOwner() {
           </Row>
 
           <Row className="content align-items-center">
-            <Col sm="12" md={{ size: 3, offset: 3 }}>
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
               <Card className="shadow">
                 <CardHeader className="text-center text-uppercase">
                   <CardTitle tag="h2">

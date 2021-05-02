@@ -8,6 +8,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     this.state = {
       input: {
         rol: "owner",
+        legal: false,
       },
 
       errors: {},
@@ -43,7 +44,17 @@ class ApiSignUpEstablishmentForm extends React.Component {
 
   handleChange(event) {
     let input = this.state.input;
-    input[event.target.name] = event.target.value;
+    if(event.target.type=="checkbox"){
+      if (input[event.target.name] == true ){
+        input[event.target.name] = false;
+      }
+      else{
+        input[event.target.name] = true;
+      }
+    }
+    else{
+      input[event.target.name] = event.target.value;
+    }
     this.setState({
       input,
     });
@@ -54,12 +65,10 @@ class ApiSignUpEstablishmentForm extends React.Component {
 
     if (this.validate()) {
       let errors = {};
-      
+
       let input = {};
 
-    
-
-      this.state.input.phone=parseInt(this.state.input.phone, 10);
+      this.state.input.phone = parseInt(this.state.input.phone, 10);
 
       input["email"] = "";
 
@@ -97,6 +106,12 @@ class ApiSignUpEstablishmentForm extends React.Component {
         errors["email"] =
           "Escriba una dirección de correo electrónico correcta.";
       }
+    }
+
+    if (input["legal"] != true) {
+      isValid = false;
+      errors["legal"] =
+        "Para darse de alta en el sistema debe aceptar los acuerdos de términos y las condiciones de uso.";
     }
 
     if (typeof input["password"] !== "undefined") {
@@ -141,9 +156,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     return (
       <div>
         <div className="text-danger">
-          <h6 class="my-3 text-center">
-            {this.state.error}
-          </h6>
+          <h6 class="my-3 text-center">{this.state.error}</h6>
         </div>
         <div className="row">
           <i className="fal fa-store fa-5x w-100 mb-4"></i>
@@ -194,6 +207,35 @@ class ApiSignUpEstablishmentForm extends React.Component {
               {this.state.errors.phone}
             </div>
           </div>
+          <div class="form-group my-4">
+            <input
+              name="legal"
+              type="checkbox"
+              value={this.state.input.legal}
+              onChange={this.handleChange}
+              checked={this.state.input.legal}
+              class="mr-2"
+            />
+            <label class="text-dark" for="legal">
+              Acepta los
+              <a target="_blank" class="text-decoration-none" href="/legal">
+                {" "}
+                Acuerdos de Términos{" "}
+              </a>
+              y las{" "}
+              <a
+                target="_blank"
+                class="text-decoration-none"
+                href="/condiciones-uso"
+              >
+                Condiciones de Uso.
+              </a>
+            </label>
+            <div className="text-danger align-center">
+              {this.state.errors.legal}
+            </div>
+          </div>
+
           <div class="text-center">
             <input
               type="submit"

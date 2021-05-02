@@ -8,9 +8,9 @@ class POSTLoginForm extends React.Component {
 
     this.state = {
 
-      input: {undefined},
+      input: {},
 
-      errors: {undefined},
+      errors: {},
 
     };
 
@@ -21,7 +21,7 @@ class POSTLoginForm extends React.Component {
 
 
   async handleLogin() {
-    let errors = {undefined};
+    let errors = {};
 
     var url = "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/login";
     // Call to the api with the credentials given by the user
@@ -65,7 +65,7 @@ class POSTLoginForm extends React.Component {
 
     if (this.validate()) {
 
-      let input = {undefined};
+      let input = {};
 
       input["email"] = "";
 
@@ -80,7 +80,7 @@ class POSTLoginForm extends React.Component {
     let input = this.state.input;
 
 
-    let errors = {undefined};
+    let errors = {};
 
     let isValid = true;
 

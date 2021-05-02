@@ -23,7 +23,7 @@ function ListView() {
   const ListLoading = withListLoading(List);
   const [appState, setAppState] = useState({ 
     loading: false,
-    establishments: {undefined},
+    establishments: {},
   });
 
   
@@ -32,7 +32,7 @@ function ListView() {
 
   useEffect(() => {
     var filter = {
-      "filters": {undefined}
+      "filters": {}
     }
     setAppState({ loading: true });
 

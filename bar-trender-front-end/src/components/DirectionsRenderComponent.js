@@ -93,7 +93,7 @@ class DirectionRenderComponent extends Component {
       originMarker = (
         <Marker
           defaultLabel={this.props.index.toString()}
-          defaultIcon={undefined}
+          defaultIcon={}
           position={{
             lat: parseFloat(this.props.from.lat),
             lng: parseFloat(this.props.from.lng)
@@ -103,7 +103,7 @@ class DirectionRenderComponent extends Component {
       destinationMarker = (
         <Marker
           label={this.props.index.toString()}
-          defaultIcon={undefined}
+          defaultIcon={}
           position={{
             lat: parseFloat(this.props.to.lat),
             lng: parseFloat(this.props.to.lng)

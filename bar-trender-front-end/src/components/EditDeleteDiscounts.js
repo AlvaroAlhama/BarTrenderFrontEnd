@@ -96,7 +96,6 @@ export default class EditDeleteDiscounts extends React.Component {
     for (var i = 1; i <= countAux; i++) {
       array.push(i);
     }
-    console.log(array);
     this.setState({
       count: array,
     });
@@ -199,6 +198,7 @@ export default class EditDeleteDiscounts extends React.Component {
   }
 
   selectDiscount(discount) {
+
     const initDate = discount.initial_date.slice(0, 10);
     const initHour = discount.initial_date.slice(11, 16);
 
@@ -283,7 +283,7 @@ export default class EditDeleteDiscounts extends React.Component {
       const initialDateTS = moment
         .utc(`${inputs.initialDate} ${inputs.initialHour}`)
         .unix();
-      if (inputs.endDate != "" && inputs.endHour != "") {
+      if (inputs.endDate !== "" && inputs.endHour !== "") {
         const endDateTs = moment
           .utc(`${inputs.endDate} ${inputs.endHour}`)
           .subtract(2, "hours")
@@ -352,7 +352,7 @@ export default class EditDeleteDiscounts extends React.Component {
         "No se puede eliminar porque hay descuentos escaneados";
     }
 
-    if (endDate != "") {
+    if (endDate !== "") {
       if (today > endDate) {
         isValid = false;
         errors["errorDate"] =
@@ -423,25 +423,25 @@ export default class EditDeleteDiscounts extends React.Component {
     }
 
     if (today > initialDateFull) {
-      if (inputs["name"] != discount.name) {
+      if (inputs["name"] !== discount.name) {
         isValid = false;
         errors["name"] =
           "Una vez empezado el descuento no se puede modificar el nombre";
       }
-      if (inputs["description"] != discount.description) {
+      if (inputs["description"] !== discount.description) {
         isValid = false;
         errors["description"] =
           "Una vez empezado el descuento no se puede modificar la descripción";
       }
 
-      if (inputs["cost"] != discount.cost) {
+      if (inputs["cost"] !== discount.cost) {
         isValid = false;
         errors["cost"] =
           "Una vez empezado el descuento no se puede modificar la descripción";
       }
 
       if (
-        inputs["initialDate"].concat(" ", inputs["initialHour"]) !=
+        inputs["initialDate"].concat(" ", inputs["initialHour"]) !==
         discount.initialDate.concat(" ", discount.initialHour)
       ) {
         isValid = false;
@@ -449,13 +449,13 @@ export default class EditDeleteDiscounts extends React.Component {
           "Una vez empezado el descuento no se puede modificar la fecha inicial";
       }
 
-      if (inputs["scannedCodes"] != discount.scannedCodes) {
+      if (inputs["scannedCodes"] !== discount.scannedCodes) {
         isValid = false;
         errors["scannedCodes"] =
           "Una vez empezado el descuento no se puede modificar el número de descuentos escaneados";
       }
 
-      if (endDateFull != undefined) {
+      if (endDateFull !== undefined) {
         if (endDateFull < initialDateFull) {
           isValid = false;
           errors["endDate"] =
@@ -471,7 +471,7 @@ export default class EditDeleteDiscounts extends React.Component {
     }
 
     if (initialDateFull > today) {
-      if (endDateFull != undefined) {
+      if (endDateFull !== undefined) {
         if (endDateFull < initialDateFull) {
           isValid = false;
           errors["endDate"] =
@@ -501,7 +501,7 @@ export default class EditDeleteDiscounts extends React.Component {
       <>
         <Table responsive>
           <thead>
-            <tr class="text-center">
+            <tr className="text-center">
               <th>Nombre</th>
               <th>Códigos totales</th>
               <th>Códigos escaneados</th>
@@ -509,14 +509,15 @@ export default class EditDeleteDiscounts extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data == []
+            {this.state.data === []
               ? ""
               : this.state.data.map((discount) => {
                   return (
-                    <tr class="text-center">
-                      <td>{discount.name_text}</td>
-                      <td>{discount.totalCodes_number}</td>
-                      <td>{discount.scannedCodes_number}</td>
+                    <tr className="text-center">
+                      <td>{discount.name}</td>
+                      <td>{discount.totalCodes}</td>
+                      <td>{discount.scannedCodes}</td>
+
                       <td>
                         <OverlayTrigger
                           overlay={
@@ -563,6 +564,7 @@ export default class EditDeleteDiscounts extends React.Component {
                 })}
           </tbody>
         </Table>
+
         {this.state.count === null ? (
           ""
         ) : (
@@ -578,7 +580,7 @@ export default class EditDeleteDiscounts extends React.Component {
             })}
           </Pagination>
         )}
-        {this.state.input == "" ? (
+        {this.state.input === "" ? (
           ""
         ) : (
           <>
@@ -599,10 +601,10 @@ export default class EditDeleteDiscounts extends React.Component {
                 </h4>
               </div>
               <ModalBody>
-                <div class="form-group">
+                <div className="form-group">
                   <label>Nombre</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     name="name"
                     maxLength="50"
@@ -614,7 +616,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Descripción</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     name="description"
                     maxLength="140"
@@ -626,7 +628,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Códigos Totales</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     name="totalCodes"
                     value={this.state.input.totalCodes}
@@ -637,7 +639,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Códigos Escaneados</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     name="scannedCodes"
                     readOnly
@@ -649,7 +651,7 @@ export default class EditDeleteDiscounts extends React.Component {
                   </div>
                   <label>Coste</label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     name="cost"
                     value={this.state.input.cost}
@@ -658,21 +660,21 @@ export default class EditDeleteDiscounts extends React.Component {
                   <div className="text-danger pl-3">
                     {this.state.errors.cost}
                   </div>
-                  <div class="row">
-                    <div class="col">
+                  <div className="row">
+                    <div className="col">
                       <label>Fecha de Inicio</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="date"
                         name="initialDate"
                         value={this.state.input.initialDate}
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div class="col">
+                    <div className="col">
                       <label>Hora de Inicio</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="time"
                         name="initialHour"
                         value={this.state.input.initialHour}
@@ -683,21 +685,21 @@ export default class EditDeleteDiscounts extends React.Component {
                       {this.state.errors.initialDate}
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col">
+                  <div className="row">
+                    <div className="col">
                       <label>Fecha de Fin</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="date"
                         name="endDate"
                         value={this.state.input.endDate}
                         onChange={this.handleChange}
                       />
                     </div>
-                    <div class="col">
+                    <div className="col">
                       <label>Hora de Fin</label>
                       <input
-                        class="form-control"
+                        className="form-control"
                         type="time"
                         name="endHour"
                         value={this.state.input.endHour}
@@ -723,16 +725,16 @@ export default class EditDeleteDiscounts extends React.Component {
                 >
                   Cancelar
                 </button>
-                <div class="container-fluid bg-danger">
-                  <div class="text-white fw-bold text-center">
-                    {this.state.errorApiUpdate == undefined
+                <div className="container-fluid bg-danger">
+                  <div className="text-white fw-bold text-center">
+                    {this.state.errorApiUpdate === undefined
                       ? ""
                       : this.state.errorApiUpdate.error}
                   </div>
                 </div>
-                <div class="container-fluid bg-success">
-                  <div class="text-white fw-bold text-center">
-                    {this.state.msg == undefined ? "" : this.state.msg}
+                <div className="container-fluid bg-success">
+                  <div className="text-white fw-bold text-center">
+                    {this.state.msg === undefined ? "" : this.state.msg}
                   </div>
                 </div>
               </ModalFooter>
@@ -760,8 +762,8 @@ export default class EditDeleteDiscounts extends React.Component {
                 <b>{this.state.input && this.state.input.name}</b> ?
               </ModalBody>
               <ModalFooter>
-                <div class="row w-100 justify-content-center">
-                  <div class="text-center">
+                <div className="row w-100 justify-content-center">
+                  <div className="text-center">
                     <button
                       className="btn btn-danger"
                       onClick={() => this.handleDelete()}
@@ -777,20 +779,20 @@ export default class EditDeleteDiscounts extends React.Component {
                     </button>
                   </div>
                 </div>
-                <div class="mt-2 mb-4 text-center">
-                  <p class="text-danger">{this.state.errors.errorCodes}</p>
-                  <p class="text-danger">{this.state.errors.errorDate}</p>
+                <div className="mt-2 mb-4 text-center">
+                  <p className="text-danger">{this.state.errors.errorCodes}</p>
+                  <p className="text-danger">{this.state.errors.errorDate}</p>
                 </div>
-                <div class="container-fluid bg-danger">
-                  <div class="text-white fw-bold text-center">
-                    {this.state.errorApiDelete == undefined
+                <div className="container-fluid bg-danger">
+                  <div className="text-white fw-bold text-center">
+                    {this.state.errorApiDelete === undefined
                       ? ""
                       : this.state.errorApiDelete.error}
                   </div>
                 </div>
-                <div class="container-fluid bg-success">
-                  <div class="text-white fw-bold text-center">
-                    {this.state.msg == undefined ? "" : this.state.msg}
+                <div className="container-fluid bg-success">
+                  <div className="text-white fw-bold text-center">
+                    {this.state.msg === undefined ? "" : this.state.msg}
                   </div>
                 </div>
               </ModalFooter>

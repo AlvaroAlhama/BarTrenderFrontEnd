@@ -168,7 +168,7 @@ function ModalLogin() {
             </button>
             <h4 className="title title-up">Inicio de Sesión</h4>
           </div>
-          <div class="container">
+          <div className="container">
             <hr />
           </div>
           <ModalBody>
@@ -196,8 +196,8 @@ function ModalLogin() {
 
             <br></br>
 
-            <p style={{color: 'red', textAlign: 'center'}}>{errorLoginGoogle == undefined ? "" : errorLoginGoogle} <a style={{color: 'blue'}} href={errorLoginGoogle == undefined ? "" : errorLink}>{errorLoginGoogle == undefined ? "" : errorLink }</a></p>
-            <p style={{color: 'red', textAlign: 'center'}}>{errorBackend == undefined ? "" : errorBackend}</p>
+            <p style={{color: 'red', textAlign: 'center'}}>{errorLoginGoogle === undefined ? "" : errorLoginGoogle} <a style={{color: 'blue'}} href={errorLoginGoogle === undefined ? "" : errorLink}>{errorLoginGoogle === undefined ? "" : errorLink }</a></p>
+            <p style={{color: 'red', textAlign: 'center'}}>{errorBackend === undefined ? "" : errorBackend}</p>
 
           </ModalBody>
         </Modal>

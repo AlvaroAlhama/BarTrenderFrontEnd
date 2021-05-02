@@ -39,7 +39,7 @@ function AdminView() {
   const [hasImage, setHasImage] = React.useState(true);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const location = useLocation();
-  const mainPanel = React.useRef(null);
+  const mainPanel = React.useRef(undefined);
   var token = sessionStorage.getItem("token");
 
   useEffect(() => {

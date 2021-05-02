@@ -16,7 +16,7 @@ function DashboardQRList(props) {
   const [appState, setAppState] = useState({
     discounts: {},
   });
-  const [paymentState, setPaymentState] = useState({
+  const [paymentState] = useState({
     create_time: null,
     order_id: null
   });
@@ -271,13 +271,13 @@ function DashboardQRList(props) {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {discountPaymentInfoState.discountPaymentInfo.payments != undefined?
+                                  {discountPaymentInfoState.discountPaymentInfo.payments !== undefined?
                                   discountPaymentInfoState.discountPaymentInfo.payments.map(
                                     (payments) => {
                                       return (
                                         <>
                                           <tr>
-                                            <td scope="row" className="text-left">
+                                            <td className="text-left">
                                               {payments.discount_name}
                                             </td>
                                             <td></td>
@@ -327,24 +327,3 @@ function DashboardQRList(props) {
 }
 
 export default DashboardQRList;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
-

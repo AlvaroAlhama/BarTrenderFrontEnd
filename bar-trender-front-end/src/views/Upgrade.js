@@ -10,8 +10,8 @@ const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function Upgrade() {
   const [appState] = useState({
-    create_time: null,
-    order_id: null,
+    create_time: undefined,
+    order_id: undefined,
   });
 
   const [isPremium, setIsPremium] = useState({});
@@ -67,7 +67,7 @@ function Upgrade() {
     "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/setpremium";
 
   const payment = () => {
-    if (appState.create_time != null && appState.order_id != null) {
+    if (appState.create_time !== undefined && appState.order_id !== undefined) {
       fetch(url, {
         method: "POST",
         headers: {
@@ -85,7 +85,7 @@ function Upgrade() {
 
   return (
     <>
-      {isPremium == undefined ? (
+      {isPremium === undefined ? (
         <Spinner />
       ) : (
         <Container fluid>

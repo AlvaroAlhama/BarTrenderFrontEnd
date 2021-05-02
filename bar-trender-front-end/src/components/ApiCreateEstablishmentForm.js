@@ -19,7 +19,7 @@ class ApiCreateEstablishmentForm extends React.Component {
         tags: [],
       },
 
-      image: null,
+      image: undefined,
 
       selected: [],
 
@@ -54,14 +54,12 @@ class ApiCreateEstablishmentForm extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.map((tag) => {
-      if (tag.type != "Zona") {
+    var otherTags = data.tags.filter(tag => tag.type !== "Zona").map((tag) => {
         return { value: tag.name, label: tag.name };
-      }
     });
 
     var arrayOther = otherTags.filter(function (dato) {
-      return dato != undefined;
+      return dato !== undefined;
     });
 
     this.setState({
@@ -159,12 +157,13 @@ class ApiCreateEstablishmentForm extends React.Component {
       },
       body: json,
     });
+    var response
 
     if (create.ok) {
-      var response = await create.json();
+      response = await create.json();
       this.setState({ msg: response.msg, modalSuccess: true });
     } else {
-      var response = await create.json();
+      response = await create.json();
       this.translateError(response.error);
       setTimeout(() => {
         this.setState({
@@ -175,7 +174,7 @@ class ApiCreateEstablishmentForm extends React.Component {
   }
 
   async handleChange(event) {
-    if (event.target == undefined) {
+    if (event.target === undefined) {
       this.state.selected = event;
     } else {
       await this.setState({
@@ -185,7 +184,6 @@ class ApiCreateEstablishmentForm extends React.Component {
         },
       });
     }
-    console.log(this.state.input)
   }
 
   handleSubmit(event) {
@@ -200,6 +198,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     let selecteds = this.state.selected;
     let errors = {};
     let isValid = true;
+    var pattern
 
     if (!input["name_text"].trim()) {
       isValid = false;
@@ -227,7 +226,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     }
 
     if (input["number_text"]) {
-      var pattern = new RegExp(/^\D*\d{1,3}([A-Z]{1,2})?$/);
+      pattern = new RegExp(/^\D*\d{1,3}([A-Z]{1,2})?$/);
       if (!pattern.test(input["number_text"])) {
         isValid = false;
         errors["number_text"] =
@@ -242,7 +241,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     }
 
     if (input["cif_text"]) {
-      var pattern = new RegExp(/^[a-zA-Z]{1}\d{7}[a-zA-Z0-9]{1}$/);
+      pattern = new RegExp(/^[a-zA-Z]{1}\d{7}[a-zA-Z0-9]{1}$/);
       if (!pattern.test(input["cif_text"])) {
         isValid = false;
         errors["cif_text"] = "Introduzca un CIF correcto.";
@@ -255,7 +254,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     }
 
     if (input["phone_number"]) {
-      var pattern = new RegExp(/^\d{9}$/);
+      pattern = new RegExp(/^\d{9}$/);
       if (!pattern.test(input["phone_number"])) {
         isValid = false;
         errors["phone_number"] = "El télefono introducido no es válido";
@@ -285,7 +284,7 @@ class ApiCreateEstablishmentForm extends React.Component {
       <>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
             <label>Nombre del establecimiento</label>
               <input
                 type="text"
@@ -293,13 +292,13 @@ class ApiCreateEstablishmentForm extends React.Component {
                 value={this.state.input.name_text}
                 onChange={this.handleChange}
                 maxLength="100"
-                class="form-control"
+                className="form-control"
                 id="name_text"
               />
 
-              <div class="text-danger">{this.state.errors.name_text}</div>
+              <div className="text-danger">{this.state.errors.name_text}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
             <label>CIF del establecimiento</label>
               <input
                 type="text"
@@ -307,13 +306,13 @@ class ApiCreateEstablishmentForm extends React.Component {
                 maxLength="9"
                 value={this.state.input.cif_text}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 id="cif_text"
               />
 
-              <div class="text-danger">{this.state.errors.cif_text}</div>
+              <div className="text-danger">{this.state.errors.cif_text}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
             <label>Descripción del establecimiento</label>
               <input
                 type="text"
@@ -321,27 +320,27 @@ class ApiCreateEstablishmentForm extends React.Component {
                 maxLength="200"
                 value={this.state.input.desc_text}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 id="desc_text"
               />
 
-              <div class="text-danger">{this.state.errors.desc_text}</div>
+              <div className="text-danger">{this.state.errors.desc_text}</div>
             </div>
 
-            <div class="form-group my-1">
+            <div className="form-group my-1">
             <label>Número de teléfono</label>
               <input
                 type="tel"
                 name="phone_number"
                 value={this.state.input.phone_number}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 id="phone_number"
               />
-              <div class="text-danger">{this.state.errors.phone_number}</div>
+              <div className="text-danger">{this.state.errors.phone_number}</div>
             </div>
 
-            <div class="form-group my-1">
+            <div className="form-group my-1">
             <label>Calle</label>
               <input
                 type="text"
@@ -349,25 +348,25 @@ class ApiCreateEstablishmentForm extends React.Component {
                 maxLength="50"
                 value={this.state.input.street_text}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
               />
 
-              <div class="text-danger">{this.state.errors.street_text}</div>
+              <div className="text-danger">{this.state.errors.street_text}</div>
             </div>
 
-            <div class="form-group my-1">
+            <div className="form-group my-1">
             <label>Número</label>
               <input
                 type="text"
                 name="number_text"
                 value={this.state.input.number_text}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
               />
 
-              <div class="text-danger">{this.state.errors.number_text}</div>
+              <div className="text-danger">{this.state.errors.number_text}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
             <label>Localidad</label>
               <input
                 type="text"
@@ -375,10 +374,10 @@ class ApiCreateEstablishmentForm extends React.Component {
                 maxLength="50"
                 value={this.state.input.locality_text}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
               />
 
-              <div class="text-danger">{this.state.errors.locality_text}</div>
+              <div className="text-danger">{this.state.errors.locality_text}</div>
             </div>
             <FormGroup className="pt-2">
               <Label for="establishmentImage">Imagen</Label>
@@ -391,25 +390,25 @@ class ApiCreateEstablishmentForm extends React.Component {
               />
             </FormGroup>
 
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <label>Zona</label>
               <select
                 name="zone_enum"
                 value={this.state.input.zone_enum}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
               >
                 <option value="">Selecciona una zona</option>
                 {this.state.zone.zona.map((zona) => {
                   return <option value={zona}>{zona}</option>;
                 })}
               </select>
-              <div class="text-danger">{this.state.errors.zone_enum}</div>
+              <div className="text-danger">{this.state.errors.zone_enum}</div>
             </div>
 
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <label>Tags</label>
-              {this.state.otherTags.length != 0 ? (
+              {this.state.otherTags.length !== 0 ? (
                 <Select
                   name="tags-selected"
                   placeholder="Selecciona..."
@@ -420,19 +419,19 @@ class ApiCreateEstablishmentForm extends React.Component {
               ) : (
                 ""
               )}
-              <div class="text-danger">{this.state.errors.tags_selected}</div>
+              <div className="text-danger">{this.state.errors.tags_selected}</div>
             </div>
 
-            <div class="text-center">
+            <div className="text-center">
               <input
                 type="submit"
                 value="Añadir establecimiento"
-                class="btn btn-primary"
+                className="btn btn-primary"
               />
             </div>
-            <div class="container-fluid bg-danger">
-              <div class="text-white fw-bold text-center">
-                {this.state.errors == {}
+            <div className="container-fluid bg-danger">
+              <div className="text-white fw-bold text-center">
+                {this.state.errors === {}
                   ? ""
                   : this.state.errors.error}
               </div>
@@ -453,7 +452,7 @@ class ApiCreateEstablishmentForm extends React.Component {
           </div>
           <ModalBody>
             <div className="mt-2 mb-4 text-center">
-              <p class="text-success"> Establecimiento creado con éxito</p>
+              <p className="text-success"> Establecimiento creado con éxito</p>
             </div>
           </ModalBody>
         </Modal>

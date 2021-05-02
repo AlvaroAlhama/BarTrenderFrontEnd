@@ -66,7 +66,7 @@ function AdminView() {
   const [hasImage, setHasImage] = React.useState(true);
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const location = useLocation();
-  const mainPanel = React.useRef(null);
+  const mainPanel = React.useRef(undefined);
   var token = sessionStorage.getItem("token");
 
   const [modal1, setModal1] = React.useState(false);
@@ -85,7 +85,7 @@ function AdminView() {
 
   useEffect(() => {
     const apiUrl =
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner";
     async function loadBar() {
       await fetch(apiUrl, {
         method: "GET",

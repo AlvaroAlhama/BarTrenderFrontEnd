@@ -16,27 +16,14 @@
 
 */
 import React from "react";
-import {Modal, ModalBody} from "react-bootstrap";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import { NavItem, NavLink, UncontrolledTooltip } from "reactstrap";
+import { Navbar, Container } from "react-bootstrap";
+import { NavLink, UncontrolledTooltip } from "reactstrap";
 import ModalLogin from "../../components/Modals/ModalLogin";
 import ModalCreateEstablishment from "../../components/Modals/ModalCreateEstablishment";
 import MobileNavbarModal from "../../components/Navbars/MobileNavbarModal";
-import routes from "routes.js";
 
 function Header() {
- 
-  const mobileSidebarToggle = (e) => {
-    e.preventDefault();
-    document.documentElement.classList.toggle("nav-open");
-    var node = document.createElement("div");
-    node.id = "bodyClick";
-    node.onclick = function () {
-      this.parentElement.removeChild(this);
-      document.documentElement.classList.toggle("nav-open");
-    };
-    document.body.appendChild(node);
-  };
+
   function reportWindowSize() {
 
     const { innerWidth: width } = window;
@@ -52,16 +39,14 @@ function Header() {
   }
   window.addEventListener('resize', reportWindowSize);
 
-  const isLoggedIn =
-    sessionStorage.getItem("token") && sessionStorage.getItem("rol") == "owner";
-
-
   return (
     <Navbar bg="dark" expand="lg">
       <Container fluid>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">
           <MobileNavbarModal/>
-          <a href="/main"><h4 class="text-white my-auto">BarTrender</h4></a>
+
+          <a href="/main"><h4 className="text-white my-auto">BarTrender</h4></a>
+
 
         </div>
         <div className="d-flex justify-content-center align-items-center ml-2 ml-lg-0">

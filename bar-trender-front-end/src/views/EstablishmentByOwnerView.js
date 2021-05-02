@@ -25,7 +25,6 @@ function EstablishmentByOwnerView(){
             })
             .then(response => response.json())
             .then(establishments => {
-                console.log(establishments, 'establishments');
                 setAppState({loading:false, establishments: establishments});
             });
         }

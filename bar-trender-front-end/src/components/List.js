@@ -3,7 +3,6 @@ import React from 'react';
 import ModalSelectedElement from "./Modals/ModalSelectedElement.js";
 
 import {
-  Row,
   Col,
 } from "reactstrap";
 

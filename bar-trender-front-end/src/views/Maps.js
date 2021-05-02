@@ -4,7 +4,7 @@ import React from "react";
 
 
 function Maps() {
-  const mapRef = React.useRef(null);
+  const mapRef = React.useRef(undefined);
   React.useEffect(() => {
     let google = window.google;
     let map = mapRef.current;

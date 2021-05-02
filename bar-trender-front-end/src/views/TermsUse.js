@@ -20,7 +20,7 @@ function LegalNotice() {
         
         <Container>
         <div className="wrapper">
-        <section class="container mt-1" id = "legal-notice" style={{padding:"300px"}} > 
+        <section className="container mt-1" id = "legal-notice" style={{padding:"300px"}} > 
         <p>El sitio web www.bartrender.com y las aplicaciones para móviles y tablets son publicaciones de Bartrender S.L.</p>
         
         <p>Email: bartrenderoficial@gmail.com</p>

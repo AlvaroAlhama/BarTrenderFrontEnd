@@ -14,12 +14,12 @@ function DefaultFooter() {
           <Row>
             <Col lg="4" className="my-auto justify-content-center text-center">
               <Row>
-                <a class="text-white text-decoration-none my-2 mx-auto" href="/legal">
+                <a className="text-white text-decoration-none my-2 mx-auto" href="/legal">
                   Acuerdo de términos
                 </a>
               </Row>
               <Row>
-                <a class="text-white my-2 text-decoration-none mx-auto" href="/condiciones-uso">
+                <a className="text-white my-2 text-decoration-none mx-auto" href="/condiciones-uso">
                   Condiciones de uso
                 </a>
               </Row>

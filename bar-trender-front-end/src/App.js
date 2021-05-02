@@ -8,8 +8,8 @@ export default class App extends React.Component {
   
   state = {
     loading: true,
-    qr: null,
-    error: null,
+    qr: undefined,
+    error: undefined,
   };
   
 
@@ -22,7 +22,7 @@ export default class App extends React.Component {
     if(!token){
       this.setState({error: "Necesitas haber iniciado sesión para poder ver el descuento"})
     }else{
-      const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-sprint-02.netlify.app';
+      const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-develop.netlify.app';
    
 
       const response = await fetch(url, {
@@ -46,8 +46,8 @@ export default class App extends React.Component {
   render(){
     return (
       <div className="App">
-          <img src={this.state.loading || this.state.qr != null ? this.state.qr : null} />
-          <p>{this.state.error != null ? this.state.error: null}</p>
+          <img src={this.state.loading || this.state.qr !== undefined ? this.state.qr : undefined} alt="" />
+          <p>{this.state.error !== undefined ? this.state.error: undefined}</p>
       </div>
     );
   }

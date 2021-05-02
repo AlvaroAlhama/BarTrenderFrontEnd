@@ -1,7 +1,6 @@
 
 import React from "react";
 
-import { BrowserRouter as Link } from "react-router-dom";
 // react-bootstrap components
 import {
   Card,
@@ -9,10 +8,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-
 import ShowPremiumStats from "../components/ShowPremiumStats.js";
-import ApiSignUpEstablishmentForm from "components/ApiSignUpEstablishmentForm .js";
 
 export default class PremiumDashboard extends React.Component {
   constructor() {
@@ -32,7 +28,7 @@ export default class PremiumDashboard extends React.Component {
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
-      msg: null,
+      msg: undefined,
     };
     var query = window.location.search;
     let params = new URLSearchParams(query);
@@ -118,7 +114,6 @@ export default class PremiumDashboard extends React.Component {
   }
 
   render() {
-    
 
     if (sessionStorage.getItem("premium") === "true") {
       return (
@@ -127,7 +122,7 @@ export default class PremiumDashboard extends React.Component {
             <Row>
               <Col lg="6" md="6" xs="12">
                 <Card className="p-4">
-                  <h3 class="text-justify">
+                  <h3 className="text-justify">
                     Bienvenido a la version premium de nuestro dashboard,
                     {this.premium == null ?
                     '' :
@@ -141,28 +136,30 @@ export default class PremiumDashboard extends React.Component {
               <Col lg="6" md="6" xs="12">
                 <Card className="p-4">
                   <form>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="container">Zona en la que buscar</label>
+                    <div className="row">
+                      <div className="col-lg-4 col-md-6 col-xs-12">
+                        <label className="container">Zona en la que buscar</label>
                       </div>
-                      <div class='col-lg-8 col-md-6 col-xs-12'>
-                        <select
-                          name='zone_enum'
-                          onChange={this.handleChange}
-                          class='form-control'>
+
+                      <div className='col-lg-8 col-md-6 col-xs-12'>
+                        <select 
+                          name='zone_enum' 
+                          onChange={this.handleChange} 
+                           className='form-control'>
+
                           {this.state.zone.zona.map((zona) => {
                             return <option value={zona}>{zona}</option>;
                           })}
                         </select>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="container">Filtros</label>
+                    <div className="row">
+                      <div className="col-lg-4 col-md-6 col-xs-12">
+                        <label className="container">Filtros</label>
                       </div>
-                      <div class="col-lg-8 col-md-6 col-xs-12">
+                      <div className="col-lg-8 col-md-6 col-xs-12">
                         <select
-                          class="form-control"
+                          className="form-control"
                           id="filterImput"
                           name="filter"
                         >
@@ -172,20 +169,20 @@ export default class PremiumDashboard extends React.Component {
                         </select>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-xs-12">
-                        <label class="container">Fecha inicial</label>
+                    <div className="row">
+                      <div className="col-lg-6 col-md-6 col-xs-12">
+                        <label className="container">Fecha inicial</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           id="initialDate"
                           type="date"
                           name="initial-date"
                         ></input>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-xs-12">
-                        <label class="container">Fecha final</label>
+                      <div className="col-lg-6 col-md-6 col-xs-12">
+                        <label className="container">Fecha final</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           id="endDate"
                           type="date"
                           name="end-date"

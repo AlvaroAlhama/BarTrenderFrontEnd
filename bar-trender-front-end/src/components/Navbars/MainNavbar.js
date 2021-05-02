@@ -100,12 +100,12 @@ function MainNavbar() {
         color="primary"
         expand="lg"
       >
-        <a class="navbar-brand" href="/main">
+        <a className="navbar-brand" href="/main">
           <img className="img-fluid" alt="" src={barTrender} />
         </a>
         {(windowWidth > 990) &&
-          <a id="bartrender-title" class="text-decoration-none" href="/main">
-            <h1 class="my-auto ml-4">BarTrender</h1>
+          <a id="bartrender-title" className="text-decoration-none" href="/main">
+            <h1 className="my-auto ml-4">BarTrender</h1>
           </a>}
         
         <ModalSearch key={uuid.v4()}/>
@@ -118,7 +118,7 @@ function MainNavbar() {
           aria-expanded={collapseOpen}
           type="button"
         >
-          <i class="fal fa-chevron-circle-down fa-lg text-white "></i>
+          <i className="fal fa-chevron-circle-down fa-lg text-white "></i>
         </button>
 
         <Collapse className="justify-content-end" isOpen={collapseOpen} navbar>
@@ -130,7 +130,7 @@ function MainNavbar() {
                 id="twitter-tooltip"
                 cursor="pointer"
               >
-                <i class="fab fa-twitter fa-lg w-100 text-white my-auto"></i>
+                <i className="fab fa-twitter fa-lg w-100 text-white my-auto"></i>
                 <p className="d-lg-none text-white d-xl-none mt-2 ml-2">
                   Twitter
                 </p>
@@ -146,7 +146,7 @@ function MainNavbar() {
                 target="_blank"
                 id="instagram-tooltip"
               >
-                <i class="fab fa-instagram fa-lg w-100 my-auto text-white"></i>
+                <i className="fab fa-instagram fa-lg w-100 my-auto text-white"></i>
                 <p className="d-lg-none text-white d-xl-none mt-2 ml-2">
                   Instagram
                 </p>
@@ -160,7 +160,7 @@ function MainNavbar() {
                 <NavLink href="/admin/dashboard" id="discount-tooltip">
                   <i
                     id="panel-control-icon"
-                    class="fal fa-joystick text-white mt-1 fa-lg"
+                    className="fal fa-joystick text-white mt-1 fa-lg"
                   ></i>
                   <p className="d-lg-none text-white d-xl-none ml-2 my-auto">
                     Panel de control

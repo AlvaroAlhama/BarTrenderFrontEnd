@@ -143,7 +143,7 @@ function Sidebar({ color, image }) {
           
           {appState.routes.map((prop, key) => {
             
-            if (!prop.redirect && !(sessionStorage.getItem("premium") == "false" && prop.path == '/PremiumDashboard'))
+            if (!prop.redirect && !(sessionStorage.getItem("premium") === "false" && prop.path === '/PremiumDashboard'))
               return (
 
                 <li

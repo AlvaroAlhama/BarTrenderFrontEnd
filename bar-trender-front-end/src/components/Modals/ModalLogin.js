@@ -212,10 +212,11 @@ function ModalLogin() {
             sessionStorage.clear();
             window.location.href = "/index";
           }}
-          className="fal fa-power-off text-white fa-lg mt-1"
+          className="fal fa-power-off text-white w-100 fa-lg mt-1"
           
-        />
-        {/* <p className="d-lg-none d-xl-none my-auto text-white ml-2">Cerrar sesión</p> */}
+        >
+          <p className="d-lg-none d-xl-none my-auto text-white ml-2" style={{fontFamily:"Roboto", fontSize:"11.4272px", fontWeight:"400"}}>Cerrar Sesión</p>
+        </i>
         
       </>
     );

@@ -167,7 +167,7 @@ class ModalSearch extends React.Component {
         >
           Filtros
         </Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} style={{width:"100%", margin:"auto"}}>
           <div className="modal-header justify-content-center">
             <button
               className="close"
@@ -186,19 +186,14 @@ class ModalSearch extends React.Component {
 
                   <div className="nav-align-center">
 
-
-                    <Nav
-                      className="nav-pills-info nav-pills-just-icons justify-content-center w-100"
-                      pills
-                      role="tablist"
-                    >
+                    <div style={{display:"flex", flexFlow:"row wrap", listStyle:"none"}}>
 
                       {Object.entries(this.tags_grouped).map(([key, index]) => {
                         if(this.state.WindowWidth < 450) {
                           return (
                             <>
-                              <NavItem className="col-4" >
-                                <Container className="mt-3 mb-3" style={{padding:"0", backgroundColor:"red"}}>
+                              <NavItem className="col-4 p-0">
+                                <Container className="mt-3 mb-3">
                                   <NavLink
                                     className={this.state['pills'] === key ? "active" : ""}
                                     href=""
@@ -245,7 +240,7 @@ class ModalSearch extends React.Component {
                         
                       })}
                       {(this.state.WindowWidth < 450) && 
-                        <NavItem className="col-4">
+                        <NavItem className="col-4 p-0">
                           <Container className="mt-3 mb-3">
                             <NavLink
                               className={this.state['pills'] === "Descuentos" ? "active" : ""}
@@ -284,11 +279,8 @@ class ModalSearch extends React.Component {
                           </Container>
                         </NavItem>
                       }
-                      
-                    </Nav>
-
-
-
+                    </div>
+                    
                   </div>
                 </Col>
               </Row>

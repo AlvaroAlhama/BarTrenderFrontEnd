@@ -49,7 +49,7 @@ function MainNavbar() {
   });
   function reportWindowSize() {
     const { innerWidth: width } = window;
-    if (width < 750) {
+    if (width < 992) {
       if (document.getElementById("filters") != null) {
         document.getElementById("filters").classList.add("mx-auto");
       }
@@ -63,7 +63,7 @@ function MainNavbar() {
         document.getElementById("nav").style.backgroundColor="#E8A579";
       }
     }
-    if (width >= 750) {
+    if (width >= 992) {
       if (document.getElementById("filters") != null) {
         document.getElementById("filters").classList.remove("mx-auto");
       }
@@ -108,7 +108,7 @@ function MainNavbar() {
             <h1 class="my-auto ml-4">BarTrender</h1>
           </a>}
         
-        <ModalSearch key={uuid.v4()} />
+        <ModalSearch key={uuid.v4()}/>
         <button
           className="navbar-toggler navbar-toggler mr-5"
           onClick={() => {

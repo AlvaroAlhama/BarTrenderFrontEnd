@@ -3,6 +3,8 @@ import { Modal, ModalBody } from "reactstrap";
 
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
 import "../views/css/FreeDashboard.css";
+import '../views/css/Dashboard.css';
+
 import ReactDOM from "react-dom";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
@@ -127,9 +129,10 @@ function DashboardQRList(props) {
               return (
                 <>
                   <Col lg="4" md="6" xs="12">
+                    
                     <Card className="card-stats">
                       <Card.Body>
-                        <Container fluid>
+                        {/* <Container fluid> */}
                           <Row className="justify-content-center">
                             <div className="icon-big text-center icon-warning">
                               <i className="nc-icon nc-chart text-warning"></i>
@@ -153,12 +156,12 @@ function DashboardQRList(props) {
                               </span>
                             </div>
                           </Row>
-                        </Container>
+                        {/* </Container> */}
                       </Card.Body>
                       <Card.Footer>
                         <hr></hr>
                         <div className="stats">
-                          <i className="fas fa-redo mr-1"></i>
+                          <i className="fas fa-check"></i>
                           Datos extraidos de la api de Bartrender
                         </div>
                       </Card.Footer>
@@ -168,7 +171,7 @@ function DashboardQRList(props) {
               );
             })}
             <Col lg="4" md="6" xs="12">
-              <Card className="card-stats">
+              <Card className="card-stats flex">
                 <Card.Body>
                   <Container fluid>
                     <Row className="justify-content-center">
@@ -190,7 +193,7 @@ function DashboardQRList(props) {
                 <Card.Footer>
                   <hr></hr>
                   <div className="stats">
-                    <i className="fas fa-redo mr-1"></i>
+                    <i className="fas fa-check"></i>
                     Datos extraidos de la api de Bartrender
                   </div>
                 </Card.Footer>
@@ -310,7 +313,7 @@ function DashboardQRList(props) {
               <Card.Footer>
                 <hr></hr>
                 <div className="stats">
-                  <i className="fas fa-redo mr-1"></i>
+                  <i className="fas fa-check"></i>
                   Datos extraidos de la api de Bartrender
                 </div>
               </Card.Footer>

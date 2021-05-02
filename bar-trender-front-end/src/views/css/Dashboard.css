@@ -1,0 +1,20 @@
+
+.card-stats .card-body .numbers {
+    font-size: 1.0rem; 
+    text-align: right;
+}
+/* div.stats {
+    margin-bottom: 0px;
+} */
+.card{
+    height: auto;
+}
+.card-body{
+    height: 90%;
+}
+.card-footer{
+    height: 10%;
+}
+.col-md-6 {
+    display: flex;
+}

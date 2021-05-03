@@ -21,7 +21,7 @@ function BeerPieChart(props) {
     var token = sessionStorage.getItem("token");
 
     var send = {'filter': props.filter}
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
+    const apiUrl = "https://main-backend-sprint-03.herokuapp.com/v1/stats/get";
 
     async function loadStats() {
       await fetch(apiUrl, {

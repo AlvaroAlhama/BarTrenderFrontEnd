@@ -77,7 +77,7 @@ function PrivacyPolicy() {
           <table width="100%">
               <tr>
                 <td><strong>Objetivo/Actividad</strong></td>
-                <td><strong>Datos Personales</strong></td>
+                <td style= {{width:"33%"}}><strong>Datos Personales</strong></td>
                 <td><strong>Fundamento Jurídico</strong></td>
               </tr>
               <tr>

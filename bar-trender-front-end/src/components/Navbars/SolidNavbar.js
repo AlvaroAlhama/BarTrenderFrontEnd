@@ -1,8 +1,7 @@
-import {React, useEffect } from "react";
-
+import React from "react";
 import barTrender from "../../assets/img/barTrender60.png";
 import * as uuid from "uuid";
-
+import { useEffect } from "react";
 // reactstrap components
 import {
   Collapse,

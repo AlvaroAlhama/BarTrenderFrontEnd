@@ -41,7 +41,7 @@ function BeerPieChart(props) {
         });
     }
     loadStats()
-  });
+  },[setOcioState, setBebidaState]);
 
   
   var graph2

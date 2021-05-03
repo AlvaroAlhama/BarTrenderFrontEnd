@@ -155,12 +155,14 @@ class POSTLoginFormQRValidator extends React.Component {
     if (response.ok) {
       var r = await response.json();
       var token = r.token;
+      var rol = r.rol;
       sessionStorage.setItem("token", token);
+      sessionStorage.setItem("rol", rol);
       this.getDiscountResult();
     } else {
       
       this.setState({ loading: false });
-      errors["email"] = "Email o contraseña incorrecta.";
+      errors["password"] = "Contraseña incorrecta.";
     }
     this.setState({
       errors: errors,

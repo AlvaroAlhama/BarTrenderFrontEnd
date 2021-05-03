@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
+import { Spinner } from 'reactstrap';
 
 function toFixed(num, fixed) {
   var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
@@ -41,62 +42,10 @@ function BeerPieChart(props) {
         });
     }
     loadStats()
-  },[setOcioState, setBebidaState]);
+  },[props.filter]);
 
   
-  var graph2
-  if (bebidaState.statsBebida.first !== undefined) {
-    graph2 = {
-      chartData: {
-        labels: [bebidaState.statsBebida.first.name, bebidaState.statsBebida.second.name, bebidaState.statsBebida.third.name, 'Otros'],
-        datasets: [
-          {
-            label: 'Busquedas',
-            data: [
-              toFixed(bebidaState.statsBebida.first.percentage, 2),
-              toFixed(bebidaState.statsBebida.second.percentage,2),
-              toFixed(bebidaState.statsBebida.third.percentage,2),
-              toFixed(bebidaState.statsBebida.other.percentage,2),
-            ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-            ],
-
-          }
-        ]
-
-      }
-    };
-  } else {
-    graph2 = {
-      chartData: {
-        labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
-        datasets: [
-          {
-            label: 'Busquedas',
-            data: [
-              10,
-              20,
-              30,
-              40,
-            ],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-            ],
-
-          }
-        ]
-
-      }
-    };
-  }
- 
+  var graph2 
   if(props.filter === 'Bebida'){
     if (bebidaState.statsBebida.first !== undefined) {
       graph2 = {
@@ -124,30 +73,9 @@ function BeerPieChart(props) {
         }
       };
     } else {
-      graph2 = {
-        chartData: {
-          labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
-          datasets: [
-            {
-              label: 'Busquedas',
-              data: [
-                10,
-                20,
-                30,
-                40,
-              ],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.6)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-              ],
-  
-            }
-          ]
-  
-        }
-      };
+      return(
+        <Spinner/>
+      )
     }
   }else if(props.filter === 'Ocio') {
     if (ocioState.statsOcio.first !== undefined) {
@@ -176,30 +104,9 @@ function BeerPieChart(props) {
         }
       };
     } else {
-      graph2 = {
-        chartData: {
-          labels: ['Billar', 'Futbolin', 'Futbol en television', 'Otros'],
-          datasets: [
-            {
-              label: 'Busquedas',
-              data: [
-                10,
-                20,
-                30,
-                40,
-              ],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.6)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-              ],
-  
-            }
-          ]
-  
-        }
-      };
+      return(
+        <Spinner/>
+      )
     }
   }
 

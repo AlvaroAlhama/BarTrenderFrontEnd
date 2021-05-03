@@ -14,8 +14,8 @@ function DefaultFooter() {
           <Row>
             <Col lg="4" className="my-auto justify-content-center text-center">
               <Row>
-                <a className="text-white text-decoration-none my-2 mx-auto" href="/legal">
-                  Acuerdo de términos
+                <a className="text-white text-decoration-none my-2 mx-auto" href="/politica-privacidad">
+                  Política de privacidad
                 </a>
               </Row>
               <Row>

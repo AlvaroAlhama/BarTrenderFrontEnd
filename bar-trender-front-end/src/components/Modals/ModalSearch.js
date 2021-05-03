@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React from "react";
 
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom"
@@ -12,23 +12,27 @@ import {
   TabPane,
   NavItem,
   NavLink,
-  Nav,
   Container,
   Row,
 } from "reactstrap";
 
-// core components
+function groupBy(xs, f) {
+  return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+}
 
+// core components
 class ModalSearch extends React.Component {
 
   constructor(props) {
     // const [pills, setPills] = React.useState("2");
     super(props);
-
+    
     this.state = {
       modal: props.initialModalState,
       fade: true,
       pills: "",
+      WindowWidth: window.innerWidth,
+      tags_grouped: []
     };
 
 
@@ -54,29 +58,7 @@ class ModalSearch extends React.Component {
       //   type: "Estilo"
       // },
     ];
-    console.log(this.tags, "construyendose")
-    this.tags_grouped = [];
-    function groupBy(xs, f) {
-      return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
-    }
-
-    const apiUrl = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_tags";
-
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
-      }
-    }).then(response => response.json())
-      .then(tags => {
-        this.tags = tags.tags;
-        this.tags_grouped = groupBy(this.tags, (t) => t.type);
-        // console.log(this.tags)
-        // console.log(this.tags_grouped, "tags gruo")
-      })
-
+     
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDiscountChange = this.handleDiscountChange.bind(this);
@@ -94,28 +76,20 @@ class ModalSearch extends React.Component {
   handleTermChange(e) {
     var type = e.target.name.split(":")[0];
     var name = e.target.name.split(":")[1];
-    console.log(e.target);
-    if (e.target.name == 'name') {
-      console.log(e.target.value, 'name');
+    if (e.target.name === 'name') {
       this.setState({ 'name': e.target.value },);
     } else {
-      if (e.target.checked == true) {
-        // this.setState({ [type] : [name] },
-        //   () => console.log(this.state, "checked"),
-        // );
-        if (this.state[type] == undefined) {
-          this.setState({ [type]: [name] },
-            () => console.log(this.state),
+      if (e.target.checked === true) {
+        if (this.state[type] === undefined) {
+          this.setState({ [type]: [name] }
           );
         } else {
           this.state[type].push(name);
-          console.log(this.state, "El doblao");
         }
       }
       else {
         var nameIndex = this.state[type].indexOf("name");
         this.state[type].splice(nameIndex, 1);
-        console.log(this.state);
       }
     }
 
@@ -123,19 +97,13 @@ class ModalSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // this.handleTermChange(event);
+   
   }
-  // handleNameChange(e) {
-
-  //   var x = document.getElementById("name").value;
-  //   this.setState({'name': x },
-  //   );
-
-  // }
+  
   handleDiscountChange(e) {
 
     var x = document.getElementById("discounts").value;
-    this.setState({ 'discounts': x == 'on' ? true : false },
+    this.setState({ 'discounts': x === 'on' ? true : false },
     );
 
   }
@@ -159,19 +127,43 @@ class ModalSearch extends React.Component {
     }
   }
 
+  componentDidMount()
+  {
+    const apiUrl = "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_tags";
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'apiKey': '8dDc431125634ef43cD13c388e6eCf11',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      var res = groupBy(data.tags, (t) => t.type)
+      this.setState({tags_grouped: res})
+      console.log(this.state.tags_grouped)
+    })
+  }
+
+  componentDidUpdate() {
+    this.state.WindowWidth = window.innerWidth;
+  }
+
+  
+
   render() {
     return (
 
       <>
         <Button
           color="primary"
-          className="mr-1"
+          className="ml-3"
           onClick={this.toggle}
           id="filters"
         >
           Filtros
         </Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} style={{width:"100%", margin:"auto"}}>
           <div className="modal-header justify-content-center">
             <button
               className="close"
@@ -190,59 +182,81 @@ class ModalSearch extends React.Component {
 
                   <div className="nav-align-center">
 
+                    <div style={{display:"flex", flexFlow:"row wrap", listStyle:"none"}}>
+                        
+                        {Object.entries(this.state.tags_grouped).length !== 0 ? Object.entries(this.state.tags_grouped).map(([key]) => {
 
-                    <Nav
-                      className="nav-pills-info nav-pills-just-icons justify-content-center w-100"
-                      pills
-                      role="tablist"
-                    >
+                          if(window.innerWidth < 450) {
+                            return (
+                              <>
+                                <NavItem className="col-4 p-0">
+                                  <Container className="mt-3 mb-3">
+                                    <NavLink
+                                      className={this.state['pills'] === key ? "active" : ""}
+                                      href=""
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        this.setState({
+                                          pills: key,
+                                        })
+    
+                                      }}
+                                    >
+                                      <i style={{fontSize: "1.5rem"}} className={this.renderSwitch(key)}></i>
+                                    </NavLink>
+                                    <h6 className="align-center">{key}</h6>
+                                  </Container>
+                                </NavItem>
+                              </>
+                            );
+                          }
+                          else{
+                            return (
+                              <>
+                                <NavItem className="col-4">
+                                  <Container className="mt-3 mb-3">
+                                    <NavLink
+                                      className={this.state['pills'] === key ? "active" : ""}
+                                      href=""
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        this.setState({
+                                          pills: key,
+                                        })
+    
+                                      }}
+                                    >
+                                      <i style={{fontSize: "1.5rem"}} className={this.renderSwitch(key)}></i>
+                                    </NavLink>
+                                    <h6 className="align-center">{key}</h6>
+                                  </Container>
+                                </NavItem>
+                              </>
+                            );
+                          }
+                        }
+                      ) : (<p>Cargando...</p>)}               
 
-                      {Object.entries(this.tags_grouped).map(([key, index]) => {
-                        return (
-                          <>
+                        <NavItem className="col-4 p-0">
+                          <Container className="mt-3 mb-3">
+                            <NavLink
+                              className={this.state['pills'] === "Descuentos" ? "active" : ""}
+                              href=""
+                              onClick={(e) => {
+                                e.preventDefault();
+                                this.setState({
+                                  pills: "Descuentos",
+                                })
+                              }}
+                            >
 
-                            <NavItem className="col-4">
-                              <Container className="mt-3 mb-3">
-                                <NavLink
-                                  className={this.state['pills'] === key ? "active" : ""}
-                                  href=""
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    this.setState({
-                                      pills: key,
-                                    })
-
-                                  }}
-                                >
-                                  <i class={this.renderSwitch(key)}></i>
-                                </NavLink>
-                                <h6 class="align-center ">{key}</h6>
-                              </Container>
-                            </NavItem>
-                          </>
-                        );
-                      })}
-                      <NavItem className="col-4">
-                        <Container className="mt-3 mb-3">
-                          <NavLink
-                            className={this.state['pills'] === "Descuentos" ? "active" : ""}
-                            href=""
-                            onClick={(e) => {
-                              e.preventDefault();
-                              this.setState({
-                                pills: "Descuentos",
-                              })
-                            }}
-                          >
-                            <i className="now-ui-icons shopping_tag-content"></i>
-                          </NavLink>
-                          <h6 class="align-center ">Descuentos</h6>
-                        </Container>
-                      </NavItem>
-                    </Nav>
-
-
-
+                              <i style={{fontSize: "1.5rem"}} className="now-ui-icons shopping_tag-content"></i>
+                            </NavLink>
+                            <h6 className="align-center ">Descuentos</h6>
+                          </Container>
+                        </NavItem>
+                    </div>
+                    
                   </div>
                 </Col>
               </Row>
@@ -255,7 +269,7 @@ class ModalSearch extends React.Component {
                       <Input type="text" name="name" id="name" onChange={this.handleTermChange} />
                     </FormGroup>
 
-                    {Object.entries(this.tags_grouped).map(([type, index]) => {
+                    {Object.entries(this.state.tags_grouped).map(([type, index]) => {
                       return (
                         <>
                           <TabContent className="gallery" activeTab={"pills" + this.state['pills']}>
@@ -264,7 +278,7 @@ class ModalSearch extends React.Component {
                               <h3 className="text-center mt-2"> {type}</h3>
 
 
-                              {this.tags_grouped[type].map((tag) => {
+                              {this.state.tags_grouped[type].map((tag) => {
                                 return (
                                   <>
                                     <FormGroup check>
@@ -288,23 +302,27 @@ class ModalSearch extends React.Component {
                         </>
                       );
                     })}
-                    <TabPane tabId="pillsDescuentos">
-                      <h3 className="text-center mt-2"> Descuentos</h3>
-                      <FormGroup check>
+                    <TabContent className="gallery" activeTab={"pills" + this.state['pills']}>
 
-                        <Label id="discount-label" check>
-                          <Input type="checkbox"
-                            placeholder="discounts"
-                            onChange={this.handleDiscountChange}
-                            onKeyDown={this.handleEnter}
-                            name="discounts"
-                            id="discounts"
-                          />
-                          <span className="form-check-sign"></span>
+                      <TabPane tabId="pillsDescuentos">
+                        <h3 className="text-center mt-2"> Descuentos</h3>
+                        <FormGroup check>
+
+                          <Label id="discount-label" check>
+                            <Input type="checkbox"
+                              placeholder="discounts"
+                              onChange={this.handleDiscountChange}
+                              onKeyDown={this.handleEnter}
+                              name="discounts"
+                              id="discounts"
+                            />
+                            <span className="form-check-sign"></span>
                         Cualquier descuento
                         </Label>
-                      </FormGroup>
-                    </TabPane>
+                        </FormGroup>
+                      </TabPane>
+                    </TabContent>
+
                   </Form>
                 </Col>
 

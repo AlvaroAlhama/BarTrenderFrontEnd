@@ -1,67 +1,80 @@
 import POSTLoginFormQRValidator from "components/ApiLoginFormQRValidator";
 import FormQRValidatorAlreadyLogged from "components/FormQRValidatorAlreadyLogged";
 import React from "react";
-import { Container } from "reactstrap";
-import "./css/login.css"
-import barTrender60 from "../assets/img/barTrender60.png"
+import "./css/login.css";
+import barTrender60 from "../assets/img/barTrender60.png";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  Col,
+  Row,
+} from "reactstrap";
+import DefaultFooter from "components/Footers/DefaultFooter";
 
-function loginOwner(){
+function loginOwner() {
+  var token = sessionStorage.getItem("token");
 
-    var token = sessionStorage.getItem("token");
-    document.body.style.fontFamily = "Dosis";
+  if (!token) {
+    return (
+      <>
+        <div className="wrapper" id="wrapper-validation">
+          <Row className="header bg-primary justify-content-center shadow pt-3 pb-3">
+            <img src={barTrender60} alt="bg validation" className="img-fluid" />
+            <h1 className="my-auto text-white ml-3">BarTrender</h1>
+          </Row>
 
-    
-    if(!token){
-        return (
+          <Row className="content align-items-center">
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
+              <Card className="shadow">
+                <CardHeader className="text-center text-uppercase">
+                  <CardTitle tag="h2">
+                    <strong>Validar Descuento</strong>
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <POSTLoginFormQRValidator />
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+          <Row className="shadow footer-validation">
+            <DefaultFooter />
+          </Row>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="wrapper" id="wrapper-validation">
+          <Row className="header bg-primary justify-content-center shadow pt-3 pb-3">
+            <img src={barTrender60} alt="bg validation" className="img-fluid" />
+            <h1 className="my-auto text-white ml-3">BarTrender</h1>
+          </Row>
 
-            <>
-                <div id="validation">
-                    <div class="row justify-content-center pt-5">
-                        <img src={barTrender60} class="img-fluid " />
-                        <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
-                    </div>
-                    <div class="container" id="container-validation">
-                        <div class="d-flex justify-content-center h-100">
-                            <div class="card" id="card-validation">
-                                <div class="card-header" id="card-header-validation">
-                                    <h1 className="text-center pt-3">Validar Descuento</h1>
-                                </div>
-
-                                <div class="card-body">
-                                    <POSTLoginFormQRValidator />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </>
-
-        );
-    }else{
-        return (
-            <>
-                <div id="validation">
-                    <div class="row justify-content-center pt-5">
-                        <img src={barTrender60} class="img-fluid" />
-                        <h1 class="my-auto text-white ml-3">BARTRENDER</h1>
-                    </div>
-                    <div class="container" id="container-validation">
-                        <div class="d-flex justify-content-center h-100">
-                            <div class="card" id="card-validation">
-                                <div class="card-header" id="card-header-validation">
-                                    <h1 className="text-center pt-3">Validar Descuento</h1>
-                                </div>
-
-                                <div class="card-body">
-                                    <FormQRValidatorAlreadyLogged />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </>
-        )
-    }
+          <Row className="content align-items-center">
+            <Col sm="12" md={{ size: 6, offset: 3 }}>
+              <Card className="shadow">
+                <CardHeader className="text-center text-uppercase">
+                  <CardTitle tag="h2">
+                    <strong>Validar Descuento</strong>
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <FormQRValidatorAlreadyLogged />
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+          <Row className="shadow footer-validation">
+            <DefaultFooter />
+          </Row>
+        </div>
+      </>
+    );
+  }
 }
 
 export default loginOwner;

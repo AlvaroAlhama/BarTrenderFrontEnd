@@ -8,9 +8,9 @@ import {
 const MyEstablishmentList = (props) => {
   const { establishments } = props;
   
-  // console.log(establishments.establishments,"list");
 
-  if (!establishments || establishments.length == undefined) return <p>No establishments, sorry</p>;
+
+  if (!establishments || establishments.length === undefined) return <p>No establishments, sorry</p>;
   return (
 
     <ul className="ul-flex">
@@ -20,9 +20,9 @@ const MyEstablishmentList = (props) => {
           return (
             <>
               <Col className="col-lg-3 col-md-3 mb-4" >
-                <div class="card h-100">
-                  <div class="card-body card-img-top">
-                    <p class="card-title">
+                <div className="card h-100">
+                  <div className="card-body card-img-top">
+                    <p className="card-title">
                       {establishment.name_text}
                     </p>
                     <button type="buton" className= "btn btn-primary" onClick={() => window.location.href = "admin/establishment/"+establishment.id}>Ver Establecimiento</button>

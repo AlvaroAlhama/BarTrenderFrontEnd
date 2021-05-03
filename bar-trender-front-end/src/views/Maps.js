@@ -1,10 +1,10 @@
 import React from "react";
 
 // react-bootstrap components
-import { Badge, Button, Navbar, Nav, Container } from "react-bootstrap";
+
 
 function Maps() {
-  const mapRef = React.useRef(null);
+  const mapRef = React.useRef(undefined);
   React.useEffect(() => {
     let google = window.google;
     let map = mapRef.current;

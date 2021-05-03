@@ -2,26 +2,18 @@
 // Routing
 import Dashboard from "views/Dashboard.js";
 import PremiumDashboard from "views/PremiumDashboard.js";
-import UserProfile from "views/UserProfile.js";
-import TableList from "views/TableList.js";
-import Typography from "views/Typography.js";
-import Icons from "views/Icons.js";
-import Maps from "views/Maps.js";
-import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import Establishments from "views/EstablishmentByOwnerView.js";
 import EstablishmentView from "views/EstablishmentView";
 import EditOwnerProfile from "components/EditOwnerProfile.js"
-import React, { Component } from "react";
+import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 
 
 import { Nav } from "react-bootstrap";
 
-import logo from "assets/img/reactlogo.png";
 import { useEffect, useState } from "react";
 
-import logoBartrender from "../Images/barTrender61.png";
 
 function Sidebar({ color, image }) {
   
@@ -50,7 +42,7 @@ function Sidebar({ color, image }) {
     async function getEstablishmentsOwner() {
 
       var token = sessionStorage.getItem("token");
-      await fetch("https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner", {
+      await fetch("https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_by_owner", {
 
         method: "GET",
         headers: {
@@ -150,8 +142,10 @@ function Sidebar({ color, image }) {
         <Nav>
           
           {appState.routes.map((prop, key) => {
-            if (!prop.redirect)
+            
+            if (!prop.redirect && !(sessionStorage.getItem("premium") === "false" && prop.path === '/PremiumDashboard'))
               return (
+
                 <li
                   className={
                     prop.upgrade

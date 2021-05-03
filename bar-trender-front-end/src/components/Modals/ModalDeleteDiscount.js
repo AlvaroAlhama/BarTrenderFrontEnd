@@ -45,7 +45,7 @@ function ModalDeleteDiscount(props) {
 
     fetch(
 
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
 
       id_establishment +
       "/get",
@@ -70,14 +70,14 @@ function ModalDeleteDiscount(props) {
 
     if (validate()) {
       const discount = props.discount;
-      console.log(discount)
+     
       var idDiscount = discount.id;
       var token = sessionStorage.getItem("token");
       var query = window.location.pathname;
       var splited = query.split("/");
       var idEstablishment = splited[3];
 
-      const url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" + idEstablishment + "/discounts/" + idDiscount + "/delete";
+      const url = "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" + idEstablishment + "/discounts/" + idDiscount + "/delete";
       const request = await fetch(url, {
         method: "DELETE",
         headers: {
@@ -153,49 +153,49 @@ function ModalDeleteDiscount(props) {
           </button>
           <h4 className="title title-up">Eliminar descuento</h4>
         </div>
-        <div class="container">
+        <div className="container">
           <hr />
         </div>
         <ModalBody>
-          <div class="ml-2">
+          <div className="ml-2">
             <div className="row">
-              <h5 class="my-auto">Nombre del descuento: </h5>
-              <p class="ml-2 my-auto">{props.discount.name}</p>
+              <h5 className="my-auto">Nombre del descuento: </h5>
+              <p className="ml-2 my-auto">{props.discount.name}</p>
             </div>
             <div className="row">
-              <h5 class="my-auto">Descripción: </h5>
-              <p class="ml-2 my-auto">{props.discount.description}</p>
+              <h5 className="my-auto">Descripción: </h5>
+              <p className="ml-2 my-auto">{props.discount.description}</p>
             </div>
             <div className="row">
-              <h5 class="my-auto">Coste: </h5>
-              <p class="ml-2 my-auto">{props.discount.cost}</p>
+              <h5 className="my-auto">Coste: </h5>
+              <p className="ml-2 my-auto">{props.discount.cost}</p>
             </div>
             <div className="row">
-              <h5 class="my-auto">Códigos totales: </h5>
-              <p class="ml-2 my-auto">{props.discount.totalCodes}</p>
+              <h5 className="my-auto">Códigos totales: </h5>
+              <p className="ml-2 my-auto">{props.discount.totalCodes}</p>
             </div>
             <div className="row">
-              <h5 class="my-auto">Códigos escaneados: </h5>
-              <p class="ml-2 my-auto">{props.discount.scannedCodes}</p>
+              <h5 className="my-auto">Códigos escaneados: </h5>
+              <p className="ml-2 my-auto">{props.discount.scannedCodes}</p>
             </div>
             <div className="row">
-              <h5 class="my-auto">Fecha de inicio: </h5>
-              <p class="ml-2 my-auto"><Moment unix format="D-M-Y HH:mm" locale="es">{props.discount.initialDate}</Moment></p>
+              <h5 className="my-auto">Fecha de inicio: </h5>
+              <p className="ml-2 my-auto"><Moment unix format="D-M-Y HH:mm" locale="es">{props.discount.initialDate}</Moment></p>
             </div>
             <div className="row">
-              <h5 class="my-auto">Fecha fin: </h5>
-              <p class="ml-2 my-auto"><Moment unix format="D-M-Y HH:mm" locale="es">{props.discount.endDate}</Moment></p>
+              <h5 className="my-auto">Fecha fin: </h5>
+              <p className="ml-2 my-auto"><Moment unix format="D-M-Y HH:mm" locale="es">{props.discount.endDate}</Moment></p>
             </div>
           </div>
-          <div class="mt-2 mb-4 text-center">
+          <div className="mt-2 mb-4 text-center">
             <h6>¿Seguro que quieres eliminar este descuento?</h6>
             <div>
               <button type="button" className="btn btn-danger" onClick={() => handleDelete()}>Elminar</button>
             </div>
           </div>
           <div>
-            <p class= "text-danger">{appState.errors==undefined ? "" : appState.errors.errorCodes}</p>
-            <p class= "text-danger">{appState.errors==undefined ? "" : appState.errors.errorDate}</p>
+            <p className= "text-danger">{appState.errors==undefined ? "" : appState.errors.errorCodes}</p>
+            <p className= "text-danger">{appState.errors==undefined ? "" : appState.errors.errorDate}</p>
           </div>
         </ModalBody>
       </Modal>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 
 class ApiSignUpEstablishmentForm extends React.Component {
   constructor() {
@@ -8,6 +7,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     this.state = {
       input: {
         rol: "owner",
+        legal: false,
       },
 
       errors: {},
@@ -19,9 +19,9 @@ class ApiSignUpEstablishmentForm extends React.Component {
   }
   // TODO CALL THE API
   async handleSignUp() {
-    let errors = {};
+
     var url =
-      "https://main-backend-sprint-02.herokuapp.com/v1/authentication/signup";
+      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -43,7 +43,17 @@ class ApiSignUpEstablishmentForm extends React.Component {
 
   handleChange(event) {
     let input = this.state.input;
-    input[event.target.name] = event.target.value;
+    if(event.target.type ==="checkbox"){
+      if (input[event.target.name] === true ){
+        input[event.target.name] = false;
+      }
+      else{
+        input[event.target.name] = true;
+      }
+    }
+    else{
+      input[event.target.name] = event.target.value;
+    }
     this.setState({
       input,
     });
@@ -53,11 +63,8 @@ class ApiSignUpEstablishmentForm extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
       
       let input = {};
-
-      console.log(typeof(this.state.input.phone));
 
       this.state.input.phone=parseInt(this.state.input.phone, 10);
 
@@ -77,7 +84,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     let input = this.state.input;
 
     let errors = {};
-
+    var pattern
     let isValid = true;
 
     if (!input["email"]) {
@@ -87,7 +94,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
     }
 
     if (typeof input["email"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
       );
 
@@ -99,8 +106,14 @@ class ApiSignUpEstablishmentForm extends React.Component {
       }
     }
 
+    if (input["legal"] !== true) {
+      isValid = false;
+      errors["legal"] =
+        "Para darse de alta en el sistema debe aceptar los acuerdos de términos y las condiciones de uso.";
+    }
+
     if (typeof input["password"] !== "undefined") {
-      var pattern = new RegExp(
+      pattern = new RegExp(
         /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/i
       );
       if (!pattern.test(input["password"])) {
@@ -141,22 +154,22 @@ class ApiSignUpEstablishmentForm extends React.Component {
     return (
       <div>
         <div className="text-danger">
-          <h6 class="my-3 text-center">
-            {this.state.error}
-          </h6>
+
+          <h6 className="my-3 text-center">{this.state.error}</h6>
+
         </div>
         <div className="row">
           <i className="fal fa-store fa-5x w-100 mb-4"></i>
         </div>
 
         <form onSubmit={this.handleSubmit}>
-          <div class="form-group my-1">
+          <div className="form-group my-1">
             <input
               type="text"
               name="email"
               value={this.state.input.email}
               onChange={this.handleChange}
-              class="form-control"
+              className="form-control"
               placeholder="Correo electrónico"
               id="email"
             />
@@ -164,21 +177,21 @@ class ApiSignUpEstablishmentForm extends React.Component {
             <div className="text-danger">{this.state.errors.email}</div>
           </div>
 
-          <div class="form-group my-4">
+          <div className="form-group my-4">
             <input
               name="password"
               type="password"
               value={this.state.input.password}
               onChange={this.handleChange}
               placeholder="Contraseña"
-              class="form-control"
+              className="form-control"
             />
           </div>
           <div className="text-danger align-center">
             {this.state.errors.password}
           </div>
 
-          <div class="form-group my-4">
+          <div className="form-group my-4">
             <input
               name="phone"
               type="number"
@@ -187,18 +200,49 @@ class ApiSignUpEstablishmentForm extends React.Component {
               placeholder="Número de teléfono"
               minLength="9"
               maxLength="9"
-              class="form-control"
+              className="form-control"
             />
 
             <div className="text-danger align-center">
               {this.state.errors.phone}
             </div>
           </div>
-          <div class="text-center">
+
+          <div className="form-group my-4">
+            <input
+              name="legal"
+              type="checkbox"
+              value={this.state.input.legal}
+              onChange={this.handleChange}
+              checked={this.state.input.legal}
+              className="mr-2"
+            />
+            <label className="text-dark" for="legal">
+              Acepta los
+              <a target="_blank" className="text-decoration-none" href="/legal">
+                {" "}
+                Acuerdos de Términos{" "}
+              </a>
+              y las{" "}
+              <a
+                target="_blank"
+                className="text-decoration-none"
+                href="/condiciones-uso"
+              >
+                Condiciones de Uso.
+              </a>
+            </label>
+            <div className="text-danger align-center">
+              {this.state.errors.legal}
+            </div>
+          </div>
+
+          <div className="text-center">
+
             <input
               type="submit"
               value="Finalizar registro"
-              class="btn btn-primary"
+              className="btn btn-primary"
             />
           </div>
         </form>

@@ -26,16 +26,16 @@ function EstablishmentView() {
 
     return idEstablishment;
   };
-  const id_establishment = idEstablishment();
-
+ 
   useEffect(() => {
-    console.log('EstablishmentView loaded');
+
+    const id_establishment = idEstablishment();
 
     setAppState({ loading: true });
     var token = sessionStorage.getItem("token");
 
     fetch(
-      "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
+      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/get",
 
@@ -48,8 +48,7 @@ function EstablishmentView() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, 'establishments');
-        if (data['error'] == undefined) {
+        if (data['error'] === undefined) {
           setAppState({
 
             loading: false,
@@ -59,16 +58,17 @@ function EstablishmentView() {
         } else {
           setAppState({
             loading: false,
-            erorr: true,
+            error: true,
             erorr_info: data.error,
 
           });
+        
         }
 
       });
   }, [setAppState]);
 
-  if (appState.error == true) {
+  if (appState.error === true) {
     return (
       <Container fluid>
         <h1>Error</h1>

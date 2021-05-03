@@ -17,12 +17,6 @@
 */
 import Dashboard from "views/Dashboard.js";
 import PremiumDashboard from "views/PremiumDashboard.js";
-import UserProfile from "views/UserProfile.js";
-import TableList from "views/TableList.js";
-import Typography from "views/Typography.js";
-import Icons from "views/Icons.js";
-import Maps from "views/Maps.js";
-import Notifications from "views/Notifications.js";
 import Upgrade from "views/Upgrade.js";
 import EditOwnerProfile from "components/EditOwnerProfile.js"
 

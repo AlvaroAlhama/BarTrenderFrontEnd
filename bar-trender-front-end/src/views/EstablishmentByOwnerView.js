@@ -1,4 +1,3 @@
-import EstablishmentByOwner from "../components/EstablishmentsByOwner";
 import MainNavbar from "components/Navbars/MainNavbar";
 import React, { useEffect, useState } from "react";
 import withListLoading from "../components//withListLoading";
@@ -17,7 +16,7 @@ function EstablishmentByOwnerView(){
         
         async function getEstablishmentsOwner(){
             var token = sessionStorage.getItem("token");
-            await fetch("https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_by_owner", {
+            await fetch("https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_by_owner", {
 
                 method:"GET",
                 headers: {
@@ -26,7 +25,6 @@ function EstablishmentByOwnerView(){
             })
             .then(response => response.json())
             .then(establishments => {
-                console.log(establishments, 'establishments');
                 setAppState({loading:false, establishments: establishments});
             });
         }

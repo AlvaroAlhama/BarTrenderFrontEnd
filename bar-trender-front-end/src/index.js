@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
@@ -24,7 +23,7 @@ import "./assets/demo/nucleo-icons-page-styles.css?v=1.4.0";
 
 import "assets/css/dashboard.css";
 
-// import ErrorPage from "./views/ErrorPage.js";
+
 import Login from "./views/Login.js";
 import MainView from "./views/MainView.js";
 import LandingView from "./views/LandingView.js";
@@ -34,11 +33,12 @@ import ErrorView from "./views/ErrorView.js";
 import AdminView from "./views/AdminView.js";
 import EstablismentByOwnerView from "./views/EstablishmentByOwnerView.js"
 import EstablishmentView from "./views/EstablishmentView.js"
+import TermsUse from './views/TermsUse';
+import PrivacyPolicy from './views/PrivacyPolicy';
 
 
 const app = (
   
-  <React.StrictMode>
     <BrowserRouter>
     <Switch>
       <Switch>
@@ -68,12 +68,7 @@ const app = (
         <Route path="/admin" 
           render={(props) => <AdminView {...props} />} />
         
-        {/* <Route path="/admin/dashboard" 
-          render={(props) => <AdminView {...props} />} />
-
         
-        <Route path="/admin/premiumDashboard" 
-          render={(props) => <AdminView {...props} />} /> */}
           
         <Route
           path ="/myEstablishments"
@@ -85,7 +80,18 @@ const app = (
           render = {(props) =>  <EstablishmentView {...props}/>}
         />
 
+         <Route
+          path = "/condiciones-uso"
+          render = {(props) =>  <TermsUse {...props}/>}
+        />
+
+         <Route
+          path = "/politica-privacidad"
+          render = {(props) =>  <PrivacyPolicy {...props}/>}
+        />
+
         {/* <Redirect from="/admin" to="/admin/dashboard" /> */}
+        
         <Redirect to="/main" />
         <Redirect from="/" to="/main" />
 
@@ -93,7 +99,7 @@ const app = (
       </Switch>
     </Switch>
   </BrowserRouter>
-  </React.StrictMode>
+ 
 );
 
 ReactDOM.render(app, document.getElementById('root'));
@@ -102,7 +108,7 @@ ReactDOM.render(app, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
-serviceWorkerRegistration.register();
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

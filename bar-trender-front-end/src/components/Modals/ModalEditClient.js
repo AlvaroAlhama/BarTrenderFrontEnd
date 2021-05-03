@@ -11,12 +11,12 @@ function ModalEditClient() {
     <>
       <i
         color="primary"
-        className="mr-1"
         onClick={() => setModal1(true)}
         id="edit-profile-tooltip"
-        className="fal fa-user-circle w-100 fa-lg mt-1"
-      ></i>
-      <p className="d-lg-none d-xl-none">Mi perfil</p>
+        className="fal fa-user-circle text-white w-100 fa-lg mt-1"
+      >
+         <p className="d-lg-none d-xl-none text-white mt-2 ml-2" style={{fontFamily: 'Roboto', fontSize: '11.4272px', fontWeight: '400'}}>Mi perfil</p>
+      </i>
       <Modal className='modal-lg' isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">
           <button

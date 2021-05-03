@@ -1,16 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 const url_dev = process.env.REACT_APP_URL_DEV;
-const url_local = process.env.REACT_APP_URL_LOCAL;
-const url_main = process.env.REACT_APP_URL_MAIN;
+
 
 export default class App extends React.Component {
   
   state = {
     loading: true,
-    qr: null,
-    error: null,
+    qr: undefined,
+    error: undefined,
   };
   
 
@@ -23,8 +22,8 @@ export default class App extends React.Component {
     if(!token){
       this.setState({error: "Necesitas haber iniciado sesión para poder ver el descuento"})
     }else{
-      const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-sprint-02.netlify.app';
-      console.log(url)
+      const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-sprint-03.netlify.app';
+   
 
       const response = await fetch(url, {
         method: 'GET',
@@ -34,7 +33,7 @@ export default class App extends React.Component {
             'apiKey':'8dDc431125634ef43cD13c388e6eCf11'
           }
       });
-      if(response.status == 200){
+      if(response.status === 200){
         const data = await response.blob();
         this.setState({qr: URL.createObjectURL(data), loading: false});
       }else{
@@ -47,8 +46,8 @@ export default class App extends React.Component {
   render(){
     return (
       <div className="App">
-          <img src={this.state.loading || this.state.qr != null ? this.state.qr : null} />
-          <p>{this.state.error != null ? this.state.error: null}</p>
+          <img src={this.state.loading || this.state.qr !== undefined ? this.state.qr : undefined} alt="" />
+          <p>{this.state.error !== undefined ? this.state.error: undefined}</p>
       </div>
     );
   }

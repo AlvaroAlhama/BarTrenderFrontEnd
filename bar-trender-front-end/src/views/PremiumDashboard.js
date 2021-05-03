@@ -1,30 +1,12 @@
-import Select from "react-select";
-import { Modal, ModalBody } from "reactstrap";
-import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
+import React from "react";
 
-import React, { useEffect, useState, Component } from "react";
-import ChartistGraph from "react-chartist";
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // react-bootstrap components
 import {
-  Badge,
-  Button,
   Card,
-  Navbar,
-  Nav,
-  Table,
   Container,
   Row,
   Col,
-  Form,
-  OverlayTrigger,
-  Tooltip,
 } from "react-bootstrap";
-
-import DashboardTopImage from "../components/DashboardTopImage";
-import FreePieChart from "../components/FreePieChart.js";
-import PremiumBarChart from "../components/PremiumBarChart.js";
 import ShowPremiumStats from "../components/ShowPremiumStats.js";
 
 export default class PremiumDashboard extends React.Component {
@@ -39,13 +21,15 @@ export default class PremiumDashboard extends React.Component {
         zona: [],
       },
 
+      types:[],
+
       sendFinal: {},
 
       modal1: false,
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
-      msg: null,
+      msg: undefined,
     };
     var query = window.location.search;
     let params = new URLSearchParams(query);
@@ -53,14 +37,18 @@ export default class PremiumDashboard extends React.Component {
     this.filter = params.get("filter");
     this.initialDate = params.get("initial-date");
     this.endDate = params.get("end-date");
+    this.premium = null;
+    this.getIsPremium();
 
     this.getTags();
+    this.getZones();
+
   }
 
   async getTags() {
     var token = sessionStorage.getItem("token");
 
-    const url = "https://main-backend-sprint-02.herokuapp.com/v1/establishments/get_tags";
+    const url = "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -70,110 +58,176 @@ export default class PremiumDashboard extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.map((tag) => {
-      if (tag.type != "Zona") {
-        return { value: tag.name, label: tag.name };
-      }
+    var otherTags = data.tags.filter(tag => tag.type !== "Zona").map((tag) => {
+      return { value: tag.name, label: tag.name };
     });
 
     var arrayOther = otherTags.filter(function (dato) {
-      return dato != undefined;
+      return dato !== undefined;
     });
 
-    const tagZone = data.tags.map((tag) => {
-      if (tag.type == "Zona") {
-        return tag.name;
-      }
-    });
 
-    var array = tagZone.filter(function (dato) {
-      return dato != undefined;
-    });
-
+    var temp_types = []
+    for(var filter of data.tags)
+    {
+      if(!temp_types.includes(filter.type) && filter.type !== "Zona")
+        temp_types.push(filter.type)
+    }
+    
     this.setState({
+      zona: this.state.zone.zona,
+      types: temp_types,
       otherTags: arrayOther,
-
-      zone: {
-        zona: array,
-      },
     });
   }
 
+  async getZones() {
+
+    const url =
+      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_zones?all=true";
+    const response = await fetch(url, {
+      method: "GET",
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      this.setState({
+        zone: {
+          otherTags: this.state.otherTags,
+          zona: data.zones,
+        },
+      });
+    }
+  }
+  async getIsPremium() {
+    await fetch(
+      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/ispremium",
+      {
+        method: "GET",
+        headers: {
+          token: sessionStorage.getItem("token"),
+          "Content-type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) =>
+        this.premium = {
+          premium: data.isPremium,
+          premiumUntil: data.premiumUntil,
+          remainingDays: data.premiumRemainingDays,
+        }
+      );
+  }
+
   render() {
-    console.log("AQUI PREMIUM");
-    console.log(sessionStorage.getItem("premium"));
-    if (sessionStorage.getItem("premium") == "true") {
+
+    if (sessionStorage.getItem("premium") === "true") {
       return (
         <>
           <Container fluid>
             <Row>
               <Col lg="6" md="6" xs="12">
                 <Card className="p-4">
-                  <h3 class="text-justify">
+                  <h3 className="text-justify">
                     Bienvenido a la version premium de nuestro dashboard,
-                    ¿Quiere revisar su suscripción?
+                    {this.premium == null ?
+                    '' :
+                    ' le quedan ' + this.premium.remainingDays + ' días de suscripción. '}
                   </h3>
-                  <Link to="/admin/upgrade" className="btn btn-primary">
-                    Revisar Suscripción
-                  </Link>
+                  
+
                 </Card>
               </Col>
 
               <Col lg="6" md="6" xs="12">
                 <Card className="p-4">
                   <form>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="container">Zona en la que buscar</label>
+                    <div className="row">
+                      <div className="col-lg-4 col-md-6 col-xs-12">
+                        <label className="container">Zona en la que buscar</label>
                       </div>
-                      <div class='col-lg-8 col-md-6 col-xs-12'>
+
+                      <div className='col-lg-8 col-md-6 col-xs-12'>
                         <select 
                           name='zone_enum' 
                           onChange={this.handleChange} 
-                           class='form-control'>
+                           className='form-control'>
+
                           {this.state.zone.zona.map((zona) => {
                             return <option value={zona}>{zona}</option>;
                           })}
                         </select>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label class="container">Filtros</label>
+                    <div className="row">
+                      <div className="col-lg-4 col-md-6 col-xs-12">
+                        <label className="container">Filtros</label>
                       </div>
-                      <div class="col-lg-8 col-md-6 col-xs-12">
+                      <div className="col-lg-8 col-md-6 col-xs-12">
                         <select
-                          class="form-control"
+                          className="form-control"
                           id="filterImput"
                           name="filter"
                         >
-                          <option value="Bebida">Bebida</option>
-                          <option value="Instalacion">Instalacion</option>
-                          <option value="Ocio">Ocio</option>
+                          {this.state.types.map((type) => {
+                            return <option value={type}>{type}</option>;
+                          })}
                         </select>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-xs-12">
-                        <label class="container">Fecha inicial</label>
-                        <input
-                          class="form-control"
-                          id="initialDate"
-                          type="date"
-                          name="initial-date"
-                        ></input>
+                    {window.innerWidth < 1300 && (
+                      <>
+                        <div className="row">
+                          <div className="col-lg-4 col-md-6 col-xs-12">
+                            <label className="container">Fecha inicial</label>
+                          </div>
+                          <div className="col-lg-8 col-md-6 col-xs-12">
+                            <input
+                              className="form-control"
+                              id="initialDate"
+                              type="date"
+                              name="initial-date"
+                            ></input>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-lg-4 col-md-6 col-xs-12">
+                            <label className="container">Fecha final</label>
+                          </div>
+                          <div className="col-lg-8 col-md-6 col-xs-12">
+                            <input
+                              className="form-control"
+                              id="endDate"
+                              type="date"
+                              name="end-date"
+                            ></input>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    {window.innerWidth >= 1300 && (
+                      <div className="row">
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                          <label className="container">Fecha inicial</label>
+                          <input
+                            className="form-control"
+                            id="initialDate"
+                            type="date"
+                            name="initial-date"
+                          ></input>
+                        </div>
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                          <label className="container">Fecha final</label>
+                          <input
+                            className="form-control"
+                            id="endDate"
+                            type="date"
+                            name="end-date"
+                          ></input>
+                        </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-xs-12">
-                        <label class="container">Fecha final</label>
-                        <input
-                          class="form-control"
-                          id="endDate"
-                          type="date"
-                          name="end-date"
-                        ></input>
-                      </div>
-                    </div>
-
+                    )}
                     <input
                       className="btn btn-primary"
                       type="submit"

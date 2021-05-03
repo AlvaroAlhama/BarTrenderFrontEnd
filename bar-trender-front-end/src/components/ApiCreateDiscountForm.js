@@ -7,14 +7,23 @@ class POSTCreateDiscount extends React.Component {
     super();
 
     this.state = {
-      input: {},
+      input: {
+        name: "",
+        descripcion: "",
+        cost: undefined,
+        totalCodes: undefined,
+        initialDate: "",
+        initialTime: "",
+        endDate: "",
+        endTime: "",
+      },
       send: {
-        name: null,
-        description: null,
-        cost: null,
-        totalCodes: null,
-        initialDate: null,
-        endDate: null,
+        name: undefined,
+        description: undefined,
+        cost: undefined,
+        totalCodes: undefined,
+        initialDate: undefined,
+        endDate: undefined,
       },
       errors: {},
       errorApiCreate: {},
@@ -35,18 +44,16 @@ class POSTCreateDiscount extends React.Component {
     var query = window.location.pathname;
     var splited = query.split("/");
     var idEstablishment = splited[3];
-    console.log(this.state.send, "esto es lo que se va a enviar")
+
     const url =
-
-    "https://main-backend-sprint-02.herokuapp.com/v1/establishments/" +
-
+      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/create";
     const create = await fetch(url, {
       method: "POST",
       headers: {
         token: token,
-        'Content-type': 'application/json'
+        "Content-type": "application/json",
       },
       body: JSON.stringify(this.state.send),
     });
@@ -55,7 +62,7 @@ class POSTCreateDiscount extends React.Component {
       var response = await create.json();
       this.setState({ msg: response.msg, modalSuccess: true });
     } else {
-      var response = await create.json();
+      response = await create.json();
       this.setState({ errorApiCreate: response, modalFail: true });
     }
   }
@@ -63,15 +70,23 @@ class POSTCreateDiscount extends React.Component {
   handleSend() {
     const initialDate = this.state.input.initialDate;
     const initialTime = this.state.input.initialTime;
-    const timeStampInitial = moment.utc(`${initialDate} ${initialTime}`).unix();
+    const timeStampInitial = moment
+      .utc(`${initialDate} ${initialTime}`)
+      .subtract(2, "hours")
+      .unix();
 
     const endDate = this.state.input.endDate;
 
     const endTime = this.state.input.endTime;
 
-    if (endDate != undefined && endDate != '') {
-      const timeStampEnd = moment.utc(`${endDate} ${endTime}`).unix();
-      console.log("está entrando con el que lleva endDate")
+
+    if (endDate !== undefined && endDate !== "") {
+      const timeStampEnd = moment
+        .utc(`${endDate} ${endTime}`)
+        .subtract(2, "hours")
+        .unix();
+
+
       let send2 = {
         name: this.state.input.name,
         description: this.state.input.descripcion,
@@ -91,8 +106,6 @@ class POSTCreateDiscount extends React.Component {
         }
       );
     } else {
-      console.log("está entrando con el que no lleva endDate")
-
       let send2 = {
         name: this.state.input.name,
         description: this.state.input.descripcion,
@@ -125,7 +138,6 @@ class POSTCreateDiscount extends React.Component {
     event.preventDefault();
 
     if (this.validate()) {
-      let errors = {};
 
       let input = {};
 
@@ -158,13 +170,13 @@ class POSTCreateDiscount extends React.Component {
 
     let isValid = true;
 
-    if (!input["name"]) {
+    if (!input["name"].trim()) {
       isValid = false;
 
       errors["name"] = "Escriba un nombre del descuento.";
     }
 
-    if (!input["descripcion"]) {
+    if (!input["descripcion"].trim()) {
       isValid = false;
 
       errors["descripcion"] = "Escriba una descripción para el descuento";
@@ -182,32 +194,37 @@ class POSTCreateDiscount extends React.Component {
       errors["totalCodes"] = "Escriba un número total de códigos.";
     }
 
-    if (!input["initialDate"] || !input['initialTime']) {
+    if (!input["initialDate"] || !input["initialTime"]) {
       isValid = false;
 
       errors["initialDate"] =
         "Introduzca una fecha y hora para el inicio del desucento.";
     }
 
-    if(input['initialDate'] && input['initialTime']){
-      var initialDateFull = new Date(input['initialDate'].concat(" ", input['initialTime']));
+    if (input["initialDate"] && input["initialTime"]) {
+      var initialDateFull = new Date(
+        input["initialDate"].concat(" ", input["initialTime"])
+      );
 
-      if(today > initialDateFull){
+      if (today > initialDateFull) {
         isValid = false;
 
-        errors['initialDate'] = 'La fecha de inicio debe ser en futuro';
+        errors["initialDate"] = "La fecha de inicio debe ser en futuro";
       }
     }
 
-    if(input['endDate'] && !input['endTime']){
+    if (input["endDate"] && !input["endTime"]) {
       isValid = false;
 
-      errors['endDate'] = 'Si quiere una fecha final debe proporcionar la hora final'
+      errors["endDate"] =
+        "Si quiere una fecha final debe proporcionar la hora final";
     }
 
     if (input["initialDate"] && input["endDate"]) {
-      var initialDate = new Date(input["initialDate"].concat(' ', input['initialTime']));
-      var endDate = new Date(input["endDate"].concat(' ', input['endTime']));
+      var initialDate = new Date(
+        input["initialDate"].concat(" ", input["initialTime"])
+      );
+      var endDate = new Date(input["endDate"].concat(" ", input["endTime"]));
       if (initialDate <= today) {
         isValid = false;
         errors["initialDate"] =
@@ -232,60 +249,62 @@ class POSTCreateDiscount extends React.Component {
       <>
         <div>
           <form onSubmit={this.handleSubmit}>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="text"
                 name="name"
+                maxLength="50"
                 value={this.state.input.name}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Nombre del descuento"
                 id="name"
               />
 
               <div className="text-danger">{this.state.errors.name}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="text"
                 name="descripcion"
+                maxLength="140"
                 value={this.state.input.descripcion}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Descripción del descuento"
                 id="name"
               />
 
               <div className="text-danger">{this.state.errors.descripcion}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="number"
                 step="0.01"
                 name="cost"
                 value={this.state.input.cost}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Precio del descuento"
                 id="cost"
               />
 
               <div className="text-danger">{this.state.errors.cost}</div>
             </div>
-            <div class="form-group my-1">
+            <div className="form-group my-1">
               <input
                 type="number"
                 name="totalCodes"
                 value={this.state.input.totalCodes}
                 onChange={this.handleChange}
-                class="form-control"
+                className="form-control"
                 placeholder="Número total de códigos"
                 id="totalCodes"
               />
 
               <div className="text-danger">{this.state.errors.totalCodes}</div>
             </div>
-            <div class="form-group my-1 row justify-content-center">
+            <div className="form-group my-1 row justify-content-center">
               <label for="initialDate">
                 Fecha y hora de inicio del descuento
               </label>
@@ -295,7 +314,7 @@ class POSTCreateDiscount extends React.Component {
                   name="initialDate"
                   value={this.state.input.initialDate}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Fecha de inicio del descuento"
                   id="initialDate"
                 />
@@ -306,7 +325,7 @@ class POSTCreateDiscount extends React.Component {
                   name="initialTime"
                   value={this.state.input.initialTime}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Hora de inicio del descuento"
                   id="initialDate"
                 />
@@ -314,15 +333,17 @@ class POSTCreateDiscount extends React.Component {
 
               <div className="text-danger">{this.state.errors.initialDate}</div>
             </div>
-            <div class="form-group my-1 row justify-content-center">
-              <label for="endDate" className="w-100 text-center">Fecha y hora de fin del descuento</label>
+            <div className="form-group my-1 row justify-content-center">
+              <label for="endDate" className="w-100 text-center">
+                Fecha y hora de fin del descuento
+              </label>
               <div className="col-6">
                 <input
                   type="date"
                   name="endDate"
                   value={this.state.input.endDate}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Fecha de fin del descuento"
                   id="endDate"
                 />
@@ -333,18 +354,18 @@ class POSTCreateDiscount extends React.Component {
                   name="endTime"
                   value={this.state.input.endTime}
                   onChange={this.handleChange}
-                  class="form-control"
+                  className="form-control"
                   placeholder="Hora de fin del descuento"
                   id="endDate"
                 />
               </div>
               <div className="text-danger">{this.state.errors.endDate}</div>
             </div>
-            <div class="text-center">
+            <div className="text-center">
               <input
                 type="submit"
                 value="Crear descuento"
-                class="btn btn-primary"
+                className="btn btn-primary"
               />
             </div>
           </form>
@@ -369,11 +390,11 @@ class POSTCreateDiscount extends React.Component {
         </Modal>
 
         <Modal isOpen={this.state.modalFail}>
-        <div className="modal-header justify-content-center">
+          <div className="modal-header justify-content-center">
             <button
               className="close"
               type="button"
-              onClick={() => this.setState({modalFail: false})}
+              onClick={() => this.setState({ modalFail: false })}
             >
               <i className="now-ui-icons ui-1_simple-remove"></i>
             </button>
@@ -381,7 +402,7 @@ class POSTCreateDiscount extends React.Component {
           </div>
           <ModalBody>
             <div className="mt-2 mb-4 text-center">
-              <p className='text-danger'>{this.state.errorApiCreate.error}</p>
+              <p className="text-danger">{this.state.errorApiCreate.error}</p>
             </div>
           </ModalBody>
         </Modal>

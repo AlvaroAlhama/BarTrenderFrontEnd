@@ -421,12 +421,6 @@ export default class EditClientProfile extends React.Component {
                   </div>
                 </div>
               </form>
-              <div className="row justify-content-center">
-                <h4>
-                  Si te has logueado con Google no puedes modificar tu perfil,
-                  debes hacerlo mediante Google
-                </h4>
-              </div>
             </div>
           </>
         );

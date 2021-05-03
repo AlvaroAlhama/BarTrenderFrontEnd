@@ -58,7 +58,7 @@ function EstablishmentView() {
         } else {
           setAppState({
             loading: false,
-            erorr: true,
+            error: true,
             erorr_info: data.error,
 
           });

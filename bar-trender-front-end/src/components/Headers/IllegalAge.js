@@ -4,8 +4,6 @@ import React from "react";
 import 'font-awesome/css/font-awesome.min.css';
 import './LandingPageHeader.css';
 import video from "../../assets/videos/Beer.gif";
-import { Button } from "bootstrap";
-import { Redirect } from "react-router";
 
 // core components
 

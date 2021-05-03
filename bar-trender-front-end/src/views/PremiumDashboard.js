@@ -48,7 +48,7 @@ export default class PremiumDashboard extends React.Component {
   async getTags() {
     var token = sessionStorage.getItem("token");
 
-    const url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const url = "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -70,7 +70,7 @@ export default class PremiumDashboard extends React.Component {
     var temp_types = []
     for(var filter of data.tags)
     {
-      if(!temp_types.includes(filter.type) && filter.type != "Zona")
+      if(!temp_types.includes(filter.type) && filter.type !== "Zona")
         temp_types.push(filter.type)
     }
     
@@ -84,7 +84,7 @@ export default class PremiumDashboard extends React.Component {
   async getZones() {
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_zones?all=true";
+      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_zones?all=true";
     const response = await fetch(url, {
       method: "GET",
     });
@@ -101,7 +101,7 @@ export default class PremiumDashboard extends React.Component {
   }
   async getIsPremium() {
     await fetch(
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/ispremium",
+      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/ispremium",
       {
         method: "GET",
         headers: {
@@ -176,27 +176,58 @@ export default class PremiumDashboard extends React.Component {
                         </select>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6 col-xs-12">
-                        <label className="container">Fecha inicial</label>
-                        <input
-                          className="form-control"
-                          id="initialDate"
-                          type="date"
-                          name="initial-date"
-                        ></input>
+                    {window.innerWidth < 1300 && (
+                      <>
+                        <div className="row">
+                          <div className="col-lg-4 col-md-6 col-xs-12">
+                            <label className="container">Fecha inicial</label>
+                          </div>
+                          <div className="col-lg-8 col-md-6 col-xs-12">
+                            <input
+                              className="form-control"
+                              id="initialDate"
+                              type="date"
+                              name="initial-date"
+                            ></input>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-lg-4 col-md-6 col-xs-12">
+                            <label className="container">Fecha final</label>
+                          </div>
+                          <div className="col-lg-8 col-md-6 col-xs-12">
+                            <input
+                              className="form-control"
+                              id="endDate"
+                              type="date"
+                              name="end-date"
+                            ></input>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    {window.innerWidth >= 1300 && (
+                      <div className="row">
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                          <label className="container">Fecha inicial</label>
+                          <input
+                            className="form-control"
+                            id="initialDate"
+                            type="date"
+                            name="initial-date"
+                          ></input>
+                        </div>
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                          <label className="container">Fecha final</label>
+                          <input
+                            className="form-control"
+                            id="endDate"
+                            type="date"
+                            name="end-date"
+                          ></input>
+                        </div>
                       </div>
-                      <div className="col-lg-6 col-md-6 col-xs-12">
-                        <label className="container">Fecha final</label>
-                        <input
-                          className="form-control"
-                          id="endDate"
-                          type="date"
-                          name="end-date"
-                        ></input>
-                      </div>
-                    </div>
-
+                    )}
                     <input
                       className="btn btn-primary"
                       type="submit"

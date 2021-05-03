@@ -19,7 +19,7 @@ function Dashboard() {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
     const apiUrl =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner";
+      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_by_owner";
     async function loadBar() {
       await fetch(apiUrl, {
         method: "GET",
@@ -139,7 +139,7 @@ function Dashboard() {
                     <Row classname="justify-content-center">
                       <div className="numbers text-center">
                         <p className="card-category">
-                          ¿Que prefiere la gente para divertirse?
+                          ¿Qué prefiere la gente para divertirse?
                         </p>
                       </div>
                     </Row>
@@ -284,7 +284,7 @@ function Dashboard() {
                     <Row classname="justify-content-center">
                       <div className="numbers text-center">
                         <p className="card-category">
-                          ¿Que prefiere la gente para divertirse?
+                          ¿Qué prefiere la gente para divertirse?
                         </p>
                       </div>
                     </Row>

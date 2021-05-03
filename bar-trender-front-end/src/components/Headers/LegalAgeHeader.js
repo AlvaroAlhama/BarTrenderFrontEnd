@@ -3,9 +3,7 @@ import React from "react";
 // reactstrap components
 import 'font-awesome/css/font-awesome.min.css';
 import './LandingPageHeader.css';
-import video from "../../assets/videos/Beer.gif";
-import { Button } from "bootstrap";
-import { Redirect } from "react-router";
+import video from "../../assets/videos/Beer.gif"
 
 // core components
 

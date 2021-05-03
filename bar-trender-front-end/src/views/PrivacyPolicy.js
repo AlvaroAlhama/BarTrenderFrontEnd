@@ -4,7 +4,6 @@ import React from 'react';
 
 import SolidNavbar from '../components/Navbars/SolidNavbar';
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
-import { Container } from 'reactstrap';
 
 function PrivacyPolicy() {
 
@@ -16,8 +15,8 @@ function PrivacyPolicy() {
         <SolidNavbar/>
         <body>
         
-        <div className="wrapper">
-        <section className="container mt-1" id = "privacy-policy" style={{padding:"300px"}} > 
+        <div className="wrapper" style={{minHeight:"100vh !important", height:"auto", textAlign:"justify"}}>
+        <section className="container" id = "terms-use1" style={{marginTop:"225px"}} > 
         <p><strong>POLÍTICA DE PRIVACIDAD</strong></p>
         <p>El sitio web www.bartrender.com y las aplicaciones para móviles y tablets son publicaciones de Bartrender S.L.</p>
         
@@ -78,7 +77,7 @@ function PrivacyPolicy() {
           <table width="100%">
               <tr>
                 <td><strong>Objetivo/Actividad</strong></td>
-                <td><strong>Datos Personales</strong></td>
+                <td style= {{width:"33%"}}><strong>Datos Personales</strong></td>
                 <td><strong>Fundamento Jurídico</strong></td>
               </tr>
               <tr>
@@ -232,7 +231,7 @@ function PrivacyPolicy() {
               anunciantes el número de visitantes de nuestro sitio web o los establecimientos más populares. Esta información no contiene ningún dato personal.</p>
         </section>
         <section className="container mt-1" id = "privacy-policy-4">
-          <p>4. Cuanto tiempo guardamos su información</p>ç
+          <p>4. Cuanto tiempo guardamos su información</p>
           <p>Podremos almacenar parte de la información vinculada a su cuenta en nuestros registros, principalmente para fines de análisis o para el mantenimiento de dichos registros. 
             El periodo de conservación de sus datos personales depende de la finalidad para la cual los recopilemos y del uso que de ellos hagamos.</p>
           <p>Solo conservaremos su información de carácter personal el tiempo que resulte necesario para los fines establecidos en el apartado 2 “Cómo utilizamos sus datos personales”

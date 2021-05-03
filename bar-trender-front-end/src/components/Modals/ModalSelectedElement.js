@@ -46,7 +46,7 @@ function ModalSelectedElement(prop) {
 
   async function loadDiscounts() {
     const apiUrl =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
       element.id +
       "/discounts/get?page=1&all=False";
     await fetch(apiUrl, {
@@ -63,18 +63,6 @@ function ModalSelectedElement(prop) {
       });
   }
 
-  // function loadInfo(){
-  //   setModal1(true);
-  //   const [] = useState({discounts:{}});
-
-  //   fetch("http://localhost:8000/v1/establishments/1/discounts/get", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //      }
-  //   }).then(response => response.json())
-  //   .then(discounts => setAppState({discounts:discounts}))
-  // };
   const MapLoader = withScriptjs(Map);
 
   return (
@@ -85,7 +73,7 @@ function ModalSelectedElement(prop) {
                                                         }} role = "button">
       <CardHeader style={divStyle}>
       </CardHeader>
-      <CardBody>
+      <CardBody style = {{height:"0%"}}>
             <h3 className="text-center text-white">{element.name_text}</h3>
             <h5 className="text-center text-white"><i className="fal fa-map-marker-alt mr-2"></i>{element.street_text} / {element.locality_text}</h5>
       </CardBody>

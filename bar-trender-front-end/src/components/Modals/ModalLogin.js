@@ -9,7 +9,7 @@ function ModalLogin() {
   const [errorLoginGoogle, setErrorLoginGoogle] = React.useState(undefined)
   const [errorBackend, setErrorBackend] = React.useState(undefined)
   const errorLink = 'https://aboutme.google.com/'
-  const host = 'https://develop-backend-sprint-01.herokuapp.com/v1'
+  const host = 'https://main-backend-sprint-03.herokuapp.com/v1'
 
   function reportWindowSize() {
     const { innerWidth: width } = window;

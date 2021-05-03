@@ -25,14 +25,13 @@ function SolidNavbar() {
 
   React.useEffect(() => {
       
-        setNavbarColor("bg-primary");
-        document.getElementById("filters").classList.remove("btn-primary");
-        document.getElementById("filters").classList.add("btn-outline-light");
-     
+        setNavbarColor("bg-primary");     
 
   },[]);
 
   useEffect(() => {
+    document.getElementById("filters").classList.remove("bg-primary");
+    document.getElementById("filters").classList.add("bg-dark");
     function handleResize() {
       setWindowWidth(window.innerWidth)
     }

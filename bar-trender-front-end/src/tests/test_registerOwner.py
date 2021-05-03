@@ -19,7 +19,7 @@ class TestRegisterOwner():
     self.driver.quit()
   
   def test_registerOwnerErrors(self):
-    self.driver.get("https://bartrender-develop-sprint-01.netlify.app")
+    self.driver.get("https://bartrender-develop.netlify.app")
     self.driver.set_window_size(1051, 728)
     self.driver.find_element(By.CSS_SELECTOR, "#signup-tooltip > #login-tooltip").click()
     self.driver.find_element(By.ID, "email").send_keys("miggar@gmail.com")

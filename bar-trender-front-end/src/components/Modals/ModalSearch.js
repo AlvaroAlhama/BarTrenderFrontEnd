@@ -129,7 +129,7 @@ class ModalSearch extends React.Component {
 
   componentDidMount()
   {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const apiUrl = "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_tags";
     fetch(apiUrl, {
       method: 'GET',
       headers: {
@@ -184,7 +184,7 @@ class ModalSearch extends React.Component {
 
                     <div style={{display:"flex", flexFlow:"row wrap", listStyle:"none"}}>
                         
-                        {Object.entries(this.state.tags_grouped).length != 0 ? Object.entries(this.state.tags_grouped).map(([key]) => {
+                        {Object.entries(this.state.tags_grouped).length !== 0 ? Object.entries(this.state.tags_grouped).map(([key]) => {
 
                           if(window.innerWidth < 450) {
                             return (

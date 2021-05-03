@@ -21,7 +21,7 @@ function LandingPage() {
       </>
     );
   }else{
-    if(legalAge == "+18"){
+    if(legalAge === "+18"){
   return (
     <>
       <MainNavbar />
@@ -33,7 +33,7 @@ function LandingPage() {
 
     </>
   );
-  }else{if(legalAge == "-18"){
+  }else{if(legalAge === "-18"){
     return(
     <>
     <IllegalAge/>

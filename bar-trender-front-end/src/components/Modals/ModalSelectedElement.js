@@ -141,22 +141,33 @@ function ModalSelectedElement(prop) {
                   </p>
                 </Container>
               </Col>
-              <Col className="my-3" lg="6" md="6" xs="12">
-                <Row className="justify-content-center mb-2">
-                  <i className="my-auto fal fa-tags mr-2 text-primary"></i>
-                  <p className=" my-auto text-primary">Etiquetas</p>
-                </Row>
-                <Row>
+
+              <Col className="my-3" lg="6" md="6" xs="12" style={{display:'flex', flexDirection:'column'}}>
+
+                <div className="text-center">
+                  <span class="text-primary">
+                    <i className="my-auto fal fa-tags mr-2 text-primary"></i>
+                    Etiquetas
+                  </span>
+                </div>
+
+                <br></br>
+
+                <div>
+                  <ul style={{display:'flex', listStyleType:'none', padding: '0px'}}>
                   {element.tags.map((tag) => {
-                    return (
-                      <Col className="my-1" lg="4" md="4" xs="4">
-                        <div className="text-center">
-                          <p className="text-white">{tag.name}</p>
-                        </div>
-                      </Col>
-                    );
-                  })}
-                </Row>
+                      return (
+                        <li className="mx-1" style={{flexGrow:'1', width:'100%'}}>
+                          <div className="text-center">
+                            <p className="text-white">{tag.name}</p>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+
+              
               </Col>
             </Row>
             <Container>

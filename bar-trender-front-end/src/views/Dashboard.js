@@ -172,7 +172,7 @@ function Dashboard() {
                         </p>
                       </div>
                     </Row>
-                    <Row className='h-100'>
+                    <Row className='justify-content-center h-100'>
 
                       <FreePieChart filter={"Ocio"} />
 
@@ -205,7 +205,7 @@ function Dashboard() {
     );
     return (
       <>
-        <Container fluid>
+        <Container fluid className="p-0">
 
           <h3>Tus Descuentos en uso</h3>
           {listQREstablishments
@@ -317,7 +317,7 @@ function Dashboard() {
                         </p>
                       </div>
                     </Row>
-                    <Row className='h-100'>
+                    <Row className='justify-content-center h-100'>
 
                       <FreePieChart filter={"Ocio"} />
 

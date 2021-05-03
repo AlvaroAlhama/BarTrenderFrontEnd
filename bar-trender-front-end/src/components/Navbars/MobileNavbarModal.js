@@ -5,7 +5,7 @@ import MobileModalRoutes from "./MobileModalRoutes";
 function Example() {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {console.log("hskfhkls"); setShow(false)};
   const handleShow = () => setShow(true);
 
   return (
@@ -29,7 +29,7 @@ function Example() {
          <hr />
         </div>
         <ModalBody>
-          <MobileModalRoutes/>
+          <MobileModalRoutes onHide={handleClose}/>
         </ModalBody>
 
       </Modal>

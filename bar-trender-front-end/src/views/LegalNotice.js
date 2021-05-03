@@ -5,7 +5,7 @@ import React from 'react';
 
 // core components
 
-import SolidNavbar from 'components/Navbars/SolidNavbar';
+import SolidNavbar from '../components/Navbars/SolidNavbar';
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import { Container } from 'reactstrap';
 

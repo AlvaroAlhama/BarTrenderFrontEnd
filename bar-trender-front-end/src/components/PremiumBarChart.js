@@ -39,7 +39,17 @@ function PremiumBarChart(props) {
   if (appState.stats.first !== undefined) {
     graph2 = {
       chartData: {
-        labels: [appState.stats.first.name, appState.stats.second.name, appState.stats.third.name, appState.stats.fourth.name, appState.stats.fifth.name, appState.stats.sixth.name, appState.stats.seventh.name, appState.stats.eighth.name, appState.stats.ninth.name, 'Otros'],
+        labels: [
+          appState.stats.first.name === "None" ? "" : appState.stats.first.name, 
+          appState.stats.second.name === "None" ? "" : appState.stats.second.name,
+          appState.stats.third.name === "None" ? "" : appState.stats.third.name, 
+          appState.stats.fourth.name === "None" ? "" : appState.stats.fourth.name,
+          appState.stats.fifth.name === "None" ? "" : appState.stats.fifth.name,
+          appState.stats.sixth.name === "None" ? "" : appState.stats.sixth.name,
+          appState.stats.seventh.name === "None" ? "" : appState.stats.seventh.name,
+          appState.stats.eighth.name === "None" ? "" : appState.stats.eighth.name,
+          appState.stats.ninth.name  === "None" ? "" : appState.stats.ninth.name,
+          appState.stats.other.name  === "None" ? "" : 'Otros'],
         datasets: [
           {
             label: 'Numero de busquedas',

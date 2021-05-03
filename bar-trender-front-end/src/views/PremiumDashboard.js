@@ -121,7 +121,6 @@ export default class PremiumDashboard extends React.Component {
   }
 
   render() {
-
     if (sessionStorage.getItem("premium") === "true") {
       return (
         <>

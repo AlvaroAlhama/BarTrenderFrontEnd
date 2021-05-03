@@ -12,7 +12,6 @@ import IllegalAge from 'components/Headers/IllegalAge';
 function LandingPage() {
   
   var legalAge = sessionStorage.getItem("legalAge");
-  console.log(legalAge);
   // Consuming REST GET
   if(!legalAge){
     return(

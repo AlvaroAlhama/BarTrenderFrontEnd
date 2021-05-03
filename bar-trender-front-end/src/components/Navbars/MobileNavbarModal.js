@@ -5,7 +5,7 @@ import MobileModalRoutes from "./MobileModalRoutes";
 function Example() {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => {console.log("hskfhkls"); setShow(false)};
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (

@@ -141,7 +141,6 @@ class ModalSearch extends React.Component {
     .then(data => {
       var res = groupBy(data.tags, (t) => t.type)
       this.setState({tags_grouped: res})
-      console.log(this.state.tags_grouped)
     })
   }
 

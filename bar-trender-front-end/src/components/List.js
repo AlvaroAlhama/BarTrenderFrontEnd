@@ -17,7 +17,7 @@ const List = (props) => {
     <ul className="ul-flex">
       <h2 className='list-head text-center'>Establecimientos</h2>
       
-      <div className='list'>
+      <div className='list' style={{display: 'flex', flexFlow: 'row wrap'}}>
         {establishments.map((establishment) => {
          
           return (

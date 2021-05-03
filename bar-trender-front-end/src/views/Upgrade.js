@@ -158,6 +158,8 @@ function Upgrade() {
                       <td>Gratis</td>
                       <td>7.99€/mes</td>
                     </tr>
+
+                    {window.innerWidth >= 550 && (
                     <tr className="last-row">
                       <td></td>
                       <td>Ya disfrutas de este contenido</td>
@@ -181,6 +183,11 @@ function Upgrade() {
                                 onApprove={(data, actions) =>
                                   onApprove(data, actions)
                                 }
+                                style={{
+                                  size: 'small',
+                                  color: 'gold',
+                                  label: 'checkout',
+                                }}
                               />
                             </>
                           ) : (
@@ -194,9 +201,52 @@ function Upgrade() {
                           )}
                         </>
                       </td>
-                    </tr>
+                    </tr>)}
                   </tbody>
                 </Table>
+
+                {window.innerWidth < 550 && (
+                  <div className="text-center">
+                    <p>Ya disfrutas del contenido gratuito</p>
+                      
+                      <>
+                      {isPremium.remainingDays <= 1 ||
+                      isPremium.premium === false ? (
+                        <>
+                          {isPremium.premium === false ? (
+                            ""
+                          ) : (
+                            <p className="text-danger">
+                              Te queda menos de un día de BarTrenderPremium
+                            </p>
+                          )}
+                          <p>Paga 7.99 €/mes para ser usuario premium</p>
+                          <PayPalButton
+                            id="paypal-button"
+                            createOrder={(data, actions) =>
+                              createOrder(data, actions)
+                            }
+                            onApprove={(data, actions) =>
+                              onApprove(data, actions)
+                            }
+                            style={{
+                              size: 'small',
+                              color: 'gold',
+                              label: 'checkout',
+                            }}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          Te quedan{" "}
+                          <b>
+                            {isPremium.remainingDays} día/s de BarTrender
+                            Premium
+                          </b>
+                        </>
+                      )}
+                    </>
+                  </div>)}
               </Card>
             </Col>
           </Row>

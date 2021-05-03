@@ -200,6 +200,18 @@ function ModalLogin() {
             <p style={{color: 'red', textAlign: 'center'}}>{errorBackend === undefined ? "" : errorBackend}</p>
 
           </ModalBody>
+
+          <label className="text-center">
+            Si inicias sesión, estás aceptando los
+            <a target='_blank' className="text-decoration-none" href="/legal">
+              {" "} Acuerdos de Términos {" "}
+            </a>
+            y las{" "}
+            <a target='_blank' className="text-decoration-none" href="/condiciones-uso">
+              Condiciones de Uso de está aplicación.
+            </a>
+          </label>
+
         </Modal>
       </>
     );

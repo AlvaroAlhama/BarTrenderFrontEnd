@@ -111,7 +111,8 @@ function ListView() {
           <section>
           <ListLoading isLoading={appState.loading} establishments={appState.establishments} />
           </section>
-         
+
+          <DefaultFooter />
         </div>
    
       </DeviceIdentifier>

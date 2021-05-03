@@ -12,7 +12,7 @@ import { useLocation, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
-function MobileModalRoutes({ color, image }) {
+function MobileModalRoutes(props, { color, image }) {
   
   const location = useLocation();
   const activeRoute = (routeName) => {
@@ -138,6 +138,7 @@ function MobileModalRoutes({ color, image }) {
                 to={prop.layout + prop.path}
                 className="nav-link"
                 activeClassName="active"
+                onClick={props.onHide}
               >
                 <h3>{prop.name}</h3>
               </NavLink>

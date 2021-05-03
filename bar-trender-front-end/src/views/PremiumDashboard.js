@@ -1,4 +1,3 @@
-
 import React from "react";
 
 // react-bootstrap components
@@ -21,6 +20,8 @@ export default class PremiumDashboard extends React.Component {
       zone: {
         zona: [],
       },
+
+      types:[],
 
       sendFinal: {},
 
@@ -66,10 +67,16 @@ export default class PremiumDashboard extends React.Component {
     });
 
 
-
+    var temp_types = []
+    for(var filter of data.tags)
+    {
+      if(!temp_types.includes(filter.type) && filter.type != "Zona")
+        temp_types.push(filter.type)
+    }
+    
     this.setState({
       zona: this.state.zone.zona,
-
+      types: temp_types,
       otherTags: arrayOther,
     });
   }
@@ -163,9 +170,9 @@ export default class PremiumDashboard extends React.Component {
                           id="filterImput"
                           name="filter"
                         >
-                          <option value="Bebida">Bebida</option>
-                          <option value="Instalacion">Instalacion</option>
-                          <option value="Ocio">Ocio</option>
+                          {this.state.types.map((type) => {
+                            return <option value={type}>{type}</option>;
+                          })}
                         </select>
                       </div>
                     </div>

@@ -1,4 +1,4 @@
-import {React, useEffect } from "react";
+import React, {useEffect} from "react";
 
 import barTrender from "../../assets/img/barTrender60.png";
 import * as uuid from "uuid";
@@ -12,10 +12,10 @@ import {
   Nav,
   UncontrolledTooltip,
 } from "reactstrap";
-import ModalSearch from "../../components/Modals/ModalSearch";
-import ModalLogin from "../../components/Modals/ModalLogin";
-import ModalSignUp from "../../components/Modals/ModalSignUp";
-import ModalEditClient from "../../components/Modals/ModalEditClient.js";
+import ModalSearch from "../Modals/ModalSearch";
+import ModalLogin from "../Modals/ModalLogin";
+import ModalSignUp from "../Modals/ModalSignUp";
+import ModalEditClient from "../Modals/ModalEditClient.js";
 
 import "./MainNavbar.css";
 

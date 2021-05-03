@@ -33,7 +33,6 @@ import ErrorView from "./views/ErrorView.js";
 import AdminView from "./views/AdminView.js";
 import EstablismentByOwnerView from "./views/EstablishmentByOwnerView.js"
 import EstablishmentView from "./views/EstablishmentView.js"
-import LegalNotice from './views/LegalNotice';
 import TermsUse from './views/TermsUse';
 import PrivacyPolicy from './views/PrivacyPolicy';
 
@@ -79,11 +78,6 @@ const app = (
         <Route
           path = "/establishment"
           render = {(props) =>  <EstablishmentView {...props}/>}
-        />
-
-        <Route
-          path = "/legal"
-          render = {(props) =>  <LegalNotice {...props}/>}
         />
 
          <Route

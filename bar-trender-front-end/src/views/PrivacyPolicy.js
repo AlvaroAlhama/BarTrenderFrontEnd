@@ -1,11 +1,8 @@
 import React from 'react';
 //css
-
-
-
 // core components
 
-import MainNavbar from 'components/Navbars/MainNavbar';
+import MainNavbar from '../components/Navbars/MainNavbar';
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
 import { Container } from 'reactstrap';
 

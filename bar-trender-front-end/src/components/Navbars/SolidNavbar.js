@@ -11,10 +11,10 @@ import {
   Nav,
   UncontrolledTooltip,
 } from "reactstrap";
-import ModalSearch from "../../components/Modals/ModalSearch";
-import ModalLogin from "../../components/Modals/ModalLogin";
-import ModalSignUp from "../../components/Modals/ModalSignUp";
-import ModalEditClient from "../../components/Modals/ModalEditClient.js";
+import ModalSearch from "../Modals/ModalSearch";
+import ModalLogin from "../Modals/ModalLogin";
+import ModalSignUp from "../Modals/ModalSignUp";
+import ModalEditClient from "../Modals/ModalEditClient.js";
 
 import "./MainNavbar.css";
 

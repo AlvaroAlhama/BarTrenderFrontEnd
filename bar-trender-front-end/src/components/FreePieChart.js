@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 
-
+function toFixed(num, fixed) {
+  var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+  var res = num.toString().match(re)[0];
+  return res
+}
 
 function BeerPieChart(props) {
 
@@ -49,10 +53,10 @@ function BeerPieChart(props) {
           {
             label: 'Busquedas',
             data: [
-              bebidaState.statsBebida.first.percentage,
-              bebidaState.statsBebida.second.percentage,
-              bebidaState.statsBebida.third.percentage,
-              bebidaState.statsBebida.other.percentage,
+              toFixed(bebidaState.statsBebida.first.percentage, 2),
+              toFixed(bebidaState.statsBebida.second.percentage,2),
+              toFixed(bebidaState.statsBebida.third.percentage,2),
+              toFixed(bebidaState.statsBebida.other.percentage,2),
             ],
             backgroundColor: [
               'rgba(255, 99, 132, 0.6)',
@@ -102,10 +106,10 @@ function BeerPieChart(props) {
             {
               label: 'Busquedas',
               data: [
-                bebidaState.statsBebida.first.percentage,
-                bebidaState.statsBebida.second.percentage,
-                bebidaState.statsBebida.third.percentage,
-                bebidaState.statsBebida.other.percentage,
+                toFixed(bebidaState.statsBebida.first.percentage,2),
+                toFixed(bebidaState.statsBebida.second.percentage,2),
+                toFixed(bebidaState.statsBebida.third.percentage,2),
+                toFixed(bebidaState.statsBebida.other.percentage,2),
               ],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.6)',
@@ -154,10 +158,10 @@ function BeerPieChart(props) {
             {
               label: 'Busquedas',
               data: [
-                ocioState.statsOcio.first.percentage,
-                ocioState.statsOcio.second.percentage,
-                ocioState.statsOcio.third.percentage,
-                ocioState.statsOcio.other.percentage,
+                toFixed(ocioState.statsOcio.first.percentage,2),
+                toFixed(ocioState.statsOcio.second.percentage,2),
+                toFixed(ocioState.statsOcio.third.percentage,2),
+                toFixed(ocioState.statsOcio.other.percentage,2),
               ],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.6)',
@@ -203,7 +207,7 @@ function BeerPieChart(props) {
   return (
     <>
     {bebidaState.statsBebida === {} || ocioState.statsOcio === {} ? "" : 
-    <div className="chart">
+    <div className="chart w-100">
       <h3>¿Qué se busca más?</h3>
       <Pie
         data={graph2.chartData}
@@ -216,8 +220,15 @@ function BeerPieChart(props) {
           legend: {
             display: true,
             position: 'right'
-          }
-        }}
+          },
+          scales: {
+            x: {
+                suggestedMin: 100,
+                suggestedMax: 150
+            }
+          },
+        }
+      }
       />
 
     </div>

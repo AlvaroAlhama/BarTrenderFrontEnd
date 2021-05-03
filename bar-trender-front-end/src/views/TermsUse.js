@@ -5,9 +5,8 @@ import React from 'react';
 
 // core components
 
-import SolidNavbar from 'components/Navbars/MainNavbar';
+import SolidNavbar from '../components/Navbars/SolidNavbar';
 import DefaultFooter from "../components/Footers/DefaultFooter.js";
-import { Container } from 'reactstrap';
 
 function TermsUse() {
 
@@ -17,10 +16,8 @@ function TermsUse() {
 
       
         <SolidNavbar/>
-        <body>
-       
-        <div className="wrapper">
-        <section className="container mt-1" id = "terms-use1" style={{padding:"300px"}} > 
+        <div className="wrapper" style={{minHeight:"100vh !important", height:"auto", textAlign:"justify"}}>
+        <section className="container" id = "terms-use1" style={{marginTop:"225px"}} > 
         <p><strong>TÉRMINOS Y CONDICIONES DE USO</strong></p>
         <p>Última versión de la política de privacidad actualizada a 2 de mayo de 2021.</p>
         <p>Las presentes Condiciones de Uso y la Política de Privacidad constituyen su acuerdo con BarTrender (si es usted propietario de un establecimiento que se
@@ -242,7 +239,6 @@ function TermsUse() {
           </ul>
         </section>
         </div>
-        </body>
          <DefaultFooter /> 
      
 

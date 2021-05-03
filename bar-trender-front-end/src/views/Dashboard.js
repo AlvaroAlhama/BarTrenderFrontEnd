@@ -139,7 +139,7 @@ function Dashboard() {
                     <Row classname="justify-content-center">
                       <div className="numbers text-center">
                         <p className="card-category">
-                          ¿Que prefiere la gente para divertirse?
+                          ¿Qué prefiere la gente para divertirse?
                         </p>
                       </div>
                     </Row>
@@ -284,7 +284,7 @@ function Dashboard() {
                     <Row classname="justify-content-center">
                       <div className="numbers text-center">
                         <p className="card-category">
-                          ¿Que prefiere la gente para divertirse?
+                          ¿Qué prefiere la gente para divertirse?
                         </p>
                       </div>
                     </Row>

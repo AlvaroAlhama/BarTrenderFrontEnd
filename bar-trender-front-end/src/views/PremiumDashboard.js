@@ -176,27 +176,58 @@ export default class PremiumDashboard extends React.Component {
                         </select>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="col-lg-6 col-md-6 col-xs-12">
-                        <label className="container">Fecha inicial</label>
-                        <input
-                          className="form-control"
-                          id="initialDate"
-                          type="date"
-                          name="initial-date"
-                        ></input>
+                    {window.innerWidth < 1300 && (
+                      <>
+                        <div className="row">
+                          <div className="col-lg-4 col-md-6 col-xs-12">
+                            <label className="container">Fecha inicial</label>
+                          </div>
+                          <div className="col-lg-8 col-md-6 col-xs-12">
+                            <input
+                              className="form-control"
+                              id="initialDate"
+                              type="date"
+                              name="initial-date"
+                            ></input>
+                          </div>
+                        </div>
+                        <div className="row">
+                          <div className="col-lg-4 col-md-6 col-xs-12">
+                            <label className="container">Fecha final</label>
+                          </div>
+                          <div className="col-lg-8 col-md-6 col-xs-12">
+                            <input
+                              className="form-control"
+                              id="endDate"
+                              type="date"
+                              name="end-date"
+                            ></input>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    {window.innerWidth >= 1300 && (
+                      <div className="row">
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                          <label className="container">Fecha inicial</label>
+                          <input
+                            className="form-control"
+                            id="initialDate"
+                            type="date"
+                            name="initial-date"
+                          ></input>
+                        </div>
+                        <div className="col-lg-6 col-md-6 col-xs-12">
+                          <label className="container">Fecha final</label>
+                          <input
+                            className="form-control"
+                            id="endDate"
+                            type="date"
+                            name="end-date"
+                          ></input>
+                        </div>
                       </div>
-                      <div className="col-lg-6 col-md-6 col-xs-12">
-                        <label className="container">Fecha final</label>
-                        <input
-                          className="form-control"
-                          id="endDate"
-                          type="date"
-                          name="end-date"
-                        ></input>
-                      </div>
-                    </div>
-
+                    )}
                     <input
                       className="btn btn-primary"
                       type="submit"

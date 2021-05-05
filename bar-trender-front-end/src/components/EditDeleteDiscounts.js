@@ -197,16 +197,23 @@ export default class EditDeleteDiscounts extends React.Component {
     });
   }
 
+  getApiDateToNewDate(dateTs){
+    const dateTS = moment.utc(dateTs).add(2, "hours").unix();
+    const dateISO = new Date(dateTS*1000).toISOString();
+    return dateISO;
+  }
+
   selectDiscount(discount) {
-    const initDate = discount.initial_date.slice(0, 10);
-    const initHour = parseInt(discount.initial_date.slice(11, 13)) + 2;
-    const initMinute = discount.initial_date.slice(13, 16);
-    const initHourMinute = initHour.toString() + initMinute;
+    const initialDate = this.getApiDateToNewDate(discount.initial_date);
+    const initDate = initialDate.slice(0, 10);
+    console.log(initDate)
+    const initTime = initialDate.slice(11,16);
+    console.log(initTime)
+
     if (discount.end_date != null) {
-      const endDate = discount.end_date.slice(0, 10);
-      const endHour = parseInt(discount.end_date.slice(11, 13)) + 2;
-      const endMinute = discount.end_date.slice(13, 16);
-      const endHourMinute = endHour.toString() + endMinute;
+      const endingDate = this.getApiDateToNewDate(discount.end_date);
+      const endDate = endingDate.slice(0,10);
+      const endTime = endingDate.slice(11, 16);
 
       this.setState({
         discount: {
@@ -217,9 +224,9 @@ export default class EditDeleteDiscounts extends React.Component {
           scannedCodes: discount.scannedCodes_number,
           cost: discount.cost_number,
           initialDate: initDate,
-          initialHour: initHourMinute,
+          initialHour: initTime,
           endDate: endDate,
-          endHour: endHourMinute,
+          endHour: endTime,
         },
 
         input: {
@@ -229,9 +236,9 @@ export default class EditDeleteDiscounts extends React.Component {
           scannedCodes: discount.scannedCodes_number,
           cost: discount.cost_number,
           initialDate: initDate,
-          initialHour: initHourMinute,
+          initialHour: initTime,
           endDate: endDate,
-          endHour: endHourMinute,
+          endHour: endTime,
         },
         initialDate: moment.utc(discount.initial_date).unix(),
         errors: {},
@@ -250,7 +257,7 @@ export default class EditDeleteDiscounts extends React.Component {
           scannedCodes: discount.scannedCodes_number,
           cost: discount.cost_number,
           initialDate: initDate,
-          initialHour: initHourMinute,
+          initialHour: initTime,
           endDate: "",
           initHour: "",
         },
@@ -262,7 +269,7 @@ export default class EditDeleteDiscounts extends React.Component {
           scannedCodes: discount.scannedCodes_number,
           cost: discount.cost_number,
           initialDate: initDate,
-          initialHour: initHourMinute,
+          initialHour: initTime,
           endDate: "",
           endHour: "",
         },
@@ -388,16 +395,6 @@ export default class EditDeleteDiscounts extends React.Component {
       );
     }
 
-    // if(initialDateFull < today){
-    //   isValid = false;
-    //   errors["initialDate"] = "La fecha debe ser mayor a la actual";
-    //   this.setState({
-    //     errors: errors,
-    //   });
-
-    //   return isValid;
-    // }
-
     if (inputs["endDate"] && inputs["endHour"]) {
       var endDateFull = new Date(
         inputs["endDate"].concat(" ", inputs["endHour"])
@@ -434,7 +431,7 @@ export default class EditDeleteDiscounts extends React.Component {
         "El número total de códigos no puede ser menor que los escaneados";
     }
 
-    if (today > initialDateFull) {
+    if (today > this.state.initialDate) {
       if (inputs["name"] !== discount.name) {
         isValid = false;
         errors["name"] =
@@ -453,11 +450,10 @@ export default class EditDeleteDiscounts extends React.Component {
       }
 
       if (
-        new Date(inputs["initialDate"].concat(" ", inputs["initialHour"])) <
-        today
+        new Date(inputs["initialDate"].concat(" ", inputs["initialHour"])) !== new Date(this.state.initialDate) 
       ) {
         isValid = false;
-        errors["initialDate"] = "La fecha inicial debe ser mayor a la de hoy";
+        errors["initialDate"] = "Una vez empezado el descuento no se puede modificar la fecha inicial";
       }
 
       if (inputs["scannedCodes"] !== discount.scannedCodes) {
@@ -490,13 +486,13 @@ export default class EditDeleteDiscounts extends React.Component {
       ) {
         isValid = false;
         errors["initialDate"] =
-          "Una vez empezado el descuento no se puede modificar la fecha inicial";
+          "F";
       }
       if (endDateFull !== undefined) {
-        if (endDateFull < initialDateFull) {
+        if (endDateFull <= initialDateFull) {
           isValid = false;
           errors["endDate"] =
-            "La fecha final no puede ser menor que la fecha incial";
+            "La fecha final no puede ser menor o igual que la fecha incial";
         }
         if (endDateFull < today) {
           isValid = false;

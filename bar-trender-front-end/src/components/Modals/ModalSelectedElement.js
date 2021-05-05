@@ -46,7 +46,7 @@ function ModalSelectedElement(prop) {
 
   async function loadDiscounts() {
     const apiUrl =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       element.id +
       "/discounts/get?page=1&all=False";
     await fetch(apiUrl, {

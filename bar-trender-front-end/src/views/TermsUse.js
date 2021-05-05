@@ -29,8 +29,8 @@ function TermsUse() {
         <section className="container mt-1" id = "terms-use2">
           <p>1. Condiciones generales de uso</p>
           <p>Definiciones</p>
-          <p><em>"BarTrender";</em> Todos los sitos web accesibles a través de <a href="https://bartrender-sprint-03.netlify.app">
-            https://bartrender-sprint-03.netlify.app</a></p>
+          <p><em>"BarTrender";</em> Todos los sitos web accesibles a través de <a href="https://bartrender-develop.netlify.app">
+            https://bartrender-develop.netlify.app</a></p>
           <p><em>"Usuario:"</em>Toda persona de 18 o más años de edad, con posibilidad de consumir alcohol legalmente, que visite BarTrender y/o sea titular de una cuenta 
           en BarTrender. </p>
           <p><em>"Establecimiento:"</em> Todos los pubs, cervecerías, bares o restaurantes que aparecen en la aplicación ya sea porque ellos mismos se hayan registrado o 
@@ -41,8 +41,8 @@ function TermsUse() {
           <p>Las presentes Condiciones de Uso y la Política de Privacidad constituyen su acuerdo con el equipo de BarTrender. Léalas con atención, estas disposiciones son 
             vinculantes para usted si usa cualquiera de las plataformas de BarTrender. Al aceptarlas usted muestra su conformidad con los términos de uso que aparecen en 
             la sección Condiciones de Uso, la actual sección, y con las Políticas de Privacidad de BarTrender citadas previamente y a las cuales puede acceder mediante la 
-           de BarTrender haciendo click en Políticas de Privacidad situadas en el pie de página de <a href="https://bartrender-sprint-03.netlify.app">
-            «https://bartrender-sprint-03.netlify.app»</a>.</p>
+           de BarTrender haciendo click en Políticas de Privacidad situadas en el pie de página de <a href="https://bartrender-develop.netlify.app">
+            «https://bartrender-develop.netlify.app»</a>.</p>
           <p>Somos el “Equipo de BarTrender”, operamos este sitio Web y ofrecemos una serie de servicios relacionados con él. En todo el documento nos denominamos 
             el “Equipo de BarTrender” como nosotros, nos, nuestro o “Equipo de BarTrender”. El “Equipo de BarTrender” podrá subrogarse en todos los contratos, derechos,
             obligaciones y responsabilidades derivados de estos Términos de Uso, a través de novación, mediante notificación por escrito (publicada en este sitio Web o 
@@ -165,8 +165,8 @@ function TermsUse() {
                  al incremento de solicitudes del servicio pero nos comprometemos de no hacerle esperar más de 7 días.</li>
                 <li>Sus datos personales no serán vendidos.</li>
                 <li>Los establecimientos que brinden información falsa durante la contratación del servicio serán sancionados cancelando el servicio sin reintegro alguno.</li>
-                <li>Todos los pagos han de ser hechos utilizando los enlaces e instrucciones disponibles en la página web <a href="https://bartrender-sprint-03.netlify.app">
-                «https://bartrender-sprint-03.netlify.app»</a>. Ningún otro método será aceptado.</li>
+                <li>Todos los pagos han de ser hechos utilizando los enlaces e instrucciones disponibles en la página web <a href="https://bartrender-develop.netlify.app">
+                «https://bartrender-develop.netlify.app»</a>. Ningún otro método será aceptado.</li>
                 <li>No se podrá reembolsar ningún pago efectuado.</li>
                 <li>Si existe algún problema con el pago, el establecimiento afectado deberá ponerse en contacto con el “Equipo de BarTrender” a través del correo electrónico 
                 bartrenderoficial@gmail.com y nos pondremos en contacto con usted lo antes posible.</li>

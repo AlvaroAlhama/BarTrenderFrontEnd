@@ -64,7 +64,7 @@ export default class EditDeleteDiscounts extends React.Component {
     var splited = query.split("/");
     var id_establishment = splited[3];
     const urlGet =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/discounts/get?all=True&page=" +
       number;
@@ -109,7 +109,7 @@ export default class EditDeleteDiscounts extends React.Component {
     var id_discount = this.state.discount.id;
 
     const urlUpdate =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/discounts/" +
       id_discount +
@@ -153,7 +153,7 @@ export default class EditDeleteDiscounts extends React.Component {
       var id_discount = this.state.discount.id;
 
       const urlDelete =
-        "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
+        "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
         id_establishment +
         "/discounts/" +
         id_discount +

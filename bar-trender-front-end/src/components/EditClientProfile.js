@@ -35,7 +35,7 @@ export default class EditClientProfile extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/user";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user";
 
     const response = await fetch(url, {
       method: "GET",
@@ -66,7 +66,7 @@ export default class EditClientProfile extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/method";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/method";
 
     const response = await fetch(url, {
       method: "GET",
@@ -96,7 +96,7 @@ export default class EditClientProfile extends React.Component {
   async handleUpdate() {
     var token = sessionStorage.getItem("token");
     const urlUpdate =
-      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/user/edit";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user/edit";
 
     const update = await fetch(urlUpdate, {
       method: "PUT",

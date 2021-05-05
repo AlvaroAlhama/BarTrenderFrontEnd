@@ -16,7 +16,7 @@ function EstablishmentByOwnerView(){
         
         async function getEstablishmentsOwner(){
             var token = sessionStorage.getItem("token");
-            await fetch("https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_by_owner", {
+            await fetch("https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_by_owner", {
 
                 method:"GET",
                 headers: {

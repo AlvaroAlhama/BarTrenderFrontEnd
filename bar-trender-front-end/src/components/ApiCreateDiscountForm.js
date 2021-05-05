@@ -44,7 +44,6 @@ class POSTCreateDiscount extends React.Component {
     var query = window.location.pathname;
     var splited = query.split("/");
     var idEstablishment = splited[3];
-
     const url =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       idEstablishment +
@@ -78,7 +77,7 @@ class POSTCreateDiscount extends React.Component {
     const endDate = this.state.input.endDate;
 
     const endTime = this.state.input.endTime;
-
+    let send = {};
 
     if (endDate !== undefined && endDate !== "") {
       const timeStampEnd = moment
@@ -86,43 +85,31 @@ class POSTCreateDiscount extends React.Component {
         .subtract(2, "hours")
         .unix();
 
-
-      let send2 = {
-        name: this.state.input.name,
-        description: this.state.input.descripcion,
-        cost: parseFloat(this.state.input.cost),
-        totalCodes: parseInt(this.state.input.totalCodes),
-        initialDate: timeStampInitial,
-        endDate: timeStampEnd,
-        scannedCodes: 0,
-      };
-
-      this.setState(
-        {
-          send: send2,
-        },
-        () => {
-          this.handleCreate();
-        }
-      );
+      send["name"] = this.state.input.name;
+      send["description"] = this.state.input.descripcion;
+      send["cost"] = parseFloat(this.state.input.cost);
+      if(this.state.input.totalCodes !== undefined){
+        send["totalCodes"] = parseInt(this.state.input.totalCodes);
+      }
+      send["initialDate"] = timeStampInitial;
+      send["endDate"] = timeStampEnd;
+      send["scannedCodes"] = 0;
+      
+      this.state.send = send;
+      this.handleCreate();
+      
     } else {
-      let send2 = {
-        name: this.state.input.name,
-        description: this.state.input.descripcion,
-        cost: parseFloat(this.state.input.cost),
-        totalCodes: parseInt(this.state.input.totalCodes),
-        initialDate: timeStampInitial,
-        scannedCodes: 0,
-      };
+      send["name"] = this.state.input.name;
+      send["description"] = this.state.input.descripcion;
+      send["cost"] = parseFloat(this.state.input.cost);
+      if(this.state.input.totalCodes !== undefined){
+        send["totalCodes"] = parseInt(this.state.input.totalCodes);
+      }
+      send["initialDate"] = timeStampInitial;
+      send["scannedCodes"] = 0;
 
-      this.setState(
-        {
-          send: send2,
-        },
-        () => {
-          this.handleCreate();
-        }
-      );
+      this.state.send = send;
+      this.handleCreate();
     }
   }
 
@@ -182,16 +169,16 @@ class POSTCreateDiscount extends React.Component {
       errors["descripcion"] = "Escriba una descripción para el descuento";
     }
 
-    if (!input["cost"] || input["cost"] <= 0) {
+    if (!input["cost"] || input["cost"] < 0) {
       isValid = false;
 
       errors["cost"] = "Escriba un precio para el descuento.";
     }
 
-    if (!input["totalCodes"] || input["totalcodes"] <= 0) {
+    if (input["totalcodes"] <= 0) {
       isValid = false;
 
-      errors["totalCodes"] = "Escriba un número total de códigos.";
+      errors["totalCodes"] = "Escriba un número total de códigos correcto.";
     }
 
     if (!input["initialDate"] || !input["initialTime"]) {

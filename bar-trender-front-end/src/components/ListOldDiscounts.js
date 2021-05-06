@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import moment from "moment";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import DiscountRenew from "./DiscountRenew"
 
 export default class EditDeleteDiscounts extends React.Component {
   constructor() {
@@ -504,17 +505,7 @@ export default class EditDeleteDiscounts extends React.Component {
                             </Tooltip>
                           }
                         >
-                          <Button
-                            className="btn-simple btn-link p-1"
-                            type="button"
-                            variant="info"
-                            onClick={() => {
-                              this.selectDiscount(discount);
-                              this.setState({ modalCreate: true });
-                            }}
-                          >
-                            <i className="fas fa-edit"></i>
-                          </Button>
+                          <DiscountRenew discount = {discount}/>
                         </OverlayTrigger>
                       </td>
                     </tr>

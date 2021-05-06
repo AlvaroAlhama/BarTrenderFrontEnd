@@ -66,7 +66,7 @@ export default class EditDeleteDiscounts extends React.Component {
     const urlGet =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       id_establishment +
-      "/discounts/get?all=True&page=" +
+      "/discounts/getExpire?page=" +
       number;
 
     const get = await fetch(urlGet, {

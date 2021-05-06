@@ -9,6 +9,7 @@ import {
   Spinner,
 } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
+import ListMyDiscounts from './ListOldDiscounts';
 
 export default class EditEstablishment extends React.Component {
   constructor() {
@@ -44,6 +45,7 @@ export default class EditEstablishment extends React.Component {
       sendFinal: {},
 
       modal1: false,
+      modal2: false,
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
@@ -601,6 +603,37 @@ export default class EditEstablishment extends React.Component {
                       <POSTCreateDiscount />
                     </ModalBody>
                   </Modal>
+ 
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => this.setState({ modal2: true })}
+                  >
+                    Reactivar descuento pasado
+                  </button>
+
+                  <Modal
+                    isOpen={this.state.modal2}
+                    toggle={() => this.setState({ modal2: false })}
+                  >
+                    <div className="modal-header justify-content-center">
+                      <button
+                        className="close"
+                        type="button"
+                        onClick={() => this.setState({ modal2: false })}
+                      >
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                      <h4 className="title title-up">Lista de descuentos</h4>
+                    </div>
+                    <div className="container">
+                      <hr />
+                    </div>
+                    <ModalBody>
+                      <ListMyDiscounts/>
+                    </ModalBody>
+                  </Modal>
+
                   <div className="clearfix"></div>
                 </div>
               </div>

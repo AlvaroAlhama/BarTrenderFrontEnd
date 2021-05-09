@@ -190,8 +190,6 @@ class ApiCreateEstablishmentForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("Aqui selected");
-    console.log(this.state.selected);
     if (this.validate()) {
       this.handleCreate();
     }

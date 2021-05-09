@@ -58,7 +58,7 @@ class DiscountRenew extends React.Component {
       },
       body: JSON.stringify(this.state.send),
     });
-    
+
     if (create.ok) {
       var response = await create.json();
       this.setState({ msg: response.msg, modalSuccess: true });
@@ -421,7 +421,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="date"
                     name="initialDate"
-                    value=""
+                    value={this.state.input.initialDate}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Fecha de inicio del descuento"
@@ -432,7 +432,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="time"
                     name="initialTime"
-                    value=""
+                    value={this.state.input.initialTime}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Hora de inicio del descuento"
@@ -450,7 +450,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="date"
                     name="endDate"
-                    value=""
+                    value={this.state.input.endDate}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Fecha de fin del descuento"
@@ -461,7 +461,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="time"
                     name="endTime"
-                    value=""
+                    value={this.state.input.endTime}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Hora de fin del descuento"

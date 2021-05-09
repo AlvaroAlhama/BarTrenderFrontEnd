@@ -32,6 +32,7 @@ import employee_8 from '../assets/img/xema.png';
 import employee_9 from '../assets/img/miguel.png';
 import employee_10 from '../assets/img/miguel-angel.png';
 import employee_11 from '../assets/img/fran.png';
+import banner_establishment from '../assets/img/banner/banner-establecimiento.png';
 
 function LandingView() {
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -70,7 +71,7 @@ function LandingView() {
               <Row>
                 <Col md="6">
                   <div
-                    className="image-container image-left"
+                    className="image-container image-right"
                     style={{
                       backgroundImage: `url(${image_left})`,
                     }}
@@ -112,6 +113,43 @@ function LandingView() {
             </div>
           </Container>
         </div>
+        <Container>
+            <Row>
+              <Col>
+              <h2 style={{textAlign:"center"}} className ="title">Anuncio Cliente</h2>
+              <div style={{display:"flex"}}className="video">
+                <iframe style={{margin:"auto"}} width="560" height="315" src="https://www.youtube.com/embed/I_fTI_75QaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <br></br><br></br>
+              <div className="img-banner">
+                <img src={banner_establishment}></img>
+              </div>
+              </Col>
+              <br></br><br></br>
+              <Col>
+              <h2 style={{textAlign:"center"}} className ="title">Anuncio Establecimiento</h2>
+              <div style={{display:"flex"}}className="video">
+                <iframe style={{margin:"auto"}} width="560" height="315" src="https://www.youtube.com/embed/xUmW1hYPKgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <br></br><br></br>
+              <div className="img-banner">
+                <img src={banner_establishment}></img>
+              </div>
+              </Col>
+              <br></br><br></br>
+              <Col>
+              <h2 style={{textAlign:"center"}} className ="title">Anuncio Inversores</h2>
+
+              <div style={{display:"flex"}}className="video">
+                <iframe style={{margin:"auto"}} width="560" height="315" src="https://www.youtube.com/embed/xUmW1hYPKgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <br></br><br></br>
+              <div className="img-banner">
+                <img src={banner_establishment}></img>
+              </div>
+              </Col>
+            </Row>
+          </Container>
         <div id="nuestro-equipo" className="section section-team text-center">
           <Container>
             <h2 className="title">Este es nuestro equipo</h2>
@@ -310,6 +348,7 @@ function LandingView() {
             </div>
           </Container>
         </div>
+        
         <div id="contact-us" className="section section-contact-us text-center">
           <Container>
             <form action="mailto:bartrenderoficial@gmail.com" method="post" enctype="text/plain">

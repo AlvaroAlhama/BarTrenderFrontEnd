@@ -101,9 +101,7 @@ class ApiCreateEstablishmentForm extends React.Component {
 
   async handleCreate() {
     var token = sessionStorage.getItem("token");
-    let tagsBefore = [];
 
-    for (let tag of this.state.selected) tagsBefore.push(tag.value);
 
     var createUpload = new FormData();
     createUpload.append("name_text", this.state.input.name_text);
@@ -111,7 +109,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     createUpload.append("cif_text", this.state.input.cif_text);
     createUpload.append("phone_number", this.state.input.phone_number);
     createUpload.append("zone_enum", this.state.input.zone_enum);
-    createUpload.append("tags", tagsBefore);
+    createUpload.append("tags", this.state.selected);
     createUpload.append("number_text", this.state.input.number_text);
     createUpload.append("street_text", this.state.input.street_text);
     createUpload.append("locality_text", this.state.input.locality_text);
@@ -170,21 +168,30 @@ class ApiCreateEstablishmentForm extends React.Component {
   }
 
   async handleChange(event) {
-    if (event.target === undefined) {
-      this.state.selected = event;
-    } else {
-      await this.setState({
-        input: {
-          ...this.state.input,
-          [event.target.name]: event.target.value,
-        },
-      });
+    let input = this.state.input;
+    let selected = this.state.selected;
+    var element_number;
+    if(event.target.type ==="checkbox"){
+      element_number = selected.findIndex(obj => obj === event.target.name)
+      if (element_number !== -1){
+        selected.splice(element_number,1);
+      }
+      else{
+        selected.push(event.target.name);
+      }
     }
+    else{
+      input[event.target.name] = event.target.value;
+    }
+    this.setState({
+      input, selected
+    });    
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
+    console.log("Aqui selected");
+    console.log(this.state.selected);
     if (this.validate()) {
       this.handleCreate();
     }
@@ -195,7 +202,6 @@ class ApiCreateEstablishmentForm extends React.Component {
     let errors = {};
     let isValid = true;
     var pattern;
-
     if (!input["name_text"].trim()) {
       isValid = false;
 
@@ -543,7 +549,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                   if (t.type == "Ocio") {
                     return (
                       <Col lg="4" md="4" xs="6">
-                        <input type="checkbox" value="True" id={t.name} />
+                        <input type="checkbox" name={t.name} value="True" id={t.name} onChange={this.handleChange} />
                         <label className="ml-2" for={t.name}>
                           {t.name}
                         </label>
@@ -558,7 +564,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                   if (t.type == "Bebida") {
                     return (
                       <Col lg="4" md="4" xs="6">
-                        <input type="checkbox" value="True" id={t.name} />
+                        <input type="checkbox" name={t.name} value="True" id={t.name} onChange={this.handleChange} />
                         <label className="ml-2" for={t.name}>
                           {t.name}
                         </label>
@@ -573,7 +579,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                   if (t.type == "Estilo") {
                     return (
                       <Col lg="4" md="4" xs="6">
-                        <input type="checkbox" value="True" id={t.name} />
+                        <input type="checkbox" name={t.name} value="True" id={t.name} onChange={this.handleChange}/>
                         <label className="ml-2" for={t.name}>
                           {t.name}
                         </label>
@@ -588,7 +594,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                   if (t.type == "Ambiente") {
                     return (
                       <Col lg="4" md="4" xs="6">
-                        <input type="checkbox" value="True" id={t.name} />
+                        <input type="checkbox" name={t.name} value="True" id={t.name} onChange={this.handleChange} />
                         <label className="ml-2" for={t.name}>
                           {t.name}
                         </label>
@@ -603,7 +609,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                   if (t.type == "Zona") {
                     return (
                       <Col lg="4" md="4" xs="6">
-                        <input type="checkbox" value="True" id={t.name} />
+                        <input type="checkbox" name={t.name} value="True" id={t.name} onChange={this.handleChange} />
                         <label className="ml-2" for={t.name}>
                           {t.name}
                         </label>

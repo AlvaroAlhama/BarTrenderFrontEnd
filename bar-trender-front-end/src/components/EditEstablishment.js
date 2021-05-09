@@ -6,10 +6,12 @@ import {
   Label,
   Modal,
   ModalBody,
+  Button,
+  Row,
   Spinner,
 } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
-import ListMyDiscounts from './ListOldDiscounts';
+import ListMyDiscounts from "./ListOldDiscounts";
 
 export default class EditEstablishment extends React.Component {
   constructor() {
@@ -74,9 +76,11 @@ export default class EditEstablishment extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.filter(tag => tag.type !== "Zona").map((tag) => {
+    var otherTags = data.tags
+      .filter((tag) => tag.type !== "Zona")
+      .map((tag) => {
         return { value: tag.name, label: tag.name };
-    });
+      });
 
     var arrayOther = otherTags.filter(function (dato) {
       return dato !== undefined;
@@ -158,8 +162,7 @@ export default class EditEstablishment extends React.Component {
     let inputs = this.state.input;
     let tagsBefore = [];
 
-    for (let tag of this.state.selected) 
-        tagsBefore.push(tag.value);
+    for (let tag of this.state.selected) tagsBefore.push(tag.value);
 
     const urlUpdate =
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
@@ -251,7 +254,7 @@ export default class EditEstablishment extends React.Component {
     let selecteds = this.state.selected;
     let errors = {};
     let isValid = true;
-    var pattern
+    var pattern;
 
     if (!inputs["name_text"].trim()) {
       isValid = false;
@@ -310,7 +313,6 @@ export default class EditEstablishment extends React.Component {
         "Debe asignar una zona próxima a su establecimiento";
     }
 
-
     this.setState({
       errors: errors,
     });
@@ -331,7 +333,7 @@ export default class EditEstablishment extends React.Component {
           <div>
             <img
               className="img-fluid w-100"
-              alt = ""
+              alt=""
               src={this.state.image_url == null ? "" : this.state.image_url}
             />
           </div>
@@ -350,88 +352,86 @@ export default class EditEstablishment extends React.Component {
                     id="establishment-form"
                     onSubmit={(e) => this.handleSubmit(e)}
                   >
-                  {window.innerWidth < 525 && (
-                    <>
-                    <div className="row">
-                      <div className="col pr-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Nombre del Establecimiento</label>
-                          <input
-                            type="text"
-                            name="name_text"
-                            maxLength="100"
-                            value={this.state.input.name_text}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="name-establishment"
-                          />
-
+                    {window.innerWidth < 525 && (
+                      <>
+                        <div className="row">
+                          <div className="col pr-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Nombre del Establecimiento</label>
+                              <input
+                                type="text"
+                                name="name_text"
+                                maxLength="100"
+                                value={this.state.input.name_text}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="name-establishment"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.name_text}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-danger">
-                          {this.state.errors.name_text}
+                        <div className="row">
+                          <div className="col pr-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Teléfono</label>
+                              <input
+                                type="tel"
+                                name="phone_number"
+                                value={this.state.input.phone_number}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="phone-number"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.phone_number}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Teléfono</label>
-                          <input
-                            type="tel"
-                            name="phone_number"
-                            value={this.state.input.phone_number}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="phone-number"
-                          />
+                      </>
+                    )}
+                    {window.innerWidth >= 525 && (
+                      <>
+                        <div className="row">
+                          <div className="col pr-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Nombre del Establecimiento</label>
+                              <input
+                                type="text"
+                                name="name_text"
+                                maxLength="100"
+                                value={this.state.input.name_text}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="name-establishment"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.name_text}
+                            </div>
+                          </div>
+                          <div className="col pl-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Teléfono</label>
+                              <input
+                                type="tel"
+                                name="phone_number"
+                                value={this.state.input.phone_number}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="phone-number"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.phone_number}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-danger">
-                          {this.state.errors.phone_number}
-                        </div>
-                      </div>
-                    </div>
-                    </>
-                  )}
-                  {window.innerWidth >= 525 && (
-                    <>
-                    <div className="row">
-                      <div className="col pr-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Nombre del Establecimiento</label>
-                          <input
-                            type="text"
-                            name="name_text"
-                            maxLength="100"
-                            value={this.state.input.name_text}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="name-establishment"
-                          />
-
-                        </div>
-                        <div className="text-danger">
-                          {this.state.errors.name_text}
-                        </div>
-                      </div>
-                      <div className="col pl-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Teléfono</label>
-                          <input
-                            type="tel"
-                            name="phone_number"
-                            value={this.state.input.phone_number}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="phone-number"
-                          />
-                        </div>
-                        <div className="text-danger">
-                          {this.state.errors.phone_number}
-                        </div>
-                      </div>
-                    </div>
-                    </>
-                  )}
+                      </>
+                    )}
                     <div className="row">
                       <div className="col md-12">
                         <div className="form-group my-1">
@@ -533,7 +533,7 @@ export default class EditEstablishment extends React.Component {
                           />
                         </FormGroup>
                       </div>
-                    </div>                
+                    </div>
                     <div className="row">
                       <div className="col">
                         <div className="form-group my-1">
@@ -603,7 +603,7 @@ export default class EditEstablishment extends React.Component {
                       <POSTCreateDiscount />
                     </ModalBody>
                   </Modal>
- 
+
                   <button
                     type="button"
                     className="btn btn-primary"
@@ -630,7 +630,7 @@ export default class EditEstablishment extends React.Component {
                       <hr />
                     </div>
                     <ModalBody>
-                      <ListMyDiscounts/>
+                      <ListMyDiscounts />
                     </ModalBody>
                   </Modal>
 

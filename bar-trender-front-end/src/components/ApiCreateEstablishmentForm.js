@@ -1,6 +1,15 @@
 import React from "react";
 import Select from "react-select";
-import { CustomInput, FormGroup, Label, Modal, ModalBody } from "reactstrap";
+import {
+  CustomInput,
+  FormGroup,
+  Row,
+  Col,
+  Button,
+  Label,
+  Modal,
+  ModalBody,
+} from "reactstrap";
 
 class ApiCreateEstablishmentForm extends React.Component {
   constructor() {
@@ -54,18 +63,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     });
     const data = await response.json();
 
-    var otherTags = data.tags.filter(tag => tag.type !== "Zona").map((tag) => {
-        return { value: tag.name, label: tag.name };
-    });
-
-    var arrayOther = otherTags.filter(function (dato) {
-      return dato !== undefined;
-    });
-
-    this.setState({
-      otherTags: arrayOther,
-    });
-
+    this.state.otherTags = data.tags;
   }
 
   async getZones() {
@@ -85,29 +83,27 @@ class ApiCreateEstablishmentForm extends React.Component {
     }
   }
 
-  translateError(error){
-    if(error.includes("V001")){
+  translateError(error) {
+    if (error.includes("V001")) {
       this.setState({
         errors: {
           error: "El CIF ya existe o no es válido",
-        }
-      })
-    }else{
+        },
+      });
+    } else {
       this.setState({
         errors: {
           error: error,
-        }
-      })
+        },
+      });
     }
   }
-
 
   async handleCreate() {
     var token = sessionStorage.getItem("token");
     let tagsBefore = [];
 
-    for (let tag of this.state.selected) 
-      tagsBefore.push(tag.value);
+    for (let tag of this.state.selected) tagsBefore.push(tag.value);
 
     var createUpload = new FormData();
     createUpload.append("name_text", this.state.input.name_text);
@@ -157,7 +153,7 @@ class ApiCreateEstablishmentForm extends React.Component {
       },
       body: json,
     });
-    var response
+    var response;
 
     if (create.ok) {
       response = await create.json();
@@ -198,7 +194,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     let selecteds = this.state.selected;
     let errors = {};
     let isValid = true;
-    var pattern
+    var pattern;
 
     if (!input["name_text"].trim()) {
       isValid = false;
@@ -285,7 +281,7 @@ class ApiCreateEstablishmentForm extends React.Component {
         <div>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group my-1">
-            <label>Nombre del establecimiento</label>
+              <label>Nombre del establecimiento</label>
               <input
                 type="text"
                 name="name_text"
@@ -299,7 +295,7 @@ class ApiCreateEstablishmentForm extends React.Component {
               <div className="text-danger">{this.state.errors.name_text}</div>
             </div>
             <div className="form-group my-1">
-            <label>CIF del establecimiento</label>
+              <label>CIF del establecimiento</label>
               <input
                 type="text"
                 name="cif_text"
@@ -313,7 +309,7 @@ class ApiCreateEstablishmentForm extends React.Component {
               <div className="text-danger">{this.state.errors.cif_text}</div>
             </div>
             <div className="form-group my-1">
-            <label>Descripción del establecimiento</label>
+              <label>Descripción del establecimiento</label>
               <input
                 type="text"
                 name="desc_text"
@@ -328,7 +324,7 @@ class ApiCreateEstablishmentForm extends React.Component {
             </div>
 
             <div className="form-group my-1">
-            <label>Número de teléfono</label>
+              <label>Número de teléfono</label>
               <input
                 type="tel"
                 name="phone_number"
@@ -337,11 +333,13 @@ class ApiCreateEstablishmentForm extends React.Component {
                 className="form-control"
                 id="phone_number"
               />
-              <div className="text-danger">{this.state.errors.phone_number}</div>
+              <div className="text-danger">
+                {this.state.errors.phone_number}
+              </div>
             </div>
 
             <div className="form-group my-1">
-            <label>Calle</label>
+              <label>Calle</label>
               <input
                 type="text"
                 name="street_text"
@@ -355,7 +353,7 @@ class ApiCreateEstablishmentForm extends React.Component {
             </div>
 
             <div className="form-group my-1">
-            <label>Número</label>
+              <label>Número</label>
               <input
                 type="text"
                 name="number_text"
@@ -367,7 +365,7 @@ class ApiCreateEstablishmentForm extends React.Component {
               <div className="text-danger">{this.state.errors.number_text}</div>
             </div>
             <div className="form-group my-1">
-            <label>Localidad</label>
+              <label>Localidad</label>
               <input
                 type="text"
                 name="locality_text"
@@ -377,7 +375,9 @@ class ApiCreateEstablishmentForm extends React.Component {
                 className="form-control"
               />
 
-              <div className="text-danger">{this.state.errors.locality_text}</div>
+              <div className="text-danger">
+                {this.state.errors.locality_text}
+              </div>
             </div>
             <FormGroup className="pt-2">
               <Label for="establishmentImage">Imagen</Label>
@@ -405,21 +405,217 @@ class ApiCreateEstablishmentForm extends React.Component {
               </select>
               <div className="text-danger">{this.state.errors.zone_enum}</div>
             </div>
-
             <div className="form-group my-1">
-              <label>Tags</label>
-              {this.state.otherTags.length !== 0 ? (
-                <Select
-                  name="tags-selected"
-                  placeholder="Selecciona..."
-                  isMulti
-                  options={this.state.otherTags}
-                  onChange={this.handleChange}
-                ></Select>
-              ) : (
-                ""
-              )}
-              <div className="text-danger">{this.state.errors.tags_selected}</div>
+            <label for="tags">Tags</label>
+
+              <Row id="tags" className="text-primary justify-content-center">
+                <div class="col-2">
+                  <Button
+                    className="bg-transparent"
+                    onClick={() => {
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.add("d-none");
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.remove("tag-active");
+                      document
+                        .getElementById("content-tag-ocio")
+                        .classList.remove("d-none");
+                      document
+                        .getElementById("content-tag-ocio")
+                        .classList.add("tag-active");
+                    }}
+                  >
+                    <i
+                      color="primary"
+                      id="create-tooltip"
+                      className="fal fa-bowling-ball w-100 text-primary"
+                      style={{ fontSize: "1.5rem" }}
+                    ></i>
+                  </Button>
+                </div>
+                <div class="col-2">
+                  <Button
+                    className="bg-transparent"
+                    onClick={() => {
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.add("d-none");
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.remove("tag-active");
+                      document
+                        .getElementById("content-tag-bebida")
+                        .classList.remove("d-none");
+                      document
+                        .getElementById("content-tag-bebida")
+                        .classList.add("tag-active");
+                    }}
+                  >
+                    <i
+                      color="primary"
+                      class="fal fa-beer w-100 text-primary"
+                      style={{ fontSize: "1.5rem" }}
+                    ></i>
+                  </Button>
+                </div>
+                <div class="col-2">
+                  <Button
+                    className="bg-transparent"
+                    onClick={() => {
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.add("d-none");
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.remove("tag-active");
+                      document
+                        .getElementById("content-tag-estilo")
+                        .classList.remove("d-none");
+                      document
+                        .getElementById("content-tag-estilo")
+                        .classList.add("tag-active");
+                    }}
+                  >
+                    <i
+                      color="primary"
+                      class="fal fa-chess-rook w-100 text-primary"
+                      style={{ fontSize: "1.5rem" }}
+                    ></i>
+                  </Button>
+                </div>
+                <div class="col-2">
+                  <Button
+                    className="bg-transparent"
+                    onClick={() => {
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.add("d-none");
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.remove("tag-active");
+                      document
+                        .getElementById("content-tag-ambiente")
+                        .classList.remove("d-none");
+                      document
+                        .getElementById("content-tag-ambiente")
+                        .classList.add("tag-active");
+                    }}
+                  >
+                    <i
+                      color="primary"
+                      class="fal fa-gramophone w-100 text-primary"
+                      style={{ fontSize: "1.5rem" }}
+                    ></i>
+                  </Button>
+                </div>
+                <div class="col-2">
+                  <Button
+                    className="bg-transparent"
+                    onClick={() => {
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.add("d-none");
+                      document
+                        .getElementsByClassName("tag-active")[0]
+                        .classList.remove("tag-active");
+                      document
+                        .getElementById("content-tag-zona")
+                        .classList.remove("d-none");
+                      document
+                        .getElementById("content-tag-zona")
+                        .classList.add("tag-active");
+                    }}
+                  >
+                    <i
+                      color="primary"
+                      class="now-ui-icons location_world w-100 text-primary"
+                      style={{ fontSize: "1.5rem" }}
+                    ></i>
+                  </Button>
+                </div>
+              </Row>
+
+              <Row className="tag-active" id="content-tag-ocio">
+                <h4 className="text-primary text-center w-100 mt-0">Ocio</h4>
+                {this.state.otherTags.map((t) => {
+                  if (t.type == "Ocio") {
+                    return (
+                      <Col lg="4" md="4" xs="6">
+                        <input type="checkbox" value="True" id={t.name} />
+                        <label className="ml-2" for={t.name}>
+                          {t.name}
+                        </label>
+                      </Col>
+                    );
+                  }
+                })}
+              </Row>
+              <Row className="d-none" id="content-tag-bebida">
+              <h4 className="text-primary text-center w-100 mt-0">Bebida</h4>
+                {this.state.otherTags.map((t) => {
+                  if (t.type == "Bebida") {
+                    return (
+                      <Col lg="4" md="4" xs="6">
+                        <input type="checkbox" value="True" id={t.name} />
+                        <label className="ml-2" for={t.name}>
+                          {t.name}
+                        </label>
+                      </Col>
+                    );
+                  }
+                })}
+              </Row>
+              <Row className="d-none" id="content-tag-estilo">
+              <h4 className="text-primary text-center w-100 mt-0">Estilo</h4>
+                {this.state.otherTags.map((t) => {
+                  if (t.type == "Estilo") {
+                    return (
+                      <Col lg="4" md="4" xs="6">
+                        <input type="checkbox" value="True" id={t.name} />
+                        <label className="ml-2" for={t.name}>
+                          {t.name}
+                        </label>
+                      </Col>
+                    );
+                  }
+                })}
+              </Row>
+              <Row className="d-none" id="content-tag-ambiente">
+              <h4 className="text-primary text-center w-100 mt-0">Ambiente</h4>
+                {this.state.otherTags.map((t) => {
+                  if (t.type == "Ambiente") {
+                    return (
+                      <Col lg="4" md="4" xs="6">
+                        <input type="checkbox" value="True" id={t.name} />
+                        <label className="ml-2" for={t.name}>
+                          {t.name}
+                        </label>
+                      </Col>
+                    );
+                  }
+                })}
+              </Row>
+              <Row className="d-none" id="content-tag-zona">
+              <h4 className="text-primary text-center w-100 mt-0">Zona</h4>
+                {this.state.otherTags.map((t) => {
+                  if (t.type == "Zona") {
+                    return (
+                      <Col lg="4" md="4" xs="6">
+                        <input type="checkbox" value="True" id={t.name} />
+                        <label className="ml-2" for={t.name}>
+                          {t.name}
+                        </label>
+                      </Col>
+                    );
+                  }
+                })}
+              </Row>
+
+              <div className="text-danger">
+                {this.state.errors.tags_selected}
+              </div>
             </div>
 
             <div className="text-center">
@@ -431,9 +627,7 @@ class ApiCreateEstablishmentForm extends React.Component {
             </div>
             <div className="container-fluid bg-danger">
               <div className="text-white fw-bold text-center">
-                {this.state.errors === {}
-                  ? ""
-                  : this.state.errors.error}
+                {this.state.errors === {} ? "" : this.state.errors.error}
               </div>
             </div>
           </form>

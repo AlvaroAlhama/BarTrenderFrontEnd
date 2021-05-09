@@ -168,8 +168,6 @@ function ModalSelectedElement(prop) {
                     <Button
                       className="bg-transparent"
                       onClick={() => {
-                        console.log("AQUI OCIO")
-                        console.log(document.getElementsByClassName("tag-active"))
                         document.getElementsByClassName("tag-active")[0].classList.add("d-none");
                         document.getElementsByClassName("tag-active")[0].classList.remove("tag-active");
                         document.getElementById("content-tag-ocio").classList.remove("d-none");

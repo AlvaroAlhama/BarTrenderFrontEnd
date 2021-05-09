@@ -58,7 +58,7 @@ class DiscountRenew extends React.Component {
       },
       body: JSON.stringify(this.state.send),
     });
-
+    
     if (create.ok) {
       var response = await create.json();
       this.setState({ msg: response.msg, modalSuccess: true });
@@ -377,7 +377,7 @@ class DiscountRenew extends React.Component {
                     type="text"
                     name="descripcion"
                     maxLength="140"
-                    value={this.state.input.descripcion}
+                    value={this.state.input.description}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Descripción del descuento"
@@ -421,7 +421,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="date"
                     name="initialDate"
-                    value={this.state.input.initialDate}
+                    value=""
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Fecha de inicio del descuento"
@@ -432,7 +432,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="time"
                     name="initialTime"
-                    value={this.state.input.initialTime}
+                    value=""
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Hora de inicio del descuento"
@@ -450,7 +450,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="date"
                     name="endDate"
-                    value={this.state.input.endDate}
+                    value=""
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Fecha de fin del descuento"
@@ -461,7 +461,7 @@ class DiscountRenew extends React.Component {
                     <input
                     type="time"
                     name="endTime"
-                    value={this.state.input.endTime}
+                    value=""
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Hora de fin del descuento"

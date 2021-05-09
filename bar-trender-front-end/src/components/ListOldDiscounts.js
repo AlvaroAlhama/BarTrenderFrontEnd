@@ -78,6 +78,7 @@ export default class EditDeleteDiscounts extends React.Component {
     });
 
     const data = await get.json();
+    console.log(data, "data")
     this.setState({
       data: data.results,
     });

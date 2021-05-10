@@ -27,6 +27,8 @@ function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
+  console.log("AQUI ELEMENT");
+  console.log(element);
   const description = element.desc_text !== undefined;
 
   const [appState, setAppState] = useState({
@@ -168,16 +170,25 @@ function ModalSelectedElement(prop) {
                     <Button
                       className="bg-transparent"
                       onClick={() => {
-                        document.getElementsByClassName("tag-active")[0].classList.add("d-none");
-                        document.getElementsByClassName("tag-active")[0].classList.remove("tag-active");
-                        document.getElementById("content-tag-ocio").classList.remove("d-none");
-                        document.getElementById("content-tag-ocio").classList.add("tag-active");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-ocio")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-ocio")
+                          .classList.add("tag-active");
                       }}
                     >
                       <i
+                        
                         color="primary"
                         id="create-tooltip"
-                        className="fal fa-bowling-ball w-100 text-primary"
+                        className="fal fa-bowling-ball w-100 text-primary fa-lg"
                       ></i>
                     </Button>
                   </div>
@@ -185,57 +196,101 @@ function ModalSelectedElement(prop) {
                     <Button
                       className="bg-transparent"
                       onClick={() => {
-                        document.getElementsByClassName("tag-active")[0].classList.add("d-none");
-                        document.getElementsByClassName("tag-active")[0].classList.remove("tag-active");
-                        document.getElementById("content-tag-bebida").classList.remove("d-none");
-                        document.getElementById("content-tag-bebida").classList.add("tag-active");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-bebida")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-bebida")
+                          .classList.add("tag-active");
                       }}
                     >
-                      <i color="primary" class="fal fa-beer w-100 text-primary"></i>
+                      <i
+                        color="primary"
+                        class="fal fa-beer w-100 text-primary fa-lg"
+                      ></i>
                     </Button>
                   </div>
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
                       onClick={() => {
-                        document.getElementsByClassName("tag-active")[0].classList.add("d-none");
-                        document.getElementsByClassName("tag-active")[0].classList.remove("tag-active");
-                        document.getElementById("content-tag-estilo").classList.remove("d-none");
-                        document.getElementById("content-tag-estilo").classList.add("tag-active");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-estilo")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-estilo")
+                          .classList.add("tag-active");
                       }}
                     >
-                      <i color="primary" class="fal fa-chess-rook w-100 text-primary"></i>
+                      <i
+                        color="primary"
+                        class="fal fa-chess-rook w-100 text-primary fa-lg"
+                      ></i>
                     </Button>
                   </div>
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
                       onClick={() => {
-                        document.getElementsByClassName("tag-active")[0].classList.add("d-none");
-                        document.getElementsByClassName("tag-active")[0].classList.remove("tag-active");
-                        document.getElementById("content-tag-ambiente").classList.remove("d-none");
-                        document.getElementById("content-tag-ambiente").classList.add("tag-active");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-ambiente")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-ambiente")
+                          .classList.add("tag-active");
                       }}
                     >
-                      <i color="primary" class="fal fa-gramophone w-100 text-primary"></i>
+                      <i
+                        color="primary"
+                        class="fal fa-gramophone w-100 text-primary fa-lg"
+                      ></i>
                     </Button>
                   </div>
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
                       onClick={() => {
-                        document.getElementsByClassName("tag-active")[0].classList.add("d-none");
-                        document.getElementsByClassName("tag-active")[0].classList.remove("tag-active");
-                        document.getElementById("content-tag-zona").classList.remove("d-none");
-                        document.getElementById("content-tag-zona").classList.add("tag-active");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-zona")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-zona")
+                          .classList.add("tag-active");
                       }}
                     >
-                      <i color="primary" class="now-ui-icons location_world w-100 text-primary"></i>
+                      <i
+                        color="primary"
+                        class="now-ui-icons location_world w-100 text-primary fa-lg"
+                      ></i>
                     </Button>
                   </div>
                 </Row>
                 <Row className="tag-active" id="content-tag-ocio">
-                <ul
+                  <ul
                     style={{
                       display: "flex",
                       listStyleType: "none",
@@ -243,32 +298,31 @@ function ModalSelectedElement(prop) {
                     }}
                   >
                     <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-primary">Ocio</p>
-                          </div>
-                        </li>
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Ocio</p>
+                      </div>
+                    </li>
                     {element.tags.map((tag) => {
-                      if(tag.type=="Ocio"){
-                      return (
-                        
-                        <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-white">{tag.name}</p>
-                          </div>
-                        </li>
-                      );
-                    }
+                      if (tag.type == "Ocio") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
                     })}
                   </ul>
                 </Row>
                 <Row className="d-none" id="content-tag-bebida">
-                <ul
+                  <ul
                     style={{
                       display: "flex",
                       listStyleType: "none",
@@ -276,32 +330,31 @@ function ModalSelectedElement(prop) {
                     }}
                   >
                     <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-primary">Bebida</p>
-                          </div>
-                        </li>
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Bebida</p>
+                      </div>
+                    </li>
                     {element.tags.map((tag) => {
-                      if(tag.type=="Bebida"){
-                      return (
-                        
-                        <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-white">{tag.name}</p>
-                          </div>
-                        </li>
-                      );
-                    }
+                      if (tag.type == "Bebida") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
                     })}
                   </ul>
                 </Row>
                 <Row className="d-none" id="content-tag-estilo">
-                <ul
+                  <ul
                     style={{
                       display: "flex",
                       listStyleType: "none",
@@ -309,32 +362,31 @@ function ModalSelectedElement(prop) {
                     }}
                   >
                     <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-primary">Estilo</p>
-                          </div>
-                        </li>
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Estilo</p>
+                      </div>
+                    </li>
                     {element.tags.map((tag) => {
-                      if(tag.type=="Estilo"){
-                      return (
-                        
-                        <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-white">{tag.name}</p>
-                          </div>
-                        </li>
-                      );
-                    }
+                      if (tag.type == "Estilo") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
                     })}
                   </ul>
                 </Row>
                 <Row className="d-none" id="content-tag-zona">
-                <ul
+                  <ul
                     style={{
                       display: "flex",
                       listStyleType: "none",
@@ -342,32 +394,27 @@ function ModalSelectedElement(prop) {
                     }}
                   >
                     <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-primary">Zona</p>
-                          </div>
-                        </li>
-                    {element.tags.map((tag) => {
-                      if(tag.type=="Zona"){
-                      return (
-                        
-                        <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-white">{tag.name}</p>
-                          </div>
-                        </li>
-                      );
-                    }
-                    })}
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Zona</p>
+                      </div>
+                    </li>
+                    
+                    <li
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-white">{element.zone_enum}</p>
+                      </div>
+                    </li>
+                    
                   </ul>
                 </Row>
                 <Row className="d-none" id="content-tag-ambiente">
-                <ul
+                  <ul
                     style={{
                       display: "flex",
                       listStyleType: "none",
@@ -375,27 +422,26 @@ function ModalSelectedElement(prop) {
                     }}
                   >
                     <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-primary">Ambiente</p>
-                          </div>
-                        </li>
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Ambiente</p>
+                      </div>
+                    </li>
                     {element.tags.map((tag) => {
-                      if(tag.type=="Ambiente"){
-                      return (
-                        
-                        <li
-                          className="mx-1"
-                          style={{ flexGrow: "1", width: "100%" }}
-                        >
-                          <div className="text-center">
-                            <p className="text-white">{tag.name}</p>
-                          </div>
-                        </li>
-                      );
-                    }
+                      if (tag.type == "Ambiente") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
                     })}
                   </ul>
                 </Row>

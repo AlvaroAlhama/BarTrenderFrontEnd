@@ -514,33 +514,7 @@ class ApiCreateEstablishmentForm extends React.Component {
                     ></i>
                   </Button>
                 </div>
-                <div class="col-2">
-                  <Button
-                    className="bg-transparent"
-                    onClick={() => {
-                      document
-                        .getElementsByClassName("tag-active")[0]
-                        .classList.add("d-none");
-                      document
-                        .getElementsByClassName("tag-active")[0]
-                        .classList.remove("tag-active");
-                      document
-                        .getElementById("content-tag-zona")
-                        .classList.remove("d-none");
-                      document
-                        .getElementById("content-tag-zona")
-                        .classList.add("tag-active");
-                    }}
-                  >
-                    <i
-                      color="primary"
-                      class="now-ui-icons location_world w-100 text-primary"
-                      style={{ fontSize: "1.5rem" }}
-                    ></i>
-                  </Button>
-                </div>
               </Row>
-
               <Row className="tag-active" id="content-tag-ocio">
                 <h4 className="text-primary text-center w-100 mt-0">Ocio</h4>
                 {this.state.otherTags.map((t) => {
@@ -601,22 +575,6 @@ class ApiCreateEstablishmentForm extends React.Component {
                   }
                 })}
               </Row>
-              <Row className="d-none" id="content-tag-zona">
-              <h4 className="text-primary text-center w-100 mt-0">Zona</h4>
-                {this.state.otherTags.map((t) => {
-                  if (t.type == "Zona") {
-                    return (
-                      <Col lg="4" md="4" xs="6">
-                        <input type="checkbox" name={t.name} value="True" id={t.name} onChange={this.handleChange} />
-                        <label className="ml-2" for={t.name}>
-                          {t.name}
-                        </label>
-                      </Col>
-                    );
-                  }
-                })}
-              </Row>
-
               <div className="text-danger">
                 {this.state.errors.tags_selected}
               </div>

@@ -32,8 +32,13 @@ import employee_8 from '../assets/img/xema.png';
 import employee_9 from '../assets/img/miguel.png';
 import employee_10 from '../assets/img/miguel-angel.png';
 import employee_11 from '../assets/img/fran.png';
-import banner_establishment from '../assets/img/banner/banner-establecimiento.png';
 
+import banner_establishment from '../assets/img/banner/banner-establecimiento.png';
+import banner_client from  '../assets/img/banner/banner_cliente.png';
+import banner_sponsor from  '../assets/img/banner/inversor_banner_rectangulo.png';
+import banner2_establishment from  '../assets/img/banner/hostelero_banner_cuadrado.png';
+import banner2_client from  '../assets/img/banner/banner_cliente_cuadrado.png';
+import "./css/LandingView.css";
 function LandingView() {
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus] = React.useState(false);
@@ -50,7 +55,6 @@ function LandingView() {
   }, []);
   return (
     <>
-
     <DeviceIdentifier isDesktop={true} isTablet={true} isMobile={true}>
       <MainNavbar />
       <div className="wrapper">
@@ -69,7 +73,7 @@ function LandingView() {
             <div className="separator separator-primary"></div>
             <div className="section-story-overview">
               <Row>
-                <Col md="6">
+                <Col md="5">
                   <div
                     className="image-container image-right"
                     style={{
@@ -114,41 +118,51 @@ function LandingView() {
           </Container>
         </div>
         <Container>
+        <div style={{display:"flex"}}className="video">
             <Row>
               <Col>
               <h2 style={{textAlign:"center"}} className ="title">Anuncio Cliente</h2>
-              <div style={{display:"flex"}}className="video">
-                <iframe style={{margin:"auto"}} width="560" height="315" src="https://www.youtube.com/embed/I_fTI_75QaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div style={{display:"flex",flexDirection:"column"}}>
+                <img alt="banner" id="banner" src={banner2_client}/>
+                <br></br>
+                <br></br>
+                <iframe id ="video" src="https://www.youtube.com/embed/I_fTI_75QaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
+              
               <br></br><br></br>
               <div className="img-banner">
-                <img src={banner_establishment}></img>
+                <img alt="banner" src={banner_client}/>
               </div>
               </Col>
               <br></br><br></br>
               <Col>
               <h2 style={{textAlign:"center"}} className ="title">Anuncio Establecimiento</h2>
-              <div style={{display:"flex"}}className="video">
-                <iframe style={{margin:"auto"}} width="560" height="315" src="https://www.youtube.com/embed/xUmW1hYPKgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+              <div style={{display:"flex",flexDirection:"column"}}>
+                <img id="banner" alt="banner" src={banner2_establishment}/>
+                <br></br>
+                <br></br>
+                <iframe id ="video"  src="https://www.youtube.com/embed/xUmW1hYPKgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
               <br></br><br></br>
               <div className="img-banner">
-                <img src={banner_establishment}></img>
+                <img alt="banner" src={banner_establishment}/>
               </div>
               </Col>
               <br></br><br></br>
               <Col>
               <h2 style={{textAlign:"center"}} className ="title">Anuncio Inversores</h2>
-
-              <div style={{display:"flex"}}className="video">
-                <iframe style={{margin:"auto"}} width="560" height="315" src="https://www.youtube.com/embed/xUmW1hYPKgg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
+              <div style={{display:"flex",flexDirection:"column"}}>
+                <img id="banner" alt="banner" src={banner2_establishment}/>
+                <br></br>
+                <br></br>
+                <iframe id="video" src="https://www.youtube.com/embed/sSajSBYbN08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              </div>
               <br></br><br></br>
               <div className="img-banner">
-                <img src={banner_establishment}></img>
+                <img alt="banner" src={banner_sponsor}/>
               </div>
               </Col>
             </Row>
+            </div>
           </Container>
         <div id="nuestro-equipo" className="section section-team text-center">
           <Container>

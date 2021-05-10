@@ -11,6 +11,8 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import Geocode from "react-geocode";
+import { Link } from "react-router-dom";
+
 Geocode.setApiKey("AIzaSyD3iyCKwQGF0wXBZKOuKhdMIZivUEtMe4s");
 
 
@@ -21,6 +23,10 @@ class Map extends Component {
     this.state = {
       directions: undefined,
       coords: {
+        lat: -3.745,
+        lng: -38.523
+      },
+      origin: {
         lat: -3.745,
         lng: -38.523
       },
@@ -52,7 +58,8 @@ class Map extends Component {
           lat: parseFloat(user_location_lat),
           lng: parseFloat(user_location_lng)
         };
-        
+
+
 
 
         directionsService.route(
@@ -72,7 +79,8 @@ class Map extends Component {
           (result, status) => {
             if (status === google.maps.DirectionsStatus.OK) {
               this.setState({
-                directions: result
+                directions: result,
+                origin: origin
               });
             } else {
               console.error(`error fetching directions ${result}`);
@@ -90,7 +98,7 @@ class Map extends Component {
 
   render() {
     if (this.state.directions !== undefined) {
-      
+
 
     }
 
@@ -129,16 +137,23 @@ class Map extends Component {
               )
             }}
           >
-            {(this.state.directions_active)?
-            "Ocultar ruta" :"Mostrar ruta"}
-        </Button>
+            {(this.state.directions_active) ?
+              "Ocultar ruta" : "Mostrar ruta"}
+
+          </Button>
         </OverlayTrigger>
-        {(this.state.directions_active) ? 
-        <p>
+        {(this.state.directions_active) ?
+          <div>
+            <a href={"https://www.google.com/maps/dir/?api=1&origin=" + this.state.origin.lat + "," + this.state.origin.lng + "&destination=" + this.state.coords.lat + "," + this.state.coords.lng + "&travelmode=driving"}
+              target="_blank" className="btn btn-primary">
+              Abrir en Maps
+          </a>
+          <p>
           Distancia: {(this.state.directions !== undefined) ? this.state.directions.routes[0].legs[0].distance.text + " - " : 'No hay ruta - '}
           Duración: {(this.state.directions !== undefined) ? this.state.directions.routes[0].legs[0].duration.text + " - " : 'Ninguna - '}
+          </p>
+          </div>
 
-        </p>
           : ""}
 
 

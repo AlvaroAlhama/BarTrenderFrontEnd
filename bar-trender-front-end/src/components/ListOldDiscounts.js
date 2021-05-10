@@ -78,6 +78,7 @@ export default class EditDeleteDiscounts extends React.Component {
     });
 
     const data = await get.json();
+    console.log(data, "data")
     this.setState({
       data: data.results,
     });
@@ -101,48 +102,7 @@ export default class EditDeleteDiscounts extends React.Component {
     });
   }
 
-  async handleUpdate() {
-    var token = sessionStorage.getItem("token");
-    var query = window.location.pathname;
-    var splited = query.split("/");
-    var id_establishment = splited[3];
-    var id_discount = this.state.discount.id;
-
-    const urlUpdate =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
-      id_establishment +
-      "/discounts/" +
-      id_discount +
-      "/update";
-
-    const response = await fetch(urlUpdate, {
-      method: "PUT",
-      headers: {
-        token: token,
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(this.state.sendFinal),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      this.setState({
-        msg: data.msg,
-      });
-      setTimeout(() => {
-        this.setState({
-          modalCreate: false,
-          msg: "",
-        });
-        this.getDiscount(1);
-      }, 2000);
-    } else {
-      const data = await response.json();
-      this.setState({
-        errorApiUpdate: data,
-      });
-    }
-  }
+ 
 
   async handleChange(event) {
     await this.setState({
@@ -529,168 +489,7 @@ export default class EditDeleteDiscounts extends React.Component {
             })}
           </Pagination>
         )}
-        {this.state.input === "" ? (
-          ""
-        ) : (
-          <>
-            <Modal
-              isOpen={this.state.modalCreate}
-              toggle={() => this.setState({ modalCreate: false })}
-            >
-              <div className="modal-header justify-content-center">
-                <button
-                  className="close"
-                  type="button"
-                  onClick={() => this.setState({ modalCreate: false })}
-                >
-                  <i className="now-ui-icons ui-1_simple-remove"></i>
-                </button>
-                <h4 id="title_discount" className="title title-up">
-                  Editar Descuento
-                </h4>
-              </div>
-              <ModalBody>
-                <div className="form-group">
-                  <label>Nombre</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="name"
-                    maxLength="50"
-                    value={this.state.input.name}
-                    onChange={this.handleChange}
-                  />
-                  <div className="text-danger pl-3">
-                    {this.state.errors.name}
-                  </div>
-                  <label>Descripción</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="description"
-                    maxLength="140"
-                    value={this.state.input.description}
-                    onChange={this.handleChange}
-                  />
-                  <div className="text-danger pl-3">
-                    {this.state.errors.description}
-                  </div>
-                  <label>Códigos Totales</label>
-                  <input
-                    className="form-control"
-                    type="number"
-                    name="totalCodes"
-                    value={this.state.input.totalCodes}
-                    onChange={this.handleChange}
-                  />
-                  <div className="text-danger pl-3">
-                    {this.state.errors.totalCodes}
-                  </div>
-                  <label>Códigos Escaneados</label>
-                  <input
-                    className="form-control"
-                    type="number"
-                    name="scannedCodes"
-                    readOnly
-                    value={this.state.input.scannedCodes}
-                    onChange={this.handleChange}
-                  />
-                  <div className="text-danger pl-3">
-                    {this.state.errors.scannedCodes}
-                  </div>
-                  <label>Coste</label>
-                  <input
-                    className="form-control"
-                    type="number"
-                    name="cost"
-                    value={this.state.input.cost}
-                    onChange={this.handleChange}
-                  />
-                  <div className="text-danger pl-3">
-                    {this.state.errors.cost}
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <label>Fecha de Inicio</label>
-                      <input
-                        className="form-control"
-                        type="date"
-                        name="initialDate"
-                        value={this.state.input.initialDate}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col">
-                      <label>Hora de Inicio</label>
-                      <input
-                        className="form-control"
-                        type="time"
-                        name="initialHour"
-                        value={this.state.input.initialHour}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="text-danger pl-3">
-                      {this.state.errors.initialDate}
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col">
-                      <label>Fecha de Fin</label>
-                      <input
-                        className="form-control"
-                        type="date"
-                        name="endDate"
-                        value={this.state.input.endDate}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="col">
-                      <label>Hora de Fin</label>
-                      <input
-                        className="form-control"
-                        type="time"
-                        name="endHour"
-                        value={this.state.input.endHour}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="text-danger pl-3">
-                      {this.state.errors.endDate}
-                    </div>
-                  </div>
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => this.handleSubmit()}
-                >
-                  Guardar cambios
-                </button>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => this.setState({ modalCreate: false })}
-                >
-                  Cancelar
-                </button>
-                <div className="container-fluid bg-danger">
-                  <div className="text-white fw-bold text-center">
-                    {this.state.errorApiUpdate === undefined
-                      ? ""
-                      : this.state.errorApiUpdate.error}
-                  </div>
-                </div>
-                <div className="container-fluid bg-success">
-                  <div className="text-white fw-bold text-center">
-                    {this.state.msg === undefined ? "" : this.state.msg}
-                  </div>
-                </div>
-              </ModalFooter>
-            </Modal>
-
-          </>
-        )}
+        
       </>
     );
   }

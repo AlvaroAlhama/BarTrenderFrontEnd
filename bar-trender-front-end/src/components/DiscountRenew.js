@@ -10,7 +10,7 @@ class DiscountRenew extends React.Component {
     this.state = {
       input: {
         name: "",
-        descripcion: "",
+        description: "",
         cost: undefined,
         totalCodes: undefined,
         initialDate: "",
@@ -50,6 +50,7 @@ class DiscountRenew extends React.Component {
       "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/create";
+
     const create = await fetch(url, {
       method: "POST",
       headers: {
@@ -90,7 +91,7 @@ class DiscountRenew extends React.Component {
 
       let send2 = {
         name: this.state.input.name,
-        description: this.state.input.descripcion,
+        description: this.state.input.description,
         cost: parseFloat(this.state.input.cost),
         totalCodes: parseInt(this.state.input.totalCodes),
         initialDate: timeStampInitial,
@@ -109,7 +110,7 @@ class DiscountRenew extends React.Component {
     } else {
       let send2 = {
         name: this.state.input.name,
-        description: this.state.input.descripcion,
+        description: this.state.input.description,
         cost: parseFloat(this.state.input.cost),
         totalCodes: parseInt(this.state.input.totalCodes),
         initialDate: timeStampInitial,
@@ -177,10 +178,10 @@ class DiscountRenew extends React.Component {
       errors["name"] = "Escriba un nombre del descuento.";
     }
 
-    if (!input["descripcion"].trim()) {
+    if (!input["description"].trim()) {
       isValid = false;
 
-      errors["descripcion"] = "Escriba una descripción para el descuento";
+      errors["description"] = "Escriba una descripción para el descuento";
     }
 
     if (!input["cost"] || input["cost"] <= 0) {
@@ -375,16 +376,16 @@ class DiscountRenew extends React.Component {
                 <div className="form-group my-1">
                 <input
                     type="text"
-                    name="descripcion"
+                    name="description"
                     maxLength="140"
-                    value={this.state.input.descripcion}
+                    value={this.state.input.description}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Descripción del descuento"
-                    id="name"
+                    id="description"
                 />
 
-                <div className="text-danger">{this.state.errors.descripcion}</div>
+                <div className="text-danger">{this.state.errors.description}</div>
                 </div>
                 <div className="form-group my-1">
                 <input
@@ -421,7 +422,6 @@ class DiscountRenew extends React.Component {
                     <input
                     type="date"
                     name="initialDate"
-                    value={this.state.input.initialDate}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Fecha de inicio del descuento"
@@ -432,7 +432,6 @@ class DiscountRenew extends React.Component {
                     <input
                     type="time"
                     name="initialTime"
-                    value={this.state.input.initialTime}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Hora de inicio del descuento"
@@ -450,7 +449,6 @@ class DiscountRenew extends React.Component {
                     <input
                     type="date"
                     name="endDate"
-                    value={this.state.input.endDate}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Fecha de fin del descuento"
@@ -461,7 +459,6 @@ class DiscountRenew extends React.Component {
                     <input
                     type="time"
                     name="endTime"
-                    value={this.state.input.endTime}
                     onChange={this.handleChange}
                     className="form-control"
                     placeholder="Hora de fin del descuento"

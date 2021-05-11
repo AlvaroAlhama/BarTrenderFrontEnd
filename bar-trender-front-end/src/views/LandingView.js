@@ -38,6 +38,7 @@ import banner_client from  '../assets/img/banner/banner_cliente.png';
 import banner_sponsor from  '../assets/img/banner/inversor_banner_rectangulo.png';
 import banner2_establishment from  '../assets/img/banner/hostelero_banner_cuadrado.png';
 import banner2_client from  '../assets/img/banner/banner_cliente_cuadrado.png';
+import banner2_sponsor from  '../assets/img/banner/inversor-banner-cuadrado.png';
 import "./css/LandingView.css";
 function LandingView() {
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -152,7 +153,7 @@ function LandingView() {
               <Col>
               <h2 style={{textAlign:"center"}} className ="title">Anuncio Inversores</h2>
               <div style={{display:"flex",flexDirection:"column"}}>
-                <img id="banner" alt="banner" src={banner2_establishment}/>
+                <img id="banner" alt="banner" src={banner2_sponsor}/>
                 <br></br>
                 <br></br>
                 <iframe id="video" src="https://www.youtube.com/embed/sSajSBYbN08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              </div>

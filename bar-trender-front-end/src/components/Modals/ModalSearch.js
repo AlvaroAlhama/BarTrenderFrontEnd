@@ -129,7 +129,7 @@ class ModalSearch extends React.Component {
 
   componentDidMount()
   {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const apiUrl = "https://main-backend-ppl.herokuapp.com/v1/establishments/get_tags";
     fetch(apiUrl, {
       method: 'GET',
       headers: {
@@ -145,9 +145,8 @@ class ModalSearch extends React.Component {
   }
 
   componentDidUpdate() {
-    //#206 - change
-    this.setState({WindowWidth: window.innerWidth})
-    // this.state.WindowWidth = window.innerWidth;
+  
+  this.state.WindowWidth = window.innerWidth;
   }
 
   

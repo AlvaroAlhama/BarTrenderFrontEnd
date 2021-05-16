@@ -22,7 +22,7 @@ export default class App extends React.Component {
     if(!token){
       this.setState({error: "Necesitas haber iniciado sesión para poder ver el descuento"})
     }else{
-      const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrender-develop.netlify.app';
+      const url = url_dev+'establishments/'+id_establishment+'/discounts/'+id_discount+'/getQR?custom_host=bartrenderoficial.netlify.app';
    
 
       const response = await fetch(url, {

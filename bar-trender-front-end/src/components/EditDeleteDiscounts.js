@@ -64,7 +64,7 @@ export default class EditDeleteDiscounts extends React.Component {
     var splited = query.split("/");
     var id_establishment = splited[3];
     const urlGet =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/discounts/get?all=True&page=" +
       number;
@@ -109,7 +109,7 @@ export default class EditDeleteDiscounts extends React.Component {
     var id_discount = this.state.discount.id;
 
     const urlUpdate =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/discounts/" +
       id_discount +
@@ -153,7 +153,7 @@ export default class EditDeleteDiscounts extends React.Component {
       var id_discount = this.state.discount.id;
 
       const urlDelete =
-        "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+        "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
         id_establishment +
         "/discounts/" +
         id_discount +
@@ -306,9 +306,8 @@ export default class EditDeleteDiscounts extends React.Component {
           send["initialDate"] = this.state.initialDate;
           send["endDate"] = endDateTs;
           
-          //#206 - change
-          this.setState({sendFinal: send})
-          // this.state.sendFinal = send;
+         
+          this.state.sendFinal = send;
 
           this.handleUpdate();
         } else {
@@ -321,10 +320,9 @@ export default class EditDeleteDiscounts extends React.Component {
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = initialDateTS - 7200;
           send["endDate"] = endDateTs;
-          //#206 - change
-          this.setState({sendFinal: send})
         
-          // this.state.sendFinal = send;
+        
+          this.state.sendFinal = send;
           this.handleUpdate();
         }
       } else {
@@ -337,10 +335,9 @@ export default class EditDeleteDiscounts extends React.Component {
           }
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = this.state.initialDate;
-          //#206 - change
-          this.setState({sendFinal: send})
+         
 
-          // this.state.sendFinal = send;
+          this.state.sendFinal = send;
           this.handleUpdate();
         } else {
           send["name"] = inputs.name;
@@ -351,10 +348,8 @@ export default class EditDeleteDiscounts extends React.Component {
           }
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = initialDateTS - 7200;
-          //#206 - change
-          this.setState({sendFinal: send})
-
-          // this.state.sendFinal = send;
+         
+          this.state.sendFinal = send;
           this.handleUpdate();
         }
       }

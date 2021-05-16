@@ -64,7 +64,7 @@ export default class EditEstablishment extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -89,7 +89,7 @@ export default class EditEstablishment extends React.Component {
 
   async getZones() {
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_zones?all=true";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_zones?all=true";
     const response = await fetch(url, {
       method: "GET",
     });
@@ -111,7 +111,7 @@ export default class EditEstablishment extends React.Component {
     var id_establishment = splited[3];
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/get";
 
@@ -162,7 +162,7 @@ export default class EditEstablishment extends React.Component {
         tagsBefore.push(tag.value);
 
     const urlUpdate =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/update";
 

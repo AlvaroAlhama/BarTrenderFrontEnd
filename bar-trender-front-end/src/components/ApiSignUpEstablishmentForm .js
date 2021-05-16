@@ -21,7 +21,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
   async handleSignUp() {
 
     var url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -66,13 +66,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
       
       let input = {};
 
-      //#206 - change
-      this.setState({
-        input: {
-          phone: parseInt(this.state.input.phone, 10)
-        }
-      })
-      // this.state.input.phone=parseInt(this.state.input.phone, 10);
+      this.state.input.phone=parseInt(this.state.input.phone, 10);
 
       input["email"] = "";
 

@@ -33,7 +33,7 @@ export default class EditOwnerProfile extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/user";
 
     const response = await fetch(url, {
       method: "GET",
@@ -64,7 +64,7 @@ export default class EditOwnerProfile extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/method";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/method";
 
     const response = await fetch(url, {
       method: "GET",
@@ -94,7 +94,7 @@ export default class EditOwnerProfile extends React.Component {
   async handleUpdate() {
     var token = sessionStorage.getItem("token");
     const urlUpdate =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user/edit";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/user/edit";
 
     const update = await fetch(urlUpdate, {
       method: "PUT",
@@ -143,7 +143,7 @@ export default class EditOwnerProfile extends React.Component {
         send["email"] = inputs.email;
         send["phone"] = parseInt(inputs.phone);
         send["old_password"] = inputs.old_password;
-
+     
         this.state.sendFinal = send;
 
         this.handleUpdate();

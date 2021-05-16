@@ -127,7 +127,7 @@ function LandingView() {
                 <img alt="banner" id="banner" src={banner2_client}/>
                 <br></br>
                 <br></br>
-                <iframe id ="video" src="https://www.youtube.com/embed/I_fTI_75QaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id ="video" src="https://www.youtube.com/embed/EoGH38HbOxw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
               
               <br></br><br></br>
@@ -156,7 +156,7 @@ function LandingView() {
                 <img id="banner" alt="banner" src={banner2_sponsor}/>
                 <br></br>
                 <br></br>
-                <iframe id="video" src="https://www.youtube.com/embed/sSajSBYbN08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              </div>
+                <iframe id="video" src="https://www.youtube.com/embed/R2fu4ujsUw0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              </div>
               <br></br><br></br>
               <div className="img-banner">
                 <img alt="banner" src={banner_sponsor}/>

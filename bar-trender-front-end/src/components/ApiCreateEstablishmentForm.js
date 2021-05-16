@@ -44,7 +44,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -70,7 +70,7 @@ class ApiCreateEstablishmentForm extends React.Component {
 
   async getZones() {
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_zones?all=true";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_zones?all=true";
     const response = await fetch(url, {
       method: "GET",
     });
@@ -147,7 +147,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     var json = JSON.stringify(object);
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/create";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/create";
 
     const create = await fetch(url, {
       method: "POST",

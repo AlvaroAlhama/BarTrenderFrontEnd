@@ -3,7 +3,8 @@ import { Pie } from 'react-chartjs-2';
 import { Spinner } from 'reactstrap';
 
 function toFixed(num, fixed) {
-  var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+  
+  var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?'); //eslint-disable-line
   var res = num.toString().match(re)[0];
   return res
 }
@@ -22,7 +23,7 @@ function BeerPieChart(props) {
     var token = sessionStorage.getItem("token");
 
     var send = {'filter': props.filter}
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
+    const apiUrl = "https://main-backend-ppl.herokuapp.com/v1/stats/get";
 
     async function loadStats() {
       await fetch(apiUrl, {

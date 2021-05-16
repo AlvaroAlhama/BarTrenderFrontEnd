@@ -11,7 +11,6 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import Geocode from "react-geocode";
-import { Link } from "react-router-dom";
 
 Geocode.setApiKey("AIzaSyD3iyCKwQGF0wXBZKOuKhdMIZivUEtMe4s");
 
@@ -145,7 +144,7 @@ class Map extends Component {
         {(this.state.directions_active) ?
           <div>
             <a href={"https://www.google.com/maps/dir/?api=1&origin=" + this.state.origin.lat + "," + this.state.origin.lng + "&destination=" + this.state.coords.lat + "," + this.state.coords.lng + "&travelmode=driving"}
-              target="_blank" className="btn btn-primary">
+              target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               Abrir en Maps
           </a>
           <p>

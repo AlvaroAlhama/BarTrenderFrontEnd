@@ -35,7 +35,7 @@ export default class EditClientProfile extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/user";
 
     const response = await fetch(url, {
       method: "GET",
@@ -66,7 +66,7 @@ export default class EditClientProfile extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/method";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/method";
 
     const response = await fetch(url, {
       method: "GET",
@@ -96,7 +96,7 @@ export default class EditClientProfile extends React.Component {
   async handleUpdate() {
     var token = sessionStorage.getItem("token");
     const urlUpdate =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/user/edit";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/user/edit";
 
     const update = await fetch(urlUpdate, {
       method: "PUT",
@@ -149,7 +149,8 @@ export default class EditClientProfile extends React.Component {
         send["birthday"] = birthdayToTS;
         send["old_password"] = inputs.old_password;
        
-        this.state.sendFinal = send;
+    
+         this.state.sendFinal = send;
 
         this.handleUpdate();
       } else {
@@ -160,7 +161,9 @@ export default class EditClientProfile extends React.Component {
         sendWithNewpass["old_password"] = inputs.old_password;
         sendWithNewpass["password"] = inputs.password;
 
-        this.state.sendFinal = sendWithNewpass;
+        
+         this.state.sendFinal = sendWithNewpass;
+        
         this.handleUpdate();
       }
     }

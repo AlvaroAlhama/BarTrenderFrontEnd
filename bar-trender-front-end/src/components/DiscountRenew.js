@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { Modal, ModalBody } from "reactstrap";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 class DiscountRenew extends React.Component {
   constructor() {
@@ -47,7 +47,7 @@ class DiscountRenew extends React.Component {
     var idEstablishment = splited[3];
 
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/create";
 

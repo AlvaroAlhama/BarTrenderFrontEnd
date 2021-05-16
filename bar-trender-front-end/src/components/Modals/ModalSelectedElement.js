@@ -46,7 +46,7 @@ function ModalSelectedElement(prop) {
 
   async function loadDiscounts() {
     const apiUrl =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       element.id +
       "/discounts/get?page=1&all=False";
     await fetch(apiUrl, {
@@ -133,7 +133,7 @@ function ModalSelectedElement(prop) {
               <Col className="my-3" lg="6" md="6" xs="12" style={{display:'flex', flexDirection:'column'}}>
 
                 <div className="text-center">
-                  <span class="text-primary">
+                  <span className="text-primary">
                     <i className="my-auto fal fa-tags mr-2 text-primary"></i>
                     Etiquetas
                   </span>

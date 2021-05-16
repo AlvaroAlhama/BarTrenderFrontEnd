@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 
 function groupBy(xs, f) {
-  return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+  return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {}); //eslint-disable-line
 }
 
 // core components
@@ -145,7 +145,9 @@ class ModalSearch extends React.Component {
   }
 
   componentDidUpdate() {
-    this.state.WindowWidth = window.innerWidth;
+    //#206 - change
+    this.setState({WindowWidth: window.innerWidth})
+    // this.state.WindowWidth = window.innerWidth;
   }
 
   

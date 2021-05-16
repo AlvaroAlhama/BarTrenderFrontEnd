@@ -305,8 +305,10 @@ export default class EditDeleteDiscounts extends React.Component {
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = this.state.initialDate;
           send["endDate"] = endDateTs;
-
-          this.state.sendFinal = send;
+          
+          //#206 - change
+          this.setState({sendFinal: send})
+          // this.state.sendFinal = send;
 
           this.handleUpdate();
         } else {
@@ -319,8 +321,10 @@ export default class EditDeleteDiscounts extends React.Component {
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = initialDateTS - 7200;
           send["endDate"] = endDateTs;
-
-          this.state.sendFinal = send;
+          //#206 - change
+          this.setState({sendFinal: send})
+        
+          // this.state.sendFinal = send;
           this.handleUpdate();
         }
       } else {
@@ -333,8 +337,10 @@ export default class EditDeleteDiscounts extends React.Component {
           }
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = this.state.initialDate;
+          //#206 - change
+          this.setState({sendFinal: send})
 
-          this.state.sendFinal = send;
+          // this.state.sendFinal = send;
           this.handleUpdate();
         } else {
           send["name"] = inputs.name;
@@ -345,8 +351,10 @@ export default class EditDeleteDiscounts extends React.Component {
           }
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = initialDateTS - 7200;
+          //#206 - change
+          this.setState({sendFinal: send})
 
-          this.state.sendFinal = send;
+          // this.state.sendFinal = send;
           this.handleUpdate();
         }
       }

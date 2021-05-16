@@ -95,7 +95,9 @@ class POSTCreateDiscount extends React.Component {
       send["endDate"] = timeStampEnd;
       send["scannedCodes"] = 0;
       
-      this.state.send = send;
+      //#206 - change
+      this.setState({send: send})
+      // this.state. = send;
       this.handleCreate();
       
     } else {
@@ -108,7 +110,9 @@ class POSTCreateDiscount extends React.Component {
       send["initialDate"] = timeStampInitial;
       send["scannedCodes"] = 0;
 
-      this.state.send = send;
+      //#206 - change
+      this.setState({send: send})
+      // this.state.send = send;
       this.handleCreate();
     }
   }

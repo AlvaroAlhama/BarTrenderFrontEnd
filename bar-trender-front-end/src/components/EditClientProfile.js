@@ -149,7 +149,9 @@ export default class EditClientProfile extends React.Component {
         send["birthday"] = birthdayToTS;
         send["old_password"] = inputs.old_password;
        
-        this.state.sendFinal = send;
+         //#206 - change
+        this.setState({sendFinal: send})
+        // this.state.sendFinal = send;
 
         this.handleUpdate();
       } else {
@@ -160,7 +162,10 @@ export default class EditClientProfile extends React.Component {
         sendWithNewpass["old_password"] = inputs.old_password;
         sendWithNewpass["password"] = inputs.password;
 
-        this.state.sendFinal = sendWithNewpass;
+        //#206 - change
+        this.setState({sendFinal: sendWithNewpass})
+        // this.state.sendFinal = sendWithNewpass;
+        
         this.handleUpdate();
       }
     }

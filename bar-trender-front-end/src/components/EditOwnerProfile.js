@@ -143,8 +143,10 @@ export default class EditOwnerProfile extends React.Component {
         send["email"] = inputs.email;
         send["phone"] = parseInt(inputs.phone);
         send["old_password"] = inputs.old_password;
+        //#206 - change
+        this.setState({sendFinal: send})
 
-        this.state.sendFinal = send;
+        // this.state.sendFinal = send;
 
         this.handleUpdate();
       } else {
@@ -154,8 +156,10 @@ export default class EditOwnerProfile extends React.Component {
         sendWithNewpass["phone"] = parseInt(inputs.phone);
         sendWithNewpass["old_password"] = inputs.old_password;
         sendWithNewpass["password"] = inputs.password;
+        //#206 - change
+        this.setState({sendFinal: sendWithNewpass})
 
-        this.state.sendFinal = sendWithNewpass;
+        // this.state.sendFinal = sendWithNewpass;
         this.handleUpdate();
       }
     }

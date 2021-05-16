@@ -66,7 +66,13 @@ class ApiSignUpEstablishmentForm extends React.Component {
       
       let input = {};
 
-      this.state.input.phone=parseInt(this.state.input.phone, 10);
+      //#206 - change
+      this.setState({
+        input: {
+          phone: parseInt(this.state.input.phone, 10)
+        }
+      })
+      // this.state.input.phone=parseInt(this.state.input.phone, 10);
 
       input["email"] = "";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { Modal, ModalBody } from "reactstrap";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 class DiscountRenew extends React.Component {
   constructor() {

@@ -1,15 +1,12 @@
 import React from "react";
 import {
-  Modal,
-  ModalBody,
-  ModalFooter,
   Pagination,
   PaginationItem,
   PaginationLink,
   Table,
 } from "reactstrap";
 import moment from "moment";
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import DiscountRenew from "./DiscountRenew"
 
 export default class EditDeleteDiscounts extends React.Component {
@@ -78,7 +75,6 @@ export default class EditDeleteDiscounts extends React.Component {
     });
 
     const data = await get.json();
-    console.log(data, "data")
     this.setState({
       data: data.results,
     });
@@ -214,8 +210,10 @@ export default class EditDeleteDiscounts extends React.Component {
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = this.state.initialDate;
           send["endDate"] = endDateTs;
+          //#206 - change
+          this.setState({sendFinal: send})
 
-          this.state.sendFinal = send;
+          // this.state.sendFinal = send;
 
           this.handleUpdate();
         } else {
@@ -226,8 +224,9 @@ export default class EditDeleteDiscounts extends React.Component {
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = initialDateTS - 7200;
           send["endDate"] = endDateTs;
-
-          this.state.sendFinal = send;
+          //#206 - change
+          this.setState({sendFinal: send})
+          // this.state.sendFinal = send;
           this.handleUpdate();
         }
       } else {
@@ -238,8 +237,9 @@ export default class EditDeleteDiscounts extends React.Component {
           send["totalCodes"] = parseInt(inputs.totalCodes);
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = this.state.initialDate;
-
-          this.state.sendFinal = send;
+          //#206 - change
+          this.setState({sendFinal: send})
+          // this.state.sendFinal = send;
           this.handleUpdate();
         } else {
           send["name"] = inputs.name;
@@ -248,8 +248,9 @@ export default class EditDeleteDiscounts extends React.Component {
           send["totalCodes"] = parseInt(inputs.totalCodes);
           send["scannedCodes"] = parseInt(inputs.scannedCodes);
           send["initialDate"] = initialDateTS - 7200;
-
-          this.state.sendFinal = send;
+          //#206 - change
+          this.setState({sendFinal: send})
+          // this.state.sendFinal = send;
           this.handleUpdate();
         }
       }

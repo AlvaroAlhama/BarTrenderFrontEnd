@@ -29,7 +29,7 @@ function DashboardTopImage(props) {
         });
     }
     loadStats()
-  },[setAppState]);
+  },[setAppState, props]);
 
 
   var imgBest = bartrenderBlack

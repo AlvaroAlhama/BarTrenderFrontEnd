@@ -68,8 +68,15 @@ class ApiSignUpClientForm extends React.Component {
 
       let input = {};
       const birthday = moment.utc(`${this.state.input.birthday}`).unix();
-  
-      this.state.input.birthday = birthday
+      
+      //#206 - change
+      // this.state.input.birthday = birthday
+      this.setState({
+        input: {
+          birthday: birthday
+        }
+      })
+
       input["rol"] ="client"
 
       this.setState({

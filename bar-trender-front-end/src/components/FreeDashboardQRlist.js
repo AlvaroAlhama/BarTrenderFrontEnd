@@ -44,7 +44,7 @@ function DashboardQRList(props) {
           });
       }
       loadDiscountPaymentInfo();
-    }, [setDiscountPaymentInfoState]);
+    }, [setDiscountPaymentInfoState, idEstablishment, token]);
 
   useEffect(() => {
     const apiUrl =
@@ -67,7 +67,7 @@ function DashboardQRList(props) {
         });
     }
     loadDiscounts();
-  }, [setAppState]);
+  }, [setAppState, idEstablishment]);
 
   
 
@@ -240,7 +240,7 @@ function DashboardQRList(props) {
                               Total de descuentos
                             </h4>
                           </div>
-                          <div class="container">
+                          <div className="container">
                             <hr />
                           </div>
                           <ModalBody>

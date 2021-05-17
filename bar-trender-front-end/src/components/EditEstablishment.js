@@ -75,13 +75,27 @@ export default class EditEstablishment extends React.Component {
       },
     });
     const data = await response.json();
-
-    var otherTags = data.tags
-      .filter((tag) => tag.type !== "Zona")
-      .map((tag) => {
-        return { value: tag.name, label: tag.name };
-      });
-
+    var groupTags = {}
+    const groupingTags = data.tags
+    .filter((tag) => tag.type !== "Zona")
+    .map((tag) => {
+      if(!Object.keys(groupTags).includes(tag.type)){
+        groupTags[tag.type] = [tag]
+      }else{
+        groupTags[tag.type].push(tag)
+      }
+    });
+    var otherTags = []
+    const auxTag = groupTags => {
+      for (const type in groupTags){
+        const options = {'label': type, 'options': []}
+        for (const tag of groupTags[type]){
+          options['options'].push({'label': tag.name, 'value': tag.name})
+        }
+        otherTags.push(options)
+      }
+    }
+    auxTag(groupTags)
     var arrayOther = otherTags.filter(function (dato) {
       return dato !== undefined;
     });

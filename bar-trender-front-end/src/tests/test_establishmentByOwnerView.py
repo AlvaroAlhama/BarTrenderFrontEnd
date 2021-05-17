@@ -19,7 +19,7 @@ class TestEstablishmentByOwnerView():
     self.driver.quit()
   
   def test_establishmentByOwnerView(self):
-    self.driver.get("https://bartrender-develop.netlify.app")
+    self.driver.get("https://bartrenderoficial.netlify.app")
     self.driver.set_window_size(1051, 728)
     self.driver.find_element(By.ID, "login-tooltip").click()
     self.driver.find_element(By.ID, "email").send_keys("miggar@gmail.com")

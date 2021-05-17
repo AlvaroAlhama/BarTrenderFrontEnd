@@ -45,7 +45,7 @@ class POSTCreateDiscount extends React.Component {
     var splited = query.split("/");
     var idEstablishment = splited[3];
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/create";
     const create = await fetch(url, {
@@ -94,6 +94,7 @@ class POSTCreateDiscount extends React.Component {
       send["initialDate"] = timeStampInitial;
       send["endDate"] = timeStampEnd;
       send["scannedCodes"] = 0;
+      
       
       this.state.send = send;
       this.handleCreate();

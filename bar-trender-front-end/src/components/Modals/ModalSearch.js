@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 
 function groupBy(xs, f) {
-  return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {});
+  return xs.reduce((r, v, i, a, k = f(v)) => ((r[k] || (r[k] = [])).push(v), r), {}); //eslint-disable-line
 }
 
 // core components
@@ -129,7 +129,7 @@ class ModalSearch extends React.Component {
 
   componentDidMount()
   {
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const apiUrl = "https://main-backend-ppl.herokuapp.com/v1/establishments/get_tags";
     fetch(apiUrl, {
       method: 'GET',
       headers: {
@@ -145,7 +145,8 @@ class ModalSearch extends React.Component {
   }
 
   componentDidUpdate() {
-    this.state.WindowWidth = window.innerWidth;
+  
+  this.state.WindowWidth = window.innerWidth;
   }
 
   

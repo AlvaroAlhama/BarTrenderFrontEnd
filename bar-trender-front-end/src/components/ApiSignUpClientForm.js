@@ -23,7 +23,7 @@ class ApiSignUpClientForm extends React.Component {
   async handleSignUp() {
 
     var url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -68,8 +68,11 @@ class ApiSignUpClientForm extends React.Component {
 
       let input = {};
       const birthday = moment.utc(`${this.state.input.birthday}`).unix();
-  
+      
+
       this.state.input.birthday = birthday
+     
+
       input["rol"] ="client"
 
       this.setState({

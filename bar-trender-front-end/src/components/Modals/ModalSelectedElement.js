@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { Container, Row, Col, ModalHeader, Card, CardBody, CardHeader } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  ModalHeader,
+  Card,
+  CardBody,
+  CardHeader,
+} from "reactstrap";
 
 // reactstrap components
-import { Button, Modal, ModalBody } from "reactstrap";
+import { Button, Modal, ModalBody, UncontrolledTooltip } from "reactstrap";
 
 // core components
 import image_left from "../../assets/img/bar-interior.jpg";
@@ -11,9 +19,9 @@ import Qr from "../../App.js";
 //css components
 import "../../views/css/ModalQR.css";
 import ListDiscount from "../ListDiscount";
-import './ModalSelectedElement.css';
+import "./ModalSelectedElement.css";
 import { withScriptjs } from "react-google-maps";
-import Map from "components/Map.js"
+import Map from "components/Map.js";
 
 function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
@@ -24,25 +32,30 @@ function ModalSelectedElement(prop) {
   const [appState, setAppState] = useState({
     discounts: {},
   });
-  
-  const location = element.street_text + ", " + element.number_text + ", " + element.zone_enum + ", " + element.locality_text;
-  
-  var divStyle = {}
-  if (element.photo_url === undefined){
-    divStyle = {
-      backgroundImage: 'url(' + image_left + ')',
-      backgroundSize: "cover",
-      height:"15rem"
-    };
-  }
-  else{
-    divStyle = {
-      backgroundImage: 'url(' + element.photo_url + ')',
-      backgroundSize: "cover",
-      height:"15rem"
-    };
-  }
 
+  const location =
+    element.street_text +
+    ", " +
+    element.number_text +
+    ", " +
+    element.zone_enum +
+    ", " +
+    element.locality_text;
+
+  var divStyle = {};
+  if (element.photo_url === undefined) {
+    divStyle = {
+      backgroundImage: "url(" + image_left + ")",
+      backgroundSize: "cover",
+      height: "15rem",
+    };
+  } else {
+    divStyle = {
+      backgroundImage: "url(" + element.photo_url + ")",
+      backgroundSize: "cover",
+      height: "15rem",
+    };
+  }
 
   async function loadDiscounts() {
     const apiUrl =
@@ -67,18 +80,24 @@ function ModalSelectedElement(prop) {
 
   return (
     <>
-    <Card className="bg-primary" style={{height:"25rem"}} onClick={() => {
-                                                          setModal1(true);
-                                                          loadDiscounts();
-                                                        }} role = "button">
-      <CardHeader style={divStyle}>
-      </CardHeader>
-      <CardBody style = {{height:"0%"}}>
-            <h3 className="text-center text-white">{element.name_text}</h3>
-            <h5 className="text-center text-white"><i className="fal fa-map-marker-alt mr-2"></i>{element.street_text} / {element.locality_text}</h5>
-      </CardBody>
-    </Card>
-      
+      <Card
+        className="bg-primary"
+        style={{ height: "25rem" }}
+        onClick={() => {
+          setModal1(true);
+          loadDiscounts();
+        }}
+        role="button"
+      >
+        <CardHeader style={divStyle}></CardHeader>
+        <CardBody style={{ height: "0%" }}>
+          <h3 className="text-center text-white">{element.name_text}</h3>
+          <h5 className="text-center text-white">
+            <i className="fal fa-map-marker-alt mr-2"></i>
+            {element.street_text} / {element.locality_text}
+          </h5>
+        </CardBody>
+      </Card>
 
       <Modal
         animation={false}
@@ -102,11 +121,12 @@ function ModalSelectedElement(prop) {
           </ModalHeader>
         </div>
         <ModalBody className="text-white">
-          
           <Row className="justify-content-center">
             <img
               className="image-container img-fluid mb-0 w-75"
-              src={element.photo_url !== undefined ? element.photo_url : image_left}
+              src={
+                element.photo_url !== undefined ? element.photo_url : image_left
+              }
               onClick={() => setModal1(true)}
               alt=""
             />
@@ -130,32 +150,298 @@ function ModalSelectedElement(prop) {
                 </Container>
               </Col>
 
-              <Col className="my-3" lg="6" md="6" xs="12" style={{display:'flex', flexDirection:'column'}}>
-
+              <Col
+                className="my-3"
+                lg="6"
+                md="6"
+                xs="12"
+                style={{ display: "flex", flexDirection: "column" }}
+              >
                 <div className="text-center">
                   <span className="text-primary">
                     <i className="my-auto fal fa-tags mr-2 text-primary"></i>
                     Etiquetas
                   </span>
                 </div>
-
-                <br></br>
-
-                <div>
-                  <ul style={{display:'flex', listStyleType:'none', padding: '0px'}}>
-                  {element.tags.map((tag) => {
-                      return (
-                        <li className="mx-1" style={{flexGrow:'1', width:'100%'}}>
-                          <div className="text-center">
-                            <p className="text-white">{tag.name}</p>
-                          </div>
-                        </li>
-                      );
+                <Row className="text-primary justify-content-center" style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)'}}>
+                  <div class="col-2">
+                    <Button
+                      className="bg-transparent"
+                      onClick={() => {
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-ocio")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-ocio")
+                          .classList.add("tag-active");
+                      }}
+                    >
+                      <i
+                        color="primary"
+                        id="create-tooltip"
+                        className="fal fa-bowling-ball w-100 text-primary fa-lg"
+                      ></i>
+                    </Button>
+                  </div>
+                  <div class="col-2">
+                    <Button
+                      className="bg-transparent"
+                      onClick={() => {
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-bebida")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-bebida")
+                          .classList.add("tag-active");
+                      }}
+                    >
+                      <i
+                        color="primary"
+                        class="fal fa-beer w-100 text-primary fa-lg"
+                      ></i>
+                    </Button>
+                  </div>
+                  <div class="col-2">
+                    <Button
+                      className="bg-transparent"
+                      onClick={() => {
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-estilo")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-estilo")
+                          .classList.add("tag-active");
+                      }}
+                    >
+                      <i
+                        color="primary"
+                        class="fal fa-chess-rook w-100 text-primary fa-lg"
+                      ></i>
+                    </Button>
+                  </div>
+                  <div class="col-2">
+                    <Button
+                      className="bg-transparent"
+                      onClick={() => {
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-ambiente")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-ambiente")
+                          .classList.add("tag-active");
+                      }}
+                    >
+                      <i
+                        color="primary"
+                        class="fal fa-gramophone w-100 text-primary fa-lg"
+                      ></i>
+                    </Button>
+                  </div>
+                  <div class="col-2">
+                    <Button
+                      className="bg-transparent"
+                      onClick={() => {
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.add("d-none");
+                        document
+                          .getElementsByClassName("tag-active")[0]
+                          .classList.remove("tag-active");
+                        document
+                          .getElementById("content-tag-zona")
+                          .classList.remove("d-none");
+                        document
+                          .getElementById("content-tag-zona")
+                          .classList.add("tag-active");
+                      }}
+                    >
+                      <i
+                        color="primary"
+                        class="now-ui-icons location_world w-100 text-primary fa-lg"
+                      ></i>
+                    </Button>
+                  </div>
+                </Row>
+                <Row className="tag-active" id="content-tag-ocio">
+                  <ul
+                    style={{
+                      display: "flex",
+                      listStyleType: "none",
+                      padding: "0px",
+                    }}
+                  >
+                    <li
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Ocio</p>
+                      </div>
+                    </li>
+                    {element.tags.map((tag) => {
+                      if (tag.type == "Ocio") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
                     })}
                   </ul>
-                </div>
-
-              
+                </Row>
+                <Row className="d-none" id="content-tag-bebida">
+                  <ul
+                    style={{
+                      display: "flex",
+                      listStyleType: "none",
+                      padding: "0px",
+                    }}
+                  >
+                    <li
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Bebida</p>
+                      </div>
+                    </li>
+                    {element.tags.map((tag) => {
+                      if (tag.type == "Bebida") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                </Row>
+                <Row className="d-none" id="content-tag-estilo">
+                  <ul
+                    style={{
+                      display: "flex",
+                      listStyleType: "none",
+                      padding: "0px",
+                    }}
+                  >
+                    <li
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Estilo</p>
+                      </div>
+                    </li>
+                    {element.tags.map((tag) => {
+                      if (tag.type == "Estilo") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                </Row>
+                <Row className="d-none" id="content-tag-zona">
+                  <ul
+                    style={{
+                      display: "flex",
+                      listStyleType: "none",
+                      padding: "0px",
+                    }}
+                  >
+                    <li
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Zona</p>
+                      </div>
+                    </li>
+                    
+                    <li
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-white">{element.zone_enum}</p>
+                      </div>
+                    </li>
+                    
+                  </ul>
+                </Row>
+                <Row className="d-none" id="content-tag-ambiente">
+                  <ul
+                    style={{
+                      display: "flex",
+                      listStyleType: "none",
+                      padding: "0px",
+                    }}
+                  >
+                    <li
+                      className="mx-1"
+                      style={{ flexGrow: "1", width: "100%" }}
+                    >
+                      <div className="text-center">
+                        <p className="text-primary">Ambiente</p>
+                      </div>
+                    </li>
+                    {element.tags.map((tag) => {
+                      if (tag.type == "Ambiente") {
+                        return (
+                          <li
+                            className="mx-1"
+                            style={{ flexGrow: "1", width: "100%" }}
+                          >
+                            <div className="text-center">
+                              <p className="text-white">{tag.name}</p>
+                            </div>
+                          </li>
+                        );
+                      }
+                    })}
+                  </ul>
+                </Row>
               </Col>
             </Row>
             <Container>

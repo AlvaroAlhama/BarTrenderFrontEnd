@@ -19,7 +19,7 @@ function Dashboard() {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
     const apiUrl =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_by_owner";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_by_owner";
     async function loadBar() {
       await fetch(apiUrl, {
         method: "GET",

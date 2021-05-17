@@ -26,7 +26,7 @@ function DashboardQRList(props) {
 
   useEffect(() => {
       const apiUrl =
-        "https://main-backend-sprint-03.herokuapp.com/v1/payments/establishments/" +
+        "https://main-backend-ppl.herokuapp.com/v1/payments/establishments/" +
         idEstablishment +
         "/calculate";
       async function loadDiscountPaymentInfo() {
@@ -44,11 +44,11 @@ function DashboardQRList(props) {
           });
       }
       loadDiscountPaymentInfo();
-    }, [setDiscountPaymentInfoState]);
+    }, [setDiscountPaymentInfoState, idEstablishment, token]);
 
   useEffect(() => {
     const apiUrl =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       idEstablishment +
       "/discounts/get?page=1&all=True";
     async function loadDiscounts() {
@@ -67,7 +67,7 @@ function DashboardQRList(props) {
         });
     }
     loadDiscounts();
-  }, [setAppState]);
+  }, [setAppState, idEstablishment]);
 
   
 
@@ -104,7 +104,7 @@ function DashboardQRList(props) {
       });
     }
 
-    const paymentUrl = "https://main-backend-sprint-03.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
+    const paymentUrl = "https://main-backend-ppl.herokuapp.com/v1/payments/establishments/"+idEstablishment+"/pay";
 
     const payment = () => {
       if(paymentState.create_time !== null && paymentState.order_id !== null){
@@ -240,7 +240,7 @@ function DashboardQRList(props) {
                               Total de descuentos
                             </h4>
                           </div>
-                          <div class="container">
+                          <div className="container">
                             <hr />
                           </div>
                           <ModalBody>

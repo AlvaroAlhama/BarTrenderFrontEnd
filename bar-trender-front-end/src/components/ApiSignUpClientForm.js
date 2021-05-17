@@ -23,7 +23,7 @@ class ApiSignUpClientForm extends React.Component {
   async handleSignUp() {
 
     var url =
-      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/signup";
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",
@@ -68,8 +68,11 @@ class ApiSignUpClientForm extends React.Component {
 
       let input = {};
       const birthday = moment.utc(`${this.state.input.birthday}`).unix();
-  
+      
+
       this.state.input.birthday = birthday
+     
+
       input["rol"] ="client"
 
       this.setState({
@@ -230,18 +233,19 @@ class ApiSignUpClientForm extends React.Component {
           </div>
 
           <div className="form-group my-4">
-            <input
-              name="legal"
-              type="checkbox"
-              value={this.state.input.legal}
-              onChange={this.handleChange}
-              className="mr-2"
-            />
             <label className="text-dark" for="legal">
-              Acepta los
-              <a target='_blank' className="text-decoration-none" href="/legal">
+              <input
+                name="legal"
+                type="checkbox"
+                value={this.state.input.legal}
+                onChange={this.handleChange}
+                className="mr-2"
+                style={{"verticalAlign":"middle"}}
+              />
+              Acepta la
+              <a target='_blank' className="text-decoration-none" href="/politica-privacidad">
                 {" "}
-                Acuerdos de Términos{" "}
+                Política de Privacidad{" "}
               </a>
               y las{" "}
               <a target='_blank' className="text-decoration-none" href="/condiciones-uso">

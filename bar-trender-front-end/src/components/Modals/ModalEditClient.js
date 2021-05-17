@@ -15,7 +15,7 @@ function ModalEditClient() {
         id="edit-profile-tooltip"
         className="fal fa-user-circle text-white w-100 fa-lg mt-1"
       >
-         <p className="d-lg-none d-xl-none text-white mt-2 ml-2" style={{fontFamily: 'Roboto', fontSize: '11.4272px', fontWeight: '400'}}>Mi perfil</p>
+         <p className="d-lg-none d-xl-none text-white mt-2 ml-2 font-weight-bold" style={{fontFamily: 'Roboto', fontSize: '11.4272px', fontWeight: '400'}}>Mi perfil</p>
       </i>
       <Modal className='modal-lg' isOpen={modal1} toggle={() => setModal1(false)}>
         <div className="modal-header justify-content-center">

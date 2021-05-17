@@ -48,7 +48,7 @@ export default class PremiumDashboard extends React.Component {
   async getTags() {
     var token = sessionStorage.getItem("token");
 
-    const url = "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_tags";
+    const url = "https://main-backend-ppl.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -84,7 +84,7 @@ export default class PremiumDashboard extends React.Component {
   async getZones() {
 
     const url =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_zones?all=true";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_zones?all=true";
     const response = await fetch(url, {
       method: "GET",
     });
@@ -101,7 +101,7 @@ export default class PremiumDashboard extends React.Component {
   }
   async getIsPremium() {
     await fetch(
-      "https://main-backend-sprint-03.herokuapp.com/v1/authentication/ispremium",
+      "https://main-backend-ppl.herokuapp.com/v1/authentication/ispremium",
       {
         method: "GET",
         headers: {

@@ -6,9 +6,12 @@ import {
   Label,
   Modal,
   ModalBody,
+  Button,
+  Row,
   Spinner,
 } from "reactstrap";
 import POSTCreateDiscount from "../components/ApiCreateDiscountForm";
+import ListMyDiscounts from "./ListOldDiscounts";
 
 export default class EditEstablishment extends React.Component {
   constructor() {
@@ -44,6 +47,7 @@ export default class EditEstablishment extends React.Component {
       sendFinal: {},
 
       modal1: false,
+      modal2: false,
       errorsApiGet: {},
       errorsApiPut: {},
       errors: {},
@@ -62,7 +66,7 @@ export default class EditEstablishment extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_tags";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -71,11 +75,27 @@ export default class EditEstablishment extends React.Component {
       },
     });
     const data = await response.json();
-
-    var otherTags = data.tags.filter(tag => tag.type !== "Zona").map((tag) => {
-        return { value: tag.name, label: tag.name };
+    var groupTags = {}
+    const groupingTags = data.tags
+    .filter((tag) => tag.type !== "Zona")
+    .map((tag) => {
+      if(!Object.keys(groupTags).includes(tag.type)){
+        groupTags[tag.type] = [tag]
+      }else{
+        groupTags[tag.type].push(tag)
+      }
     });
-
+    var otherTags = []
+    const auxTag = groupTags => {
+      for (const type in groupTags){
+        const options = {'label': type, 'options': []}
+        for (const tag of groupTags[type]){
+          options['options'].push({'label': tag.name, 'value': tag.name})
+        }
+        otherTags.push(options)
+      }
+    }
+    auxTag(groupTags)
     var arrayOther = otherTags.filter(function (dato) {
       return dato !== undefined;
     });
@@ -87,7 +107,7 @@ export default class EditEstablishment extends React.Component {
 
   async getZones() {
     const url =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/get_zones?all=true";
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_zones?all=true";
     const response = await fetch(url, {
       method: "GET",
     });
@@ -109,7 +129,7 @@ export default class EditEstablishment extends React.Component {
     var id_establishment = splited[3];
 
     const url =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/get";
 
@@ -156,11 +176,10 @@ export default class EditEstablishment extends React.Component {
     let inputs = this.state.input;
     let tagsBefore = [];
 
-    for (let tag of this.state.selected) 
-        tagsBefore.push(tag.value);
+    for (let tag of this.state.selected) tagsBefore.push(tag.value);
 
     const urlUpdate =
-      "https://main-backend-sprint-03.herokuapp.com/v1/establishments/" +
+      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/update";
 
@@ -249,7 +268,7 @@ export default class EditEstablishment extends React.Component {
     let selecteds = this.state.selected;
     let errors = {};
     let isValid = true;
-    var pattern
+    var pattern;
 
     if (!inputs["name_text"].trim()) {
       isValid = false;
@@ -308,7 +327,6 @@ export default class EditEstablishment extends React.Component {
         "Debe asignar una zona próxima a su establecimiento";
     }
 
-
     this.setState({
       errors: errors,
     });
@@ -329,7 +347,7 @@ export default class EditEstablishment extends React.Component {
           <div>
             <img
               className="img-fluid w-100"
-              alt = ""
+              alt=""
               src={this.state.image_url == null ? "" : this.state.image_url}
             />
           </div>
@@ -348,88 +366,86 @@ export default class EditEstablishment extends React.Component {
                     id="establishment-form"
                     onSubmit={(e) => this.handleSubmit(e)}
                   >
-                  {window.innerWidth < 525 && (
-                    <>
-                    <div className="row">
-                      <div className="col pr-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Nombre del Establecimiento</label>
-                          <input
-                            type="text"
-                            name="name_text"
-                            maxLength="100"
-                            value={this.state.input.name_text}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="name-establishment"
-                          />
-
+                    {window.innerWidth < 525 && (
+                      <>
+                        <div className="row">
+                          <div className="col pr-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Nombre del Establecimiento</label>
+                              <input
+                                type="text"
+                                name="name_text"
+                                maxLength="100"
+                                value={this.state.input.name_text}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="name-establishment"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.name_text}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-danger">
-                          {this.state.errors.name_text}
+                        <div className="row">
+                          <div className="col pr-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Teléfono</label>
+                              <input
+                                type="tel"
+                                name="phone_number"
+                                value={this.state.input.phone_number}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="phone-number"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.phone_number}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col pr-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Teléfono</label>
-                          <input
-                            type="tel"
-                            name="phone_number"
-                            value={this.state.input.phone_number}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="phone-number"
-                          />
+                      </>
+                    )}
+                    {window.innerWidth >= 525 && (
+                      <>
+                        <div className="row">
+                          <div className="col pr-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Nombre del Establecimiento</label>
+                              <input
+                                type="text"
+                                name="name_text"
+                                maxLength="100"
+                                value={this.state.input.name_text}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="name-establishment"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.name_text}
+                            </div>
+                          </div>
+                          <div className="col pl-1 md-6">
+                            <div className="form-group my-1">
+                              <label>Teléfono</label>
+                              <input
+                                type="tel"
+                                name="phone_number"
+                                value={this.state.input.phone_number}
+                                onChange={this.handleChange}
+                                className="form-control"
+                                id="phone-number"
+                              />
+                            </div>
+                            <div className="text-danger">
+                              {this.state.errors.phone_number}
+                            </div>
+                          </div>
                         </div>
-                        <div className="text-danger">
-                          {this.state.errors.phone_number}
-                        </div>
-                      </div>
-                    </div>
-                    </>
-                  )}
-                  {window.innerWidth >= 525 && (
-                    <>
-                    <div className="row">
-                      <div className="col pr-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Nombre del Establecimiento</label>
-                          <input
-                            type="text"
-                            name="name_text"
-                            maxLength="100"
-                            value={this.state.input.name_text}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="name-establishment"
-                          />
-
-                        </div>
-                        <div className="text-danger">
-                          {this.state.errors.name_text}
-                        </div>
-                      </div>
-                      <div className="col pl-1 md-6">
-                        <div className="form-group my-1">
-                          <label>Teléfono</label>
-                          <input
-                            type="tel"
-                            name="phone_number"
-                            value={this.state.input.phone_number}
-                            onChange={this.handleChange}
-                            className="form-control"
-                            id="phone-number"
-                          />
-                        </div>
-                        <div className="text-danger">
-                          {this.state.errors.phone_number}
-                        </div>
-                      </div>
-                    </div>
-                    </>
-                  )}
+                      </>
+                    )}
                     <div className="row">
                       <div className="col md-12">
                         <div className="form-group my-1">
@@ -531,7 +547,7 @@ export default class EditEstablishment extends React.Component {
                           />
                         </FormGroup>
                       </div>
-                    </div>                
+                    </div>
                     <div className="row">
                       <div className="col">
                         <div className="form-group my-1">
@@ -601,6 +617,37 @@ export default class EditEstablishment extends React.Component {
                       <POSTCreateDiscount />
                     </ModalBody>
                   </Modal>
+
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => this.setState({ modal2: true })}
+                  >
+                    Reactivar descuento pasado
+                  </button>
+
+                  <Modal
+                    isOpen={this.state.modal2}
+                    toggle={() => this.setState({ modal2: false })}
+                  >
+                    <div className="modal-header justify-content-center">
+                      <button
+                        className="close"
+                        type="button"
+                        onClick={() => this.setState({ modal2: false })}
+                      >
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                      <h4 className="title title-up">Lista de descuentos</h4>
+                    </div>
+                    <div className="container">
+                      <hr />
+                    </div>
+                    <ModalBody>
+                      <ListMyDiscounts />
+                    </ModalBody>
+                  </Modal>
+
                   <div className="clearfix"></div>
                 </div>
               </div>

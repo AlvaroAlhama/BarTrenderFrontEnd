@@ -9,7 +9,7 @@ function ModalLogin() {
   const [errorLoginGoogle, setErrorLoginGoogle] = React.useState(undefined)
   const [errorBackend, setErrorBackend] = React.useState(undefined)
   const errorLink = 'https://aboutme.google.com/'
-  const host = 'https://main-backend-sprint-03.herokuapp.com/v1'
+  const host = 'https://main-backend-ppl.herokuapp.com/v1'
 
   function reportWindowSize() {
     const { innerWidth: width } = window;
@@ -154,7 +154,7 @@ function ModalLogin() {
           id="login-tooltip"
           className="fal fa-user text-white w-100 fa-lg mt-1"
         >
-          <p className="d-lg-none d-xl-none my-auto text-white ml-2" style={{fontFamily:"Roboto", fontSize:"11.4272px", fontWeight:"400"}}>Inicio de Sesión</p>
+          <p className="d-lg-none d-xl-none my-auto text-white ml-2 font-weight-bold" style={{fontFamily:"Roboto", fontSize:"11.4272px", fontWeight:"400"}}>Inicio de Sesión</p>
         </i>
         
         <Modal isOpen={modal1} toggle={() => setModal1(false)}>
@@ -202,9 +202,9 @@ function ModalLogin() {
           </ModalBody>
 
           <label className="text-center">
-            Si inicias sesión, estás aceptando los
-            <a target='_blank' className="text-decoration-none" href="/legal">
-              {" "} Acuerdos de Términos {" "}
+            Si inicias sesión, estás aceptando la
+            <a target='_blank' className="text-decoration-none" href="/politica-privacidad">
+              {" "} Política de Privacidad {" "}
             </a>
             y las{" "}
             <a target='_blank' className="text-decoration-none" href="/condiciones-uso">
@@ -227,7 +227,7 @@ function ModalLogin() {
           className="fal fa-power-off text-white w-100 fa-lg mt-1"
           
         >
-          <p className="d-lg-none d-xl-none my-auto text-white ml-2" style={{fontFamily:"Roboto", fontSize:"11.4272px", fontWeight:"400"}}>Cerrar Sesión</p>
+          <p className="d-lg-none d-xl-none my-auto text-white ml-2 font-weight-bold" style={{fontFamily:"Roboto", fontSize:"11.4272px", fontWeight:"400"}}>Cerrar Sesión</p>
         </i>
         
       </>

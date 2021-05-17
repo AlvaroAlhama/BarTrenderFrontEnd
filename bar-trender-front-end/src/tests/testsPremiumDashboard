@@ -19,7 +19,7 @@ class TestsPremiumDashboard():
     self.driver.quit()
   
   def test_premiumDashboardNoPremiumUser(self):
-    self.driver.get("https://bartrender-develop-sprint-01.netlify.app")
+    self.driver.get("https://bartrenderoficial-sprint-01.netlify.app")
     self.driver.set_window_size(1051, 728)
     self.driver.find_element(By.ID, "login-tooltip").click()
     self.driver.find_element(By.ID, "email").send_keys("owner1@gmail.com")
@@ -49,7 +49,7 @@ class TestsPremiumDashboard():
  
 
   def test_premiumDasboardSuccess(self):
-    self.driver.get("https://bartrender-develop-sprint-01.netlify.app")
+    self.driver.get("https://bartrenderoficial-sprint-01.netlify.app")
     self.driver.set_window_size(1051, 728)
     self.driver.find_element(By.ID, "login-tooltip").click()
     self.driver.find_element(By.ID, "email").send_keys("owner1@gmail.com")
@@ -68,7 +68,7 @@ class TestsPremiumDashboard():
     assert  self.driver.find_element(By.CSS_SELECTOR, "p:nth-child(6)") == "Datos obtenidos de la api de Bartrender"
 
   def test_premiumDashboardNoZone(self):
-    self.driver.get("https://bartrender-develop-sprint-01.netlify.app")
+    self.driver.get("https://bartrenderoficial-sprint-01.netlify.app")
     self.driver.set_window_size(1051, 728)
     self.driver.find_element(By.ID, "login-tooltip").click()
     self.driver.find_element(By.ID, "email").send_keys("owner1@gmail.com")
@@ -98,7 +98,7 @@ class TestsPremiumDashboard():
 
 
   def test_premiumDashboardNoDates(self):
-    self.driver.get("https://bartrender-develop-sprint-01.netlify.app")
+    self.driver.get("https://bartrenderoficial-sprint-01.netlify.app")
     self.driver.set_window_size(1051, 728)
     self.driver.find_element(By.ID, "login-tooltip").click()
     self.driver.find_element(By.ID, "email").send_keys("owner1@gmail.com")

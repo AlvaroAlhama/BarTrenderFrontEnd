@@ -12,7 +12,7 @@ function DashboardTopImage(props) {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
 
-    const apiUrl = "https://main-backend-sprint-03.herokuapp.com/v1/stats/get";
+    const apiUrl = "https://main-backend-ppl.herokuapp.com/v1/stats/get";
 
     async function loadStats() {
       await fetch(apiUrl, {
@@ -29,7 +29,7 @@ function DashboardTopImage(props) {
         });
     }
     loadStats()
-  },[setAppState]);
+  },[setAppState, props]);
 
 
   var imgBest = bartrenderBlack

@@ -27,8 +27,6 @@ function ModalSelectedElement(prop) {
   const [modal1, setModal1] = React.useState(false);
   const [modal2, setModal2] = React.useState(false);
   const { element } = prop;
-  console.log("AQUI ELEMENT");
-  console.log(element);
   const description = element.desc_text !== undefined;
 
   const [appState, setAppState] = useState({
@@ -165,7 +163,7 @@ function ModalSelectedElement(prop) {
                     Etiquetas
                   </span>
                 </div>
-                <Row className="text-primary justify-content-center">
+                <Row className="text-primary justify-content-center" style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)'}}>
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
@@ -185,7 +183,6 @@ function ModalSelectedElement(prop) {
                       }}
                     >
                       <i
-                        
                         color="primary"
                         id="create-tooltip"
                         className="fal fa-bowling-ball w-100 text-primary fa-lg"

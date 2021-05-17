@@ -131,7 +131,7 @@ function MainNavbar() {
                 cursor="pointer"
               >
                 <i className="fab fa-twitter fa-lg w-100 text-white my-auto"></i>
-                <p className="d-lg-none text-white d-xl-none mt-2 ml-2">
+                <p className="d-lg-none text-white d-xl-none mt-2 ml-2 font-weight-bold">
                   Twitter
                 </p>
               </NavLink>
@@ -147,7 +147,7 @@ function MainNavbar() {
                 id="instagram-tooltip"
               >
                 <i className="fab fa-instagram fa-lg w-100 my-auto text-white"></i>
-                <p className="d-lg-none text-white d-xl-none mt-2 ml-2">
+                <p className="d-lg-none text-white d-xl-none mt-2 ml-2 font-weight-bold">
                   Instagram
                 </p>
               </NavLink>
@@ -162,7 +162,7 @@ function MainNavbar() {
                     id="panel-control-icon"
                     className="fal fa-joystick text-white mt-1 fa-lg"
                   ></i>
-                  <p className="d-lg-none text-white d-xl-none ml-2 my-auto">
+                  <p className="d-lg-none text-white d-xl-none ml-2 my-auto font-weight-bold">
                     Panel de control
                   </p>
                 </NavLink>

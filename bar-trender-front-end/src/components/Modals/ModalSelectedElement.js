@@ -142,7 +142,7 @@ function ModalSelectedElement(prop) {
                 <br></br>
 
                 <div>
-                  <ul style={{display:'flex', listStyleType:'none', padding: '0px'}}>
+                  <ul style={{display:'flex', listStyleType:'none', padding: '0px', flexWrap: 'wrap'}}>
                   {element.tags.map((tag) => {
                       return (
                         <li className="mx-1" style={{flexGrow:'1', width:'100%'}}>

@@ -209,19 +209,20 @@ class ApiSignUpEstablishmentForm extends React.Component {
           </div>
 
           <div className="form-group my-4">
-            <input
-              name="legal"
-              type="checkbox"
-              value={this.state.input.legal}
-              onChange={this.handleChange}
-              checked={this.state.input.legal}
-              className="mr-2"
-            />
             <label className="text-dark" for="legal">
-              Acepta los
-              <a target="_blank" className="text-decoration-none" href="/legal">
+              <input
+                name="legal"
+                type="checkbox"
+                value={this.state.input.legal}
+                onChange={this.handleChange}
+                checked={this.state.input.legal}
+                className="mr-2"
+                style={{"verticalAlign":"middle"}}
+              />
+              Acepta la
+              <a target="_blank" className="text-decoration-none" href="/politica-privacidad">
                 {" "}
-                Acuerdos de Términos{" "}
+                Política de Privacidad{" "}
               </a>
               y las{" "}
               <a

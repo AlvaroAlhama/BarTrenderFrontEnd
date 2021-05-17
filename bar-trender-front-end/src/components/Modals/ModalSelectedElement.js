@@ -163,6 +163,7 @@ function ModalSelectedElement(prop) {
                     Etiquetas
                   </span>
                 </div>
+
                 <Row className="text-primary justify-content-center" style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)'}}>
                   <div class="col-2">
                     <Button

@@ -12,8 +12,9 @@ function Example() {
     <>
       <Button
             variant="dark"
-            className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
-            onClick={ handleShow }>
+            className="d-lg-none d-flex justify-content-center align-items-center rounded-circle p-2 navbar-dark"
+            onClick={ handleShow }
+            style={{'background': 'none'}}>
 
               <span className="navbar-toggler-icon"></span>
       </Button>

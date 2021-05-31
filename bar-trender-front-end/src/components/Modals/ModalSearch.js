@@ -132,11 +132,7 @@ class ModalSearch extends React.Component {
 
   componentDidMount()
   {
-<<<<<<< HEAD
-=======
-    
 
->>>>>>> e0552fafb898707d81fd4c1bfdfe4c92bfbf9660
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
     fetch(apiUrl, {
       method: 'GET',

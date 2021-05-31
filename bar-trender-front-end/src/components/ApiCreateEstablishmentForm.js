@@ -416,7 +416,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");
@@ -442,7 +452,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");
@@ -467,7 +487,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");
@@ -492,7 +522,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");

@@ -37,26 +37,7 @@ class ModalSearch extends React.Component {
 
 
     this.tags = [
-      // {
-      //   name: "Cruzcampo",
-      //   type: "Bebidas"
-      // },
-      // {
-      //   name: "Paulaner",
-      //   type: "Bebidas"
-      // },
-      // {
-      //   name: "Billar",
-      //   type: "Instalacion"
-      // },
-      // {
-      //   name: "Dardos",
-      //   type: "Instalacion"
-      // },
-      // {
-      //   name: "Arabe",
-      //   type: "Estilo"
-      // },
+   
     ];
      
     this.handleTermChange = this.handleTermChange.bind(this);
@@ -126,9 +107,36 @@ class ModalSearch extends React.Component {
         return 'now-ui-icons location_bookmark';
     }
   }
+  async getZones() {
+    const url =
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_zones?all=true";
+    const response = await fetch(url, {
+      method: "GET",
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      var zonas = data.zones;
+      var zona = new Array;
+      zonas.forEach(element => { 
+        zona.push({
+          name: element,
+          type:"Zona"
+        })
+      });
+      // console.log(zona);
+      return zona;
+  
+    }
+  }
 
   componentDidMount()
   {
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> e0552fafb898707d81fd4c1bfdfe4c92bfbf9660
     const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
     fetch(apiUrl, {
       method: 'GET',
@@ -140,13 +148,25 @@ class ModalSearch extends React.Component {
     .then(response => response.json())
     .then(data => {
       var res = groupBy(data.tags, (t) => t.type)
-      this.setState({tags_grouped: res})
+      
+      this.getZones().then(zonas => {
+        res.Zona = zonas;
+      })
+
+      this.setState({
+        tags_grouped: res
+      }, 
+      // () => console.log(this.state.tags_grouped),
+    )
     })
+
+    
   }
 
   componentDidUpdate() {
-  
-  this.state.WindowWidth = window.innerWidth;
+    //#206 - change
+    // this.setState({WindowWidth: window.innerWidth})
+    this.state.WindowWidth = window.innerWidth;
   }
 
   

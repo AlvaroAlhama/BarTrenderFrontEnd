@@ -36,7 +36,7 @@ import EstablishmentView from "./views/EstablishmentView.js"
 import TermsUse from './views/TermsUse';
 import PrivacyPolicy from './views/PrivacyPolicy';
 
-
+console.log("EY")
 const app = (
   
     <BrowserRouter>

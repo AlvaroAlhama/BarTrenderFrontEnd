@@ -22,7 +22,7 @@ function Upgrade() {
   useEffect(() => {
     async function getIsPremium() {
       await fetch(
-        "https://main-backend-ppl.herokuapp.com/v1/authentication/ispremium",
+        "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/ispremium",
         {
           method: "GET",
           headers: {
@@ -64,7 +64,7 @@ function Upgrade() {
   };
 
   const url =
-    "https://main-backend-ppl.herokuapp.com/v1/authentication/setpremium";
+    "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/setpremium";
 
   const payment = () => {
     if (appState.create_time !== undefined && appState.order_id !== undefined) {

@@ -59,7 +59,7 @@ function ModalSelectedElement(prop) {
 
   async function loadDiscounts() {
     const apiUrl =
-      "https://main-backend-ppl.herokuapp.com/v1/establishments/" +
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
       element.id +
       "/discounts/get?page=1&all=False";
     await fetch(apiUrl, {
@@ -167,8 +167,19 @@ function ModalSelectedElement(prop) {
                 <Row className="text-primary justify-content-center" style={{display:'grid', gridTemplateColumns:'repeat(3,1fr)'}}>
                   <div class="col-2">
                     <Button
-                      className="bg-transparent"
-                      onClick={() => {
+                      className="bg-transparent button-active"
+                      onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active")[0] != undefined ){
+                          document.getElementsByClassName("button-active")[0]
+                          .classList.remove("button-active");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active"); 
+                        }else{
+                          e.target.classList.add("button-active"); 
+                        } 
+
                         document
                           .getElementsByClassName("tag-active")[0]
                           .classList.add("d-none");
@@ -193,7 +204,20 @@ function ModalSelectedElement(prop) {
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
-                      onClick={() => {
+                      onClick={(e) => {
+                        
+
+                       if(document.getElementsByClassName("button-active")[0] != undefined ){
+                          document.getElementsByClassName("button-active")[0]
+                          .classList.remove("button-active");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active"); 
+                        }else{
+                          e.target.classList.add("button-active"); 
+                        }
+
+
                         document
                           .getElementsByClassName("tag-active")[0]
                           .classList.add("d-none");
@@ -217,7 +241,19 @@ function ModalSelectedElement(prop) {
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
-                      onClick={() => {
+                      onClick={(e) => {
+                        
+
+                       if(document.getElementsByClassName("button-active")[0] != undefined ){
+                          document.getElementsByClassName("button-active")[0]
+                          .classList.remove("button-active");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active"); 
+                        }else{
+                          e.target.classList.add("button-active"); 
+                        }
+
                         document
                           .getElementsByClassName("tag-active")[0]
                           .classList.add("d-none");
@@ -241,7 +277,19 @@ function ModalSelectedElement(prop) {
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
-                      onClick={() => {
+                      onClick={(e) => {
+                        
+
+                        if(document.getElementsByClassName("button-active")[0] != undefined ){
+                          document.getElementsByClassName("button-active")[0]
+                          .classList.remove("button-active");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active"); 
+                        }else{
+                          e.target.classList.add("button-active"); 
+                        }
+
                         document
                           .getElementsByClassName("tag-active")[0]
                           .classList.add("d-none");
@@ -265,7 +313,19 @@ function ModalSelectedElement(prop) {
                   <div class="col-2">
                     <Button
                       className="bg-transparent"
-                      onClick={() => {
+                      onClick={(e) => {
+                        
+                        if(document.getElementsByClassName("button-active")[0] != undefined ){
+                          document.getElementsByClassName("button-active")[0]
+                          .classList.remove("button-active");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active"); 
+                        }else{
+                          e.target.classList.add("button-active"); 
+                        }
+                        
+
                         document
                           .getElementsByClassName("tag-active")[0]
                           .classList.add("d-none");

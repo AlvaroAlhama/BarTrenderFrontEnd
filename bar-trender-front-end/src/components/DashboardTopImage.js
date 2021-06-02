@@ -12,7 +12,7 @@ function DashboardTopImage(props) {
   useEffect(() => {
     var token = sessionStorage.getItem("token");
 
-    const apiUrl = "https://main-backend-ppl.herokuapp.com/v1/stats/get";
+    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/stats/get";
 
     async function loadStats() {
       await fetch(apiUrl, {

@@ -21,7 +21,7 @@ class ApiSignUpEstablishmentForm extends React.Component {
   async handleSignUp() {
 
     var url =
-      "https://main-backend-ppl.herokuapp.com/v1/authentication/signup";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/signup";
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
       method: "POST",

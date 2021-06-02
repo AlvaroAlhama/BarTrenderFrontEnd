@@ -53,7 +53,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     var token = sessionStorage.getItem("token");
 
     const url =
-      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_tags";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -68,7 +68,7 @@ class ApiCreateEstablishmentForm extends React.Component {
 
   async getZones() {
     const url =
-      "https://main-backend-ppl.herokuapp.com/v1/establishments/get_zones?all=true";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_zones?all=true";
     const response = await fetch(url, {
       method: "GET",
     });
@@ -141,7 +141,7 @@ class ApiCreateEstablishmentForm extends React.Component {
     var json = JSON.stringify(object);
 
     const url =
-      "https://main-backend-ppl.herokuapp.com/v1/establishments/create";
+      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/create";
 
     const create = await fetch(url, {
       method: "POST",
@@ -416,7 +416,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");
@@ -442,7 +452,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");
@@ -467,7 +487,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");
@@ -492,7 +522,17 @@ class ApiCreateEstablishmentForm extends React.Component {
                 <div class="col-2">
                   <Button
                     className="bg-transparent"
-                    onClick={() => {
+                    onClick={(e) => {
+                       
+                        if(document.getElementsByClassName("button-active-black")[0] != undefined ){
+                          document.getElementsByClassName("button-active-black")[0]
+                          .classList.remove("button-active-black");
+                        };
+                        if(e.target.type != 'button'){
+                          e.target.parentNode.classList.add("button-active-black"); 
+                        }else{
+                          e.target.classList.add("button-active-black"); 
+                        }
                       document
                         .getElementsByClassName("tag-active")[0]
                         .classList.add("d-none");

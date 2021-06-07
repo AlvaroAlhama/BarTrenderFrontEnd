@@ -156,7 +156,7 @@ function LandingView() {
                 <img id="banner" alt="banner" src={banner2_sponsor}/>
                 <br></br>
                 <br></br>
-                <iframe id="video" src="https://www.youtube.com/embed/vpP9_indjqg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              </div>
+                <iframe id="video" src="https://www.youtube.com/embed/gBD_rX91QFY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>              </div>
               <br></br><br></br>
               <div className="img-banner">
                 <img alt="banner" src={banner_sponsor}/>

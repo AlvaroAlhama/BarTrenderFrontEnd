@@ -109,7 +109,7 @@ class ModalSearch extends React.Component {
   }
   async getZones() {
     const url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_zones?all=true";
+      "https://bartrenderoficial.herokuapp.com/v1/establishments/get_zones?all=true";
     const response = await fetch(url, {
       method: "GET",
     });
@@ -133,7 +133,7 @@ class ModalSearch extends React.Component {
   componentDidMount()
   {
 
-    const apiUrl = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/get_tags";
+    const apiUrl = "https://bartrenderoficial.herokuapp.com/v1/establishments/get_tags";
     fetch(apiUrl, {
       method: 'GET',
       headers: {

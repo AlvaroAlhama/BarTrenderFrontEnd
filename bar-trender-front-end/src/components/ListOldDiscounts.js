@@ -61,7 +61,7 @@ export default class EditDeleteDiscounts extends React.Component {
     var splited = query.split("/");
     var id_establishment = splited[3];
     const urlGet =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://bartrenderoficial.herokuapp.com/v1/establishments/" +
       id_establishment +
       "/discounts/getExpire?page=" +
       number;

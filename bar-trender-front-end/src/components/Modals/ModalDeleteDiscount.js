@@ -45,7 +45,7 @@ function ModalDeleteDiscount(props) {
 
     fetch(
 
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://bartrenderoficial.herokuapp.com/v1/establishments/" +
 
       id_establishment +
       "/get",
@@ -77,7 +77,7 @@ function ModalDeleteDiscount(props) {
       var splited = query.split("/");
       var idEstablishment = splited[3];
 
-      const url = "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" + idEstablishment + "/discounts/" + idDiscount + "/delete";
+      const url = "https://bartrenderoficial.herokuapp.com/v1/establishments/" + idEstablishment + "/discounts/" + idDiscount + "/delete";
       const request = await fetch(url, {
         method: "DELETE",
         headers: {

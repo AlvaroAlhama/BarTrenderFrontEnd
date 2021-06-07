@@ -7,7 +7,7 @@ import fail_boy from "../assets/img/fail-scan.png";
 import barTrender60 from "../assets/img/barTrender60.png";
 import success_boy from "../assets/img/success_scan-min.png";
 
-const host = "https://develop-backend-sprint-01.herokuapp.com/v1";
+const host = "https://bartrenderoficial.herokuapp.com/v1";
 const errorLink = "https://aboutme.google.com/";
 
 class POSTLoginFormQRValidator extends React.Component {
@@ -46,7 +46,7 @@ class POSTLoginFormQRValidator extends React.Component {
     let params = new URLSearchParams(query);
     var establishment_id = params.get("establishment_id");
     var url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://bartrenderoficial.herokuapp.com/v1/establishments/" +
       establishment_id +
       "/get_owner";
 
@@ -144,7 +144,7 @@ class POSTLoginFormQRValidator extends React.Component {
     let errors = {};
 
     var url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/authentication/login";
+      "https://bartrenderoficial.herokuapp.com/v1/authentication/login";
 
     // Call to the api with the credentials given by the user
     const response = await fetch(url, {
@@ -179,7 +179,7 @@ class POSTLoginFormQRValidator extends React.Component {
     var token = sessionStorage.getItem("token");
 
     var url =
-      "https://develop-backend-sprint-01.herokuapp.com/v1/establishments/" +
+      "https://bartrenderoficial.herokuapp.com/v1/establishments/" +
       establishment_id +
       "/discounts/" +
       discount_id +
